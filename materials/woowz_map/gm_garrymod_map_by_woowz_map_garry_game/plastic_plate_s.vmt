@@ -1,0 +1,9 @@
+LightmappedGeneric{
+	$basetexture "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/plastic_plate_s"
+	$surfaceprop "metal_barrel"
+	
+	"$detail" "detail/noise_detail_01"
+	"$detailscale" "1.792"
+	"$detailblendfactor" 0.2
+	"$detailblendmode" 0
+}

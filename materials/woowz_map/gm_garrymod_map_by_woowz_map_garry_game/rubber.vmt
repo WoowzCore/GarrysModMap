@@ -1,6 +1,6 @@
 LightmappedGeneric{
-	$basetexture "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/sky"
-	$surfaceprop "concrete"
+	$basetexture "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/rubber"
+	$surfaceprop "rubber"
 	
 	"$detail" "detail/noise_detail_01"
 	"$detailscale" "7.792"

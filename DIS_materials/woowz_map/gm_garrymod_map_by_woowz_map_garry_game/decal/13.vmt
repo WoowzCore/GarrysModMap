@@ -3,6 +3,6 @@
 	"$vertexalpha" "1"
 	"$baseTexture" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/decal/13"
 	"$decal" 1
-	"$decalscale" 0.15
+	"$decalscale" 0.2
 	"$translucent" 1
 }

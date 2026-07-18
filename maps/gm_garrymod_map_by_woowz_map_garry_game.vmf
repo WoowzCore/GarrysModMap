@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8871"
-	"mapversion" "525"
+	"mapversion" "534"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -14,7 +14,7 @@ viewsettings
 	"bSnapToGrid" "1"
 	"bShowGrid" "1"
 	"bShowLogicalGrid" "0"
-	"nGridSpacing" "4"
+	"nGridSpacing" "16"
 }
 palette_plus
 {
@@ -89,7 +89,7 @@ bgimages_plus
 world
 {
 	"id" "1"
-	"mapversion" "525"
+	"mapversion" "534"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -130465,6 +130465,124 @@ world
 			"visgroupautoshown" "1"
 		}
 	}
+	solid
+	{
+		"id" "51799"
+		side
+		{
+			"id" "40086"
+			"plane" "(-1008 592 240) (-768 592 240) (-768 1632 240)"
+			vertices_plus
+			{
+				"v" "-1008 592 240"
+				"v" "-768 592 240"
+				"v" "-768 1632 240"
+				"v" "-1008 1632 240"
+			}
+			"material" "TOOLS/TOOLSHINT"
+			"uaxis" "[1 0 0 41.6816] 0.25"
+			"vaxis" "[0 -1 0 15.761] 0.25"
+			"rotation" "0"
+			"lightmapscale" "256"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "40085"
+			"plane" "(-1008 1632 400) (-768 1632 400) (-768 592 400)"
+			vertices_plus
+			{
+				"v" "-1008 1632 400"
+				"v" "-768 1632 400"
+				"v" "-768 592 400"
+				"v" "-1008 592 400"
+			}
+			"material" "TOOLS/TOOLSHINT"
+			"uaxis" "[1 0 0 41.6816] 0.25"
+			"vaxis" "[0 -1 0 15.761] 0.25"
+			"rotation" "0"
+			"lightmapscale" "256"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "40084"
+			"plane" "(-1008 1632 400) (-1008 592 400) (-1008 592 240)"
+			vertices_plus
+			{
+				"v" "-1008 1632 400"
+				"v" "-1008 592 400"
+				"v" "-1008 592 240"
+				"v" "-1008 1632 240"
+			}
+			"material" "TOOLS/TOOLSHINT"
+			"uaxis" "[0 1 0 -15.761] 0.25"
+			"vaxis" "[0 0 1 48] 0.25"
+			"rotation" "0"
+			"lightmapscale" "256"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "40083"
+			"plane" "(-768 1632 240) (-768 592 240) (-768 592 400)"
+			vertices_plus
+			{
+				"v" "-768 1632 240"
+				"v" "-768 592 240"
+				"v" "-768 592 400"
+				"v" "-768 1632 400"
+			}
+			"material" "TOOLS/TOOLSHINT"
+			"uaxis" "[0 1 0 -15.761] 0.25"
+			"vaxis" "[0 0 1 48] 0.25"
+			"rotation" "0"
+			"lightmapscale" "256"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "40082"
+			"plane" "(-768 1632 400) (-1008 1632 400) (-1008 1632 240)"
+			vertices_plus
+			{
+				"v" "-768 1632 400"
+				"v" "-1008 1632 400"
+				"v" "-1008 1632 240"
+				"v" "-768 1632 240"
+			}
+			"material" "TOOLS/TOOLSHINT"
+			"uaxis" "[1 0 0 41.6812] 0.25"
+			"vaxis" "[0 0 1 48] 0.25"
+			"rotation" "0"
+			"lightmapscale" "256"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "40081"
+			"plane" "(-768 592 240) (-1008 592 240) (-1008 592 400)"
+			vertices_plus
+			{
+				"v" "-768 592 240"
+				"v" "-1008 592 240"
+				"v" "-1008 592 400"
+				"v" "-768 592 400"
+			}
+			"material" "TOOLS/TOOLSHINT"
+			"uaxis" "[1 0 0 41.6812] 0.25"
+			"vaxis" "[0 0 1 48] 0.25"
+			"rotation" "0"
+			"lightmapscale" "256"
+			"smoothing_groups" "0"
+		}
+		editor
+		{
+			"color" "0 245 246"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+		}
+	}
 }
 entity
 {
@@ -174691,34 +174809,37 @@ entity
 		"logicalpos" "[500 2500]"
 	}
 }
-entity
+hidden
 {
-	"id" "28549"
-	"classname" "ambient_generic"
-	"cspinup" "0"
-	"fadeinsecs" "0"
-	"fadeoutsecs" "0"
-	"health" "0.1"
-	"lfomodpitch" "0"
-	"lfomodvol" "0"
-	"lforate" "0"
-	"lfotype" "0"
-	"message" "Streetwar.d3_c17_10a_combine_shield_touch_loop1"
-	"pitch" "100"
-	"pitchstart" "100"
-	"preset" "8"
-	"radius" "0.1"
-	"spawnflags" "0"
-	"spindown" "0"
-	"spinup" "0"
-	"volstart" "0"
-	"origin" "-576 -640 544"
-	editor
+	entity
 	{
-		"color" "220 30 220"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 16000]"
+		"id" "28549"
+		"classname" "ambient_generic"
+		"cspinup" "0"
+		"fadeinsecs" "0"
+		"fadeoutsecs" "0"
+		"health" "0.1"
+		"lfomodpitch" "0"
+		"lfomodvol" "0"
+		"lforate" "0"
+		"lfotype" "0"
+		"message" "Streetwar.d3_c17_10a_combine_shield_touch_loop1"
+		"pitch" "100"
+		"pitchstart" "100"
+		"preset" "8"
+		"radius" "0.1"
+		"spawnflags" "0"
+		"spindown" "0"
+		"spinup" "0"
+		"volstart" "0"
+		"origin" "-576 -640 544"
+		editor
+		{
+			"color" "220 30 220"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+			"logicalpos" "[500 16000]"
+		}
 	}
 }
 entity
@@ -223654,6 +223775,102 @@ entity
 		"logicalpos" "[500 6500]"
 	}
 }
+hidden
+{
+	entity
+	{
+		"id" "51814"
+		"classname" "ambient_generic"
+		"cspinup" "0"
+		"fadeinsecs" "0"
+		"fadeoutsecs" "0"
+		"health" "0.1"
+		"lfomodpitch" "0"
+		"lfomodvol" "0"
+		"lforate" "0"
+		"lfotype" "0"
+		"message" "ambient/gas/steam_loop1.wav"
+		"pitch" "100"
+		"pitchstart" "100"
+		"preset" "0"
+		"radius" "0.1"
+		"spawnflags" "0"
+		"spindown" "0"
+		"spinup" "0"
+		"volstart" "0"
+		"origin" "1383.53 755.406 -2040"
+		editor
+		{
+			"color" "220 30 220"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+			"logicalpos" "[500 16000]"
+		}
+	}
+}
+hidden
+{
+	entity
+	{
+		"id" "51822"
+		"classname" "ambient_generic"
+		"cspinup" "0"
+		"fadeinsecs" "0"
+		"fadeoutsecs" "0"
+		"health" "0.1"
+		"lfomodpitch" "0"
+		"lfomodvol" "0"
+		"lforate" "0"
+		"lfotype" "0"
+		"message" "ambient/forest_night.wav"
+		"pitch" "100"
+		"pitchstart" "100"
+		"preset" "0"
+		"radius" "15"
+		"spawnflags" "0"
+		"spindown" "0"
+		"spinup" "0"
+		"volstart" "0"
+		"origin" "1360 470.231 592"
+		editor
+		{
+			"color" "220 30 220"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+			"logicalpos" "[500 16000]"
+		}
+	}
+}
+entity
+{
+	"id" "51835"
+	"classname" "ambient_generic"
+	"cspinup" "0"
+	"fadeinsecs" "0"
+	"fadeoutsecs" "0"
+	"health" "10"
+	"lfomodpitch" "0"
+	"lfomodvol" "0"
+	"lforate" "0"
+	"lfotype" "0"
+	"message" "ambient\guit1.wav"
+	"pitch" "100"
+	"pitchstart" "100"
+	"preset" "0"
+	"radius" "1250"
+	"spawnflags" "0"
+	"spindown" "0"
+	"spinup" "0"
+	"volstart" "0"
+	"origin" "448 -563.537 512"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 16000]"
+	}
+}
 cameras
 {
 	"activecamera" "-1"
@@ -223661,4 +223878,8 @@ cameras
 cordons
 {
 	"active" "0"
+}
+quickhide
+{
+	"count" "9"
 }

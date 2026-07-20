@@ -65,7 +65,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	
 	-- ----------------------------------------------------------------------
 	
-	local TimerSecondInterval = 0.01
+	local TimerSecondInterval = 0.05
 	
 	local __AmbientSounds = {}
 	
@@ -164,7 +164,6 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 
 	-- ----------------------------------------------------------------------
 
-	local __LastUpdateTime = 0
 	hook.Add("Think", "gmm_Think", function()
 		local View = render.GetViewSetup()
 		if View and View.origin then
@@ -172,12 +171,9 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		else
 			CameraPosition = EyePos()
 		end
-		
-		local CurrentTime = SysTime()
-		if CurrentTime - __LastUpdateTime >= TimerSecondInterval then
-			__LastUpdateTime = CurrentTime
-			
-			UpdateAmbientSounds()
-		end
+	end)
+	
+	timer.Create("gmm_ThinkSecond", TimerSecondInterval, 0, function()
+		UpdateAmbientSounds()
 	end)
 end)

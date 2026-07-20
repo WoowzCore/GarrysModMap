@@ -39,7 +39,6 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		-- ----------------------------------------------------------------------
 	
 		local __PROP_CASE = MapEntities["PROP_CASE"]
-		print(__PROP_CASE)
 	
 		hook.Add("Think", "gmm_MapThink", function()
 			if IsValid(__PROP_CASE) then

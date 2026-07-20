@@ -65,7 +65,37 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	
 	-- ----------------------------------------------------------------------
 	
+	local TimerSecondInterval = 0.01
+	
 	local __AmbientSounds = {}
+	
+	local CreateAmbients = function()
+		local CreateAmbient = function(SoundFile, Position, IDistance, ADistance, Volume, Delay)
+			SoundFile = "sound/" .. SoundFile
+		
+			Volume    = Volume or 1
+			IDistance = IDistance or 100
+			ADistance = ADistance or 1500
+			Delay     = Delay     or 0
+			
+			sound.PlayFile(SoundFile, "noplay", function(Channel, eID, e)
+				if e then error("[GMM] [ERROR]: FAILED PlayFile AMBIENT SOUND [" .. SoundFile .. "]:", eID, e) return end
+				if not IsValid(Channel) then error("[GMM] [ERROR]: FAILED PlayFile AMBIENT SOUND [" .. SoundFile .. "]: Channel is not valid!") return end
+				
+				table.insert(__AmbientSounds, {Channel, Position, Volume, IDistance, ADistance, Delay, SoundFile})
+			end)
+		end
+		
+		-- ----------------------------------------------------------------------
+		
+		CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
+		CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
+		CreateAmbient("ambient/forest_night.wav", Vector(1400, 491, 637), 100, 750)
+		CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1364, 747, -1984), 100, 500)
+		CreateAmbient("ambient/wind/wind_bass.wav", Vector(1084, 1786, 640), 500, 2500, 0.75)
+		CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
+	end
+	
 	local UpdateAmbientSounds = function()
 		for i = #__AmbientSounds, 1, -1 do
 			local SoundData = __AmbientSounds[i]
@@ -75,16 +105,20 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			local Volume    = SoundData[3]
 			local IDistance = SoundData[4]
 			local ADistance = SoundData[5]
-			local SoundFile = SoundData[6]
-			local Playing   = SoundData[7]
-			local Working   = SoundData[8]
+			local Delay     = SoundData[6]
+			local SoundFile = SoundData[7]
+			local Current   = SoundData[8]
+			local Working   = SoundData[9]
+			local Length    = Channel:GetLength()
 			if Working == nil then Working = true end
+			if Current == nil then Current = math.huge end
 			
-			if(Playing ~= true)then
+			Current = Current + TimerSecondInterval
+			if Current > Length + Delay then
 				Channel:Play()
-				Playing = true
-				__AmbientSounds[i][7] = Playing
+				Current = 0
 			end
+			__AmbientSounds[i][8] = Current
 			
 			if type(Position) == "number" then
 				local Target = Position
@@ -115,37 +149,9 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			__Volume = __Volume * Volume
 			
 			if not Working then __Volume = 0 end
-			__AmbientSounds[i][8] = Working
+			__AmbientSounds[i][9] = Working
 			Channel:SetVolume(__Volume)
 		end
-	end
-	
-	local CreateAmbients = function()
-		local CreateAmbient = function(SoundFile, Position, IDistance, ADistance, Volume)
-			SoundFile = "sound/" .. SoundFile
-		
-			Volume    = Volume or 1
-			IDistance = IDistance or 100
-			ADistance = ADistance or 1500
-			
-			sound.PlayFile(SoundFile, "noplay noblock", function(Channel, eID, e)
-				if e then error("[GMM] [ERROR]: FAILED PlayFile AMBIENT SOUND [" .. SoundFile .. "]:", eID, e) return end
-				if not IsValid(Channel) then error("[GMM] [ERROR]: FAILED PlayFile AMBIENT SOUND [" .. SoundFile .. "]: Channel is not valid!") return end
-				
-				table.insert(__AmbientSounds, {Channel, Position, Volume, IDistance, ADistance, SoundFile})
-				
-				Channel:EnableLooping(true)
-			end)
-		end
-		
-		-- ----------------------------------------------------------------------
-		
-		CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
-		CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
-		CreateAmbient("ambient/forest_night.wav", Vector(1400, 491, 637), 100, 750)
-		CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1364, 747, -1984), 100, 500)
-		CreateAmbient("ambient/wind/wind_bass.wav", Vector(1084, 1786, 640), 500, 2500, 0.75)
-		CreateAmbient("buttons/blip2.wav", 0, 100, 200)
 	end
 	
 	local PostCleanup = function()
@@ -158,6 +164,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 
 	-- ----------------------------------------------------------------------
 
+	local __LastUpdateTime = 0
 	hook.Add("Think", "gmm_Think", function()
 		local View = render.GetViewSetup()
 		if View and View.origin then
@@ -166,6 +173,11 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CameraPosition = EyePos()
 		end
 		
-		UpdateAmbientSounds()
+		local CurrentTime = SysTime()
+		if CurrentTime - __LastUpdateTime >= TimerSecondInterval then
+			__LastUpdateTime = CurrentTime
+			
+			UpdateAmbientSounds()
+		end
 	end)
 end)

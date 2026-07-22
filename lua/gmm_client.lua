@@ -1,11 +1,15 @@
 print("[GMM] BOOTSTRAP STARTED... (CLIENT)")
 
+GMM_C = {
+	["Debug"] = nil
+}
+
 hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	-- Загрузка клиента
 	print("[GMM] CLIENT LOADED")
 	
-	local Debug = true and (LocalPlayer():SteamID() == Woowz11)
-	if Debug then print("[GMM] DEBUG VERSION") end
+	GMM_C["Debug"] = true and (LocalPlayer():SteamID() == Woowz11)
+	if GMM_C["Debug"] then print("[GMM] DEBUG VERSION") end
 	
 	-- ----------------------------------------------------------------------
 	
@@ -27,7 +31,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	
 	-- ----------------------------------------------------------------------
 	
-	if Debug then
+	if GMM_C["Debug"] then
 		hook.Add("HUDPaint", "gmm_InterfaceDrawCoordinates", function()
 			local Position = EyePos()
 			local Angle    = EyeAngles()
@@ -85,7 +89,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		local CreateAmbient = function(SoundFile, Position, IDistance, ADistance, Volume, Delay)
 			SoundFile = "sound/" .. SoundFile
 		
-			Volume    = Volume or 1
+			Volume    = Volume    or 1
 			IDistance = IDistance or 100
 			ADistance = ADistance or 1500
 			Delay     = Delay     or 0
@@ -100,13 +104,15 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		
 		-- ----------------------------------------------------------------------
 		
-		CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
-		CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
-		CreateAmbient("ambient/forest_night.wav", Vector(1400, 491, 637), 100, 750)
-		CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1364, 747, -1984), 100, 500)
-		CreateAmbient("ambient/wind/wind_bass.wav", Vector(1084, 1786, 640), 500, 2500, 0.75)
-		CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
-		CreateAmbient("ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000)
+		if GMM["MyMap"] then
+			CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
+			CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
+			CreateAmbient("ambient/forest_night.wav", Vector(1400, 491, 637), 100, 750)
+			CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1364, 747, -1984), 100, 500)
+			CreateAmbient("ambient/wind/wind_bass.wav", Vector(1084, 1786, 640), 500, 2500, 0.75)
+			CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
+			CreateAmbient("ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000)
+		end
 	end
 	
 	local UpdateAmbientSounds = function()
@@ -196,5 +202,12 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		UpdateAmbientSounds()
 	
 		Player:SetDSP(3, true)
+		
+		net.Start("gmm_ClientInfo")
+			net.WriteTable({
+				["Shift"] = input.IsKeyDown(KEY_LSHIFT) or input.IsKeyDown(KEY_RSHIFT),
+				["Alt"  ] = input.IsKeyDown(KEY_LALT  ) or input.IsKeyDown(KEY_RALT  )
+			})
+		net.SendToServer()
 	end)
 end)

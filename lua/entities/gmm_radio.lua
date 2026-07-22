@@ -2,12 +2,13 @@ AddCSLuaFile()
 
 ENT.Type = "anim"
 ENT.Base = "base_anim"
-ENT.PrintName = "RADIO"
+ENT.PrintName = "RAD-10"
 ENT.Author = "Woowz11"
 ENT.Category = "GMM"
-ENT.Spawnable = true
+ENT.Spawnable = GMM["Valid"]
 
 ENT.Playing = false
+ENT.Delay = 0
 
 local WoowzCoreTracks = {
 	"Avith Ortega - Dopamine for Her Professing - Edit","Avith Ortega - Leisure Time","EDARUMA - Recent Past","fadinglight - company","Glwzbll - GLW2000","latex fruit - Loveme2",
@@ -32,34 +33,53 @@ local WoowzCoreTracks = {
 ENT.Tracks = {}
 ENT.CurrentTrackIndex = 1
 
+ENT.Prikol_Loud = nil
+
 function ENT:Initialize()
-    self:SetModel("models/props/cs_office/radio.mdl")
-    
-    self:PhysicsInit(SOLID_VPHYSICS)
-    self:SetMoveType(MOVETYPE_VPHYSICS)
-    self:SetSolid(SOLID_VPHYSICS)
-    
-    local PhysicsObject = self:GetPhysicsObject()
-    if IsValid(PhysicsObject) then
-       PhysicsObject:Wake()
-    end
-	
-	self.PhysgunDisabled = true
-	
+	self:SetModel("models/props/cs_office/radio.mdl")
+
+	self:PhysicsInit(SOLID_VPHYSICS   )
+	self:SetMoveType(MOVETYPE_VPHYSICS)
+	self:SetSolid   (SOLID_VPHYSICS   )
+
+	local PhysicsObject = self:GetPhysicsObject()
+	if IsValid(PhysicsObject) then
+		PhysicsObject:Wake()
+	end
+
+	self.PhysgunDisabled = self.m_PlayerCreator == nil
+
 	if SERVER then
 		self:SetUseType(SIMPLE_USE)
 		
-		local BaseURL = "https://woowz11.github.io/woowzsite/source/woowzcore/musics/"
-		for _, Track in ipairs(WoowzCoreTracks) do
-			table.insert(self.Tracks, BaseURL .. Track .. ".mp3")
+		if not self.IsDuplicate then
+		
+			local BaseURL = "https://woowz11.github.io/woowzsite/source/woowzcore/musics/"
+			for _, Track in ipairs(WoowzCoreTracks) do
+				table.insert(self.Tracks, BaseURL .. Track .. ".mp3")
+			end
+			
+			for i = #self.Tracks, 2, -1 do
+				local j = math.random(i)
+				self.Tracks[i], self.Tracks[j] = self.Tracks[j], self.Tracks[i]
+			end
+			
+			self.Prikol_Loud = math.random() > 0.95
 		end
 		
-		for i = #self.Tracks, 2, -1 do
-			local j = math.random(i)
-			self.Tracks[i], self.Tracks[j] = self.Tracks[j], self.Tracks[i]
+		self:SetNW2Bool("Prikol_Loud", self.Prikol_Loud)
+		
+		if self.Prikol_Loud then
+			self:SetColor(Color(255, 255, 0, 255))
 		end
 	end
+	
+	if CLIENT then
+		self.Prikol_Loud = self:GetNW2Bool("Prikol_Loud", false)
+	end
 end
+
+-- ----------------------------------------------------------------------
 
 function ENT:Use(Activator, Caller)
 	if not IsValid(Activator) then return end
@@ -68,13 +88,29 @@ function ENT:Use(Activator, Caller)
 	Activator:PickupObject(self)
 	
 	if SERVER then
-		self:Toggle(Activator, Activator:KeyDown(KEY_LSHIFT) or Activator:KeyDown(KEY_RSHIFT))
+		if GMM["Valid"] then
+			local ClientInfo = GMM_S["Clients"][Activator]
+			local ShiftPressed = false
+			local AltPressed   = false
+			if ClientInfo then
+				ShiftPressed = ClientInfo["Shift"] or false
+				  AltPressed = ClientInfo["Alt"  ] or false
+			end
+		
+			if ShiftPressed or AltPressed then self:Toggle(Activator, AltPressed) end
+		else
+			self:EmitSound("ambient/voices/squeal1.wav")
+		end
 	end
+end
+
+function ENT:Think()
+	if SERVER and self.Delay > 0 then self.Delay = self.Delay - 1 end
 end
 
 -- ----------------------------------------------------------------------
 
-if SERVER then
+if SERVER and GMM["Valid"] then
 	util.AddNetworkString("gmm_radio_ShowMessage")
 	util.AddNetworkString("gmm_radio_Play")
 
@@ -94,20 +130,22 @@ if SERVER then
 		return Track
 	end
 
-	function ENT:Toggle(Activator, ShiftPressed)
+	function ENT:Toggle(Activator, Pressed)
+		if self.Delay > 0 then return end self.Delay = 5
+	
 		self:EmitSound("buttons/button1.wav")
 	
 		if self.Playing then
-			self:Stop(Activator, ShiftPressed)
+			self:Stop()
 		else
-			self:Play(Activator)
+			self:Play(Activator, Pressed)
 		end
 	end
 
-	function ENT:Play(Activator, ShiftPressed)
+	function ENT:Play(Activator, Pressed)
 		if self.Playing then return end self.Playing = true
 		
-		local Track = self:GetNextTrack(not ShiftPressed)
+		local Track = self:GetNextTrack(Pressed)
 		
 		net.Start("gmm_radio_Play")
 			net.WriteEntity(self)
@@ -115,11 +153,11 @@ if SERVER then
 		net.Broadcast()
 		
 		net.Start("gmm_radio_ShowMessage")
-			net.WriteString("P L A Y: .../woowzsite_old/" .. (Track:match("([^/]+)$")))
+			net.WriteString((Pressed and "<" or ">") .. " P L A Y: .../woowzsite_old/" .. (Track:match("([^/]+)$")))
 		net.Send(Activator)
 	end
 
-	function ENT:Stop(Activator)
+	function ENT:Stop()
 		if not self.Playing then return end self.Playing = false
 		
 		net.Start("gmm_radio_Play")
@@ -131,7 +169,7 @@ end
 
 -- ----------------------------------------------------------------------
 
-if CLIENT then
+if CLIENT and GMM["Valid"] then
     local __CurrentMessageText = ""
 	local __MessageEndTime = 0
 
@@ -201,7 +239,7 @@ if CLIENT then
 	local Channels = {}
 	
 	net.Receive("gmm_radio_Play", function()
-		local Ent = net.ReadEntity()
+		local Ent   = net.ReadEntity()
 		local Track = net.ReadString()
 		
 		if not IsValid(Ent) then return end
@@ -232,11 +270,18 @@ if CLIENT then
 		
 		local PlayChannel = function()
 			Channel:SetPos(Ent:GetPos())
-			Channel:SetVolume(5)
+			Channel:SetVolume(Ent.Prikol_Loud and 2000 or 5)
 			Channel:Play()
 
 			hook.Add("Think", Hook, function()
-				if not Channel and not IsValid(Channel) then return end
+				if not Channel or not IsValid(Channel) then return end
+				
+				-- похуй, я заебался, пусть память засерают треки
+				if not Ent or not IsValid(Ent) then
+					hook.Remove("Think", Hook)
+					Channel:Stop()
+					return
+				end
 				Channel:SetPos(Ent:GetPos())
 			end)
 		end

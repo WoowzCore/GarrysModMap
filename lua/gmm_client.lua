@@ -11,6 +11,8 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	
 	local CameraPosition = Vector(0, 0, 0)
 	
+	local Player = nil
+	
 	-- ----------------------------------------------------------------------
 	
 	local ServerData = {}
@@ -70,6 +72,16 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	local __AmbientSounds = {}
 	
 	local CreateAmbients = function()
+		for i = #__AmbientSounds, 1, -1 do
+			local SoundData = __AmbientSounds[i]
+			local Channel = SoundData[1]
+			if IsValid(Channel) then
+				Channel:Stop()
+			end
+			table.remove(__AmbientSounds, i)
+		end
+		__AmbientSounds = {}
+	
 		local CreateAmbient = function(SoundFile, Position, IDistance, ADistance, Volume, Delay)
 			SoundFile = "sound/" .. SoundFile
 		
@@ -126,9 +138,13 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 				if ServerData["Positions"] then
 					Position = ServerData["Positions"][Target]
 					
-					if TypeID(Position) ~= TYPE_VECTOR then
-						if Working then print("[GMM] [ERROR] FAILED SET TARGET TO SOUND [" .. SoundFile .. "]! TARGET [" .. Target .. "] IS NOT VECTOR!") end
-						Working = false
+					if Position ~= nil then
+						if TypeID(Position) ~= TYPE_VECTOR then
+							if Working then print("[GMM] [ERROR] FAILED SET TARGET TO SOUND [" .. SoundFile .. "]! TARGET [" .. Target .. "] IS NOT VECTOR!") end
+							Working = false
+							Position = ErrorPosition
+						end
+					else
 						Position = ErrorPosition
 					end
 				else
@@ -166,6 +182,8 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	-- ----------------------------------------------------------------------
 
 	hook.Add("Think", "gmm_Think", function()
+		Player = LocalPlayer()
+	
 		local View = render.GetViewSetup()
 		if View and View.origin then
 			CameraPosition = View.origin
@@ -176,5 +194,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	
 	timer.Create("gmm_ThinkSecond", TimerSecondInterval, 0, function()
 		UpdateAmbientSounds()
+	
+		Player:SetDSP(3, true)
 	end)
 end)

@@ -71597,3 +71597,1710 @@ Total triangle count: 24017
 Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gm_garrymod_map_by_woowz_map_garry_game.bsp
 12 seconds elapsed
 
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 560 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt...
+Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (702365 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 1412 texinfos to 942
+Reduced 215 texdatas to 202 (6032 bytes to 5137)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+1 second elapsed
+
+
+
+16 threads
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt
+ 640 portalclusters
+1154 numportals
+BasePortalVis:       0...1...2...3...4...5...6...7...8...9...10 (0)
+Optimized: 7583 visible clusters (10.40%)
+Total clusters visible: 72907
+Average clusters visible: 113
+Building PAS...
+Average clusters audible: 468
+visdatasize:86514  compressed from 102400
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[51 texlights parsed from 'lights.rad']
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+BuildFacelights:     0...1...2...3...4...5...6...7...8...9...10 (2)
+BuildVisLeafs:       0...1...2...3...4...5...6...7...8...9...10 (8)
+transfers 59786723, max 1049
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (1)
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (0)
+Build Patch/Sample Hash Table(s).....Done<0.0499 sec>
+FinalLightFace:      0...1...2...3...4...5...6...7...8...9...10 (1)
+FinalLightFace Done
+0 of 9 (0% of) surface lights went in leaf ambient cubes.
+ThreadComputeLeafAmbient: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                  75/4096         3600/196608   ( 1.8%) 
+brushes               2200/65535       26400/786420   ( 3.4%) 
+brushsides           13650/655350     109200/5242800  ( 2.1%) 
+planes                2648/65536       52960/1310720  ( 4.0%) 
+vertexes             14871/65536      178452/786432   (22.7%) 
+nodes                 2233/65536       71456/2097152  ( 3.4%) 
+texinfos               942/16384       67824/1179648  ( 5.7%) 
+texdata                202/8192         6464/262144   ( 2.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 8634/65536      483504/3670016  (13.2%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             4316/65536      241696/3670016  ( 6.6%) 
+leaves                2309/65536       73888/2097152  ( 3.5%) 
+leaffaces            10100/65536       20200/131072   (15.4%) 
+leafbrushes           4704/65536        9408/131072   ( 7.2%) 
+areas                   45/1024          360/8192     ( 4.4%) 
+surfedges            58519/512000     234076/2048000  (11.4%) 
+edges                35973/256000     143892/1024000  (14.1%) 
+LDR worldlights         94/8192         8272/720896   ( 1.1%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            6/32768          72/393216   ( 0.0%) 
+waterstrips           1185/32768       11850/327680   ( 3.6%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices         17928/65536       35856/131072   (27.4%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                24/8192         8448/2883584  ( 0.3%) 
+LDR lightdata         [variable]    17567284/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]       86514/16777216 ( 0.5%) 
+entdata               [variable]      215490/4194304  ( 5.1%) 
+LDR ambient table     2309/65536        9236/262144   ( 3.5%) 
+HDR ambient table     2309/65536        9236/262144   ( 3.5%) 
+LDR leaf ambient      6637/65536      185836/1835008  (10.1%) 
+HDR leaf ambient      2309/65536       64652/1835008  ( 3.5%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]          12/0        ( 0.0%) 
+static props          [variable]        8830/0        ( 0.0%) 
+static prop count       68/16384           0/0        ( 0.4%) 
+pakfile               [variable]      153296/0        ( 0.0%) 
+physics               [variable]      702365/4194304  (16.7%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 24017
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+13 seconds elapsed
+
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 560 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt...
+Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (702365 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 1412 texinfos to 945
+Reduced 215 texdatas to 202 (6032 bytes to 5137)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+1 second elapsed
+
+
+
+16 threads
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt
+ 665 portalclusters
+1206 numportals
+BasePortalVis:       0...1...2...3...4...5...6...7...8...9...10 (0)
+Optimized: 7583 visible clusters (10.30%)
+Total clusters visible: 73592
+Average clusters visible: 110
+Building PAS...
+Average clusters audible: 452
+visdatasize:92566  compressed from 117040
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[51 texlights parsed from 'lights.rad']
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+BuildFacelights:     0...1...2...3...4...5...6...7...8...9...10 (2)
+BuildVisLeafs:       0...1...2...3...4...5...6...7...8...9...10 (8)
+transfers 59827695, max 1049
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (1)
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (0)
+Build Patch/Sample Hash Table(s).....Done<0.0509 sec>
+FinalLightFace:      0...1...2...3...4...5...6...7...8...9...10 (1)
+FinalLightFace Done
+0 of 47 (0% of) surface lights went in leaf ambient cubes.
+ThreadComputeLeafAmbient: 0...1...2...3...4...5...6...7...8...9...10 (1)
+Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                  75/4096         3600/196608   ( 1.8%) 
+brushes               2200/65535       26400/786420   ( 3.4%) 
+brushsides           13650/655350     109200/5242800  ( 2.1%) 
+planes                2648/65536       52960/1310720  ( 4.0%) 
+vertexes             14997/65536      179964/786432   (22.9%) 
+nodes                 2303/65536       73696/2097152  ( 3.5%) 
+texinfos               945/16384       68040/1179648  ( 5.8%) 
+texdata                202/8192         6464/262144   ( 2.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 8707/65536      487592/3670016  (13.3%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             4328/65536      242368/3670016  ( 6.6%) 
+leaves                2379/65536       76128/2097152  ( 3.6%) 
+leaffaces            10202/65536       20404/131072   (15.6%) 
+leafbrushes           4751/65536        9502/131072   ( 7.2%) 
+areas                   46/1024          368/8192     ( 4.5%) 
+surfedges            58915/512000     235660/2048000  (11.5%) 
+edges                36194/256000     144776/1024000  (14.1%) 
+LDR worldlights        132/8192        11616/720896   ( 1.6%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            6/32768          72/393216   ( 0.0%) 
+waterstrips           1190/32768       11900/327680   ( 3.6%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices         18057/65536       36114/131072   (27.6%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                24/8192         8448/2883584  ( 0.3%) 
+LDR lightdata         [variable]    17610680/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]       92566/16777216 ( 0.6%) 
+entdata               [variable]      216219/4194304  ( 5.2%) 
+LDR ambient table     2379/65536        9516/262144   ( 3.6%) 
+HDR ambient table     2379/65536        9516/262144   ( 3.6%) 
+LDR leaf ambient      6873/65536      192444/1835008  (10.5%) 
+HDR leaf ambient      2379/65536       66612/1835008  ( 3.6%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]          12/0        ( 0.0%) 
+static props          [variable]        8830/0        ( 0.0%) 
+static prop count       68/16384           0/0        ( 0.4%) 
+pakfile               [variable]      153296/0        ( 0.0%) 
+physics               [variable]      702365/4194304  (16.7%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 24219
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+13 seconds elapsed
+
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 560 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt...
+Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (702365 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 1412 texinfos to 945
+Reduced 215 texdatas to 202 (6032 bytes to 5137)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+1 second elapsed
+
+
+
+16 threads
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt
+ 665 portalclusters
+1206 numportals
+BasePortalVis:       0...1...2...3...4...5...6...7...8...9...10 (0)
+Optimized: 7583 visible clusters (10.30%)
+Total clusters visible: 73592
+Average clusters visible: 110
+Building PAS...
+Average clusters audible: 452
+visdatasize:92566  compressed from 117040
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[51 texlights parsed from 'lights.rad']
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+BuildFacelights:     0...1...2...3...4...5...6...7...8...9...10 (2)
+BuildVisLeafs:       0...1...2...3...4...5...6...7...8...9...10 (8)
+transfers 59827695, max 1049
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (0)
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (1)
+Build Patch/Sample Hash Table(s).....Done<0.0517 sec>
+FinalLightFace:      0...1...2...3...4...5...6...7...8...9...10 (1)
+FinalLightFace Done
+0 of 47 (0% of) surface lights went in leaf ambient cubes.
+ThreadComputeLeafAmbient: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                  75/4096         3600/196608   ( 1.8%) 
+brushes               2200/65535       26400/786420   ( 3.4%) 
+brushsides           13650/655350     109200/5242800  ( 2.1%) 
+planes                2648/65536       52960/1310720  ( 4.0%) 
+vertexes             14997/65536      179964/786432   (22.9%) 
+nodes                 2303/65536       73696/2097152  ( 3.5%) 
+texinfos               945/16384       68040/1179648  ( 5.8%) 
+texdata                202/8192         6464/262144   ( 2.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 8707/65536      487592/3670016  (13.3%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             4328/65536      242368/3670016  ( 6.6%) 
+leaves                2379/65536       76128/2097152  ( 3.6%) 
+leaffaces            10202/65536       20404/131072   (15.6%) 
+leafbrushes           4751/65536        9502/131072   ( 7.2%) 
+areas                   46/1024          368/8192     ( 4.5%) 
+surfedges            58915/512000     235660/2048000  (11.5%) 
+edges                36194/256000     144776/1024000  (14.1%) 
+LDR worldlights        132/8192        11616/720896   ( 1.6%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            6/32768          72/393216   ( 0.0%) 
+waterstrips           1190/32768       11900/327680   ( 3.6%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices         18057/65536       36114/131072   (27.6%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                24/8192         8448/2883584  ( 0.3%) 
+LDR lightdata         [variable]    17610680/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]       92566/16777216 ( 0.6%) 
+entdata               [variable]      216231/4194304  ( 5.2%) 
+LDR ambient table     2379/65536        9516/262144   ( 3.6%) 
+HDR ambient table     2379/65536        9516/262144   ( 3.6%) 
+LDR leaf ambient      6886/65536      192808/1835008  (10.5%) 
+HDR leaf ambient      2379/65536       66612/1835008  ( 3.6%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]          12/0        ( 0.0%) 
+static props          [variable]        8830/0        ( 0.0%) 
+static prop count       68/16384           0/0        ( 0.4%) 
+pakfile               [variable]      153296/0        ( 0.0%) 
+physics               [variable]      702365/4194304  (16.7%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 24219
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+13 seconds elapsed
+
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 560 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt...
+Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (702365 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 1413 texinfos to 945
+Reduced 215 texdatas to 202 (6032 bytes to 5137)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+1 second elapsed
+
+
+
+16 threads
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt
+ 665 portalclusters
+1206 numportals
+BasePortalVis:       0...1...2...3...4...5...6...7...8...9...10 (0)
+Optimized: 7583 visible clusters (10.30%)
+Total clusters visible: 73592
+Average clusters visible: 110
+Building PAS...
+Average clusters audible: 452
+visdatasize:92566  compressed from 117040
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[51 texlights parsed from 'lights.rad']
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+BuildFacelights:     0...1...2...3...4...5...6...7...8...9...10 (2)
+BuildVisLeafs:       0...1...2...3...4...5...6...7...8...9...10 (8)
+transfers 59827695, max 1049
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (0)
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (0)
+Build Patch/Sample Hash Table(s).....Done<0.0505 sec>
+FinalLightFace:      0...1...2...3...4...5...6...7...8...9...10 (1)
+FinalLightFace Done
+0 of 47 (0% of) surface lights went in leaf ambient cubes.
+ThreadComputeLeafAmbient: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                  75/4096         3600/196608   ( 1.8%) 
+brushes               2200/65535       26400/786420   ( 3.4%) 
+brushsides           13650/655350     109200/5242800  ( 2.1%) 
+planes                2648/65536       52960/1310720  ( 4.0%) 
+vertexes             14997/65536      179964/786432   (22.9%) 
+nodes                 2303/65536       73696/2097152  ( 3.5%) 
+texinfos               945/16384       68040/1179648  ( 5.8%) 
+texdata                202/8192         6464/262144   ( 2.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 8707/65536      487592/3670016  (13.3%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             4328/65536      242368/3670016  ( 6.6%) 
+leaves                2379/65536       76128/2097152  ( 3.6%) 
+leaffaces            10202/65536       20404/131072   (15.6%) 
+leafbrushes           4751/65536        9502/131072   ( 7.2%) 
+areas                   46/1024          368/8192     ( 4.5%) 
+surfedges            58915/512000     235660/2048000  (11.5%) 
+edges                36194/256000     144776/1024000  (14.1%) 
+LDR worldlights        132/8192        11616/720896   ( 1.6%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            6/32768          72/393216   ( 0.0%) 
+waterstrips           1190/32768       11900/327680   ( 3.6%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices         18057/65536       36114/131072   (27.6%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                24/8192         8448/2883584  ( 0.3%) 
+LDR lightdata         [variable]    17610680/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]       92566/16777216 ( 0.6%) 
+entdata               [variable]      216257/4194304  ( 5.2%) 
+LDR ambient table     2379/65536        9516/262144   ( 3.6%) 
+HDR ambient table     2379/65536        9516/262144   ( 3.6%) 
+LDR leaf ambient      6873/65536      192444/1835008  (10.5%) 
+HDR leaf ambient      2379/65536       66612/1835008  ( 3.6%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]          12/0        ( 0.0%) 
+static props          [variable]        8830/0        ( 0.0%) 
+static prop count       68/16384           0/0        ( 0.4%) 
+pakfile               [variable]      153296/0        ( 0.0%) 
+physics               [variable]      702365/4194304  (16.7%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 24219
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+12 seconds elapsed
+
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-16392.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, -2056.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 7168.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 7168.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 7168.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 7168.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (2048.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (2048.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (2048.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-0.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-0.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: WOOD/MILFLR003, near (-3072.000000, 15360.000000, -2072.000000))
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-16392.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, -2056.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 7168.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 7168.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 7168.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 7168.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (2048.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (2048.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (2048.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-0.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-0.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: CONCRETE/CONCRETECEILING004A, near (-3072.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: CONCRETE/CONCRETECEILING004A, near (-2048.000000, 16384.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16144.000000, -2072.000000))
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-16392.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, -2056.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 7168.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 7168.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9224.000000, 7168.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (8192.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (9216.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 11264.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (7168.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 10240.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 7168.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 9216.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (5120.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (6144.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 8192.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 12288.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (2048.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (4096.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (2048.000000, 14336.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 12288.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 14336.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (2048.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (3072.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (1024.000000, 13312.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-0.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-0.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16392.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: CONCRETE/CONCRETECEILING004A, near (-3072.000000, 15360.000000, -2072.000000))
+WARNING: BSP node with unbounded volume (material: CONCRETE/CONCRETECEILING004A, near (-2048.000000, 16384.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16144.000000, -2072.000000))
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-16392.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1016.000000, 2040.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-8192.000000, 16392.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1016.000000, 13312.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 13312.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 15360.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 15360.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 15360.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: PROPS/CARPETFLOOR001A, near (-2048.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: PROPS/CARPETFLOOR001A, near (-3072.000000, 16384.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -16.000000))
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-16392.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1016.000000, 2040.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-8192.000000, 16392.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1016.000000, 13312.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 13312.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 15360.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 15360.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 15360.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 16392.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: DEV/DEV_MEASUREGENERIC01B, near (-2048.000000, 16384.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: DEV/DEV_MEASUREGENERIC01B, near (-3072.000000, 16384.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 16384.000000, -16.000000))
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-10248.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-10248.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 7168.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11272.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11272.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11264.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11264.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 7168.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 10240.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 9216.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 9216.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 9216.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1016.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 8192.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1016.000000, 7168.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: PROPS/CARPETFLOOR001A, near (-3072.000000, 9216.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: PROPS/CARPETFLOOR001A, near (-3072.000000, 10240.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 10230.900391, -0.000000))
+WARNING: BSP node with unbounded volume (material: PROPS/CARPETFLOOR001A, near (-3072.000000, 10230.900391, -16.000000))
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-10248.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-10248.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 7168.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11272.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11272.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11264.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11264.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 7168.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 10240.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 9216.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 9216.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 9216.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1016.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 8192.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1016.000000, 7168.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: PROPS/CARPETFLOOR001A, near (-3072.000000, 9216.000000, -16.000000))
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-10248.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-10248.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 7168.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 11272.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11272.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11272.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-4096.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11264.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11264.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-3072.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 11264.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 7168.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 10240.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 9216.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 9216.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 9216.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1016.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1024.000000, 8192.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, 16400.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-1016.000000, 7168.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-2048.000000, 8192.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: <NO BRUSH>, near (-5120.000000, 10240.000000, -16.000000))
+WARNING: BSP node with unbounded volume (material: PROPS/CARPETFLOOR001A, near (-3072.000000, 9216.000000, -16.000000))
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Processing areas...done (0)
+Building Faces...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt...
+Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (115540 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 17 texinfos to 5
+Reduced 4 texdatas to 4 (87 bytes to 87)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+0 seconds elapsed
+
+
+
+16 threads
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt
+  64 portalclusters
+ 112 numportals
+BasePortalVis:       0...1...2...3...4...5...6...7...8...9...10 (0)
+Optimized: 0 visible clusters (0.00%)
+Total clusters visible: 4096
+Average clusters visible: 64
+Building PAS...
+Average clusters audible: 64
+visdatasize:1540  compressed from 1024
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[51 texlights parsed from 'lights.rad']
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+BuildFacelights:     0...1...2...3...4...5...6...7...8...9...10 (1)
+BuildVisLeafs:       0...1...2...3...4...5...6...7...8...9...10 (1)
+transfers 36657212, max 1726
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (0)
+Build Patch/Sample Hash Table(s).....Done<0.0366 sec>
+FinalLightFace:      0...1...2...3...4...5...6...7...8...9...10 (0)
+FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+ThreadComputeLeafAmbient: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/4096           48/196608   ( 0.0%) 
+brushes                384/65535        4608/786420   ( 0.6%) 
+brushsides            2304/655350      18432/5242800  ( 0.4%) 
+planes                  74/65536        1480/1310720  ( 0.1%) 
+vertexes              3183/65536       38196/786432   ( 4.9%) 
+nodes                  243/65536        7776/2097152  ( 0.4%) 
+texinfos                 5/16384         360/1179648  ( 0.0%) 
+texdata                  4/8192          128/262144   ( 0.0%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                 1632/65536       91392/3670016  ( 2.5%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces              160/65536        8960/3670016  ( 0.2%) 
+leaves                 245/65536        7840/2097152  ( 0.4%) 
+leaffaces             1632/65536        3264/131072   ( 2.5%) 
+leafbrushes            384/65536         768/131072   ( 0.6%) 
+areas                    2/1024           16/8192     ( 0.2%) 
+surfedges            10112/512000      40448/2048000  ( 2.0%) 
+edges                 5127/256000      20508/1024000  ( 2.0%) 
+LDR worldlights          0/8192            0/720896   ( 0.0%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips            849/32768        8490/327680   ( 2.6%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices         10314/65536       20628/131072   (15.7%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 0/8192            0/2883584  ( 0.0%) 
+LDR lightdata         [variable]     5524668/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        1540/16777216 ( 0.0%) 
+entdata               [variable]         389/4194304  ( 0.0%) 
+LDR ambient table      245/65536         980/262144   ( 0.4%) 
+HDR ambient table      245/65536         980/262144   ( 0.4%) 
+LDR leaf ambient        64/65536        1792/1835008  ( 0.1%) 
+HDR leaf ambient       245/65536        6860/1835008  ( 0.4%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]          12/0        ( 0.0%) 
+static props          [variable]          12/0        ( 0.0%) 
+static prop count        0/16384           0/0        ( 0.0%) 
+pakfile               [variable]       74558/0        ( 0.0%) 
+physics               [variable]      115540/4194304  ( 2.8%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 6208
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+2 seconds elapsed
+
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 560 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt...
+Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (818005 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 1430 texinfos to 950
+Reduced 216 texdatas to 203 (6051 bytes to 5156)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+1 second elapsed
+
+
+
+16 threads
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt
+ 666 portalclusters
+1206 numportals
+BasePortalVis:       0...1...2...3...4...5...6...7...8...9...10 (0)
+Optimized: 7583 visible clusters (10.30%)
+Total clusters visible: 73593
+Average clusters visible: 110
+Building PAS...
+Average clusters audible: 452
+visdatasize:90978  compressed from 117216
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[51 texlights parsed from 'lights.rad']
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+BuildFacelights:     0...1...2...3...4...5...6...7...8...9...10 (4)
+BuildVisLeafs:       0...1...2...3...4...5...6...7...8...9...10 (8)
+transfers 96460424, max 1725
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (0)
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (0)
+Build Patch/Sample Hash Table(s).....Done<0.0899 sec>
+FinalLightFace:      0...1...2...3...4...5...6...7...8...9...10 (2)
+FinalLightFace Done
+0 of 47 (0% of) surface lights went in leaf ambient cubes.
+ThreadComputeLeafAmbient: 0...1...2...3...4...5...6...7...8...9...10 (1)
+Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                  75/4096         3600/196608   ( 1.8%) 
+brushes               2586/65535       31032/786420   ( 3.9%) 
+brushsides           15966/655350     127728/5242800  ( 2.4%) 
+planes                2706/65536       54120/1310720  ( 4.1%) 
+vertexes             18181/65536      218172/786432   (27.7%) 
+nodes                 2550/65536       81600/2097152  ( 3.9%) 
+texinfos               950/16384       68400/1179648  ( 5.8%) 
+texdata                203/8192         6496/262144   ( 2.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                10339/65536      578984/3670016  (15.8%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             4489/65536      251384/3670016  ( 6.8%) 
+leaves                2626/65536       84032/2097152  ( 4.0%) 
+leaffaces            11831/65536       23662/131072   (18.1%) 
+leafbrushes           5136/65536       10272/131072   ( 7.8%) 
+areas                   47/1024          376/8192     ( 4.6%) 
+surfedges            69025/512000     276100/2048000  (13.5%) 
+edges                41325/256000     165300/1024000  (16.1%) 
+LDR worldlights        132/8192        11616/720896   ( 1.6%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            6/32768          72/393216   ( 0.0%) 
+waterstrips           2035/32768       20350/327680   ( 6.2%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices         28317/65536       56634/131072   (43.2%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                24/8192         8448/2883584  ( 0.3%) 
+LDR lightdata         [variable]    23129820/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]       90978/16777216 ( 0.5%) 
+entdata               [variable]      216330/4194304  ( 5.2%) 
+LDR ambient table     2626/65536       10504/262144   ( 4.0%) 
+HDR ambient table     2626/65536       10504/262144   ( 4.0%) 
+LDR leaf ambient      6850/65536      191800/1835008  (10.5%) 
+HDR leaf ambient      2626/65536       73528/1835008  ( 4.0%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]          12/0        ( 0.0%) 
+static props          [variable]        8830/0        ( 0.0%) 
+static prop count       68/16384           0/0        ( 0.4%) 
+pakfile               [variable]      153296/0        ( 0.0%) 
+physics               [variable]      818005/4194304  (19.5%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 30421
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+15 seconds elapsed
+
+
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 560 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt...
+Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Overlay touching too many faces (touching 100, max 64)
+Overlay woowz_map/gm_garrymod_map_by_woowz_map_garry_game/decal/12 at -6144.0 6144.0 8176.0
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 560 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt...
+Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Overlay touching too many faces (touching 100, max 64)
+Overlay woowz_map/gm_garrymod_map_by_woowz_map_garry_game/decal/12 at -6144.0 6144.0 8176.0
+
+
+materialPath: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\materials
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+fixing up env_cubemap materials on brush sides...
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+ProcessBlock_Thread: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 560 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt...
+Building visibility clusters...
+done (0)
+Creating default LDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Creating default HDR cubemaps for env_cubemap using skybox materials:
+   skybox/militia_hdr*.vmt
+ ! Run buildcubemaps in the engine to get the correct cube maps.
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (818005 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 1427 texinfos to 949
+Reduced 215 texdatas to 202 (6032 bytes to 5137)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+1 second elapsed
+
+
+
+16 threads
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.prt
+ 729 portalclusters
+1318 numportals
+BasePortalVis:       0...1...2...3...4...5...6...7...8...9...10 (0)
+Optimized: 7583 visible clusters (9.76%)
+Total clusters visible: 77688
+Average clusters visible: 106
+Building PAS...
+Average clusters audible: 418
+visdatasize:98769  compressed from 139968
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[51 texlights parsed from 'lights.rad']
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+BuildFacelights:     0...1...2...3...4...5...6...7...8...9...10 (10)
+BuildVisLeafs:       0...1...2...3...4...5...6...7...8...9...10 (31)
+transfers -1815430284, max 6870
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (1)
+GatherLight:         0...1...2...3...4...5...6...7...8...9...10 (1)
+Build Patch/Sample Hash Table(s).....Done<0.2318 sec>
+FinalLightFace:      0...1...2...3...4...5...6...7...8...9...10 (3)
+FinalLightFace Done
+0 of 47 (0% of) surface lights went in leaf ambient cubes.
+ThreadComputeLeafAmbient: 0...1...2...3...4...5...6...7...8...9...10 (0)
+Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                  75/4096         3600/196608   ( 1.8%) 
+brushes               2585/65535       31020/786420   ( 3.9%) 
+brushsides           15960/655350     127680/5242800  ( 2.4%) 
+planes                2700/65536       54000/1310720  ( 4.1%) 
+vertexes             23555/65536      282660/786432   (35.9%) 
+nodes                 2550/65536       81600/2097152  ( 3.9%) 
+texinfos               949/16384       68328/1179648  ( 5.8%) 
+texdata                202/8192         6464/262144   ( 2.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                15587/65536      872872/3670016  (23.8%) 
+hdr faces                0/65536           0/3670016  ( 0.0%) 
+origfaces             4489/65536      251384/3670016  ( 6.8%) 
+leaves                2626/65536       84032/2097152  ( 4.0%) 
+leaffaces            17079/65536       34158/131072   (26.1%) 
+leafbrushes           5136/65536       10272/131072   ( 7.8%) 
+areas                   47/1024          376/8192     ( 4.6%) 
+surfedges            90269/512000     361076/2048000  (17.6%) 
+edges                51947/256000     207788/1024000  (20.3%) 
+LDR worldlights        133/8192        11704/720896   ( 1.6%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+leafwaterdata            6/32768          72/393216   ( 0.0%) 
+waterstrips           2082/32768       20820/327680   ( 6.4%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices         28815/65536       57630/131072   (44.0%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                25/8192         8800/2883584  ( 0.3%) 
+LDR lightdata         [variable]    40988572/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]       98769/16777216 ( 0.6%) 
+entdata               [variable]      216670/4194304  ( 5.2%) 
+LDR ambient table     2626/65536       10504/262144   ( 4.0%) 
+HDR ambient table     2626/65536       10504/262144   ( 4.0%) 
+LDR leaf ambient      7738/65536      216664/1835008  (11.8%) 
+HDR leaf ambient      2626/65536       73528/1835008  ( 4.0%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]          12/0        ( 0.0%) 
+static props          [variable]        8830/0        ( 0.0%) 
+static prop count       68/16384           0/0        ( 0.4%) 
+pakfile               [variable]      153296/0        ( 0.0%) 
+physics               [variable]      818005/4194304  (19.5%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 41169
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_map_garry_game.bsp
+47 seconds elapsed
+

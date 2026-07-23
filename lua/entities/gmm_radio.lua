@@ -292,6 +292,8 @@ if CLIENT and GMM["Valid"] then
 					Channels[Ent][Track] = Channel__
 					Channel = Channel__
 					
+					Channel:EnableLooping(true)
+					
 					PlayChannel()
 				else
 					print("[GMM] [RADIO] ERROR PLAYING TRACK [" .. Track .. "]!", eID, e)

@@ -113,11 +113,13 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
 			CreateAmbient("ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000)
 			CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500)
-			CreateAmbient("woowz/music/concrete_halls.wav", Vector(-38, -95, 912), 10, 300, 20)
+			CreateAmbient("woowz/music/concrete_halls.wav", 1, 10, 300, 20)
 		end
 	end
 	
 	local UpdateAmbientSounds = function()
+		local CurrentTime = RealTime()
+	
 		for i = #__AmbientSounds, 1, -1 do
 			local SoundData = __AmbientSounds[i]
 			
@@ -128,18 +130,17 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			local ADistance = SoundData[5]
 			local Delay     = SoundData[6]
 			local SoundFile = SoundData[7]
-			local Current   = SoundData[8]
+			local StartTime = SoundData[8]
 			local Working   = SoundData[9]
 			local Length    = Channel:GetLength()
-			if Working == nil then Working = true end
-			if Current == nil then Current = math.huge end
 			
-			Current = Current + TimerSecondInterval
-			if Current > Length + Delay then
+			if Working == nil then Working = true end
+			
+			if StartTime == nil or (CurrentTime - StartTime > (Length + Delay)) then
+				StartTime = CurrentTime
 				Channel:Play()
-				Current = 0
+				__AmbientSounds[i][8] = StartTime
 			end
-			__AmbientSounds[i][8] = Current
 			
 			if type(Position) == "number" then
 				local Target = Position

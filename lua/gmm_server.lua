@@ -47,13 +47,19 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		if GMM["MyMap"] then
 	
 			local __PROP_CASE = MapEntities["PROP_CASE"]
+			local __SPEAKER   = MapEntities["SPEAKER"  ]
+		
+			local ReportEntity = function(Entity, ID)
+				if IsValid(Entity) then
+					ServerData["Positions"][ID] = Entity:GetPos()
+				else
+					ServerData["Positions"][ID] = ErrorPosition
+				end
+			end
 		
 			hook.Add("Think", "gmm_MapThink", function()
-				if IsValid(__PROP_CASE) then
-					ServerData["Positions"][0] = __PROP_CASE:GetPos()
-				else
-					ServerData["Positions"][0] = ErrorPosition
-				end
+				ReportEntity(__PROP_CASE, 0)
+				ReportEntity(__SPEAKER  , 1)
 			end)
 			
 		end

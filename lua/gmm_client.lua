@@ -113,6 +113,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
 			CreateAmbient("ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000)
 			CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500)
+			CreateAmbient("woowz/music/concrete_halls.wav", Vector(-38, -95, 912), 10, 300, 20)
 		end
 	end
 	

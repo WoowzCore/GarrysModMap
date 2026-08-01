@@ -1,0 +1,18 @@
+"lightmappedreflective"{
+	"$refracttexture" "_rt_WaterRefraction"
+	"$refractamount" "0"
+	"$refracttint" "[1 1 1]"
+
+	"$reflecttexture" "_rt_WaterReflection"
+	"$reflectamount" "-0.1"
+	"$reflecttint" "[1 1 1]"
+
+	"$fresnelpower" "0"
+	"$minreflectivity" "0.5"
+	"$maxreflectivity" "1.0"
+	
+	"$normalmap" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/mirror_normal"
+
+	"$surfaceprop" "glass"
+	"$bumpframe" "0"
+}

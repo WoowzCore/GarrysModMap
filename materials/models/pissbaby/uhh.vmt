@@ -1,0 +1,17 @@
+VertexlitGeneric
+{
+	"$basetexture" "models/pissbaby/uhh"
+	"$bumpmap" "models/pissbaby/norma3"
+
+	"$blendtintbybasealpha" "1"
+
+	Proxies
+	{
+		PlayerColor
+		{
+			resultVar	$color2
+			default 		0.75 0.75 0.75
+		}
+	}
+}
+

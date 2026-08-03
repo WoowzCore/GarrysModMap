@@ -8,7 +8,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	-- Загрузка клиента
 	print("[GMM] CLIENT LOADED")
 	
-	GMM_C["Debug"] = true and (LocalPlayer():SteamID() == Woowz11)
+	GMM_C["Debug"] = (true and (LocalPlayer():SteamID() == Woowz11)) or GMM["CustomDebug"]
 	if GMM_C["Debug"] then print("[GMM] DEBUG VERSION") end
 	
 	-- ----------------------------------------------------------------------

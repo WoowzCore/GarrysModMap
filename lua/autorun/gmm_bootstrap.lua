@@ -1,7 +1,24 @@
+-- Что-бы включить отладку, нужно изменить параметр GMM_DEBUG на true
+
 GMM = {
-	["Valid"] = string.match(game.GetMap(), "^gmm_"),
-	["MyMap"] = game.GetMap() == "gmm_garrymod_map_by_woowz_map_garry_game"
+	["Valid"      ] = string.match(game.GetMap(), "^gmm_"),
+	["CustomDebug"] = GMM_DEBUG or false,
+	["MyMap"      ] = game.GetMap() == "gmm_garrymod_map_by_woowz_map_garry_game"
 }
 
 if not GMM["Valid"] then return end
-include("gmm_shared.lua")
+
+-- ----------------------------------------------------------------------
+
+Woowz11 = "STEAM_0:0:158204257"
+
+ErrorPosition = Vector(-100000, -100000, -100000)
+
+if SERVER then
+	AddCSLuaFile("gmm_client.lua")
+	include("gmm_server.lua")
+end
+
+if CLIENT then
+	include("gmm_client.lua")
+end

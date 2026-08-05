@@ -1,0 +1,7 @@
+"UnlitGeneric"{
+	"$basetexture" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/glow_red"
+	"$selfillum" 1
+	"$surfaceprop" "glass"
+	"$reflectivity" "[0 0 0]"
+	"$nodecal" "1"
+}

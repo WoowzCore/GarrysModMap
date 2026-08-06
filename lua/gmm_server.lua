@@ -141,9 +141,39 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		end
 	end
 	
+	local __Anomaly_Sounds = {
+		--"woowz/other/popy.wav",
+		--"ambient/opera.wav",
+		"ambient/creatures/flies1.wav",
+		--"doors/door_chainlink_close2.wav",
+		--"combined/citadel/citadel_br_guest_f_cc.wav",
+		--"phx/explode04.wav"
+	}
+	local Anomaly_PlaySound = function()
+		local SoundPath = __Anomaly_Sounds[math.random(1, #__Anomaly_Sounds)]
+		
+		for _, Player in ipairs(player.GetAll()) do
+			if IsValid(Player) then
+				Player:EmitSound(SoundPath, 100, math.random(50, 150), math.random() * math.random(), CHAN_STATIC)
+			end
+		end
+	end
+	
 	-- ----------------------------------------------------------------------
 	
-	timer.Create("gmm_AnomalyTimer", 5, 0, function()
-		Anomaly_Shake()
+	local AnomalyTimerSpeed = 5
+	timer.Create("gmm_AnomalyTimer", AnomalyTimerSpeed, 0, function()
+		local Anomalies = {
+			Anomaly_Shake,
+			Anomaly_PlaySound
+		}
+		
+		local Index = math.random(1, #Anomalies)
+		local Anomaly = Anomalies[Index]
+		if Anomaly then
+			Anomaly()
+		else
+			print("[GMM] ANOMALY  [" + Index + "] NOT FOUND!")
+		end
 	end)
 end)

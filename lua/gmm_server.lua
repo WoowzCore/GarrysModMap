@@ -136,7 +136,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		
 		for _, Prop in ipairs(Props) do
 			if math.random() > 0.99 then
-				ShakeProp(Prop, 10000 * math.random())
+				ShakeProp(Prop, (math.random() > 0.9 and 10000000 or 10000) * math.random())
 			end
 		end
 	end

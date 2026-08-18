@@ -6,7 +6,7 @@
 	"$envmap" "env_cubemap"
 	"%tooltexture" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_silent_normal"
 	"$refracttexture" "_rt_WaterRefraction"
-	"$refractamount" "0.25"
+	"$refractamount" "0.5"
 
 	"$reflecttexture" "_rt_WaterReflection"
 	"$reflectamount" "0"
@@ -20,11 +20,11 @@
 	"$bumpframe" "0"
 
 	"$fogenable" 1
-	"$fogcolor" "{40 60 70}"
-	"srgb?$fogcolor" "{40 60 70}"
+	"$fogcolor" "{175 170 180}"
+	"srgb?$fogcolor" "{175 170 180}"
 	"$fogstart" 25
-	"$fogend" 300
+	"$fogend" 100
 
-	"$scroll1" "[0.025 0.05 0]"
+	"$scroll1" "[-0.0025 0.005 0]"
 	"$scroll2" "[0 0 0]"
 }

@@ -86,19 +86,22 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		end
 		__AmbientSounds = {}
 	
-		local CreateAmbient = function(SoundFile, Position, IDistance, ADistance, Volume, Delay)
+		local CreateAmbient = function(SoundFile, Position, IDistance, ADistance, Volume, Delay, Speed)
 			SoundFile = "sound/" .. SoundFile
 		
 			Volume    = Volume    or 1
 			IDistance = IDistance or 100
 			ADistance = ADistance or 1500
 			Delay     = Delay     or 0
+			Speed     = Speed     or 1
 			
 			sound.PlayFile(SoundFile, "noplay", function(Channel, eID, e)
 				if e then error("[GMM] [ERROR]: FAILED PlayFile AMBIENT SOUND [" .. SoundFile .. "]:", eID, e) return end
 				if not IsValid(Channel) then error("[GMM] [ERROR]: FAILED PlayFile AMBIENT SOUND [" .. SoundFile .. "]: Channel is not valid!") return end
 				
-				table.insert(__AmbientSounds, {Channel, Position, Volume, IDistance, ADistance, Delay, SoundFile})
+				Channel:SetPlaybackRate(Speed)
+				
+				table.insert(__AmbientSounds, {Channel, Position, Volume, IDistance, ADistance, Delay, Speed, SoundFile})
 			end)
 		end
 		
@@ -112,12 +115,13 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateAmbient("ambient/wind/wind_bass.wav", Vector(1084, 1786, 640), 500, 2500, 0.75)
 			CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
 			CreateAmbient("ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000)
-			CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500)
+			CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2)
 			CreateAmbient("woowz/music/concrete_halls.wav", 1, 10, 300, 20)
 			CreateAmbient("music/hl1_song25_remix3.mp3", Vector(-2419, 589, 610), 10, 100, 50)
 			CreateAmbient("ambient/atmosphere/inside_lighthouse_amb.wav", Vector(-488, -667, 2546), 100, 2000)
 			CreateAmbient("ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000)
 			CreateAmbient("ambient/machines/train_wheels_overhead_loop1.wav", Vector(2444, 647, 96), 10, 200, 0.5)
+			CreateAmbient("friends/friend_online.wav", Vector(-355, 175, 302), 10, 200, 10, nil, 0.1)
 		end
 	end
 	
@@ -127,23 +131,24 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		for i = #__AmbientSounds, 1, -1 do
 			local SoundData = __AmbientSounds[i]
 			
-			local Channel   = SoundData[1]
-			local Position  = SoundData[2]
-			local Volume    = SoundData[3]
-			local IDistance = SoundData[4]
-			local ADistance = SoundData[5]
-			local Delay     = SoundData[6]
-			local SoundFile = SoundData[7]
-			local StartTime = SoundData[8]
-			local Working   = SoundData[9]
+			local Channel   = SoundData[1 ]
+			local Position  = SoundData[2 ]
+			local Volume    = SoundData[3 ]
+			local IDistance = SoundData[4 ]
+			local ADistance = SoundData[5 ]
+			local Delay     = SoundData[6 ]
+			local Speed     = SoundData[7 ]
+			local SoundFile = SoundData[8 ]
+			local StartTime = SoundData[9 ]
+			local Working   = SoundData[10]
 			local Length    = Channel:GetLength()
 			
 			if Working == nil then Working = true end
 			
-			if StartTime == nil or (CurrentTime - StartTime > (Length + Delay)) then
+			if StartTime == nil or (CurrentTime - StartTime > ((Length / Speed) + Delay)) then
 				StartTime = CurrentTime
 				Channel:Play()
-				__AmbientSounds[i][8] = StartTime
+				__AmbientSounds[i][9] = StartTime
 			end
 			
 			if type(Position) == "number" then
@@ -179,7 +184,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			__Volume = __Volume * Volume
 			
 			if not Working then __Volume = 0 end
-			__AmbientSounds[i][9] = Working
+			__AmbientSounds[i][10] = Working
 			Channel:SetVolume(__Volume)
 		end
 	end

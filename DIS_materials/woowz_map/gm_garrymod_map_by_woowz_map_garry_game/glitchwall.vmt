@@ -1,0 +1,18 @@
+"LightmappedGeneric"{
+	"$basetexture" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/glitchwall"
+	"$surfaceprop" "flesh"
+
+	"$detail" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/decal/27"
+	"$detailblendfactor" 10
+
+	"$detailblendmode" 1
+	
+	"Proxies"{
+		"Sine"{
+			"sineperiod" 1000
+			"sinemin" 0.1
+			"sinemax" 0.01
+			"resultVar" "$detailscale"
+		}
+	}
+}

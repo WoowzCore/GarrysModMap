@@ -159,21 +159,98 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		end
 	end
 	
-	-- ----------------------------------------------------------------------
-	
-	local AnomalyTimerSpeed = 5
-	timer.Create("gmm_AnomalyTimer", AnomalyTimerSpeed, 0, function()
-		local Anomalies = {
-			Anomaly_Shake,
-			Anomaly_PlaySound
+	local Anomaly_Interact = function()
+		local InteractClasses = {
+			"func_button",
+			"func_rot_button",
+			"prop_door_rotating",
+			"func_door",
+			"func_door_rotating",
+			"button_target",
+			"prop_button",
+			"func_movelinear",
+			"func_typewriter"
 		}
 		
-		local Index = math.random(1, #Anomalies)
-		local Anomaly = Anomalies[Index]
+		local Found = {}
+		for _, Class in ipairs(InteractClasses) do
+			local EntsByClass = ents.FindByClass(Class)
+			for _, Entity in ipairs(EntsByClass) do
+				table.insert(Found, Entity)
+			end
+		end
+		
+		if #Found == 0 then return end
+		
+		local Random = Found[math.random(1, #Found)]
+		
+		if IsValid(Random) then
+			Random:Fire("Use")
+		end
+	end
+	
+	-- ----------------------------------------------------------------------
+	
+	local NextAnomalyTick = 0
+	local FastModeEndTime = 0
+	local ActiveFastAnomaly = nil
+	
+	local FireAnomaly = function()
+		local Anomalies = {
+			{1, Anomaly_Shake},
+			{1, Anomaly_PlaySound},
+			{1, Anomaly_Interact},
+		}
+	
+		local Anomaly = nil
+		
+		if ActiveFastAnomaly then
+			Anomaly = ActiveFastAnomaly
+		else
+			local TotalWeight = 0
+			for _, A in ipairs(Anomalies) do
+				TotalWeight = TotalWeight + A[1]
+			end
+			
+			local RandomChoice = math.random(1, TotalWeight)
+			local CurrentWeight = 0
+			
+			for _, A in ipairs(Anomalies) do
+				CurrentWeight = CurrentWeight + A[1]
+				if RandomChoice <= CurrentWeight then
+					Anomaly = A[2]
+					break
+				end
+			end
+			
+			if math.random() < 0.005 then
+				FastModeEndTime = CurTime() + math.random(5, 30)
+				ActiveFastAnomaly = Anomaly
+			end
+		end
+		
 		if Anomaly then
 			Anomaly()
 		else
-			print("[GMM] ANOMALY  [" + Index + "] NOT FOUND!")
+			print("[GMM] ANOMALY SELECTION FAILED!")
+		end
+	end
+	
+	timer.Create("gmm_AnomalyTimer", 0.1, 0, function()
+		local T = CurTime()
+		
+		if ActiveFastAnomaly then
+			if T > FastModeEndTime then
+				ActiveFastAnomaly = nil
+				NextAnomalyTick = T + 5
+			else
+				FireAnomaly()
+			end
+		else
+			if T >= NextAnomalyTick then
+				FireAnomaly()
+				NextAnomalyTick = T + 5
+			end
 		end
 	end)
 end)

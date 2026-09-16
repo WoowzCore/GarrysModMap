@@ -9,7 +9,7 @@
 	
 	"Proxies"{
 		"Sine"{
-			"sineperiod" 1000
+			"sineperiod" 100
 			"sinemin" 0.1
 			"sinemax" 0.01
 			"resultVar" "$detailscale"

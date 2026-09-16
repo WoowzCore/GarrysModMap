@@ -122,6 +122,9 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateAmbient("ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000)
 			CreateAmbient("ambient/machines/train_wheels_overhead_loop1.wav", Vector(2444, 647, 96), 10, 200, 0.5)
 			CreateAmbient("friends/friend_online.wav", Vector(-355, 175, 302), 10, 200, 10, nil, 0.1)
+			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 2)
+			CreateAmbient("woowz/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.9)
+			CreateAmbient("ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 10, 500, 10)
 		end
 	end
 	

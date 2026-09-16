@@ -48,6 +48,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 	
 			local __PROP_CASE = MapEntities["PROP_CASE"]
 			local __SPEAKER   = MapEntities["SPEAKER"  ]
+			local __TURTLE    = MapEntities["PROP_TURTLE"]
 		
 			local ReportEntity = function(Entity, ID)
 				if IsValid(Entity) then
@@ -60,6 +61,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 			hook.Add("Think", "gmm_MapThink", function()
 				ReportEntity(__PROP_CASE, 0)
 				ReportEntity(__SPEAKER  , 1)
+				ReportEntity(__TURTLE   , 2)
 			end)
 			
 		end

@@ -36,10 +36,34 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			local Position = EyePos()
 			local Angle    = EyeAngles()
 			
+			local Trace = util.TraceLine({
+				start  = Position,
+				endpos = Position + Angle:Forward() * 32768,
+				filter = LocalPlayer(),
+				mask   = MASK_SHOT
+			})
+			
+			local HitPos    = Trace.HitPos
+			local HitEntity = Trace.Entity
+			
+			local EntityName = "None"
+			if IsValid(HitEntity) then
+				EntityName = HitEntity:GetClass()
+				if HitEntity:IsPlayer() then
+					EntityName = "Player: " .. HitEntity:Nick()
+				elseif HitEntity:GetModel() then
+					EntityName = EntityName .. " (" .. HitEntity:GetModel() .. ")"
+				end
+			end
+			
 			local Text = string.format(
-				"X: %.1f  Y: %.1f  Z: %.1f  |  Pitch: %.1f°  Yaw: %.1f°  Roll: %.1f°",
+				"X: %.1f  Y: %.1f  Z: %.1f  |  Pitch: %.1f°  Yaw: %.1f°  Roll: %.1f°\n" ..
+				"Hit: X: %.1f  Y: %.1f  Z: %.1f | Dist.: %.1f | HitEnt.: %s",
 				Position.x, Position.y, Position.z,
-				Angle.pitch, Angle.yaw, Angle.roll
+				Angle.pitch, Angle.yaw, Angle.roll,
+				HitPos.x, HitPos.y, HitPos.z,
+				Position:Distance(HitPos),
+				EntityName
 			)
 			
 			surface.SetFont("DermaDefaultBold")
@@ -58,14 +82,17 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 				Color(0, 0, 0, 180)
 			)
 			
-			draw.SimpleText(
-				Text,
-				"DermaDefaultBold",
-				ScrW() / 2, RectY + Padding,
-				Color(255, 255, 255, 255),
-				TEXT_ALIGN_CENTER,
-				TEXT_ALIGN_TOP
-			)
+			local Lines = string.Explode("\n", Text)
+			for i, Line in ipairs(Lines) do
+				draw.SimpleText(
+					Line,
+					"DermaDefaultBold",
+					ScrW() / 2, RectY + Padding + (i - 1) * (TextH / #Lines),
+					Color(255, 255, 255, 255),
+					TEXT_ALIGN_CENTER,
+					TEXT_ALIGN_TOP
+				)
+			end
 		end)
 	end
 	
@@ -74,8 +101,9 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	local TimerSecondInterval = 0.05
 	
 	local __AmbientSounds = {}
+    local __Particles = {}
 	
-	local CreateAmbients = function()
+	local CreateEnvironment = function()
 		for i = #__AmbientSounds, 1, -1 do
 			local SoundData = __AmbientSounds[i]
 			local Channel = SoundData[1]
@@ -85,7 +113,9 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			table.remove(__AmbientSounds, i)
 		end
 		__AmbientSounds = {}
-	
+
+        __Particles = {}
+        
 		local CreateAmbient = function(SoundFile, Position, IDistance, ADistance, Volume, Delay, Speed)
 			SoundFile = "sound/" .. SoundFile
 		
@@ -104,31 +134,51 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 				table.insert(__AmbientSounds, {Channel, Position, Volume, IDistance, ADistance, Delay, Speed, SoundFile})
 			end)
 		end
+        
+        local CreatePartical = function(Partical, Position, Delay)
+            local RunFunc = nil
+
+            if Partical == "Bubbles" then
+                RunFunc = function()
+                    effects.Bubbles(Position, Position, 1, 200)
+                end
+            end
+            
+            table.insert(__Particles, {Partical, Position, Delay, RunFunc})
+        end
 		
 		-- ----------------------------------------------------------------------
-		
-		if GMM["MyMap"] then
-			CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
-			CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
+
+        if GMM["MyMap_Default"] or GMM["MyMap_Flood"] then
+            CreateAmbient("vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 2)
+            CreateAmbient("woowz/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.9)
+            CreateAmbient("ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 10, 500, 10)
+            CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2)
+            CreateAmbient("woowz/music/concrete_halls.wav", 1, 10, 300, 20)
+            CreateAmbient("music/hl1_song25_remix3.mp3", Vector(-2419, 589, 610), 10, 100, 50)
+            CreateAmbient("friends/friend_online.wav", Vector(-355, 175, 302), 10, 200, 10, nil, 0.1)
+            CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
+            CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
+            CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
+        end
+        
+		if GMM["MyMap_Default"] then
 			CreateAmbient("ambient/forest_night.wav", Vector(1400, 491, 637), 100, 750)
 			CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1364, 747, -1984), 100, 500)
 			CreateAmbient("ambient/wind/wind_bass.wav", Vector(1084, 1786, 640), 500, 2500, 0.75)
-			CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
 			CreateAmbient("ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000)
-			CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2)
-			CreateAmbient("woowz/music/concrete_halls.wav", 1, 10, 300, 20)
-			CreateAmbient("music/hl1_song25_remix3.mp3", Vector(-2419, 589, 610), 10, 100, 50)
 			CreateAmbient("ambient/atmosphere/inside_lighthouse_amb.wav", Vector(-488, -667, 2546), 100, 2000)
 			CreateAmbient("ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000)
 			CreateAmbient("ambient/machines/train_wheels_overhead_loop1.wav", Vector(2444, 647, 96), 10, 200, 0.5)
-			CreateAmbient("friends/friend_online.wav", Vector(-355, 175, 302), 10, 200, 10, nil, 0.1)
-			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 2)
-			CreateAmbient("woowz/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.9)
-			CreateAmbient("ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 10, 500, 10)
 		end
+
+        if GMM["MyMap_Flood"] then
+            CreatePartical("Bubbles", Vector(648, 1135, 16), 0.1)
+            CreatePartical("Bubbles", Vector(1352, 176, 240), 1)
+        end
 	end
-	
-	local UpdateAmbientSounds = function()
+    
+	local UpdateEnvironment = function()
 		local CurrentTime = RealTime()
 	
 		for i = #__AmbientSounds, 1, -1 do
@@ -190,12 +240,28 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			__AmbientSounds[i][10] = Working
 			Channel:SetVolume(__Volume)
 		end
+
+        for i = #__Particles, 1, -1 do
+            local ParticalData = __Particles[i]
+            
+            local Partical  = ParticalData[1]
+            local Position  = ParticalData[2]
+            local Delay     = ParticalData[3]
+            local RunFunc   = ParticalData[4]
+            local StartTime = ParticalData[5]
+
+            if StartTime == nil or (CurrentTime - StartTime > Delay) then
+                StartTime = CurrentTime
+                RunFunc()
+                __Particles[i][5] = StartTime
+            end
+        end
 	end
 	
 	local PostCleanup = function()
 		print("[GMM] CLIENT CLEANUP")
 		
-		CreateAmbients()
+		CreateEnvironment()
 	end
 	hook.Add("PostCleanupMap", "gmm_PostCleanupMap_Client", PostCleanup)
 	PostCleanup()
@@ -214,7 +280,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	end)
 	
 	timer.Create("gmm_ThinkSecond", TimerSecondInterval, 0, function()
-		UpdateAmbientSounds()
+		UpdateEnvironment()
 	
 		Player:SetDSP(3, true)
 		

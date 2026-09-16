@@ -1,0 +1,26 @@
+"Water"{
+	"$abovewater" 0
+	"%compilewater" 1
+	"$reflectentities" 1
+	"%tooltexture" "nature/water_coast01_normal"
+	"$refracttexture" "_rt_WaterRefraction"
+	"$refractamount" "0.25"
+
+	"$scale" "[7 7]"
+
+	"$bumpmap" "nature/water_coast01_dudv"
+	"$normalmap" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_silent_normal"
+
+	"$surfaceprop" "water"
+	"$bumpframe" "0"
+
+	"$fogenable" 1
+	"$fogcolor" "{3 9 10}"
+	"$fogstart" 0
+	"$fogend" 2048
+
+	$underwateroverlay "effects/water_warp01"
+
+	"$scroll1" "[0.025 -0.05 0]"
+	"$scroll2" "[0 0 0]"
+}

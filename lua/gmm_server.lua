@@ -10,7 +10,9 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 	-- Загрузка сервера
 	print("[GMM] SERVER LOADED")
 
-	local ServerData = {}
+	local ServerData = {
+        ["Positions"] = {}
+    }
 
 	util.AddNetworkString("gmm_Get_ServerData" )
 	util.AddNetworkString("gmm_Send_ServerData")
@@ -35,17 +37,10 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 				end
 			end
 		end
-	
-		-- ----------------------------------------------------------------------
-	
-		ServerData = {
-			["Positions"] = {}
-		}
 		
 		-- ----------------------------------------------------------------------
 	
-		if GMM["MyMap"] then
-	
+		if GMM["MyMap_Default"] or GMM["MyMap_Flood"] then
 			local __PROP_CASE = MapEntities["PROP_CASE"]
 			local __SPEAKER   = MapEntities["SPEAKER"  ]
 			local __TURTLE    = MapEntities["PROP_TURTLE"]

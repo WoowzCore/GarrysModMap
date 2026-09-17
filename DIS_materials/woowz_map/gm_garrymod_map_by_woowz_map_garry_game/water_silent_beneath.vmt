@@ -19,8 +19,6 @@
 	"$fogstart" 0
 	"$fogend" 2048
 
-	$underwateroverlay "effects/water_warp01"
-
 	"$scroll1" "[0.025 -0.05 0]"
 	"$scroll2" "[0 0 0]"
 }

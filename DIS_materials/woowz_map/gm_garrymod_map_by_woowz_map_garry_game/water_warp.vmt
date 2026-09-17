@@ -1,0 +1,33 @@
+"Refract"
+{
+	$refracttint "[0.58 0.87 0.91]"
+	"$bluramount" "1"
+	"$ignorez" "1"
+
+	"$bumpmap" "nature/water_coast01_dudv"
+	"$normalmap" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_silent_normal"
+
+	$angle "0"
+	$translate "[0 0]"
+	$center "[0.5 0.5]"
+	$scale "[1.5 1.5]"
+	
+	"$bumpframe" "0"
+	"Proxies"
+	{
+		LinearRamp
+        {
+            "rate" "10"
+            "initialValue" "0"
+            "resultVar" "$angle"
+        }
+		"TextureTransform"
+		{
+			"translateVar" "$translate"
+            "rotateVar" "$angle"
+            "centerVar" "$center"
+            "scaleVar" "$scale"
+            "resultVar" "$bumptransform"
+		}
+	}
+}

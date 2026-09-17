@@ -16,7 +16,7 @@
 	"$bumptransform" "center 0 0 scale 0.125 0.125 rotate 30 translate 0 0"
 
 	"$surfaceprop" "water"
-	"$bottommaterial" "nature/water_coast01_beneath" // todo... later
+	"$bottommaterial" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_silent_beneath"
 	"$bumpframe" "0"
 
 	"$fogenable" 1

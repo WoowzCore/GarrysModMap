@@ -1,0 +1,30 @@
+"Water"{
+	"$abovewater" 1
+	"%compilewater" 1
+	"$forceexpensive" 1
+	"$reflectentities" 1
+	"$envmap" "env_cubemap"
+	"%tooltexture" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_silent_normal"
+	"$refracttexture" "_rt_WaterRefraction"
+	"$refractamount" "0.25"
+
+	"$reflecttexture" "_rt_WaterReflection"
+	"$reflectamount" "0"
+
+	"$bumpmap" "nature/water_coast01_dudv"
+	"$normalmap" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_silent_normal"
+	"$bumptransform" "center 0 0 scale 0.125 0.125 rotate 30 translate 0 0"
+
+	"$surfaceprop" "water"
+	"$bottommaterial" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_silent_beneath"
+	"$bumpframe" "0"
+
+	"$fogenable" 1
+	"$fogcolor" "{0 0 0}"
+	"srgb?$fogcolor" "{0 0 0}"
+	"$fogstart" 25
+	"$fogend" 500
+
+	"$scroll1" "[-0.025 -0.05 0]"
+	"$scroll2" "[0 0 0]"
+}

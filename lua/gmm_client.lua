@@ -288,6 +288,11 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateZone("Rain", Vector(-503, 1024, 3064), Vector(-384, 1376, 2579), Vector(0.25, 0.25, 0.25))
 			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-357, 1182, 2679), 100, 500)
 			CreateAmbient("ambient/outro/messagepacketsmultiple02.wav", Vector(-1511, 437, 445), 100, 500)
+			CreateZone("Rain", Vector(-579, -558, 1200), Vector(-548, -593, 1189), Vector(0.5, 0.5, 0.5), 5)
+			CreateZone("Rain", Vector(-451, -738, 1168), Vector(-422, -768, 1149), Vector(0.5, 0.5, 0.5), 5)
+			CreateAmbient("ambient/water/water_flow_loop1.wav", Vector(-518, -658, 1011), 50, 350)
+			CreateZone("Rain", Vector(-44, -983, 4049), Vector(-629, -275, 2061), Vector(0.5, 0.5, 0.5), 1)
+			CreateAmbient("ambient/water/drip_loop1.wav", Vector(-488, -667, 2546), 100, 2500)
         end
 	end
     

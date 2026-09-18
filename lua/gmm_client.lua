@@ -102,7 +102,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		local InWater = bit.band(Contents, CONTENTS_WATER) ~= 0
 		local InSlime = bit.band(Contents, CONTENTS_SLIME) ~= 0
 		
-        if IsWater or InSlime then
+        if InWater or InSlime then
             DrawMaterialOverlay(InSlime and "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_warp_slime" or "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_warp", 0.05)
         end
     end)
@@ -251,7 +251,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 
         if GMM["MyMap_Default"] or GMM["MyMap_Flood"] then
 			CreateAmbient("woowz/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.9)
-			CreateAmbient("ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 10, 500, 10)
+			CreateAmbient("ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 250, 750, 2)
 			CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2)
 			CreateAmbient("woowz/music/concrete_halls.wav", 1, 10, 300, 20)
 			CreateAmbient("music/hl1_song25_remix3.mp3", Vector(-2419, 589, 610), 10, 100, 50)
@@ -281,12 +281,13 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 50, 200, 200, nil, 0.75)
 			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-231, 1546, 9331), 100, 1500)
 			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-245, 1553, 1181), 100, 500)
-			CreateAmbient("ambient/water/lake_water.wav", Vector(1377, 544, 1095), 1000, 1500, 5)
+			CreateAmbient("ambient/water/lake_water.wav", Vector(1377, 544, 1095), 1000, 1500)
 			CreateZone("Rain", Vector(-495, 1616, 992), Vector(-16, 1488, 9231), Vector(0.25, 0.25, 0.25))
 			CreateZone("Rain", Vector(1007, 1040, 9232), Vector(-972, 2031, 10203), nil, 15)
 			CreateZone("Rain", Vector(-8, 888, 3064), Vector(-352, 1463, 2615), Vector(0.5, 0.5, 0.5))
 			CreateZone("Rain", Vector(-503, 1024, 3064), Vector(-384, 1376, 2579), Vector(0.25, 0.25, 0.25))
 			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-357, 1182, 2679), 100, 500)
+			CreateAmbient("ambient/outro/messagepacketsmultiple02.wav", Vector(-1511, 437, 445), 100, 500)
         end
 	end
     

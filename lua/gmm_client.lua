@@ -257,10 +257,10 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateAmbient("music/hl1_song25_remix3.mp3", Vector(-2419, 589, 610), 10, 100, 50)
 			CreateAmbient("friends/friend_online.wav", Vector(-355, 175, 302), 10, 200, 10, nil, 0.1)
 			CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
-			CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
 			CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
 			CreateAmbient("ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000)
 			CreateAmbient("ambient/atmosphere/inside_lighthouse_amb.wav", Vector(-488, -667, 2546), 100, 2000)
+			CreateZone("Rain", Vector(-44, -983, 4049), Vector(-629, -275, 2061), Vector(0.5, 0.5, 0.5), 1)
         end
         
 		if GMM["MyMap_Default"] then
@@ -270,6 +270,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateAmbient("ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000)
 			CreateAmbient("ambient/machines/train_wheels_overhead_loop1.wav", Vector(2444, 647, 96), 10, 200, 0.5)
 			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 2)
+			CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
 		end
 
         if GMM["MyMap_Flood"] then
@@ -291,7 +292,6 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateZone("Rain", Vector(-579, -558, 1200), Vector(-548, -593, 1189), Vector(0.5, 0.5, 0.5), 5)
 			CreateZone("Rain", Vector(-451, -738, 1168), Vector(-422, -768, 1149), Vector(0.5, 0.5, 0.5), 5)
 			CreateAmbient("ambient/water/water_flow_loop1.wav", Vector(-518, -658, 1011), 50, 350)
-			CreateZone("Rain", Vector(-44, -983, 4049), Vector(-629, -275, 2061), Vector(0.5, 0.5, 0.5), 1)
 			CreateAmbient("ambient/water/drip_loop1.wav", Vector(-488, -667, 2546), 100, 2500)
         end
 	end

@@ -4,7 +4,8 @@ GMM = {
 	["Valid"        ] = string.match(game.GetMap(), "^gmm_"),
 	["CustomDebug"  ] = GMM_DEBUG or false,
     ["MyMap_Default"] = game.GetMap() == "gmm_garrymod_map_by_woowz_map_garry_game",
-    ["MyMap_Flood"  ] = game.GetMap() == "gmm_garrymod_map_by_woowz_flooded_water_blob"
+    ["MyMap_Flood"  ] = game.GetMap() == "gmm_garrymod_map_by_woowz_flooded_water_blob",
+	["MyMap_Old"    ] = game.GetMap() == "gmm_garrymod_map_by_woowz_old_alpha_beta"
 }
 
 if not GMM["Valid"] then return end

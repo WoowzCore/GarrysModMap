@@ -40,7 +40,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		
 		-- ----------------------------------------------------------------------
 	
-		if GMM["MyMap_Default"] or GMM["MyMap_Flood"] then
+		if GMM["MyMap_Default"] or GMM["MyMap_Flood"] or GMM["MyMap_Old"] then
 			local __PROP_CASE = MapEntities["PROP_CASE"]
 			local __SPEAKER   = MapEntities["SPEAKER"  ]
 			local __TURTLE    = MapEntities["PROP_TURTLE"]

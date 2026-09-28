@@ -249,28 +249,38 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		
 		-- ----------------------------------------------------------------------
 
-        if GMM["MyMap_Default"] or GMM["MyMap_Flood"] then
+        if GMM["MyMap_Default"] or GMM["MyMap_Flood"] or GMM["MyMap_Old"] then
 			CreateAmbient("woowz/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.9)
-			CreateAmbient("ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 250, 750, 2)
-			CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2)
 			CreateAmbient("woowz/music/concrete_halls.wav", 1, 10, 300, 20)
 			CreateAmbient("music/hl1_song25_remix3.mp3", Vector(-2419, 589, 610), 10, 100, 50)
 			CreateAmbient("friends/friend_online.wav", Vector(-355, 175, 302), 10, 200, 10, nil, 0.1)
 			CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
-			CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
 			CreateAmbient("ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000)
 			CreateAmbient("ambient/atmosphere/inside_lighthouse_amb.wav", Vector(-488, -667, 2546), 100, 2000)
-			CreateZone("Rain", Vector(-44, -983, 4049), Vector(-629, -275, 2061), Vector(0.5, 0.5, 0.5), 1)
+			
+			if not GMM["MyMap_Old"] then
+				CreateZone("Rain", Vector(-44, -983, 4049), Vector(-629, -275, 2061), Vector(0.5, 0.5, 0.5), 1)
+				CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
+				CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2)
+				CreateAmbient("ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 250, 750, 2)
+			end
         end
         
-		if GMM["MyMap_Default"] then
+		if GMM["MyMap_Default"] or GMM["MyMap_Old"] then
 			CreateAmbient("ambient/forest_night.wav", Vector(1400, 491, 637), 100, 750)
 			CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1364, 747, -1984), 100, 500)
 			CreateAmbient("ambient/wind/wind_bass.wav", Vector(1084, 1786, 640), 500, 2500, 0.75)
-			CreateAmbient("ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000)
 			CreateAmbient("ambient/machines/train_wheels_overhead_loop1.wav", Vector(2444, 647, 96), 10, 200, 0.5)
 			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 2)
 			CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
+			
+			if not GMM["MyMap_Old"] then
+				CreateAmbient("ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000)
+			end
+		end
+
+		if GMM["MyMap_Old"] then
+			CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1415, 723, -3854), 100, 2000)
 		end
 
         if GMM["MyMap_Flood"] then

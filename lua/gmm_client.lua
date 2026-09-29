@@ -110,22 +110,36 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	-- ----------------------------------------------------------------------
 	
 	local RainEmitter = nil
-	local function SpawnRainDrop(Position, Color)
+	local function SpawnRainDrop(Position, Color, Angle__, Power)
 		if not RainEmitter then RainEmitter = ParticleEmitter(Position, false) end
+		
+		Power = Power or 1
 		
 		local RainTexture = "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/rain"
 		local Part = RainEmitter:Add(RainTexture, Position)
 		if Part then
-			Part:SetVelocity(Vector(math.random(-10, 10), math.random(-10, 10), -1000))
+			local Gravity = Vector(0, 0, -500)
+			local BaseVelocity = Vector(math.random(-10, 10), math.random(-10, 10), -1000) * Power
+		
+		    if Angle__ then
+				BaseVelocity = Angle__:Forward() * Power
+			end
+			
+			local Speed = BaseVelocity:Length()
+		
+			Part:SetVelocity(BaseVelocity)
 			Part:SetDieTime(2)
 			Part:SetStartAlpha(255)
 			Part:SetEndAlpha(0)
 			Part:SetStartSize(0.5)
 			Part:SetEndSize(0.5)
-			Part:SetStartLength(30)
-			Part:SetEndLength(10)
+			
+			local DropLength = math.Clamp(Speed * 0.03, 5, 300)
+			Part:SetStartLength(DropLength)
+			Part:SetEndLength(DropLength * 0.33)
+			
 			Part:SetColor(255, 255, 255)
-			Part:SetGravity(Vector(0, 0, -500))
+			Part:SetGravity(Gravity)
 			
 			Part:SetCollide(false) 
 			
@@ -193,6 +207,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
     local __Particles = {}
 	local __Zones = {}
 	
+	game.AddParticles("particles/insect_fx.pcf")
 	local CreateEnvironment = function()
 		for i = #__AmbientSounds, 1, -1 do
 			local SoundData = __AmbientSounds[i]
@@ -226,7 +241,11 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			end)
 		end
         
-        local CreatePartical = function(Partical, Position, Delay)
+        local CreatePartical = function(Partical, Position, Delay, Angle__, Power)
+			Delay = Delay or 0
+			Angle__ = Angle__ or Angle(0, 0, 0)
+			Power = Power or 0
+			
             local RunFunc = nil
 
             if Partical == "Bubbles" then
@@ -234,8 +253,30 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
                     effects.Bubbles(Position, Position, 1, 200)
                 end
             end
+			if Partical == "Fly" then
+                RunFunc = function()
+                    PrecacheParticleSystem("fly_child")
+					ParticleEffect("fly_child", Position, Angle(0, 0, 0))
+                end
+            end
+			if Partical == "Cockroach" then
+                RunFunc = function()
+                    PrecacheParticleSystem("roach_fx_4")
+					ParticleEffect("roach_fx_4", Position, Angle(0, 0, 0))
+                end
+            end
+			if Partical == "Droplet" then
+                RunFunc = function()
+					local FinalAngle = Angle__
+					if type(Angle__) == "function" then
+						FinalAngle = Angle__()
+					end
+				
+					SpawnRainDrop(Position, nil, FinalAngle, Power)
+                end
+            end
             
-            table.insert(__Particles, {Partical, Position, Delay, RunFunc})
+            table.insert(__Particles, {Partical, Position, Delay, RunFunc, Angle__, Power})
         end
 		
 		local CreateZone = function(Type, Point1, Point2, Color, Density)
@@ -257,30 +298,31 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
 			CreateAmbient("ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000)
 			CreateAmbient("ambient/atmosphere/inside_lighthouse_amb.wav", Vector(-488, -667, 2546), 100, 2000)
-			
-			if not GMM["MyMap_Old"] then
-				CreateZone("Rain", Vector(-44, -983, 4049), Vector(-629, -275, 2061), Vector(0.5, 0.5, 0.5), 1)
-				CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
-				CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2)
-				CreateAmbient("ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 250, 750, 2)
-			end
         end
+		
+		if GMM["MyMap_Default"] or GMM["MyMap_Flood"] then
+			CreateZone("Rain", Vector(-44, -983, 4049), Vector(-629, -275, 2061), Vector(0.5, 0.5, 0.5), 1)
+			CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
+			CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2)
+			CreateAmbient("ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 250, 750, 2)
+		end
         
 		if GMM["MyMap_Default"] or GMM["MyMap_Old"] then
 			CreateAmbient("ambient/forest_night.wav", Vector(1400, 491, 637), 100, 750)
 			CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1364, 747, -1984), 100, 500)
 			CreateAmbient("ambient/wind/wind_bass.wav", Vector(1084, 1786, 640), 500, 2500, 0.75)
+			CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
+		end
+		
+		if GMM["MyMap_Default"] then
+			CreateAmbient("ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000)
 			CreateAmbient("ambient/machines/train_wheels_overhead_loop1.wav", Vector(2444, 647, 96), 10, 200, 0.5)
 			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 2)
-			CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
-			
-			if not GMM["MyMap_Old"] then
-				CreateAmbient("ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000)
-			end
 		end
 
 		if GMM["MyMap_Old"] then
 			CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1415, 723, -3854), 100, 2000)
+			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 4)
 		end
 
         if GMM["MyMap_Flood"] then
@@ -304,6 +346,27 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateAmbient("ambient/water/water_flow_loop1.wav", Vector(-518, -658, 1011), 50, 350)
 			CreateAmbient("ambient/water/drip_loop1.wav", Vector(-488, -667, 2546), 100, 2500)
         end
+		
+		if GMM["MyMap_Real"] then
+			CreatePartical("Cockroach", Vector(322, 212, 432), 120)
+			for i = 1, 3 do
+				CreatePartical("Droplet", Vector(-969, -306, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300)
+			end
+			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-969, -306, 424 + 2), 50, 400)
+			for i = 1, 3 do
+				CreatePartical("Droplet", Vector(-969, -954, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300)
+			end
+			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-969, -954, 424 + 2), 50, 400)
+			for i = 1, 3 do
+				CreatePartical("Droplet", Vector(-73, -954, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300)
+			end
+			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-73, -954, 424 + 2), 50, 400)
+			for i = 1, 3 do
+				CreatePartical("Droplet", Vector(-73, -306, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300)
+			end
+			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-73, -306, 424 + 2), 50, 400)
+			CreateAmbient("ambient/wind/lightwind.wav", Vector(-465, -626, 1515), 200, 500)
+		end
 	end
     
 	local UpdateEnvironment = function()
@@ -376,12 +439,14 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
             local Position  = ParticalData[2]
             local Delay     = ParticalData[3]
             local RunFunc   = ParticalData[4]
-            local StartTime = ParticalData[5]
+			local Angle__   = ParticalData[5]
+			local Power     = ParticalData[6]
+            local StartTime = ParticalData[7]
 
             if StartTime == nil or (CurrentTime - StartTime > Delay) then
                 StartTime = CurrentTime
                 RunFunc()
-                __Particles[i][5] = StartTime
+                __Particles[i][7] = StartTime
             end
         end
 		

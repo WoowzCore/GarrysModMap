@@ -9,6 +9,7 @@ GMM_S = {
 hook.Add("InitPostEntity", "gmm_MapLoad", function()
 	-- Загрузка сервера
 	print("[GMM] SERVER LOADED")
+	print("[GMM] Map: " .. game.GetMap())
 
 	local ServerData = {
         ["Positions"] = {}
@@ -71,6 +72,13 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 	
 	net.Receive("gmm_ClientInfo", function(L, Player)
 		GMM_S["Clients"][Player] = net.ReadTable()
+	end)
+	
+	-- ----------------------------------------------------------------------
+	
+	concommand.Add("gmm_anomaly", function(Player, CMD, Args)
+		print("[GMM] Fire anomaly!")
+		GMM.Func.FireAnomaly()
 	end)
 	
 	-- ----------------------------------------------------------------------
@@ -192,7 +200,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 	local FastModeEndTime = 0
 	local ActiveFastAnomaly = nil
 	
-	local FireAnomaly = function()
+	GMM.Func.FireAnomaly = function()
 		local Anomalies = {
 			{1, Anomaly_Shake},
 			{1, Anomaly_PlaySound},
@@ -233,21 +241,23 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		end
 	end
 	
-	timer.Create("gmm_AnomalyTimer", 0.1, 0, function()
-		local T = CurTime()
-		
-		if ActiveFastAnomaly then
-			if T > FastModeEndTime then
-				ActiveFastAnomaly = nil
-				NextAnomalyTick = T + 5
+	if GMM["DoAnomalies"] then
+		timer.Create("gmm_AnomalyTimer", 0.1, 0, function()
+			local T = CurTime()
+			
+			if ActiveFastAnomaly then
+				if T > FastModeEndTime then
+					ActiveFastAnomaly = nil
+					NextAnomalyTick = T + 5
+				else
+					GMM.Func.FireAnomaly()
+				end
 			else
-				FireAnomaly()
+				if T >= NextAnomalyTick then
+					GMM.Func.FireAnomaly()
+					NextAnomalyTick = T + 5
+				end
 			end
-		else
-			if T >= NextAnomalyTick then
-				FireAnomaly()
-				NextAnomalyTick = T + 5
-			end
-		end
-	end)
+		end)
+	end
 end)

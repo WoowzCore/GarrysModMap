@@ -348,7 +348,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
         end
 		
 		if GMM["MyMap_Real"] then
-			CreatePartical("Cockroach", Vector(322, 212, 432), 120)
+			CreatePartical("Cockroach", Vector(322, 212, 432), 240)
 			for i = 1, 3 do
 				CreatePartical("Droplet", Vector(-969, -306, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300)
 			end

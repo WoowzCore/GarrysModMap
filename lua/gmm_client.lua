@@ -318,6 +318,8 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateAmbient("ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000)
 			CreateAmbient("ambient/machines/train_wheels_overhead_loop1.wav", Vector(2444, 647, 96), 10, 200, 0.5)
 			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 2)
+			CreateAmbient("ambient/creatures/town_moan1.wav", Vector(-1264, -389, 579), 10, 100, 1)
+			CreateAmbient("ambient/forest_day.wav", Vector(-2354, -624, 656), 200, 1000)
 		end
 
 		if GMM["MyMap_Old"] then

@@ -7311,3 +7311,873 @@ Level flags = 0
 Total triangle count: 45356
 Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
 10 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 12:51:59
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.vmf
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1040 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4135 brushes and 25876 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1349868 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 2595 texinfos to 1527
+Reduced 324 texdatas to 296 (9982 bytes to 7616)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 12:52:02
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.prt
+1349 portalclusters
+2430 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 140 visible clusters (0.21%)
+Total clusters visible: 65343
+Average clusters visible: 48
+Building PAS...
+Average clusters audible: 156
+visdatasize:127818  compressed from 474848
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+Wrote ZIP buffer, estimated size 130234, actual size 126536
+0 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 12:52:02
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+155 props added to raytrace
+15830 faces
+1 degenerate faces
+326 fake patch planes
+1795228 square feet [258512928.00 square inches]
+6 Displacements
+4507 Square Feet [649081.00 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1015829 patches before subdivision
+187405 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10455 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 18986223, max 980
+transfer lists: 144.9 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(4159462, 1458994, 1034074)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(923429, 399566, 284092)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(248823, 135674, 97224)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(80305, 50247, 35669)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(30049, 19842, 13888)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(12233, 8084, 5540)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(5289, 3406, 2275)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(2355, 1462, 947)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(1076, 641, 401)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(498, 284, 171)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(233, 128, 73)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(110, 58, 32)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(52, 27, 14)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(25, 12, 6)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(12, 6, 3)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(6, 3, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #17 added RGB(3, 1, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #18 added RGB(1, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #19 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0862 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+40 of 310 (12% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities              1032/65536    ( 1.6%) 
+models                 132/4096     ( 3.2%) 
+brushes               4135/65536    ( 6.3%) 
+brushsides           25876/655350   ( 3.9%) 
+planes                4640/65536    ( 7.1%) 
+vertexes             27962/65536    (42.7%) 
+nodes                 4374/65536    ( 6.7%) 
+texinfos              1527/32768    ( 4.7%) 
+texdata                296/8192     ( 3.6%) 
+dispinfos                6/16384    ( 0.0%) 
+faces                15830/65536    (24.2%) 
+hdr faces            15830/65536    (24.2%) 
+origfaces             8212/65536    (12.5%) 
+leaves                4507/65536    ( 6.9%) 
+leaffaces            18849/65536    (28.8%) 
+leafbrushes           8496/65536    (13.0%) 
+areas                   90/1024     ( 8.8%) 
+surfedges            77143/512000   (15.1%) 
+edges                43419/256000   (17.0%) 
+leafwaterdata           12/32768    ( 0.0%) 
+primitives            2390/32768    ( 7.3%) 
+primverts                0/65536    ( 0.0%) 
+primindices          37065/65536    (56.6%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays                60/8192     ( 0.7%) 
+vertnormalindices    77016/256000   (30.1%) 
+visdata             127818/16777216 ( 0.8%) 
+entdata             369521/393216   (94.0%) VERY FULL!
+LDR ambient table     4507/65536    ( 6.9%) 
+HDR ambient table     4507/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            455     
+LDR lightdata              0       
+HDR lightdata              32473424
+LDR leaf ambient           4507    
+HDR leaf ambient           13720   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19906   
+pakfile                    126536  
+physics                    1349868 
+physics terrain            1818    
+
+Level flags = 0
+
+Total triangle count: 45356
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+10 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 12:54:56
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.vmf
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (1)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1040 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4136 brushes and 25882 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1349868 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 2595 texinfos to 1527
+Reduced 324 texdatas to 296 (9982 bytes to 7616)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 12:54:59
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.prt
+1351 portalclusters
+2432 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 140 visible clusters (0.21%)
+Total clusters visible: 65393
+Average clusters visible: 48
+Building PAS...
+Average clusters audible: 156
+visdatasize:128836  compressed from 475552
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+Wrote ZIP buffer, estimated size 130234, actual size 126536
+0 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 12:54:59
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+155 props added to raytrace
+15828 faces
+1 degenerate faces
+326 fake patch planes
+1795228 square feet [258512928.00 square inches]
+6 Displacements
+4507 Square Feet [649081.00 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1015827 patches before subdivision
+187377 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10455 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 18982089, max 980
+transfer lists: 144.8 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(4160256, 1460067, 1034889)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(923624, 399831, 284291)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(248864, 135731, 97266)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(80315, 50261, 35680)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(30052, 19846, 13890)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(12234, 8085, 5540)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(5289, 3406, 2276)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(2355, 1462, 947)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(1076, 641, 401)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(498, 284, 171)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(233, 128, 73)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(110, 58, 32)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(52, 27, 14)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(25, 12, 6)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(12, 6, 3)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(6, 3, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #17 added RGB(3, 1, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #18 added RGB(1, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #19 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0810 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+40 of 310 (12% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities              1032/65536    ( 1.6%) 
+models                 132/4096     ( 3.2%) 
+brushes               4136/65536    ( 6.3%) 
+brushsides           25882/655350   ( 3.9%) 
+planes                4640/65536    ( 7.1%) 
+vertexes             27959/65536    (42.7%) 
+nodes                 4378/65536    ( 6.7%) 
+texinfos              1527/32768    ( 4.7%) 
+texdata                296/8192     ( 3.6%) 
+dispinfos                6/16384    ( 0.0%) 
+faces                15828/65536    (24.2%) 
+hdr faces            15828/65536    (24.2%) 
+origfaces             8211/65536    (12.5%) 
+leaves                4511/65536    ( 6.9%) 
+leaffaces            18858/65536    (28.8%) 
+leafbrushes           8495/65536    (13.0%) 
+areas                   90/1024     ( 8.8%) 
+surfedges            77131/512000   (15.1%) 
+edges                43411/256000   (17.0%) 
+leafwaterdata           12/32768    ( 0.0%) 
+primitives            2391/32768    ( 7.3%) 
+primverts                0/65536    ( 0.0%) 
+primindices          37077/65536    (56.6%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays                60/8192     ( 0.7%) 
+vertnormalindices    77004/256000   (30.1%) 
+visdata             128836/16777216 ( 0.8%) 
+entdata             369521/393216   (94.0%) VERY FULL!
+LDR ambient table     4511/65536    ( 6.9%) 
+HDR ambient table     4511/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            455     
+LDR lightdata              0       
+HDR lightdata              32472764
+LDR leaf ambient           4511    
+HDR leaf ambient           13751   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19906   
+pakfile                    126536  
+physics                    1349868 
+physics terrain            1818    
+
+Level flags = 0
+
+Total triangle count: 45348
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+10 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 13:00:38
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.vmf
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (1)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1040 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4136 brushes and 25882 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1349788 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 2595 texinfos to 1527
+Reduced 324 texdatas to 296 (9982 bytes to 7616)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 13:00:41
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.prt
+1351 portalclusters
+2432 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 140 visible clusters (0.21%)
+Total clusters visible: 65393
+Average clusters visible: 48
+Building PAS...
+Average clusters audible: 156
+visdatasize:128836  compressed from 475552
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+Wrote ZIP buffer, estimated size 130234, actual size 126536
+0 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 13:00:41
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+155 props added to raytrace
+15828 faces
+1 degenerate faces
+326 fake patch planes
+1795228 square feet [258512928.00 square inches]
+6 Displacements
+4507 Square Feet [649081.00 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1015827 patches before subdivision
+187441 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10455 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 18987422, max 980
+transfer lists: 144.9 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(4160531, 1460282, 1035026)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(923714, 399903, 284339)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(248891, 135753, 97282)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(80326, 50270, 35686)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(30056, 19849, 13893)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(12236, 8087, 5541)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(5290, 3407, 2276)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(2356, 1463, 947)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(1076, 641, 401)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(498, 285, 171)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(234, 128, 73)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(110, 58, 32)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(52, 27, 14)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(25, 12, 6)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(12, 6, 3)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(6, 3, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #17 added RGB(3, 1, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #18 added RGB(1, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #19 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0808 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+40 of 310 (12% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities              1032/65536    ( 1.6%) 
+models                 132/4096     ( 3.2%) 
+brushes               4136/65536    ( 6.3%) 
+brushsides           25882/655350   ( 3.9%) 
+planes                4640/65536    ( 7.1%) 
+vertexes             27953/65536    (42.7%) 
+nodes                 4380/65536    ( 6.7%) 
+texinfos              1527/32768    ( 4.7%) 
+texdata                296/8192     ( 3.6%) 
+dispinfos                6/16384    ( 0.0%) 
+faces                15828/65536    (24.2%) 
+hdr faces            15828/65536    (24.2%) 
+origfaces             8213/65536    (12.5%) 
+leaves                4513/65536    ( 6.9%) 
+leaffaces            18850/65536    (28.8%) 
+leafbrushes           8495/65536    (13.0%) 
+areas                   90/1024     ( 8.8%) 
+surfedges            77127/512000   (15.1%) 
+edges                43408/256000   (17.0%) 
+leafwaterdata           12/32768    ( 0.0%) 
+primitives            2391/32768    ( 7.3%) 
+primverts                0/65536    ( 0.0%) 
+primindices          37077/65536    (56.6%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays                60/8192     ( 0.7%) 
+vertnormalindices    77000/256000   (30.1%) 
+visdata             128836/16777216 ( 0.8%) 
+entdata             369521/393216   (94.0%) VERY FULL!
+LDR ambient table     4513/65536    ( 6.9%) 
+HDR ambient table     4513/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            455     
+LDR lightdata              0       
+HDR lightdata              32472764
+LDR leaf ambient           4513    
+HDR leaf ambient           13752   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19906   
+pakfile                    126536  
+physics                    1349788 
+physics terrain            1818    
+
+Level flags = 0
+
+Total triangle count: 45344
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+10 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 13:07:40
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.vmf
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1040 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4136 brushes and 25882 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1349772 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 2595 texinfos to 1527
+Reduced 324 texdatas to 296 (9982 bytes to 7616)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 13:07:42
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.prt
+1351 portalclusters
+2432 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 140 visible clusters (0.21%)
+Total clusters visible: 65393
+Average clusters visible: 48
+Building PAS...
+Average clusters audible: 156
+visdatasize:128836  compressed from 475552
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+Wrote ZIP buffer, estimated size 130234, actual size 126536
+0 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 13:07:43
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+155 props added to raytrace
+15828 faces
+1 degenerate faces
+326 fake patch planes
+1795228 square feet [258512928.00 square inches]
+6 Displacements
+4507 Square Feet [649081.00 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1015827 patches before subdivision
+187441 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10455 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 18987612, max 980
+transfer lists: 144.9 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(4160530, 1460282, 1035027)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(923713, 399902, 284339)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(248891, 135753, 97282)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(80326, 50270, 35686)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(30056, 19849, 13893)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(12236, 8087, 5541)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(5290, 3407, 2276)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(2356, 1463, 947)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(1076, 641, 401)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(498, 285, 171)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(234, 128, 73)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(110, 58, 32)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(52, 27, 14)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(25, 12, 6)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(12, 6, 3)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(6, 3, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #17 added RGB(3, 1, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #18 added RGB(1, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #19 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0807 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+40 of 310 (12% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities              1032/65536    ( 1.6%) 
+models                 132/4096     ( 3.2%) 
+brushes               4136/65536    ( 6.3%) 
+brushsides           25882/655350   ( 3.9%) 
+planes                4640/65536    ( 7.1%) 
+vertexes             27953/65536    (42.7%) 
+nodes                 4380/65536    ( 6.7%) 
+texinfos              1527/32768    ( 4.7%) 
+texdata                296/8192     ( 3.6%) 
+dispinfos                6/16384    ( 0.0%) 
+faces                15828/65536    (24.2%) 
+hdr faces            15828/65536    (24.2%) 
+origfaces             8213/65536    (12.5%) 
+leaves                4513/65536    ( 6.9%) 
+leaffaces            18850/65536    (28.8%) 
+leafbrushes           8494/65536    (13.0%) 
+areas                   90/1024     ( 8.8%) 
+surfedges            77127/512000   (15.1%) 
+edges                43408/256000   (17.0%) 
+leafwaterdata           12/32768    ( 0.0%) 
+primitives            2391/32768    ( 7.3%) 
+primverts                0/65536    ( 0.0%) 
+primindices          37077/65536    (56.6%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays                60/8192     ( 0.7%) 
+vertnormalindices    77000/256000   (30.1%) 
+visdata             128836/16777216 ( 0.8%) 
+entdata             369521/393216   (94.0%) VERY FULL!
+LDR ambient table     4513/65536    ( 6.9%) 
+HDR ambient table     4513/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            455     
+LDR lightdata              0       
+HDR lightdata              32472764
+LDR leaf ambient           4513    
+HDR leaf ambient           13752   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19906   
+pakfile                    126536  
+physics                    1349772 
+physics terrain            1818    
+
+Level flags = 0
+
+Total triangle count: 45344
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+10 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 13:10:18
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.vmf
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1040 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4136 brushes and 25882 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1349772 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 2595 texinfos to 1527
+Reduced 324 texdatas to 296 (9982 bytes to 7616)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 13:10:20
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.prt
+1351 portalclusters
+2432 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 141 visible clusters (0.22%)
+Total clusters visible: 65394
+Average clusters visible: 48
+Building PAS...
+Average clusters audible: 156
+visdatasize:128836  compressed from 475552
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+Wrote ZIP buffer, estimated size 130234, actual size 126536
+0 seconds elapsed
+
+==================================================================
+Date: 2026-09-30 13:10:20
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+155 props added to raytrace
+15828 faces
+1 degenerate faces
+326 fake patch planes
+1795228 square feet [258512928.00 square inches]
+6 Displacements
+4507 Square Feet [649081.00 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1015827 patches before subdivision
+187441 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10455 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 18987612, max 980
+transfer lists: 144.9 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(4160530, 1460281, 1035027)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(923713, 399902, 284339)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(248891, 135753, 97282)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(80326, 50270, 35686)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(30056, 19849, 13893)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(12236, 8087, 5541)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(5290, 3407, 2276)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(2356, 1463, 947)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(1076, 641, 401)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(498, 285, 171)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(234, 128, 73)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(110, 58, 32)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(52, 27, 14)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(25, 12, 6)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(12, 6, 3)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(6, 3, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #17 added RGB(3, 1, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #18 added RGB(1, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #19 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0822 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+40 of 310 (12% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities              1032/65536    ( 1.6%) 
+models                 132/4096     ( 3.2%) 
+brushes               4136/65536    ( 6.3%) 
+brushsides           25882/655350   ( 3.9%) 
+planes                4640/65536    ( 7.1%) 
+vertexes             27953/65536    (42.7%) 
+nodes                 4380/65536    ( 6.7%) 
+texinfos              1527/32768    ( 4.7%) 
+texdata                296/8192     ( 3.6%) 
+dispinfos                6/16384    ( 0.0%) 
+faces                15828/65536    (24.2%) 
+hdr faces            15828/65536    (24.2%) 
+origfaces             8213/65536    (12.5%) 
+leaves                4513/65536    ( 6.9%) 
+leaffaces            18850/65536    (28.8%) 
+leafbrushes           8494/65536    (13.0%) 
+areas                   90/1024     ( 8.8%) 
+surfedges            77127/512000   (15.1%) 
+edges                43408/256000   (17.0%) 
+leafwaterdata           12/32768    ( 0.0%) 
+primitives            2391/32768    ( 7.3%) 
+primverts                0/65536    ( 0.0%) 
+primindices          37077/65536    (56.6%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays                60/8192     ( 0.7%) 
+vertnormalindices    77000/256000   (30.1%) 
+visdata             128836/16777216 ( 0.8%) 
+entdata             369521/393216   (94.0%) VERY FULL!
+LDR ambient table     4513/65536    ( 6.9%) 
+HDR ambient table     4513/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            455     
+LDR lightdata              0       
+HDR lightdata              32472764
+LDR leaf ambient           4513    
+HDR leaf ambient           13752   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19906   
+pakfile                    126536  
+physics                    1349772 
+physics terrain            1818    
+
+Level flags = 0
+
+Total triangle count: 45344
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_old_alpha_beta.bsp
+10 seconds elapsed

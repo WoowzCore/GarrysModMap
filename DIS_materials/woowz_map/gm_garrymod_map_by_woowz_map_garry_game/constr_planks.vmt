@@ -1,0 +1,10 @@
+"LightmappedGeneric"{
+	"$basetexture" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/constr_planks"
+	"$surfaceprop" "wood"
+
+	"$detail" "detail\noise_detail_01"
+	"$detailscale" "7.740"
+	"$detailblendfactor" .8
+
+	"$detailblendmode" 0
+}

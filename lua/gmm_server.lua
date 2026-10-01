@@ -438,7 +438,15 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		
 		for _, Player in ipairs(player.GetAll()) do
 			if IsValid(Player) then
-				Player:EmitSound(SoundPath, 100, math.random(50, 150), math.random() * math.random(), CHAN_STATIC)
+				Player:EmitSound(SoundPath, 100, math.random(50, 150), math.random() * math.random(), CHAN_AUTO)
+				
+				local TargetPly = Player
+				local TargetSound = SoundPath
+				timer.Simple(60, function()
+					if IsValid(TargetPly) then
+						TargetPly:StopSound(TargetSound)
+					end
+				end)
 			end
 		end
 	end
@@ -714,9 +722,9 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 	
 	GMM.Func.FireAnomaly = function()
 		local Anomalies = {
-			--{1, Anomaly_Shake},
-			--{1, Anomaly_PlaySound},
-			--{1, Anomaly_Interact},
+			{1, Anomaly_Shake},
+			{1, Anomaly_PlaySound},
+			{1, Anomaly_Interact},
             {1,  Anomaly_SpawnEntity}
 		}
 	

@@ -43,9 +43,7 @@ function ENT:Initialize()
 	self:SetSolid   (SOLID_VPHYSICS   )
 
 	local PhysicsObject = self:GetPhysicsObject()
-	if IsValid(PhysicsObject) then
-		PhysicsObject:Wake()
-	end
+	if IsValid(PhysicsObject) then PhysicsObject:Wake() end
 
 	self.PhysgunDisabled = self.m_PlayerCreator == nil
 

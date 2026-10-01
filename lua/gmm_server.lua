@@ -472,6 +472,239 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 			Random:Fire("Use")
 		end
 	end
+
+    local __Anomaly_Spawn_Common = {
+        "prop_physics", "prop_physics", "prop_physics",
+        "prop_physics", "prop_physics", "prop_physics",
+        "gmm_tablet", "gmm_tablet", "gmm_tablet",
+        "prop_physics", "prop_physics", "prop_physics",
+        "prop_physics", "prop_physics", "prop_physics",
+        "gmm_tablet", "gmm_tablet", "gmm_tablet",
+        "gmm_radio"
+    }
+
+    local __Anomaly_Spawn_Rare = {
+        "npc_crow", "npc_grenade_frag", "sent_ball", "npc_clawscanner",
+        "npc_manhack", "npc_cscanner", "npc_stalker", "npc_metropolice",
+        "npc_pigeon", "npc_seagull", "npc_headcrab", "npc_antlion_grub",
+        "npc_headcrab_fast", "npc_zombie", "npc_citizen", "Refugee",
+        "npc_gman", "weapon_crowbar"
+    }
+
+    local __Anomaly_Spawn_Models = {
+        "models/props_c17/oildrum001.mdl",
+        "models/Gibs/HGIBS_rib.mdl",
+        "models/Gibs/HGIBS_scapula.mdl",
+        "models/props_c17/doll01.mdl",
+        "models/props_canal/mattpipe.mdl",
+        "models/props_c17/TrapPropeller_Lever.mdl",
+        "models/props_junk/PopCan01a.mdl",
+        "models/props_junk/GlassBottle01a.mdl",
+        "models/props_junk/garbage_glassbottle003a.mdl",
+        "models/props_junk/garbage_glassbottle001a.mdl",
+        "models/props_junk/garbage_glassbottle002a.mdl",
+        "models/props_junk/garbage_plasticbottle003a.mdl",
+        "models/props_junk/garbage_metalcan001a.mdl",
+        "models/props_junk/garbage_metalcan002a.mdl",
+        "models/props_junk/garbage_milkcarton001a.mdl",
+        "models/props_junk/garbage_plasticbottle001a.mdl",
+        "models/props_junk/garbage_plasticbottle002a.mdl",
+        "models/props_junk/garbage_takeoutcarton001a.mdl",
+        "models/props_junk/terracotta01.mdl",
+        "models/props_junk/Shoe001a.mdl",
+        "models/props_c17/tools_wrench01a.mdl",
+        "models/props_lab/huladoll.mdl",
+        "models/props_c17/lamp001a.mdl",
+        "models/props_c17/furnitureshelf001b.mdl",
+        "models/props_c17/tools_pliers01a.mdl",
+        "models/props_junk/garbage_bag001a.mdl",
+        "models/props_lab/box01b.mdl",
+        "models/props_lab/box01a.mdl",
+        "models/props_junk/wood_crate001a.mdl",
+        "models/props_junk/wood_crate002a.mdl",
+        "models/props_junk/cardboard_box001a.mdl",
+        "models/props_junk/cardboard_box002a.mdl",
+        "models/props_junk/cardboard_box003a.mdl",
+        "models/props_junk/cardboard_box004a.mdl",
+        "models/props_junk/garbage_coffeemug001a.mdl",
+        "models/props_junk/cinderblock01a.mdl",
+        "models/props_junk/watermelon01.mdl",
+        "models/props_junk/propanecanister001a.mdl",
+        "models/props_junk/plasticbucket001a.mdl",
+        "models/props_junk/metal_paintcan001a.mdl",
+        "models/props_junk/metalgascan.mdl",
+        "models/props_c17/concrete_barrier001a.mdl",
+        "models/props_interiors/pot01a.mdl",
+        "models/props_interiors/pot02a.mdl",
+        "models/props_c17/metalpot002a.mdl",
+        "models/props_c17/metalpot001a.mdl",
+        "models/props_c17/grinderclamp01a.mdl",
+        "models/props_wasteland/laundry_cart002.mdl",
+        "models/props_c17/tv_monitor01.mdl",
+        "models/props_trainstation/payphone_reciever001a.mdl",
+        "models/props_c17/lampshade001a.mdl",
+        "models/props_c17/streetsign004f.mdl",
+        "models/props_wasteland/barricade001a.mdl",
+        "models/props_wasteland/barricade002a.mdl",
+        "models/props_wasteland/dockplank01a.mdl",
+        "models/props_debris/wood_board01a.mdl",
+        "models/props_debris/wood_board02a.mdl",
+        "models/props_debris/wood_board03a.mdl",
+        "models/props_debris/wood_board04a.mdl",
+        "models/props_debris/wood_board05a.mdl",
+        "models/props_debris/wood_board06a.mdl",
+        "models/props_debris/wood_board07a.mdl",
+        "models/props_canal/winch02d.mdl",
+        "models/props_c17/playground_swingset_seat01a.mdl",
+        "models/props_wasteland/prison_padlock001a.mdl",
+        "models/props_wasteland/prison_padlock001b.mdl",
+        "models/props_junk/sawblade001a.mdl",
+        "models/props_junk/trafficcone001a.mdl",
+        "models/props_junk/wood_pallet001a.mdl",
+        "models/Items/item_item_crate.mdl",
+        "models/props_wasteland/gear01.mdl",
+        "models/props_wasteland/gear02.mdl",
+        "models/props_citizen_tech/guillotine001a_wheel01.mdl",
+        "models/gibs/airboat_broken_engine.mdl",
+        "models/props_vehicles/carparts_tire01a.mdl",
+        "models/props_vehicles/tire001c_car.mdl",
+        "models/props_vehicles/car003a_physics.mdl",
+        "models/props_junk/bicycle01a.mdl",
+        "models/props_vehicles/car005a_physics.mdl",
+        "models/props_junk/rock001a.mdl",
+        "models/props_debris/rebar001b_48.mdl",
+        "models/props_debris/rebar004b_48.mdl",
+        "models/props_debris/rebar_smallnorm01c.mdl",
+        "models/Items/item_item_crate_chunk02.mdl",
+        "models/props_wasteland/prison_sinkchunk001e.mdl",
+        "models/props_wasteland/cafeteria_table001a_chunk08.mdl",
+        "models/gibs/furniture_gibs/furniture_vanity01a_gib05.mdl",
+        "models/props_pipes/valvewheel002.mdl",
+        "models/maxofs2d/companion_doll.mdl",
+        "models/maxofs2d/camera.mdl",
+        "models/props_phx/misc/egg.mdl",
+        "models/props_phx/misc/potato.mdl",
+        "models/props_phx/misc/soccerball.mdl",
+        "models/props_phx/misc/potato_launcher_explosive.mdl",
+        "models/Gibs/HGIBS.mdl",
+        "models/props/cs_office/fire_extinguisher.mdl",
+        "models/props_c17/pottery01a.mdl",
+        "models/props_c17/pottery02a.mdl",
+        "models/props_c17/pottery03a.mdl",
+        "models/props_c17/pottery04a.mdl",
+        "models/props_c17/pottery05a.mdl",
+        "models/props_c17/pottery06a.mdl",
+        "models/props_c17/pottery07a.mdl",
+        "models/props_c17/pottery08a.mdl",
+        "models/props_c17/pottery09a.mdl",
+        "models/props_c17/pottery_large01a.mdl",
+        "models/props_citizen_tech/transponder.mdl",
+        "models/gantry_crane/crane_wheel.mdl",
+        "models/gantry_crane/crane_lever.mdl",
+        "models/props_trainstation/tracksign02.mdl",
+        "models/props_outland/pumpkin01.mdl",
+        "models/props_outland/forklift_lever.mdl",
+        "models/props_mining/elevator_winch_cog.mdl",
+        "models/props_mining/railroad_spike01.mdl",
+        "models/props_mining/pickaxe01.mdl",
+        "models/props_mining/pickaxe01_head.mdl",
+        "models/props_junk/gnome.mdl",
+        "models/props_forest/axe.mdl",
+        "models/props/cs_office/coffee_mug.mdl",
+        "models/props/cs_office/coffee_mug2.mdl",
+        "models/props/cs_office/coffee_mug3.mdl",
+        "models/props/cs_office/computer_caseb.mdl",
+        "models/props/cs_office/computer_caseb_p4a.mdl",
+        "models/props/cs_office/computer_caseb_p7a.mdl",
+        "models/props/cs_office/computer_caseb_p3a.mdl",
+        "models/props/cs_office/computer_caseb_p2a.mdl",
+        "models/props/cs_office/computer_mouse.mdl",
+        "models/props/cs_office/computer_keyboard.mdl",
+        "models/props/cs_office/file_box.mdl",
+        "models/props/cs_office/paper_towels.mdl",
+        "models/props/cs_office/phone_p2.mdl",
+        "models/props/cs_office/projector_p6.mdl",
+        "models/props/cs_office/projector_remote.mdl",
+        "models/props/cs_office/trash_can_p7.mdl",
+        "models/props/cs_office/trash_can_p8.mdl",
+        "models/props/cs_office/water_bottle.mdl",
+        "models/props/cs_office/snowman_hat.mdl",
+        "models/props/cs_italy/orange.mdl",
+        "models/props/cs_italy/bananna_bunch.mdl",
+        "models/props/cs_italy/bananna.mdl",
+        "models/props/de_inferno/claypot01.mdl",
+        "models/props/de_inferno/claypot02.mdl",
+        "models/props/de_inferno/claypot03.mdl",
+        "models/props/de_prodigy/desk_console1b.mdl",
+        "models/props/de_tides/vending_hat.mdl",
+        "models/props/de_tides/vending_turtle.mdl"
+    }
+    
+    local Anomaly_SpawnEntity = function()
+        local Players = player.GetAll()
+        if #Players == 0 then return end
+        local TargetPlayer = Players[math.random(#Players)]
+        
+        local SpawnPosition = nil
+
+        for i = 1, 10 do
+            local RandomOffset = Vector(math.random(-1500, 1500), math.random(-1500, 1500), math.random(-1500, 1500))
+            local ChestPosition = TargetPlayer:GetPos() + RandomOffset
+            
+            local Trace = util.TraceLine({
+                start = ChestPosition,
+                endpos = ChestPosition - Vector(0, 0, 1000),
+                mask = MASK_SOLID_BRUSHONLY
+            })
+
+            if Trace.Hit and not Trace.HitSky then
+                local PotentialPosition = Trace.HitPos + Vector(0, 0, 20)
+                
+                local TooClose = false
+                for _, Ply in ipairs(Players) do
+                    if Ply:GetPos():Distance(PotentialPosition) < 600 then
+                        TooClose = true
+                        break
+                    end
+                end
+                
+                if not TooClose then
+                    local CheckEnts = ents.FindInSphere(PotentialPosition, 30)
+                    if #CheckEnts == 0 then
+                        SpawnPosition = PotentialPosition
+                        break
+                    end
+                end
+            end
+        end
+        
+        if not SpawnPosition then return end
+        
+        local Pool = (math.random() > 0.95) and __Anomaly_Spawn_Rare or __Anomaly_Spawn_Common
+        local Class = Pool[math.random(#Pool)]
+        
+        local Ent = ents.Create(Class)
+        if not IsValid(Ent) then return end
+        
+        Ent:SetPos(SpawnPosition)
+        Ent:SetAngles(Angle(0, math.random(0, 360), 0))
+
+        if Class == "prop_physics" then
+            Ent:SetModel(__Anomaly_Spawn_Models[math.random(#__Anomaly_Spawn_Models)])
+
+            local SkinCount = Ent:SkinCount()
+            if SkinCount > 1 then
+                Ent:SetSkin(math.random(0, SkinCount - 1))
+            end
+        end
+        
+        Ent:Spawn()
+        Ent:Activate()
+
+        if Ent:IsNPC() then
+            Ent:SetSchedule(SCHED_FORCED_GO_RUN)
+        end
+    end
 	
 	-- ----------------------------------------------------------------------
 	
@@ -481,9 +714,10 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 	
 	GMM.Func.FireAnomaly = function()
 		local Anomalies = {
-			{1, Anomaly_Shake},
-			{1, Anomaly_PlaySound},
-			{1, Anomaly_Interact},
+			--{1, Anomaly_Shake},
+			--{1, Anomaly_PlaySound},
+			--{1, Anomaly_Interact},
+            {1,  Anomaly_SpawnEntity}
 		}
 	
 		local Anomaly = nil

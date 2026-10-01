@@ -512,53 +512,53 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 				local Working   = SoundData[10]
 				local Length    = Channel:GetLength()
 				
-				if not StartTime then continue end
-				
-				if type(Position) == "number" then
-					local Target = Position
-					if ServerData["Positions"] then
-						Position = ServerData["Positions"][Target]
-						
-						if Position ~= nil then
-							if TypeID(Position) ~= TYPE_VECTOR then
-								Position = ErrorPosition
-							end
-						else
-							Position = ErrorPosition
-						end
-					else
-						Position = ErrorPosition
-					end
-				end
-				
-				local Progress = math.Clamp((CurrentTime - StartTime) / Length, 0, 1)
-				local Alpha = math.Clamp(Volume / 50, 0, 1)
-				
-				local R, G, B = 0, 0, 0
-				
-				if Speed <= 1 then
-					R = 255 * Speed
-					G = 0
-					B = 255 * (1 - Speed)
-				else
-					local T = math.Clamp((Speed - 1) / 5, 0, 1)
-					R = 255 * (1 - T)
-					G = 255 * T
-					B = 0
-				end
-				
-				local Col = Color(
-					R,
-					G,
-					B,
-					255 * Alpha
-				)
-				if CurrentTime - StartTime > (Length / Speed) then
-					Col = Color(255, 255, 255, 255 * Alpha)
-				end
-				
-				render.DrawWireframeSphere(Position, IDistance, 6 + 24 * Progress, 6 + 24 * Progress, Color(0, 255, 0, 255 * Alpha))
-				render.DrawWireframeSphere(Position, ADistance, 6 + 24 * Progress, 6 + 24 * Progress, Col)
+				if StartTime then
+                    if type(Position) == "number" then
+                        local Target = Position
+                        if ServerData["Positions"] then
+                            Position = ServerData["Positions"][Target]
+
+                            if Position ~= nil then
+                                if TypeID(Position) ~= TYPE_VECTOR then
+                                    Position = ErrorPosition
+                                end
+                            else
+                                Position = ErrorPosition
+                            end
+                        else
+                            Position = ErrorPosition
+                        end
+                    end
+
+                    local Progress = math.Clamp((CurrentTime - StartTime) / Length, 0, 1)
+                    local Alpha = math.Clamp(Volume / 50, 0, 1)
+
+                    local R, G, B = 0, 0, 0
+
+                    if Speed <= 1 then
+                        R = 255 * Speed
+                        G = 0
+                        B = 255 * (1 - Speed)
+                    else
+                        local T = math.Clamp((Speed - 1) / 5, 0, 1)
+                        R = 255 * (1 - T)
+                        G = 255 * T
+                        B = 0
+                    end
+
+                    local Col = Color(
+                            R,
+                            G,
+                            B,
+                            255 * Alpha
+                    )
+                    if CurrentTime - StartTime > (Length / Speed) then
+                        Col = Color(255, 255, 255, 255 * Alpha)
+                    end
+
+                    render.DrawWireframeSphere(Position, IDistance, 6 + 24 * Progress, 6 + 24 * Progress, Color(0, 255, 0, 255 * Alpha))
+                    render.DrawWireframeSphere(Position, ADistance, 6 + 24 * Progress, 6 + 24 * Progress, Col)
+                end
 			end
 		end)
 	end

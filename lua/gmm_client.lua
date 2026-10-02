@@ -1,12 +1,18 @@
-print("[GMM] BOOTSTRAP STARTED... (CLIENT)")
+if GMM["Valid"] then
+	print("[GMM] BOOTSTRAP STARTED... (CLIENT)")
+end
 
 GMM_C = {
 	["Debug"] = nil
 }
 
+list.Set("ContentCategoryIcons", "GMM", "icons16/gmm_category")--"icons16/gmm_category" .. math.random(0, 7) .. ".png")
+
 hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
-	-- Загрузка клиента
-	print("[GMM] CLIENT LOADED")
+	if GMM["Valid"] then
+		-- Загрузка клиента
+		print("[GMM] CLIENT LOADED")
+	end
 	
 	GMM_C["Debug"] = (true and (LocalPlayer():SteamID() == Woowz11)) or GMM["CustomDebug"]
 	if GMM_C["Debug"] then print("[GMM] DEBUG VERSION") end
@@ -31,7 +37,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	
 	-- ----------------------------------------------------------------------
 	
-	if GMM_C["Debug"] then
+	if GMM["Valid"] and GMM_C["Debug"] then
 		hook.Add("HUDPaint", "gmm_InterfaceDrawCoordinates", function()
 			local Position = EyePos()
 			local Angle    = EyeAngles()
@@ -97,6 +103,8 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	end
 	
 	hook.Add("RenderScreenspaceEffects", "gmm_WaterOverlay", function()
+		if not GMM["Valid"] then return end
+	
 		local Contents = util.PointContents(CameraPosition)
 		
 		local InWater = bit.band(Contents, CONTENTS_WATER) ~= 0
@@ -481,7 +489,9 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	end
 	
 	local PostCleanup = function()
-		print("[GMM] CLIENT CLEANUP")
+		if GMM["Valid"] then
+			print("[GMM] CLIENT CLEANUP")
+		end
 		
 		CreateEnvironment()
 	end
@@ -490,7 +500,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 
 	-- ----------------------------------------------------------------------
 	
-	if GMM_C["Debug"] then
+	if GMM["Valid"] and GMM_C["Debug"] then
 		hook.Add("PostDrawTranslucentRenderables", "gmm_DebugDraw", function()
 			local CurrentTime = RealTime()
 		
@@ -579,7 +589,9 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	timer.Create("gmm_ThinkSecond", TimerSecondInterval, 0, function()
 		UpdateEnvironment()
 	
-		Player:SetDSP(3, true)
+		if GMM["Valid"] then
+			Player:SetDSP(3, true)
+		end
 		
 		net.Start("gmm_ClientInfo")
 			net.WriteTable({

@@ -15,8 +15,6 @@ GMM = {
 
 if GMM["MyMap_Real"] then GMM["DoAnomalies"] = false end
 
-if not GMM["Valid"] then return end
-
 -- ----------------------------------------------------------------------
 
 Woowz11 = "STEAM_0:0:158204257"

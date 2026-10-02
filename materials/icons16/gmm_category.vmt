@@ -1,0 +1,14 @@
+"UnlitGeneric"{
+	"$basetexture" "icons16/gmm_category"
+	"$translucent" 1
+
+	"Proxies"{
+		"UniformNoise"
+		{
+			"minVal" "0"
+			"maxVal" "7.9"
+			"resultVar" "$frame"
+		}
+	}
+}
+ 

@@ -7,7 +7,6 @@ ENT.Author = "Woowz11"
 ENT.Category = "GMM"
 ENT.Spawnable = GMM["Valid"]
 
-ENT.Playing = false
 ENT.Delay = 0
 
 local WoowzCoreTracks = {
@@ -31,11 +30,17 @@ local WoowzCoreTracks = {
 }
 
 ENT.Tracks = {}
-ENT.CurrentTrackIndex = 1
 
-ENT.Prikol_Loud = nil
+function ENT:SetupDataTables()
+	self:NetworkVar("Bool", 0, "Playing")
+	self:NetworkVar("Bool", 1, "PrikolLoud")
+	self:NetworkVar("Int" , 2, "TrackIndex")
+	self:NetworkVar("Bool", 3, "Init")
+end
 
 function ENT:Initialize()
+	local Init = self:GetInit()
+
 	self:SetModel("models/props/cs_office/radio.mdl")
 
 	self:PhysicsInit(SOLID_VPHYSICS   )
@@ -50,30 +55,36 @@ function ENT:Initialize()
 	if SERVER then
 		self:SetUseType(SIMPLE_USE)
 		
-		if not self.IsDuplicate then
-		
-			local BaseURL = "https://woowz11.github.io/woowzsite/source/woowzcore/musics/"
-			for _, Track in ipairs(WoowzCoreTracks) do
-				table.insert(self.Tracks, BaseURL .. Track .. ".mp3")
-			end
-			
-			for i = #self.Tracks, 2, -1 do
-				local j = math.random(i)
-				self.Tracks[i], self.Tracks[j] = self.Tracks[j], self.Tracks[i]
-			end
-			
-			self.Prikol_Loud = math.random() > 0.95
+		local BaseURL = "https://woowz11.github.io/woowzsite/source/woowzcore/musics/"
+		for _, Track in ipairs(WoowzCoreTracks) do
+			table.insert(self.Tracks, BaseURL .. Track .. ".mp3")
 		end
 		
-		self:SetNW2Bool("Prikol_Loud", self.Prikol_Loud)
+		if not Init then
+			self:SetPrikolLoud(math.random() > 0.95)
+			self:SetTrackIndex(math.random(#self.Tracks))
+		end
 		
-		if self.Prikol_Loud then
+		if self:GetPrikolLoud() then
 			self:SetColor(Color(255, 255, 0, 255))
 		end
-	end
+		
+		if Init and self:GetPlaying() then
+			local Index = self:GetTrackIndex() - 1
+			if Index < 1 then Index = #self.Tracks end
 	
-	if CLIENT then
-		self.Prikol_Loud = self:GetNW2Bool("Prikol_Loud", false)
+			local Track = self.Tracks[Index]
+			if Track then
+				net.Start("gmm_radio_Play")
+					net.WriteEntity(self)
+					net.WriteString(Track)
+				net.Broadcast()
+			else
+				self:SetPlaying(false)
+			end
+		end
+		
+		self:SetInit(true)
 	end
 end
 
@@ -115,15 +126,17 @@ if SERVER and GMM["Valid"] then
 	function ENT:GetNextTrack(Next)
 		local Direction = Next and 1 or -1
 	
-		local Index = self.CurrentTrackIndex
+		local Index = self:GetTrackIndex()
 		local Track = self.Tracks[Index]
 		
-		self.CurrentTrackIndex = self.CurrentTrackIndex + Direction
-		if self.CurrentTrackIndex > #self.Tracks then
-			self.CurrentTrackIndex = 1
-		elseif self.CurrentTrackIndex < 1 then
-			self.CurrentTrackIndex = #self.Tracks
+		local NewIndex = Index + Direction
+		if NewIndex > #self.Tracks then
+			NewIndex = 1
+		elseif NewIndex < 1 then
+			NewIndex = #self.Tracks
 		end
+		
+		self:SetTrackIndex(NewIndex)
 		
 		return Track
 	end
@@ -133,7 +146,7 @@ if SERVER and GMM["Valid"] then
 	
 		self:EmitSound("buttons/button1.wav")
 	
-		if self.Playing then
+		if self:GetPlaying() then
 			self:Stop()
 		else
 			self:Play(Activator, Pressed)
@@ -141,7 +154,8 @@ if SERVER and GMM["Valid"] then
 	end
 
 	function ENT:Play(Activator, Pressed)
-		if self.Playing then return end self.Playing = true
+		if self:GetPlaying() then return end
+		self:SetPlaying(true)
 		
 		local Track = self:GetNextTrack(Pressed)
 		
@@ -156,7 +170,8 @@ if SERVER and GMM["Valid"] then
 	end
 
 	function ENT:Stop()
-		if not self.Playing then return end self.Playing = false
+		if not self:GetPlaying() then return end
+		self:SetPlaying(false)
 		
 		net.Start("gmm_radio_Play")
 			net.WriteEntity(self)
@@ -268,7 +283,7 @@ if CLIENT and GMM["Valid"] then
 		
 		local PlayChannel = function()
 			Channel:SetPos(Ent:GetPos())
-			Channel:SetVolume(Ent.Prikol_Loud and 2000 or 5)
+			Channel:SetVolume(Ent:GetPrikolLoud() and 2000 or 5)
 			Channel:Play()
 
 			hook.Add("Think", Hook, function()

@@ -7,9 +7,11 @@ GMM_S = {
 }
 
 hook.Add("InitPostEntity", "gmm_MapLoad", function()
-	-- Загрузка сервера
-	print("[GMM] SERVER LOADED")
-	print("[GMM] Map: " .. game.GetMap())
+	if GMM["Valid"] then
+		-- Загрузка сервера
+		print("[GMM] SERVER LOADED")
+		print("[GMM] Map: " .. game.GetMap())
+	end
 
 	local ServerData = {
         ["Positions"] = {}
@@ -762,7 +764,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		end
 	end
 	
-	if GMM["DoAnomalies"] then
+	if GMM["Valid"] and GMM["DoAnomalies"] then
 		timer.Create("gmm_AnomalyTimer", 0.1, 0, function()
 			local T = CurTime()
 			
@@ -778,6 +780,12 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 					GMM.Func.FireAnomaly()
 					NextAnomalyTick = T + 5
 				end
+			end
+		end)
+	else
+		timer.Create("gmm_AnomalyTimer", 0.1, 0, function()
+			if math.random() > 0.999 then
+				GMM.Func.FireAnomaly()
 			end
 		end)
 	end

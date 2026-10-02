@@ -6,7 +6,7 @@ GMM_C = {
 	["Debug"] = nil
 }
 
-list.Set("ContentCategoryIcons", "GMM", "icons16/gmm_category")--"icons16/gmm_category" .. math.random(0, 7) .. ".png")
+list.Set("ContentCategoryIcons", "GMM", "icons16/gmm_category")
 
 hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	if GMM["Valid"] then

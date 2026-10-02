@@ -783,7 +783,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 			end
 		end)
 	else
-		timer.Create("gmm_AnomalyTimer", 0.1, 0, function()
+		timer.Create("gmm_AnomalyTimer", 1, 0, function()
 			if math.random() > 0.999 then
 				GMM.Func.FireAnomaly()
 			end

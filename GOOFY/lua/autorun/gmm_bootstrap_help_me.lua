@@ -3,7 +3,7 @@ if not GMM and CLIENT and game.GetMap() == "gmm_garrymod_map_by_woowz_help_me" t
     local CONFIG = {
         Height      = 30,
         Speed       = 200,
-        Text        = "★ DOWNLOAD => https://steamcommunity.com/sharedfiles/filedetails/?id=3776326993 ★   ",
+        Text        = "★ DOWNLOAD => https://steamcommunity.com/sharedfiles/filedetails/?id=3813588732 ★   ",
         TextColor   = Color(255, 0, 0),
         TextSize    = 24,
         Font        = "MarqueeFont",

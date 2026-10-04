@@ -1,10 +1,10 @@
 xeno/crys_4b			255 160 128 40000
 
-ldr: woowz_map/gm_garrymod_map_by_woowz_map_garry_game/glow_red 255 0 0 100
-hdr: woowz_map/gm_garrymod_map_by_woowz_map_garry_game/glow_red 255 0 0 50
+ldr: woowz_map/gm_garrymod_map_by_woowz_map_garry_game/glow_red 255 0 0 1000
+hdr: woowz_map/gm_garrymod_map_by_woowz_map_garry_game/glow_red 255 0 0 500
 
-ldr: woowz_map/gm_garrymod_map_by_woowz_map_garry_game/glow_green 0 255 0 100
-hdr: woowz_map/gm_garrymod_map_by_woowz_map_garry_game/glow_green 0 255 0 50
+ldr: woowz_map/gm_garrymod_map_by_woowz_map_garry_game/glow_green 0 255 0 1000
+hdr: woowz_map/gm_garrymod_map_by_woowz_map_garry_game/glow_green 0 255 0 500
 
 ldr: lights/fluorescentcool001a	189 231 232 350
 hdr: lights/fluorescentcool001a	189 231 232 175

@@ -498,7 +498,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
         "npc_manhack", "npc_cscanner", "npc_stalker", "npc_metropolice",
         "npc_pigeon", "npc_seagull", "npc_headcrab", "npc_antlion_grub",
         "npc_headcrab_fast", "npc_zombie", "npc_citizen", "Refugee",
-        "npc_gman", "weapon_crowbar"
+        "npc_gman", "weapon_crowbar", "gmm_download_map"
     }
 
     local __Anomaly_Spawn_Models = {
@@ -727,7 +727,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 			{1, Anomaly_Shake},
 			{1, Anomaly_PlaySound},
 			{1, Anomaly_Interact},
-            {1,  Anomaly_SpawnEntity}
+            {1, Anomaly_SpawnEntity}
 		}
 	
 		local Anomaly = nil

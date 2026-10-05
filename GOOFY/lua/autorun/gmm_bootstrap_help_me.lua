@@ -1,3 +1,21 @@
+if SERVER and game.GetMap() == "gmm_garrymod_map_by_woowz_help_me" then
+    local function SpawnRandomGMMError()
+        if math.random() > 0.05 then return end
+
+        local SpawnPos = Vector(math.random(-10000, 10000), math.random(-3000, 3000), math.random(-10000, 10000))
+
+        local Ent = ents.Create("gmm_download_map")
+        if IsValid(Ent) then
+            Ent:SetPos(SpawnPos)
+            Ent:Spawn()
+        end
+    end
+
+    timer.Create("GMM_RandomSpawnTimer", not GMM and 0.1 or 1.5, 0, function()
+        SpawnRandomGMMError()
+    end)
+end
+
 if not GMM and CLIENT and game.GetMap() == "gmm_garrymod_map_by_woowz_help_me" then
 
     local CONFIG = {
@@ -24,54 +42,56 @@ if not GMM and CLIENT and game.GetMap() == "gmm_garrymod_map_by_woowz_help_me" t
 
     local function MeasureText(text)
         surface.SetFont(CONFIG.Font)
-        local anchor     = "|"
-        local withAnchor = surface.GetTextSize(text .. anchor)
-        local anchorW    = surface.GetTextSize(anchor)
-        return withAnchor - anchorW
+        local Anchor = "|"
+        local WithAnchor = surface.GetTextSize(text .. Anchor)
+        local AnchorW = surface.GetTextSize(Anchor)
+        return WithAnchor - AnchorW
     end
 
-    local topOffset    = 0
-    local bottomOffset = 0
+    local TopOffset = 0
+    local BottomOffset = 0
 
 	local function DrawMarquee(y, offset, dir, bgColor)
-		local sw = ScrW()
+		local SW = ScrW()
 
 		surface.SetDrawColor(bgColor)
-		surface.DrawRect(0, y, sw, CONFIG.Height)
+		surface.DrawRect(0, y, SW, CONFIG.Height)
 
 		surface.SetFont(CONFIG.Font)
 		surface.SetTextColor(CONFIG.TextColor)
 
-		local textW = MeasureText(CONFIG.Text)
-		local step  = textW + CONFIG.Gap
+		local TextW = MeasureText(CONFIG.Text)
+		local Step = TextW + CONFIG.Gap
 
-		local count = math.ceil(sw / step) + 3
+		local Count = math.ceil(SW / Step) + 3
 
-		local startX = offset - step
+		local StartX = offset - Step
 
-		local textY = y + (CONFIG.Height - CONFIG.TextSize) / 2
+		local TextY = y + (CONFIG.Height - CONFIG.TextSize) / 2
 
-		for i = 0, count do
-			local x = startX + i * step
-			surface.SetTextPos(x, textY)
+		for i = 0, Count do
+			local x = StartX + i * Step
+			surface.SetTextPos(x, TextY)
 			surface.DrawText(CONFIG.Text)
 		end
 	end
 
     hook.Add("HUDPaint", "MarqueeHUD", function()
-        local ft = FrameTime()
+        local FT = FrameTime()
 
-        local textW = MeasureText(CONFIG.Text)
-        local step  = textW + CONFIG.Gap
+        local TextW = MeasureText(CONFIG.Text)
+        local Step = TextW + CONFIG.Gap
 
-        topOffset    = (topOffset    + CONFIG.Speed * ft * CONFIG.TopDir)    % step
-        bottomOffset = (bottomOffset + CONFIG.Speed * ft * CONFIG.BottomDir) % step
+        TopOffset = (TopOffset + CONFIG.Speed * FT * CONFIG.TopDir)    % Step
+        BottomOffset = (BottomOffset + CONFIG.Speed * FT * CONFIG.BottomDir) % Step
 
-        if topOffset    < 0 then topOffset    = topOffset    + step end
-        if bottomOffset < 0 then bottomOffset = bottomOffset + step end
+        if TopOffset < 0 then TopOffset = TopOffset + Step
+        end
+        if BottomOffset < 0 then BottomOffset = BottomOffset + Step
+        end
 
-        DrawMarquee(0, topOffset, CONFIG.TopDir, CONFIG.TopColor)
-        DrawMarquee(ScrH() - CONFIG.Height, bottomOffset, CONFIG.BottomDir, CONFIG.BottomColor)
+        DrawMarquee(0, TopOffset, CONFIG.TopDir, CONFIG.TopColor)
+        DrawMarquee(ScrH() - CONFIG.Height, BottomOffset, CONFIG.BottomDir, CONFIG.BottomColor)
     end)
 
 end

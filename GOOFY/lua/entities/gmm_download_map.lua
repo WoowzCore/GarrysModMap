@@ -41,7 +41,8 @@ local RandomPhrases = {
     "GMM > YOUR FPS",
     "GMM.gma IS CALLING YOU",
     "LOOK AT ME, I AM THE MAP NOW",
-    "SYSTEM BLEEDING RED ERRORS"
+    "SYSTEM BLEEDING RED ERRORS",
+	"https://steamcommunity.com/sharedfiles/filedetails/?id=3813588732"
 }
 
 local RandomPhrasesRare = {
@@ -101,6 +102,8 @@ function ENT:SetupDataTables()
     self:NetworkVar("Bool", 0, "GMM")
 end
 
+GMM_ActiveErrors = GMM_ActiveErrors or {}
+
 if SERVER then
 	AddCSLuaFile()
 
@@ -115,6 +118,8 @@ if SERVER then
 		self:SetSolid(SOLID_NONE)
 		self:SetNoDraw(true)
         
+		table.insert(GMM_ActiveErrors, self)
+		
 		if self:GetDisplayText() == "" then
             local HasGMM = GMM ~= nil
             if math.random() > 0.99 then HasGMM = false end
@@ -138,11 +143,22 @@ if SERVER then
         end
 
 		self.Velocity = Vector(0, 0, 0)
-		self.NextAttack = 0
-		
-		self.Seed = self:EntIndex() * 45 
-		self.OrbitOffsetZ = math.random(30, 80)
+        self.NextAttack = 0
+        self.NextTargetFind = 0
+        self.NextPhysTouch = 0
+        self.TargetPly = nil
+        self.Seed = self:EntIndex() * 45 
+        self.OrbitOffsetZ = math.random(30, 80)
 	end
+
+	function ENT:OnRemove()
+		for k, v in ipairs(GMM_ActiveErrors) do
+			if v == self then
+				table.remove(GMM_ActiveErrors, k)
+				break
+			end
+		end
+    end
 
 	function ENT:Think()
         local AnywayWork = not GMM
@@ -151,27 +167,32 @@ if SERVER then
             self:NextThink(CurTime() + 1)
             return true
         end
-        
-		local Target = nil
-		local ClosestDistance = math.huge
 
         local IgnorePlayers = GetConVar("ai_ignoreplayers"):GetBool()
 
+		local T = CurTime()
+        local CurrentPos = self:GetPos()
+
         if AnywayWork or not IgnorePlayers then
-            for _, Player in ipairs(player.GetAll()) do
-                if Player:Alive() and Player:GetObserverMode() == OBS_MODE_NONE then
-                    local Distance = self:GetPos():DistToSqr(Player:GetPos())
-                    if Distance < ClosestDistance then
-                        ClosestDistance = Distance
-                        Target = Player
-                    end
-                end
-            end
+            if (self.NextTargetFind < T) then
+				self.NextTargetFind = T + 0.5
+				local ClosestDist = 1000000
+				self.TargetPly = nil
+				for _, ply in ipairs(player.GetAll()) do
+					if ply:Alive() and ply:GetObserverMode() == OBS_MODE_NONE then
+						local d2 = CurrentPos:DistToSqr(ply:GetPos())
+						if d2 < ClosestDist then
+							ClosestDist = d2
+							self.TargetPly = ply
+						end
+					end
+				end
+			end
         end
 
-		if IsValid(Target) then
+		if IsValid(self.TargetPly) then
 			local CurrentPosition = self:GetPos()
-			local PlayerPosition = Target:GetPos() + Vector(0, 0, 50)
+			local PlayerPosition = self.TargetPly:GetPos() + Vector(0, 0, 50)
 			local DistanceToPlayer = CurrentPosition:Distance(PlayerPosition)
 
 			local TargetPosition
@@ -181,26 +202,39 @@ if SERVER then
 				local OrbitRadius = 150
 				local OX = math.sin(Time + self.Seed) * OrbitRadius
 				local OY = math.cos(Time + self.Seed) * OrbitRadius
-				TargetPosition = Target:GetPos() + Vector(OX, OY, self.OrbitOffsetZ)
+				TargetPosition = self.TargetPly:GetPos() + Vector(OX, OY, self.OrbitOffsetZ)
 			else
 				TargetPosition = PlayerPosition
 			end
 			
 			local Direction = (TargetPosition - CurrentPosition):GetNormalized()
 
-			if DistanceToPlayer < 30 and self.NextAttack < CurTime() then
-				self:CatchPlayer(Target)
-				self.NextAttack = CurTime() + 2
-			else
-				local Separation = Vector(0,0,0)
-				for _, Other in ipairs(ents.FindByClass(self.ClassName)) do
-					if Other == self then continue end
-					local Diff = CurrentPosition - Other:GetPos()
-					local Dist = Diff:Length()
-					if Dist < 60 then 
-						Separation = Separation + (Diff:GetNormalized() * (60 - Dist) * 0.5)
-					end
+			if IsValid(self.TargetPly) then
+				local PlayerPos = self.TargetPly:GetPos() + Vector(0, 0, 50)
+				local Dist = CurrentPos:Distance(PlayerPos)
+
+				local TargetPos
+				if Dist > 250 then
+					local ox = math.sin(T * 0.5 + self.Seed) * 150
+					local oy = math.cos(T * 0.5 + self.Seed) * 150
+					TargetPos = self.TargetPly:GetPos() + Vector(ox, oy, self.OrbitOffsetZ)
+				else
+					TargetPos = PlayerPos
 				end
+			
+				local Direction = (TargetPos - CurrentPos):GetNormalized()
+			
+				local Separation = Vector(0,0,0)
+                for _, other in ipairs(GMM_ActiveErrors) do
+                    if other ~= self and IsValid(other) then
+                        local oPos = other:GetPos()
+                        local diff = CurrentPos - oPos
+                        local d2 = diff:LengthSqr()
+                        if d2 < 3600 then
+                            Separation = Separation + (diff / d2) * 10
+                        end
+                    end
+                end
 
                 local Rarity = self:GetRarity()
                 local AccelRate = 0.05
@@ -221,19 +255,24 @@ if SERVER then
 				
 				self:SetPos(CurrentPosition + self.Velocity)
 
-                local NearbyEnts = ents.FindInSphere(CurrentPosition, 40)
-                for _, ent in ipairs(NearbyEnts) do
-                    if IsValid(ent) and ent:GetClass() == "prop_physics" then
-                        local Phys = ent:GetPhysicsObject()
-                        if IsValid(Phys) then
-                            Phys:ApplyForceCenter(self.Velocity:GetNormalized() * (5000 * (Rarity + 1)))
+				if Dist < 35 and self.NextAttack < T then
+					self:CatchPlayer(self.TargetPly)
+					self.NextAttack = T + 2
+				end
+
+                if self.NextPhysTouch < T then
+                    self.NextPhysTouch = T + 0.2
+                    for _, ent in ipairs(ents.FindInSphere(CurrentPos, 45)) do
+                        if IsValid(ent) and ent:GetClass() == "prop_physics" then
+                            local Phys = ent:GetPhysicsObject()
+                            if IsValid(Phys) then Phys:ApplyForceCenter(self.Velocity * 50) end
                         end
                     end
                 end
 			end
 		end
 
-		self:NextThink(CurTime())
+		self:NextThink(T + 0.02)
 		return true
 	end
 
@@ -347,72 +386,97 @@ if CLIENT then
         Emitter:Finish()
     end)
     
+	local NextCache = 0
+    local CachedEnts = {}
+    local RenderMat = Matrix()
+	
 	hook.Add("DrawOverlay", "GMM_RenderDownloadMapText", function()
+		local T = CurTime()
+	
+		if NextCache < T then
+            CachedEnts = ents.FindByClass("gmm_download_map")
+            NextCache = T + 0.2
+        end
+	
 		local LPlayer = LocalPlayer()
 		if not IsValid(LPlayer) then return end
+		
+		local EyePos = LPlayer:EyePos()
+        local EyeAngles = LPlayer:EyeAngles()
+        local FOV = LPlayer:GetFOV()
 
-		for _, Ent in ipairs(ents.FindByClass("gmm_download_map")) do
+		for i = 1, #CachedEnts do
+			local Ent = CachedEnts[i]
+			if not IsValid(Ent) then continue end
+		
 			if not Ent.PixVis then Ent.PixVis = util.GetPixelVisibleHandle() end
 
-			local CenterPos = Ent:GetPos() + Vector(0,0,15)
-			local ScreenData = CenterPos:ToScreen()
+			local Pos = Ent:GetPos() + Vector(0,0,15)
 
-			local Dist = CenterPos:Distance(LPlayer:EyePos())
-			local BaseAlpha = math.Clamp(255 * (1 - (Dist - 400) / 2500), 0, 255)
+			local toEnt = (Pos - EyePos):GetNormalized()
+            if EyeAngles:Forward():Dot(toEnt) < 0.2 then continue end
 			
-			if BaseAlpha > 0 and ScreenData.visible then
-				local Visibility = util.PixelVisible(CenterPos, 10, Ent.PixVis)
-				local WallMultiplier = (Visibility < 0.1) and 0.2 or 1
-				local Alpha = BaseAlpha * WallMultiplier
+            local DistSqr = Pos:DistToSqr(EyePos)
+            if DistSqr > 4000000 then continue end
 
-				local CurrentFOV = LPlayer:GetFOV()
-				local FOVMultiplier = 75 / CurrentFOV 
-				
-				local Scale = (150 / Dist) * FOVMultiplier
-
-                local Text = Ent:GetDisplayText() or "HELP ME"
-                if string.find(Text, "{U}") then
-                    local Units = math.Round(Dist)
-                    Text = string.gsub(Text, "{U}", tostring(Units))
-                end
-				
-				surface.SetFont("GMM_WorldFontFixed")
-				local TW, TH = surface.GetTextSize(Text)
-				
-				local TX, TY = ScreenData.x, ScreenData.y
-				local Wave = math.abs(math.sin(CurTime() * 8)) * 255
-
-                local HasGMM = Ent:GetGMM()
-                local Rarity = Ent:GetRarity()
-                local MainColor = HasGMM and Color(0, 255, Wave, Alpha) or Color(255, Wave, 0, Alpha)
-
-                if Rarity == 1 then
-                    MainColor = Color(0, Wave, 255, Alpha)
-                elseif Rarity == 2 then
-                    local hue = (CurTime() * 2000) % 360
-                    MainColor = HSVToColor(hue, 0.7, 1)
-
-                    Scale = Scale * 4
-                end
-
-                if GMM and not GMM["Valid"] then
-                    MainColor = Color(Wave, Wave, 0, Alpha)
-                end
-                
-				local Mat = Matrix()
-				Mat:Translate(Vector(TX, TY, 0))
-				Mat:Scale(Vector(Scale, Scale, 1))
-				
-				cam.PushModelMatrix(Mat)
-                    surface.SetTextColor(0, 0, 0, Alpha * 0.7)
-                    surface.SetTextPos(-TW / 2 + 5, -TH / 2 + 5)
-                    surface.DrawText(Text)
-    
-                    surface.SetTextColor(MainColor.r, MainColor.g, MainColor.b, Alpha)
-                    surface.SetTextPos(-TW / 2, -TH / 2)
-                    surface.DrawText(Text)
-				cam.PopModelMatrix()
+            local ScreenData = Pos:ToScreen()
+            if not ScreenData.visible then continue end
+			
+            local Dist = math.sqrt(DistSqr)
+            local BaseAlpha = math.Clamp(255 * (1 - (Dist - 400) / 1600), 0, 255)
+			
+			if BaseAlpha <= 0 and not ScreenData.visible then continue end
+			
+			local Text = Ent:GetDisplayText() or "HELP ME"
+			if string.find(Text, "{U}") then
+				Text = string.gsub(Text, "{U}", tostring(math.Round(Dist)))
 			end
+			
+			local Visibility = util.PixelVisible(Pos, 10, Ent.PixVis)
+			local WallMultiplier = (Visibility < 0.1) and 0.2 or 1
+			local Alpha = BaseAlpha * WallMultiplier
+
+			local CurrentFOV = LPlayer:GetFOV()
+			local FOVMultiplier = 75 / CurrentFOV 
+			
+			local Scale = (150 / Dist) * FOVMultiplier
+			
+			surface.SetFont("GMM_WorldFontFixed")
+			local TW, TH = surface.GetTextSize(Text)
+			
+			local TX, TY = ScreenData.x, ScreenData.y
+			local Wave = math.abs(math.sin(CurTime() * 8)) * 255
+
+			local HasGMM = Ent:GetGMM()
+			local Rarity = Ent:GetRarity()
+			local MainColor = HasGMM and Color(0, 255, Wave, Alpha) or Color(255, Wave, 0, Alpha)
+
+			if Rarity == 1 then
+				MainColor = Color(0, Wave, 255, Alpha)
+			elseif Rarity == 2 then
+				local hue = (CurTime() * 2000) % 360
+				MainColor = HSVToColor(hue, 0.7, 1)
+
+				Scale = Scale * 4
+			end
+
+			if GMM and not GMM["Valid"] then
+				MainColor = Color(Wave, Wave, 0, Alpha)
+			end
+			
+			RenderMat:Identity()
+			RenderMat:Translate(Vector(TX, TY, 0))
+			RenderMat:Scale(Vector(Scale, Scale, 1))
+			
+			cam.PushModelMatrix(RenderMat)
+				surface.SetTextColor(0, 0, 0, Alpha * 0.7)
+				surface.SetTextPos(-TW / 2 + 5, -TH / 2 + 5)
+				surface.DrawText(Text)
+
+				surface.SetTextColor(MainColor.r, MainColor.g, MainColor.b, Alpha)
+				surface.SetTextPos(-TW / 2, -TH / 2)
+				surface.DrawText(Text)
+			cam.PopModelMatrix()
 		end
 	end)
 

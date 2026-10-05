@@ -11,7 +11,7 @@ if SERVER and game.GetMap() == "gmm_garrymod_map_by_woowz_help_me" then
         end
     end
 
-    timer.Create("GMM_RandomSpawnTimer", not GMM and 0.1 or 1.5, 0, function()
+    timer.Create("GMM_RandomSpawnTimer", not GMM and 0.1 or 0.5, 0, function()
         SpawnRandomGMMError()
     end)
 end

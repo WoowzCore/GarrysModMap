@@ -16,6 +16,7 @@ Liminal Woowz Dream, или же (GarrysModMap) карта которую я д�
 [*] [b]gmm_garrymod_map_by_woowz_flooded_water_blob[/b] - Затопленная версия.
 [*] [b]gmm_garrymod_map_by_woowz_old_alpha_beta[/b] - Старые задумки.
 [*] [b]gmm_garrymod_map_by_woowz_real_rp_normal[/b] - Реалистичная версия.
+[*] [b]gmm_garrymod_map_by_woowz_dark_horror_night[/b] - Тёмная версия.
 [/list]
 
 Также есть адекватная версия (там больше информации в описании):

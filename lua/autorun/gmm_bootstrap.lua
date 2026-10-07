@@ -7,6 +7,7 @@ GMM = {
     ["MyMap_Flood"  ] = game.GetMap() == "gmm_garrymod_map_by_woowz_flooded_water_blob",
 	["MyMap_Old"    ] = game.GetMap() == "gmm_garrymod_map_by_woowz_old_alpha_beta",
 	["MyMap_Real"   ] = game.GetMap() == "gmm_garrymod_map_by_woowz_real_rp_normal",
+    ["MyMap_Dark"   ] = game.GetMap() == "gmm_garrymod_map_by_woowz_dark_horror_night",
 	
 	["DoAnomalies"] = true,
 	

@@ -692,27 +692,40 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
         
         local Pool = (math.random() > 0.95) and __Anomaly_Spawn_Rare or __Anomaly_Spawn_Common
         local Class = Pool[math.random(#Pool)]
-        
-        local Ent = ents.Create(Class)
-        if not IsValid(Ent) then return end
-        
-        Ent:SetPos(SpawnPosition)
-        Ent:SetAngles(Angle(0, math.random(0, 360), 0))
 
-        if Class == "prop_physics" then
-            Ent:SetModel(__Anomaly_Spawn_Models[math.random(#__Anomaly_Spawn_Models)])
-
-            local SkinCount = Ent:SkinCount()
-            if SkinCount > 1 then
-                Ent:SetSkin(math.random(0, SkinCount - 1))
-            end
+        local Model = Class == "prop_physics" and __Anomaly_Spawn_Models[math.random(#__Anomaly_Spawn_Models)] or "" 
+        
+        local SpawnCount = 1
+        if math.random() > 0.9 then
+            SpawnCount = math.random(2, 20)
         end
-        
-        Ent:Spawn()
-        Ent:Activate()
 
-        if Ent:IsNPC() then
-            Ent:SetSchedule(SCHED_FORCED_GO_RUN)
+        for i = 1, SpawnCount do
+            local Angle__ = math.rad((i / SpawnCount) * 360)
+            local Radius = (i == 1) and 0 or 60
+            local Offset = Vector(math.cos(Angle__) * Radius, math.sin(Angle__) * Radius, 0)
+            
+            local Ent = ents.Create(Class)
+            if not IsValid(Ent) then return end
+
+            Ent:SetPos(SpawnPosition + Offset)
+            Ent:SetAngles(Angle(0, math.random(0, 360), 0))
+
+            if Class == "prop_physics" then
+                Ent:SetModel(Model)
+
+                local SkinCount = Ent:SkinCount()
+                if SkinCount > 1 then
+                    Ent:SetSkin(math.random(0, SkinCount - 1))
+                end
+            end
+
+            Ent:Spawn()
+            Ent:Activate()
+
+            if Ent:IsNPC() then
+                Ent:SetSchedule(SCHED_FORCED_GO_RUN)
+            end 
         end
     end
 	

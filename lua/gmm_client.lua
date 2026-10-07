@@ -37,8 +37,13 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	
 	-- ----------------------------------------------------------------------
 	
-	if GMM["Valid"] and GMM_C["Debug"] then
+	if GMM["Valid"] then
 		hook.Add("HUDPaint", "gmm_InterfaceDrawCoordinates", function()
+            if not GMM_C["Debug"] then
+                local Developer = GetConVar("developer")
+                if not Developer or Developer:GetInt() == 0 then return end
+            end
+                
 			local Position = EyePos()
 			local Angle    = EyeAngles()
 			
@@ -117,7 +122,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 
     local __VoidGlitchMaterial = CreateMaterial("GMM_VoidGlitchMaterial", "UnlitGeneric", {
         ["$basetexture"] = "_rt_FullFrameFB",
-        ["$additive"] = 1,
+        ["$additive"   ] = 1,
         ["$vertexcolor"] = 1,
         ["$vertexalpha"] = 1
     })
@@ -458,6 +463,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			CreateZone("Rain", Vector(-451, -738, 1168), Vector(-422, -768, 1149), Vector(0.5, 0.5, 0.5), 5)
 			CreateAmbient("ambient/water/water_flow_loop1.wav", Vector(-518, -658, 1011), 50, 350)
 			CreateAmbient("ambient/water/drip_loop1.wav", Vector(-488, -667, 2546), 100, 2500)
+            CreatePartical("Bubbles", Vector(103, -468, 428), 0.9)
         end
 		
 		if GMM["MyMap_Real"] then

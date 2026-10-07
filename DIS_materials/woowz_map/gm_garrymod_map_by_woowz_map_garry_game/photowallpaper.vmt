@@ -1,0 +1,9 @@
+"LightmappedGeneric"{
+	"$basetexture" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/photowallpaper"
+	"$surfaceprop" "concrete"
+	
+	"$detail" "detail/noise_detail_01"
+	"$detailscale" "4"
+	"$detailblendfactor" 0.5
+	"$detailblendmode" 0
+}

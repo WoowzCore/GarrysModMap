@@ -125,11 +125,11 @@ if SERVER then
             if math.random() > 0.99 then HasGMM = false end
             self:SetGMM(HasGMM)
             
-            local Roll = math.random(1, 10000)
+            local Roll = math.random(1, 1000)
             if Roll == 1 then
                 self:SetRarity(2)
                 self:SetDisplayText(table.Random(HasGMM and RandomPhrasesSuperRareGMM or RandomPhrasesSuperRare))
-            elseif Roll <= 100 then
+            elseif Roll <= 50 then
                 self:SetRarity(1)
                 self:SetDisplayText(table.Random(HasGMM and RandomPhrasesGMM or RandomPhrasesRare))
             else
@@ -176,10 +176,10 @@ if SERVER then
         if AnywayWork or not IgnorePlayers then
             if (self.NextTargetFind < T) then
 				self.NextTargetFind = T + 0.5
-				local ClosestDist = 1000000
+				local ClosestDist = math.huge
 				self.TargetPly = nil
 				for _, ply in ipairs(player.GetAll()) do
-					if ply:Alive() and ply:GetObserverMode() == OBS_MODE_NONE then
+					if IsValid(ply) and ply:Alive() and ply:GetObserverMode() == OBS_MODE_NONE then
 						local d2 = CurrentPos:DistToSqr(ply:GetPos())
 						if d2 < ClosestDist then
 							ClosestDist = d2
@@ -208,67 +208,51 @@ if SERVER then
 			end
 			
 			local Direction = (TargetPosition - CurrentPosition):GetNormalized()
-
-			if IsValid(self.TargetPly) then
-				local PlayerPos = self.TargetPly:GetPos() + Vector(0, 0, 50)
-				local Dist = CurrentPos:Distance(PlayerPos)
-
-				local TargetPos
-				if Dist > 250 then
-					local ox = math.sin(T * 0.5 + self.Seed) * 150
-					local oy = math.cos(T * 0.5 + self.Seed) * 150
-					TargetPos = self.TargetPly:GetPos() + Vector(ox, oy, self.OrbitOffsetZ)
-				else
-					TargetPos = PlayerPos
+		
+			local Separation = Vector(0,0,0)
+			for _, other in ipairs(GMM_ActiveErrors) do
+				if other ~= self and IsValid(other) then
+					local oPos = other:GetPos()
+					local diff = CurrentPos - oPos
+					local d2 = diff:LengthSqr()
+					if d2 < 3600 then
+						Separation = Separation + (diff / d2) * 10
+					end
 				end
+			end
+
+			local Rarity = self:GetRarity()
+			local AccelRate = 0.05
+			local MaxSpeed = 80
+
+			if Rarity == 1 then
+				AccelRate, MaxSpeed = 0.25, 350
+			elseif Rarity == 2 then
+				AccelRate, MaxSpeed = 1, 1000
+			end
 			
-				local Direction = (TargetPos - CurrentPos):GetNormalized()
+			self.Velocity = self.Velocity + (Direction * AccelRate) + (Separation * 0.1)
+			self.Velocity = self.Velocity * 0.96
 			
-				local Separation = Vector(0,0,0)
-                for _, other in ipairs(GMM_ActiveErrors) do
-                    if other ~= self and IsValid(other) then
-                        local oPos = other:GetPos()
-                        local diff = CurrentPos - oPos
-                        local d2 = diff:LengthSqr()
-                        if d2 < 3600 then
-                            Separation = Separation + (diff / d2) * 10
-                        end
-                    end
-                end
+			if self.Velocity:Length() > MaxSpeed then
+				self.Velocity = self.Velocity:GetNormalized() * MaxSpeed
+			end
+			
+			self:SetPos(CurrentPosition + self.Velocity)
 
-                local Rarity = self:GetRarity()
-                local AccelRate = 0.05
-                local MaxSpeed = 80
+			if DistanceToPlayer < 35 and self.NextAttack < T then
+				self:CatchPlayer(self.TargetPly)
+				self.NextAttack = T + 2
+			end
 
-                if Rarity == 1 then
-                    AccelRate, MaxSpeed = 0.25, 350
-                elseif Rarity == 2 then
-                    AccelRate, MaxSpeed = 1, 1000
-                end
-				
-				self.Velocity = self.Velocity + (Direction * AccelRate) + (Separation * 0.1)
-				self.Velocity = self.Velocity * 0.96
-				
-				if self.Velocity:Length() > MaxSpeed then
-					self.Velocity = self.Velocity:GetNormalized() * MaxSpeed
+			if self.NextPhysTouch < T then
+				self.NextPhysTouch = T + 0.2
+				for _, ent in ipairs(ents.FindInSphere(CurrentPos, 45)) do
+					if IsValid(ent) and ent:GetClass() == "prop_physics" then
+						local Phys = ent:GetPhysicsObject()
+						if IsValid(Phys) then Phys:ApplyForceCenter(self.Velocity * 50) end
+					end
 				end
-				
-				self:SetPos(CurrentPosition + self.Velocity)
-
-				if Dist < 35 and self.NextAttack < T then
-					self:CatchPlayer(self.TargetPly)
-					self.NextAttack = T + 2
-				end
-
-                if self.NextPhysTouch < T then
-                    self.NextPhysTouch = T + 0.2
-                    for _, ent in ipairs(ents.FindInSphere(CurrentPos, 45)) do
-                        if IsValid(ent) and ent:GetClass() == "prop_physics" then
-                            local Phys = ent:GetPhysicsObject()
-                            if IsValid(Phys) then Phys:ApplyForceCenter(self.Velocity * 50) end
-                        end
-                    end
-                end
 			end
 		end
 

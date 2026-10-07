@@ -1,5 +1,7 @@
 if SERVER and game.GetMap() == "gmm_garrymod_map_by_woowz_help_me" then
     local function SpawnRandomGMMError()
+		if #ents.FindByClass("gmm_download_map") >= 150 then return end
+	
         if math.random() > 0.05 then return end
 
         local SpawnPos = Vector(math.random(-10000, 10000), math.random(-3000, 3000), math.random(-10000, 10000))

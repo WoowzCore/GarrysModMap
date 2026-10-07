@@ -305,14 +305,14 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		"player/pl_burnpain1.wav",
 		"resource/warning.wav",
 		"ui/hint.wav",
-		
 		"vo/npc/male01/question26.wav",
 		"vo/npc/male01/question06.wav",
 		"vo/npc/male01/runforyourlife01.wav",
 		"vo/npc/male01/yeah02.wav",
 		"vo/npc/male01/moan04.wav",
 		"vo/npc/male01/hi02.wav",
-		"vo/npc/male01/fantastic01.wav"
+		"vo/npc/male01/fantastic01.wav",
+        "ambient/misc/ambulance1.wav"
 	}
 
 	local __Anomaly_Sounds_Common = {

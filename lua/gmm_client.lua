@@ -166,6 +166,11 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
         local FromZeroPower = math.Clamp((DistanceFromZero - FromZeroMinDistance) / (FromZeroMaxDistance - FromZeroMinDistance), 0, 1)
         
         local Power = FromZeroPower * FromZeroPower
+		
+		if GMM["MyMap_Goofy"] then
+			Power = Power * 20 + 0.25
+		end
+		
         if Power <= 0.0001 then return end
         
         local FramePower = Power * 0.5
@@ -406,85 +411,103 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		
 		-- ----------------------------------------------------------------------
 
-        if GMM["MyMap_Default"] or GMM["MyMap_Flood"] or GMM["MyMap_Old"] then
-			CreateAmbient("woowz/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.9)
-			CreateAmbient("woowz/music/concrete_halls.wav", 1, 10, 300, 20)
-			CreateAmbient("music/hl1_song25_remix3.mp3", Vector(-2419, 589, 610), 10, 100, 50)
-			CreateAmbient("friends/friend_online.wav", Vector(-355, 175, 302), 10, 200, 10, nil, 0.1)
-			CreateAmbient("buttons/blip2.wav", 0, 100, 200, 1, 1)
-			CreateAmbient("ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000)
-			CreateAmbient("ambient/atmosphere/inside_lighthouse_amb.wav", Vector(-488, -667, 2546), 100, 2000)
-        end
+		local MapAssets = {
+			Ambients = {
+				{{"Default", "Flood", "Old"}, {"woowz/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.9}},
+				{{"Dark"}, {"woowz/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.7}},
+				{{"Default", "Flood", "Old"}, {"woowz/music/concrete_halls.wav", 1, 10, 300, 20}},
+				{{"Default", "Flood", "Old"}, {"music/hl1_song25_remix3.mp3", Vector(-2419, 589, 610), 10, 100, 50}},
+				{{"Dark"}, {"music/radio1.mp3", Vector(-2419, 589, 610), 10, 100, 50}},
+				{{"Default", "Flood", "Old"}, {"friends/friend_online.wav", Vector(-355, 175, 302), 10, 200, 10, nil, 0.1}},
+				{{"Default", "Flood", "Old"}, {"buttons/blip2.wav", 0, 100, 200, 1, 1}},
+				{{"Default", "Flood", "Old"}, {"ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000}},
+				{{"Default", "Flood", "Old"}, {"ambient/atmosphere/inside_lighthouse_amb.wav", Vector(-488, -667, 2546), 100, 2000}},
+				{{"Default", "Floor"}, {"ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500}},
+				{{"Default", "Floor"}, {"ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2}},
+				{{"Default", "Floor", "Dark"}, {"ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 250, 750, 2}},
+				{{"Default", "Old"}, {"ambient/forest_night.wav", Vector(1400, 491, 637), 100, 750}},
+				{{"Default", "Old"}, {"ambient/gas/steam_loop1.wav", Vector(1364, 747, -1984), 100, 500}},
+				{{"Default", "Old"}, {"ambient/wind/wind_bass.wav", Vector(1084, 1786, 640), 500, 2500, 0.75}},
+				{{"Default", "Old"}, {"ambient/guit1.wav", Vector(456, -589, 519), 100, 500}},
+				{{"Default"}, {"ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000}},
+				{{"Default"}, {"ambient/machines/train_wheels_overhead_loop1.wav", Vector(2444, 647, 96), 10, 200, 0.5}},
+				{{"Default"}, {"vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 2}},
+				{{"Default", "Dark"}, {"ambient/creatures/town_moan1.wav", Vector(-1264, -389, 579), 10, 100, 1}},
+				{{"Default"}, {"ambient/forest_day.wav", Vector(-2354, -624, 656), 200, 1000}},
+				{{"Real"}, {"ambient/weather/rumble_rain_nowind.wav", Vector(-969, -306, 424 + 2), 50, 400}},
+				{{"Real"}, {"ambient/weather/rumble_rain_nowind.wav", Vector(-969, -954, 424 + 2), 50, 400}},
+				{{"Real"}, {"ambient/weather/rumble_rain_nowind.wav", Vector(-73 , -954, 424 + 2), 50, 400}},
+				{{"Real"}, {"ambient/weather/rumble_rain_nowind.wav", Vector(-73 , -306, 424 + 2), 50, 400}},
+				{{"Real"}, {"ambient/wind/lightwind.wav", Vector(-465, -626, 1515), 200, 500}},
+				{{"Old"}, {"ambient/gas/steam_loop1.wav", Vector(1415, 723, -3854), 100, 2000}},
+				{{"Old"}, {"vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 4}},
+				{{"Flood"}, {"vo/npc/male01/yeah02.wav", 2, 50, 200, 200, nil, 0.75}},
+				{{"Flood"}, {"ambient/weather/rumble_rain_nowind.wav", Vector(-231, 1546, 9331), 100, 1500}},
+				{{"Flood"}, {"ambient/weather/rumble_rain_nowind.wav", Vector(-245, 1553, 1181), 100, 500}},
+				{{"Flood"}, {"ambient/water/lake_water.wav", Vector(1377, 544, 1095), 1000, 1500}},
+				{{"Flood"}, {"ambient/water/water_flow_loop1.wav", Vector(-518, -658, 1011), 50, 350}},
+				{{"Flood"}, {"ambient/water/drip_loop1.wav", Vector(-488, -667, 2546), 100, 2500}},
+				{{"Flood"}, {"ambient/weather/rumble_rain_nowind.wav", Vector(-357, 1182, 2679), 100, 500}},
+				{{"Flood"}, {"ambient/outro/messagepacketsmultiple02.wav", Vector(-1511, 437, 445), 100, 500}},
+				{{"Dark"}, {"woowz/other/siren.wav", Vector(573, 1643, 872), 300, 700}},
+			},
+			
+			Zones = {
+				{{"Default", "Floor"}, {"Rain", Vector(-44, -983, 4049), Vector(-629, -275, 2061), Vector(0.5, 0.5, 0.5), 1}},
+				{{"Flood"}, {"Rain", Vector(-579, -558, 1200), Vector(-548, -593, 1189), Vector(0.5, 0.5, 0.5), 5}},
+				{{"Flood"}, {"Rain", Vector(-451, -738, 1168), Vector(-422, -768, 1149), Vector(0.5, 0.5, 0.5), 5}},
+				{{"Flood"}, {"Rain", Vector(-495, 1616, 992), Vector(-16, 1488, 9231), Vector(0.25, 0.25, 0.25)}},
+				{{"Flood"}, {"Rain", Vector(1007, 1040, 9232), Vector(-972, 2031, 10203), nil, 15}},
+				{{"Flood"}, {"Rain", Vector(-8, 888, 3064), Vector(-352, 1463, 2615), Vector(0.5, 0.5, 0.5)}},
+				{{"Flood"}, {"Rain", Vector(-503, 1024, 3064), Vector(-384, 1376, 2579), Vector(0.25, 0.25, 0.25)}},
+			},
+			
+			Particles = {
+				{{"Real"}, {"Cockroach", Vector(322, 212, 432), 240}},
+				{{"Flood"}, {"Bubbles", Vector(1352, 176, 240), 1}},
+				{{"Flood"}, {"Bubbles", Vector(2434, 641, 32), 1.2}},
+				{{"Flood"}, {"Bubbles", Vector(2443, 646, 32), 2.1}},
+				{{"Flood"}, {"Bubbles", Vector(2450, 636, 32), 2.3}},
+				{{"Flood"}, {"Bubbles", Vector(103, -468, 428), 0.9}},
+			}
+		}
 		
-		if GMM["MyMap_Default"] or GMM["MyMap_Flood"] then
-			CreateZone("Rain", Vector(-44, -983, 4049), Vector(-629, -275, 2061), Vector(0.5, 0.5, 0.5), 1)
-			CreateAmbient("ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500)
-			CreateAmbient("ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2)
-			CreateAmbient("ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 250, 750, 2)
-		end
-        
-		if GMM["MyMap_Default"] or GMM["MyMap_Old"] then
-			CreateAmbient("ambient/forest_night.wav", Vector(1400, 491, 637), 100, 750)
-			CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1364, 747, -1984), 100, 500)
-			CreateAmbient("ambient/wind/wind_bass.wav", Vector(1084, 1786, 640), 500, 2500, 0.75)
-			CreateAmbient("ambient/guit1.wav", Vector(456, -589, 519), 100, 500)
+		if (GMM["MyMap_Real"]) then
+			for i = 1, 3 do
+				table.insert(MapAssets.Particles, {{"Real"}, {"Droplet", Vector(-969, -306, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300}})
+				table.insert(MapAssets.Particles, {{"Real"}, {"Droplet", Vector(-969, -954, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300}})
+				table.insert(MapAssets.Particles, {{"Real"}, {"Droplet", Vector(-73 , -954, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300}})
+				table.insert(MapAssets.Particles, {{"Real"}, {"Droplet", Vector(-73 , -306, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300}})
+			end
 		end
 		
-		if GMM["MyMap_Default"] then
-			CreateAmbient("ambient/water/corridor_water.wav", Vector(1415, 723, -3854), 100, 2000)
-			CreateAmbient("ambient/machines/train_wheels_overhead_loop1.wav", Vector(2444, 647, 96), 10, 200, 0.5)
-			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 2)
-			CreateAmbient("ambient/creatures/town_moan1.wav", Vector(-1264, -389, 579), 10, 100, 1)
-			CreateAmbient("ambient/forest_day.wav", Vector(-2354, -624, 656), 200, 1000)
+		local function ShouldSpawn(MapList)
+			if GMM["MyMap_Goofy"] then return true end
+			for _, MapSuffix in ipairs(MapList) do
+				if GMM["MyMap_" .. MapSuffix] then return true end
+			end
+			return false
 		end
-
-		if GMM["MyMap_Old"] then
-			CreateAmbient("ambient/gas/steam_loop1.wav", Vector(1415, 723, -3854), 100, 2000)
-			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 10, 50, 200, nil, 4)
-		end
-
-        if GMM["MyMap_Flood"] then
-            CreatePartical("Bubbles", Vector(648, 1135, 16), 0.1)
-            CreatePartical("Bubbles", Vector(1352, 176, 240), 1)
-			CreatePartical("Bubbles", Vector(2434, 641, 32), 1.2)
-			CreatePartical("Bubbles", Vector(2443, 646, 32), 2.1)
-			CreatePartical("Bubbles", Vector(2450, 636, 32), 2.3)
-			CreateAmbient("vo/npc/male01/yeah02.wav", 2, 50, 200, 200, nil, 0.75)
-			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-231, 1546, 9331), 100, 1500)
-			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-245, 1553, 1181), 100, 500)
-			CreateAmbient("ambient/water/lake_water.wav", Vector(1377, 544, 1095), 1000, 1500)
-			CreateZone("Rain", Vector(-495, 1616, 992), Vector(-16, 1488, 9231), Vector(0.25, 0.25, 0.25))
-			CreateZone("Rain", Vector(1007, 1040, 9232), Vector(-972, 2031, 10203), nil, 15)
-			CreateZone("Rain", Vector(-8, 888, 3064), Vector(-352, 1463, 2615), Vector(0.5, 0.5, 0.5))
-			CreateZone("Rain", Vector(-503, 1024, 3064), Vector(-384, 1376, 2579), Vector(0.25, 0.25, 0.25))
-			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-357, 1182, 2679), 100, 500)
-			CreateAmbient("ambient/outro/messagepacketsmultiple02.wav", Vector(-1511, 437, 445), 100, 500)
-			CreateZone("Rain", Vector(-579, -558, 1200), Vector(-548, -593, 1189), Vector(0.5, 0.5, 0.5), 5)
-			CreateZone("Rain", Vector(-451, -738, 1168), Vector(-422, -768, 1149), Vector(0.5, 0.5, 0.5), 5)
-			CreateAmbient("ambient/water/water_flow_loop1.wav", Vector(-518, -658, 1011), 50, 350)
-			CreateAmbient("ambient/water/drip_loop1.wav", Vector(-488, -667, 2546), 100, 2500)
-            CreatePartical("Bubbles", Vector(103, -468, 428), 0.9)
-        end
 		
-		if GMM["MyMap_Real"] then
-			CreatePartical("Cockroach", Vector(322, 212, 432), 240)
-			for i = 1, 3 do
-				CreatePartical("Droplet", Vector(-969, -306, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300)
+		for _, Info in ipairs(MapAssets.Ambients) do
+			if ShouldSpawn(Info[1]) then
+				local Ambient = Info[2]
+				CreateAmbient(Ambient[1], Ambient[2], Ambient[3], Ambient[4], Ambient[5], Ambient[6], Ambient[7])
 			end
-			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-969, -306, 424 + 2), 50, 400)
-			for i = 1, 3 do
-				CreatePartical("Droplet", Vector(-969, -954, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300)
+		end
+		
+		for _, Info in ipairs(MapAssets.Zones) do
+			if ShouldSpawn(Info[1]) then
+				local Zone = Info[2]
+				CreateZone(Zone[1], Zone[2], Zone[3], Zone[4], Zone[5])
 			end
-			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-969, -954, 424 + 2), 50, 400)
-			for i = 1, 3 do
-				CreatePartical("Droplet", Vector(-73, -954, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300)
+		end
+		
+		for _, Info in ipairs(MapAssets.Particles) do
+			if ShouldSpawn(Info[1]) then
+				local Particle = Info[2]
+				CreatePartical(Particle[1], Particle[2], Particle[3])
 			end
-			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-73, -954, 424 + 2), 50, 400)
-			for i = 1, 3 do
-				CreatePartical("Droplet", Vector(-73, -306, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300)
-			end
-			CreateAmbient("ambient/weather/rumble_rain_nowind.wav", Vector(-73, -306, 424 + 2), 50, 400)
-			CreateAmbient("ambient/wind/lightwind.wav", Vector(-465, -626, 1515), 200, 500)
 		end
 	end
     
@@ -710,7 +733,15 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
             local DistanceFromZero = CameraPosition:Length()
             local MinDist = 3000
             local MaxDist = 30000
-            local VoidVolume = math.Clamp((DistanceFromZero - MinDist) / (MaxDist - MinDist), 0, 1)
+
+			local VolumePower = (DistanceFromZero - MinDist) / (MaxDist - MinDist)
+			if GMM["MyMap_Goofy"] then
+				VolumePower = VolumePower * 5 + 0.5
+			else
+				VolumePower = math.Clamp(VolumePower, 0, 1)
+			end
+
+            local VoidVolume = VolumePower
 
             if CameraInVoid() and VoidVolume > 0.001 then
                 if not IsValid(VoidMusicChannel) then

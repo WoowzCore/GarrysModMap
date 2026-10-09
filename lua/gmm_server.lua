@@ -778,20 +778,22 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 	end
 	
 	if GMM["Valid"] and GMM["DoAnomalies"] then
+		local AnomalyTick = GMM["MyMap_Goofy"] and 1 or 5
+	
 		timer.Create("gmm_AnomalyTimer", 0.1, 0, function()
 			local T = CurTime()
 			
 			if ActiveFastAnomaly then
 				if T > FastModeEndTime then
 					ActiveFastAnomaly = nil
-					NextAnomalyTick = T + 5
+					NextAnomalyTick = T + AnomalyTick
 				else
 					GMM.Func.FireAnomaly()
 				end
 			else
 				if T >= NextAnomalyTick then
 					GMM.Func.FireAnomaly()
-					NextAnomalyTick = T + 5
+					NextAnomalyTick = T + AnomalyTick
 				end
 			end
 		end)

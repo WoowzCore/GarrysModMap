@@ -1,6 +1,6 @@
 "gmm_maps"
 {
 	"title"		 "_GARRYS_MOD_DEAFULTS_"
-	"maps"		 "^gmm_"
+	"maps"		 "^gmm_|^toiletmap$"
 	"menusystem" "0"
 }

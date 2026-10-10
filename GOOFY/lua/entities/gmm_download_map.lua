@@ -269,7 +269,7 @@ if SERVER then
             ply:Kill()
 
             net.Start("GMM_HappyEffect")
-            net.WriteVector(self:GetPos())
+				net.WriteVector(self:GetPos())
             net.Broadcast()
             
             self:Remove()

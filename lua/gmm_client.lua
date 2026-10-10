@@ -22,8 +22,15 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	local CameraPosition = Vector(0, 0, 0)
 	
 	local Player = nil
-	
-	-- ----------------------------------------------------------------------
+
+    local TimerSecondInterval = 0.05
+
+    local __AmbientSounds = {}
+    local __Particles = {}
+    local __Zones = {}
+    local __Nav = {}
+    
+    -- ----------------------------------------------------------------------
 	
 	local ServerData = {}
 	timer.Create("gmm_GetServerData", 0.1, 0, function()
@@ -34,6 +41,32 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	net.Receive("gmm_Send_ServerData", function()
 		ServerData = net.ReadTable()
 	end)
+    
+    net.Receive("gmm_RequestSyncNav", function()
+        local MaxDistance = net.ReadFloat()
+        local Result = {}
+        local PlayerPosition = Player:GetPos()
+
+        if MaxDistance > 0 then
+            for _, Data in ipairs(__Nav) do
+                local Position = Data[1]
+                if Position and Position:Distance(PlayerPosition) <= MaxDistance then
+                    table.insert(Result, Data)
+                end
+            end
+            
+            print("[GMM] Send " .. #Result .. " nav points! (in radius " .. MaxDistance .. ")")
+        else
+            Result = __Nav
+            print("[GMM] Send " .. #Result .. " nav points!")
+        end
+        
+        if #Result == 0 then return end
+
+        net.Start("gmm_SyncNav")
+            net.WriteTable(Result)
+        net.SendToServer()
+    end)
 	
 	-- ----------------------------------------------------------------------
 	
@@ -322,12 +355,6 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	
 	-- ----------------------------------------------------------------------
 	
-	local TimerSecondInterval = 0.05
-	
-	local __AmbientSounds = {}
-    local __Particles = {}
-	local __Zones = {}
-	
 	game.AddParticles("particles/insect_fx.pcf")
 	local CreateEnvironment = function()
 		for i = #__AmbientSounds, 1, -1 do
@@ -342,6 +369,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		__AmbientSounds = {}
         __Particles = {}
 		__Zones = {}
+        __Nav = {}
         
 		local CreateAmbient = function(SoundFile, Position, IDistance, ADistance, Volume, Delay, Speed)
 			SoundFile = "sound/" .. SoundFile
@@ -408,6 +436,10 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		
 			table.insert(__Zones, {Type, Point1, Point2, Density, Color})
 		end
+        
+        local CreateNav = function(Position)
+            table.insert(__Nav, {Position});
+        end
 		
 		-- ----------------------------------------------------------------------
 
@@ -469,7 +501,74 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 				{{"Flood"}, {"Bubbles", Vector(2443, 646, 32), 2.1}},
 				{{"Flood"}, {"Bubbles", Vector(2450, 636, 32), 2.3}},
 				{{"Flood"}, {"Bubbles", Vector(103, -468, 428), 0.9}},
-			}
+			},
+            
+            Navmesh = {
+                {{"Default"}, {Vector(-517, 490, 448)}},
+                {{"Default"}, {Vector(-1301, 1978, 608)}},
+                {{"Default"}, {Vector(-1047, 1121, 784)}},
+                {{"Default"}, {Vector(-702, 709, 624)}},
+                {{"Default"}, {Vector(-561, -123, 848)}},
+                {{"Default"}, {Vector(-361, 256, 848)}},
+                {{"Default"}, {Vector(-861, 539, 848)}},
+                {{"Default"}, {Vector(-194, 614, 768)}},
+                {{"Default"}, {Vector(-1685, -1685, 722)}},
+                {{"Default"}, {Vector(-990, 1847, 32)}},
+                {{"Default"}, {Vector(-1397, 1831, 32)}},
+                {{"Default"}, {Vector(-969, 2526, -1016)}},
+                {{"Default"}, {Vector(106, 1400, -224)}},
+                {{"Default"}, {Vector(526, 366, -792)}},
+                {{"Default"}, {Vector(703, -343, -800)}},
+                {{"Default"}, {Vector(817, 301, -496)}},
+                {{"Default"}, {Vector(-128, 21, -224)}},
+                {{"Default"}, {Vector(-453, 175, 232)}},
+                {{"Default"}, {Vector(-547, 384, -224)}},
+                {{"Default"}, {Vector(-2086, -527, 384)}},
+                {{"Default"}, {Vector(-1717, -683, 432)}},
+                {{"Default"}, {Vector(-1733, -629, 576)}},
+                {{"Default"}, {Vector(-1621, -945, 528)}},
+                {{"Default"}, {Vector(-1167, -961, 528)}},
+                {{"Default"}, {Vector(-461, -949, 1216)}},
+                {{"Default"}, {Vector(-593, -320, 1216)}},
+                {{"Default"}, {Vector(-126, -163, 1024)}},
+                {{"Default"}, {Vector(71, -491, 1024)}},
+                {{"Default"}, {Vector(334, -437, 1024)}},
+                {{"Default"}, {Vector(752, -353, 1040)}},
+                {{"Default"}, {Vector(1192, -334, 1040)}},
+                {{"Default"}, {Vector(629, 247, 624)}},
+                {{"Default"}, {Vector(1270, 1527, -1016)}},
+                {{"Default"}, {Vector(1190, 1813, 984)}},
+                {{"Default"}, {Vector(1132, 1859, 1424)}},
+                {{"Default"}, {Vector(1320, 674, 2016)}},
+                {{"Default"}, {Vector(1318, 577, 2464)}},
+                {{"Default"}, {Vector(1526, 545, 2464)}},
+                {{"Default"}, {Vector(1581, 564, 2656)}},
+                {{"Default"}, {Vector(557, 94, -496)}},
+                {{"Default"}, {Vector(574, 98, -360)}},
+                {{"Default"}, {Vector(1965, 787, 816)}},
+                {{"Default"}, {Vector(479, 1002, 816)}},
+                {{"Default"}, {Vector(2719, 464, 16)}},
+                {{"Default"}, {Vector(1184, 1101, 16)}},
+                {{"Default"}, {Vector(378, 1123, 240)}},
+                {{"Default"}, {Vector(1247, 840, -3929)}},
+                {{"Default"}, {Vector(204, 929, 1264)}},
+                {{"Default"}, {Vector(175, 941, 1032)}},
+                {{"Default"}, {Vector(342, 102, 1032)}},
+                {{"Default"}, {Vector(-1200, 143, 1040)}},
+                {{"Default"}, {Vector(-1138, 125, 1544)}},
+                {{"Default"}, {Vector(-3358, -2288, 440)}},
+                {{"Default"}, {Vector(6651, 916, 544)}},
+                {{"Default"}, {Vector(-426, 1318, 9232)}},
+                {{"Default"}, {Vector(-586, -1008, 2357)}},
+                {{"Default"}, {Vector(-539, -658, 1965)}},
+                {{"Default"}, {Vector(-223, -421, 1886)}},
+                {{"Default"}, {Vector(481, 1740, 808)}},
+                {{"Default"}, {Vector(486, 2234, 1656)}},
+                {{"Default"}, {Vector(393, -583, 432)}},
+                {{"Default"}, {Vector(1307, 1077, 624)}},
+                {{"Default"}, {Vector(379, -589, 624)}},
+                {{"Default"}, {Vector(849, -431, -2040)}},
+            }
 		}
 		
 		if (GMM["MyMap_Real"]) then
@@ -509,6 +608,13 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 				CreatePartical(Particle[1], Particle[2], Particle[3])
 			end
 		end
+
+        for _, Info in ipairs(MapAssets.Navmesh) do
+            if ShouldSpawn(Info[1]) then
+                local Nav = Info[2]
+                CreateNav(Nav[1])
+            end
+        end
 	end
     
 	local UpdateEnvironment = function()

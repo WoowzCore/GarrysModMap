@@ -11,6 +11,7 @@ GMM = {
 	["MyMap_Real"   ] = MapName == "gmm_garrymod_map_by_woowz_real_rp_normal",
     ["MyMap_Dark"   ] = MapName == "gmm_garrymod_map_by_woowz_dark_horror_night",
 	["MyMap_Goofy"  ] = MapName == "gmm_garrymod_map_by_woowz_help_me",
+    ["MyMap_SToilet"] = MapName == "toiletmap",
 	
 	["DoAnomalies"] = true,
 	

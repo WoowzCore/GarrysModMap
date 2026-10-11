@@ -858,7 +858,60 @@ local Names = {
     "Sun",
     "Malware",
     "FPS",
-    "Content"
+    "Content",
+    "Token",
+    "Tolkien",
+    "Plastic Box",
+    "Chair",
+    "Go Away",
+    "Fuck",
+    "Gigabyte",
+    "CPU",
+    "GPU",
+    "Anton",
+    "Crash",
+    "The Crash",
+    "Goldsource",
+    "Crybird",
+    "LIT",
+    "Glass Bottle",
+    "Cup",
+    "Enum",
+    "Variable",
+    "Value",
+    "JavaScript",
+    "Rust",
+    "Python",
+    "CSharp",
+    "C++",
+    "Lua?",
+    "1 Goal",
+    "Football",
+    "Cancel",
+    "Accept",
+    "Mr. Pen",
+    "Mr. Pencil",
+    "Mr. Ink",
+    "Homeless",
+    "Plankton",
+    "Eye",
+    "GG",
+    "Hammer",
+    "Hammer++",
+    "Weird",
+    "OpenGL Coder",
+    "Coder",
+    "Vulkan Coder",
+    "Skeleton",
+    "Bones",
+    "Boner",
+    "Pups",
+    "Map Author",
+    "Author",
+    "Cat Fan",
+    "Hot",
+    "Cold",
+    "Warm"
 }
 
 local Texture_Case = {
@@ -922,6 +975,19 @@ local Texture_Costume = {
         "perftest/gman/gman_pantsbtm1",
         "perftest/gman/gman_slvtip1"
     },
+    {
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_back",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pants",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_arm",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume4_front",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pelvis",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_collar",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_armr",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_shin",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_arml",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pantsbottom",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_slvtip"
+    },
 }
 
 local Texture_Shoe = {
@@ -959,18 +1025,20 @@ local RareModels = {
 
 function ENT:SetupDataTables()
     self:NetworkVar("Bool", 0, "IsMoving")
-    self:NetworkVar("Int", 0, "RunSpeed")
-    self:NetworkVar("String", 0, "BotName")
-    self:NetworkVar("Int",  1, "NameColorR")
-    self:NetworkVar("Int",  2, "NameColorG")
-    self:NetworkVar("Int",  3, "NameColorB")
     self:NetworkVar("Bool", 1, "IsPanicking")
     self:NetworkVar("Bool", 2, "Init")
+
+    self:NetworkVar("Int", 0, "RunSpeed")
+    self:NetworkVar("Int", 1, "NameColorR")
+    self:NetworkVar("Int", 2, "NameColorG")
+    self:NetworkVar("Int", 3, "NameColorB")
     self:NetworkVar("Int", 4, "TextureCase")
     self:NetworkVar("Int", 5, "TextureCostume")
-    self:NetworkVar("Int", 5, "TextureShoe")
-    
-    self:NetworkVar("Int", 6, "RareModel")
+    self:NetworkVar("Int", 6, "TextureShoe")
+    self:NetworkVar("Int", 7, "RareModel")
+    self:NetworkVar("Int", 8, "PushForce")
+
+    self:NetworkVar("String", 0, "BotName")
 end
 
 function ENT:Initialize()
@@ -980,6 +1048,8 @@ function ENT:Initialize()
         self:SetIsMoving(true)
         self:SetMaxHealth(100)
         self:SetHealth(100)
+        self:SetBloodColor(BLOOD_COLOR_MECH)
+        
         self:SetIsPanicking(false)
         self.PanicSpeedMultiplier = 1.5
 
@@ -989,11 +1059,12 @@ function ENT:Initialize()
             self:SetNameColorG(math.random(100, 255))
             self:SetNameColorB(math.random(100, 255))
             self:SetRunSpeed(math.random(30, 200))
+            self:SetPushForce(math.random(0, 1000))
 
             if math.random() > 0.95 then
                 self:SetRareModel(math.random(1, #RareModels))
             end
-            
+
             if self:GetRareModel() == 0 then
                 self:SetTextureCase(math.random(1, #Texture_Case))
                 self:SetTextureCostume(math.random(1, #Texture_Costume))
@@ -1014,34 +1085,37 @@ function ENT:Initialize()
         self.NextObstacleCheck = 0
         self.NextPushTime      = 0
         self.PushCooldown      = 0.5
-        self.WallSlideTime     = 0
-
-        self.IsJumping = false
-
         self.LastPos           = self:GetPos()
         self.LastPosTime       = CurTime()
-        self.StuckCheckTime    = CurTime()
         self.StuckThreshold    = 3
         self.NextTeleportTime  = 0
         self.TeleportCooldown  = 2
-
-        self.NextRestTime = CurTime() + math.random(15, 40)
-        self.RestDuration = 0
-
-        self.NextFootstepTime = 0
-        self.FootstepInterval = 0.5
-
+        self.NextRestTime      = CurTime() + math.random(15, 40)
+        self.NextFootstepTime  = 0
         self.NextRandomTeleportCheck = CurTime() + math.random(10, 30)
+        self.PathTimeout = 15
+        self.PathStartTime = 0
 
         self:SetMoveType(MOVETYPE_VPHYSICS)
         self:PhysicsInit(SOLID_BBOX)
         self:SetSolid(SOLID_BBOX)
-        self:SetCollisionGroup(COLLISION_GROUP_NONE)
+        self:SetCollisionGroup(COLLISION_GROUP_NPC)
+
+        local Phys = self:GetPhysicsObject()
+        if IsValid(Phys) then
+            Phys:Wake()
+            Phys:EnableGravity(true)
+            Phys:SetMass(80)
+            Phys:SetMaterial("metal")
+            Phys:SetFriction(0)
+            Phys:SetDamping(0, 0)
+            Phys:EnableDrag(false)
+        end
 
         timer.Simple(0, function()
             if IsValid(self) and self:GetRareModel() == 0 then
                 self:SetSubMaterial(19, Texture_Case[self:GetTextureCase()])
-                
+
                 local Costume = Texture_Costume[self:GetTextureCostume()]
                 self:SetSubMaterial(0 , Costume[1 ])
                 self:SetSubMaterial(1 , Costume[2 ])
@@ -1054,7 +1128,7 @@ function ENT:Initialize()
                 self:SetSubMaterial(12, Costume[9 ])
                 self:SetSubMaterial(17, Costume[10])
                 self:SetSubMaterial(18, Costume[11])
-                
+
                 local Shoe = Texture_Shoe[self:GetTextureShoe()]
                 self:SetSubMaterial(6 , Shoe[1])
                 self:SetSubMaterial(13, Shoe[2])
@@ -1065,7 +1139,11 @@ function ENT:Initialize()
     end
 
     local RareModelIndex = self:GetRareModel()
-    self:SetModel(RareModelIndex == 0 and "models/perftest/gman.mdl" or RareModels[self:GetRareModel()])
+    self:SetModel(RareModelIndex == 0 and "models/perftest/gman.mdl" or RareModels[RareModelIndex])
+
+    if RareModelIndex == 13 then
+        self:SetSkin(1)
+    end
 end
 
 if SERVER then
@@ -1098,14 +1176,11 @@ if SERVER then
 
     function ENT:CheckAndRest()
         if self:IsResting() then return true end
-
+        if self:GetIsPanicking() then return false end
         if CurTime() < self.NextRestTime then return false end
 
         self.RestUntil = CurTime() + math.random(3, 8)
         self.NextRestTime = self.RestUntil + math.random(20, 50)
-
-        self:StartActivity(ACT_IDLE)
-        self.loco:SetDesiredSpeed(0)
         return true
     end
 
@@ -1116,45 +1191,66 @@ if SERVER then
     function ENT:EndRest()
         self.RestUntil = nil
         self.loco:SetDesiredSpeed(self:GetRunSpeed())
-        if self:GetIsMoving() then
-            self:StartActivity(ACT_WALK)
-        else
-            self:StartActivity(ACT_IDLE)
-        end
+        self:StartActivity(self:GetIsMoving() and ACT_WALK or ACT_IDLE)
+    end
+
+    function ENT:KeepUpright()
+        local Ang = self:GetAngles()
+        Ang.p = 0
+        Ang.r = 0
+        self:SetAngles(Ang)
     end
 
     function ENT:OnInjured(dmg)
         local Attacker = dmg:GetAttacker()
+        if GetConVar("ai_ignoreplayers"):GetBool() and IsValid(Attacker) and Attacker:IsPlayer() then return end
 
-        if GetConVar("ai_ignoreplayers"):GetBool() and IsValid(Attacker) and Attacker:IsPlayer() then
-            return
+        if dmg:IsDamageType(DMG_BULLET) then
+            self:EmitSound("physics/metal/metal_solid_impact_bullet" .. math.random(1, 4) .. ".wav", 75, 100)
         end
         
-        local Damage = dmg:GetDamage()
-        local NewHealth = self:Health() - Damage
-        self:SetHealth(math.max(NewHealth, 0))
-
+        self.LastAttacker = Attacker
         self:SetIsPanicking(true)
-        self.NextFleeTargetTime = 0
-        self.PanicEndTime = CurTime() + 15
+        self.PanicEndTime = CurTime() + 12
 
-        local PanicSpeed = math.random(250, 300)
-        self.loco:SetDesiredSpeed(PanicSpeed)
+        self.loco:SetDesiredSpeed(math.random(260, 320))
+        self:EmitSound("npc/headcrab/pain" .. math.random(1, 3) .. ".wav", Pos, 90, math.random(70, 90))
+        self:EmitSound("physics/metal/metal_box_impact_hard" .. math.random(1, 3) .. ".wav", 80, math.random(90, 110))
 
-        sound.Play("npc/headcrab/pain2.wav", self:GetPos(), 80, math.random(90, 110))
+        local effectdata = EffectData()
+        effectdata:SetOrigin(dmg:GetDamagePosition())
+        effectdata:SetNormal(dmg:GetDamageForce():GetNormalized() * -1)
+        effectdata:SetMagnitude(2)
+        effectdata:SetScale(1)
+        util.Effect("ManhackSparks", effectdata)
+    end
 
-        if self:Health() > 0 then
-            local EffectData = EffectData()
-            EffectData:SetOrigin(self:GetPos() + Vector(0, 0, 40))
-            EffectData:SetScale(0.5)
-            util.Effect("bloodspray", EffectData)
+    function ENT:FleeFromAttacker()
+        if not self:GetIsPanicking() then return end
+
+        local Target = self.LastAttacker
+        if not IsValid(Target) or (Target:IsPlayer() and not Target:Alive()) then
+            local dist = 999999
+            for _, p in ipairs(player.GetAll()) do
+                local d = self:GetPos():DistToSqr(p:GetPos())
+                if d < dist then dist = d; Target = p end
+            end
         end
+
+        if not IsValid(Target) then return end
+
+        if CurTime() < (self.NextFleePathTime or 0) then return end
+        self.NextFleePathTime = CurTime() + 0.5
+
+        local AwayDir = (self:GetPos() - Target:GetPos()):GetNormalized()
+        AwayDir.z = 0
+        self.FleeTarget = self:GetPos() + AwayDir * 500 + VectorRand() * 100
     end
 
     function ENT:OnKilled(dmg)
         if self.Died then return end
         self.Died = true
-        
+
         local Pos = self:GetPos() + Vector(0, 0, 30)
 
         if math.random() > 0.2 then
@@ -1199,14 +1295,14 @@ if SERVER then
                 if IsValid(Phys) then
                     Phys:Wake()
                     Phys:ApplyForceCenter(Vector(
-                        math.random(-300, 300),
-                        math.random(-300, 300),
-                        400
+                            math.random(-300, 300),
+                            math.random(-300, 300),
+                            400
                     ))
                     Phys:AddAngleVelocity(Vector(
-                        math.random(-200, 200),
-                        math.random(-200, 200),
-                        math.random(-200, 200)
+                            math.random(-200, 200),
+                            math.random(-200, 200),
+                            math.random(-200, 200)
                     ))
                 end
             end
@@ -1218,14 +1314,16 @@ if SERVER then
         util.Effect("cball_explode", EffectData__)
         util.Effect("StriderSweep", EffectData__)
 
-        local BloodData = EffectData()
-        BloodData:SetOrigin(Pos)
-        BloodData:SetScale(1.5)
-        util.Effect("bloodspray", BloodData)
-        util.Effect("bloodimpact", BloodData)
+        local SparkData = EffectData()
+        SparkData:SetOrigin(Pos)
+        SparkData:SetNormal(Vector(0, 0, 1))
+        SparkData:SetMagnitude(15)
+        SparkData:SetScale(2)
+        util.Effect("metal sparks", SparkData, true, true)
 
-        sound.Play("npc/headcrab/pain2.wav", Pos, 90, math.random(70, 90))
-        sound.Play("ambient/energy/zap1.wav", Pos, 80, math.random(70, 90))
+        sound.Play("npc/headcrab/pain" .. math.random(1, 3) .. ".wav", Pos, 90, math.random(70, 90))
+        self:EmitSound("physics/metal/metal_box_break" .. math.random(1, 2) .. ".wav", 90, math.random(70, 90))
+        self:EmitSound("ambient/energy/zap1.wav", 80, math.random(70, 90))
 
         local SelfRef = self
         timer.Simple(0.1, function()
@@ -1235,34 +1333,6 @@ if SERVER then
         end)
     end
 
-    function ENT:FleeFromAttacker()
-        if not self:GetIsPanicking() then return end
-
-        local NearestPly = nil
-        local NearestDist = 999999
-
-        for _, Ply in ipairs(player.GetAll()) do
-            if IsValid(Ply) and Ply:Alive() then
-                local D = self:GetPos():Distance(Ply:GetPos())
-                if D < NearestDist then
-                    NearestDist = D
-                    NearestPly = Ply
-                end
-            end
-        end
-
-        if not NearestPly then return end
-
-        if CurTime() < self.NextFleeTargetTime then return end
-        self.NextFleeTargetTime = CurTime() + 0.3
-
-        local AwayDir = (self:GetPos() - NearestPly:GetPos()):GetNormalized()
-        AwayDir.z = 0
-        AwayDir = AwayDir + VectorRand() * 0.3
-        AwayDir:Normalize()
-        self.FleeTarget = self:GetPos() + AwayDir * 1500
-    end
-    
     function ENT:GetWallSlideDir(Tr)
         local Forward = self:GetForward()
         local Normal  = Tr.HitNormal
@@ -1324,7 +1394,7 @@ if SERVER then
             end
         end
 
-        sound.Play(SoundPath, Pos, 65, math.random(95, 105))
+        self:EmitSound(SoundPath, 65, math.random(95, 105))
     end
 
     function ENT:TeleportToNavMesh()
@@ -1337,42 +1407,50 @@ if SERVER then
 
         local TargetPos = NearestArea:GetRandomPoint()
 
-        local SpawnPos = TargetPos
-        for Z = 0, 200, 10 do
-            local TestPos = TargetPos + Vector(0, 0, Z)
-            local TestTr = util.TraceHull({
-                start  = TestPos,
-                endpos = TestPos,
-                filter = self,
-                mins   = Vector(-4, -4, 0),
-                maxs   = Vector(4, 4, 65),
-                mask   = MASK_NPCSOLID
-            })
+        if util.IsInWorld(TargetPos) and TargetPos.z >= -10000 then
 
-            if not TestTr.StartSolid then
-                SpawnPos = TestPos
-                break
+            local SpawnPos = nil
+            for Z = 0, 200, 10 do
+                local TestPos = TargetPos + Vector(0, 0, Z)
+
+                if util.IsInWorld(TestPos) then
+                    local TestTr = util.TraceHull({
+                        start  = TestPos,
+                        endpos = TestPos,
+                        filter = self,
+                        mins   = Vector(-4, -4, 0),
+                        maxs   = Vector(4, 4, 65),
+                        mask   = MASK_NPCSOLID
+                    })
+
+                    if not TestTr.StartSolid then
+                        SpawnPos = TestPos
+                        break
+                    end
+                end
+            end
+
+            if SpawnPos then
+                local EffectData1 = EffectData()
+                EffectData1:SetOrigin(self:GetPos())
+                EffectData1:SetScale(1)
+                util.Effect("cball_explode", EffectData1)
+                util.Effect("StriderSweep", EffectData1)
+
+                self:SetPos(SpawnPos)
+                self:SetLocalVelocity(Vector(0, 0, 0))
+                self.IsJumping = false
+
+                self:SetSequence(0)
+                self:StartActivity(ACT_WALK)
+
+                local EffectData2 = EffectData()
+                EffectData2:SetOrigin(SpawnPos)
+                EffectData2:SetScale(1)
+                util.Effect("cball_explode", EffectData2)
+                util.Effect("StriderSweep", EffectData2)
             end
         end
-
-        local EffectData1 = EffectData()
-        EffectData1:SetOrigin(self:GetPos())
-        EffectData1:SetScale(1)
-        util.Effect("cball_explode", EffectData1)
-        util.Effect("StriderSweep", EffectData1)
-
-        self:SetPos(SpawnPos)
-        self:SetLocalVelocity(Vector(0, 0, 0))
-        self.IsJumping = false
-
-        self:SetSequence(0)
-        self:StartActivity(ACT_WALK)
-
-        local EffectData2 = EffectData()
-        EffectData2:SetOrigin(SpawnPos)
-        EffectData2:SetScale(1)
-        util.Effect("cball_explode", EffectData2)
-        util.Effect("StriderSweep", EffectData2)
     end
 
     function ENT:TryRandomTeleport()
@@ -1390,50 +1468,55 @@ if SERVER then
 
         local TargetPos = RandomArea:GetRandomPoint()
 
-        if TargetPos:DistToSqr(self:GetPos()) < (500 * 500) then return end
+        if util.IsInWorld(TargetPos) and TargetPos.z >= -10000
+                and TargetPos:DistToSqr(self:GetPos()) >= (500 * 500) then
 
-        local SpawnPos = nil
-        for Z = 0, 200, 10 do
-            local TestPos = TargetPos + Vector(0, 0, Z)
-            local TestTr = util.TraceHull({
-                start  = TestPos,
-                endpos = TestPos,
-                filter = self,
-                mins   = Vector(-4, -4, 0),
-                maxs   = Vector(4, 4, 65),
-                mask   = MASK_NPCSOLID
-            })
+            local SpawnPos = nil
+            for Z = 0, 200, 10 do
+                local TestPos = TargetPos + Vector(0, 0, Z)
 
-            if not TestTr.StartSolid then
-                SpawnPos = TestPos
-                break
+                if util.IsInWorld(TestPos) then
+                    local TestTr = util.TraceHull({
+                        start  = TestPos,
+                        endpos = TestPos,
+                        filter = self,
+                        mins   = Vector(-4, -4, 0),
+                        maxs   = Vector(4, 4, 65),
+                        mask   = MASK_NPCSOLID
+                    })
+
+                    if not TestTr.StartSolid then
+                        SpawnPos = TestPos
+                        break
+                    end
+                end
+            end
+
+            if SpawnPos then
+                local EffectData1 = EffectData()
+                EffectData1:SetOrigin(self:GetPos())
+                EffectData1:SetScale(1)
+                util.Effect("cball_explode", EffectData1)
+                util.Effect("StriderSweep", EffectData1)
+
+                self:SetPos(SpawnPos)
+                self:SetLocalVelocity(Vector(0, 0, 0))
+                self.IsJumping = false
+
+                self:SetSequence(0)
+                self:StartActivity(ACT_WALK)
+
+                self.LastPos          = SpawnPos
+                self.LastPosTime      = CurTime()
+                self.NextTeleportTime = CurTime() + self.TeleportCooldown
+
+                local EffectData2 = EffectData()
+                EffectData2:SetOrigin(SpawnPos)
+                EffectData2:SetScale(1)
+                util.Effect("cball_explode", EffectData2)
+                util.Effect("StriderSweep", EffectData2)
             end
         end
-
-        if not SpawnPos then return end
-
-        local EffectData1 = EffectData()
-        EffectData1:SetOrigin(self:GetPos())
-        EffectData1:SetScale(1)
-        util.Effect("cball_explode", EffectData1)
-        util.Effect("StriderSweep", EffectData1)
-
-        self:SetPos(SpawnPos)
-        self:SetLocalVelocity(Vector(0, 0, 0))
-        self.IsJumping = false
-
-        self:SetSequence(0)
-        self:StartActivity(ACT_WALK)
-
-        self.LastPos          = SpawnPos
-        self.LastPosTime      = CurTime()
-        self.NextTeleportTime = CurTime() + self.TeleportCooldown
-
-        local EffectData2 = EffectData()
-        EffectData2:SetOrigin(SpawnPos)
-        EffectData2:SetScale(1)
-        util.Effect("cball_explode", EffectData2)
-        util.Effect("StriderSweep", EffectData2)
     end
 
     function ENT:CheckAndTeleportIfStuck()
@@ -1460,7 +1543,7 @@ if SERVER then
             self.LastPosTime      = CurTime()
         end
     end
-    
+
     function ENT:PushAwayFromOtherToiletMen()
         local Nearby = ents.FindInSphere(self:GetPos(), 50)
 
@@ -1498,41 +1581,24 @@ if SERVER then
             if GetConVar("ai_disabled"):GetBool() then
                 self.loco:SetDesiredSpeed(0)
                 self:StartActivity(ACT_IDLE)
-                self:SetSequence(0)
-
-                while GetConVar("ai_disabled"):GetBool() do
-                    coroutine.yield()
-                end
-
-                self.loco:SetDesiredSpeed(self:GetRunSpeed())
-            end
-            
-            if self:GetIsPanicking() then
-                self:StartActivity(ACT_RUN)
-                self.loco:SetDesiredSpeed(math.random(250, 300))
-
-                self.NextFleeTargetTime = 0
-                self:FleeFromAttacker()
-
-                if self.FleeTarget then
-                    local FleeEndTime = CurTime() + 1.5
-                    while CurTime() < FleeEndTime and self:GetIsPanicking() do
-                        self.loco:FaceTowards(self.FleeTarget)
-                        self.loco:Approach(self.FleeTarget, 1)
-                        self:CommonLogic()
-
-                        if CurTime() > (self.NextPanicSound or 0) then
-                            sound.Play("npc/headcrab/pain1.wav", self:GetPos(), 70, math.random(90, 120))
-                            self.NextPanicSound = CurTime() + 1
+                coroutine.yield()
+            elseif self:GetIsPanicking() then
+                if CurTime() > self.PanicEndTime then
+                    self:SetIsPanicking(false)
+                    self.loco:SetDesiredSpeed(self:GetRunSpeed())
+                else
+                    if GetConVar("ai_disabled"):GetBool() then
+                        self.loco:SetDesiredSpeed(0)
+                        self:StartActivity(ACT_IDLE)
+                    else
+                        self:StartActivity(ACT_RUN)
+                        self:FleeFromAttacker()
+                        if self.FleeTarget then
+                            self.loco:Approach(self.FleeTarget, 1)
                         end
-                        
-                        if self:GetPos():DistToSqr(self.FleeTarget) < (100 * 100) then
-                            self.NextFleeTargetTime = 0
-                            break
-                        end
-
-                        coroutine.yield()
                     end
+                    
+                    coroutine.yield()
                 end
             else
                 if self:CheckAndRest() then
@@ -1577,10 +1643,29 @@ if SERVER then
                                         self:StartActivity(ACT_WALK)
                                         self.LastPos     = self:GetPos()
                                         self.LastPosTime = CurTime()
+                                        self.PathStartTime = CurTime()
 
                                         while (PathObj:IsValid() and self:GetIsMoving()) do
+                                            if GetConVar("ai_disabled"):GetBool() then
+                                                self.loco:SetDesiredSpeed(0)
+                                                self:StartActivity(ACT_IDLE)
+                                                break
+                                            end
+
                                             PathObj:Update(self)
                                             self:CommonLogic()
+
+                                            local WallHit, Tr = self:IsWallAhead()
+                                            if WallHit then
+                                                local SlideDir = self:GetWallSlideDir(Tr)
+                                                self.loco:FaceTowards(self:GetPos() + SlideDir * 100)
+                                                self.loco:Approach(self:GetPos() + SlideDir * 200, 1)
+                                            end
+
+                                            if CurTime() - self.PathStartTime > self.PathTimeout then
+                                                break
+                                            end
+
                                             coroutine.yield()
                                         end
 
@@ -1605,8 +1690,15 @@ if SERVER then
                         RandomDir.z = 0
                         local WanderTarget  = self:GetPos() + RandomDir:GetNormalized() * 1000
                         local WanderTimeout = CurTime() + math.random(5, 10)
+                        local WanderStartTime = CurTime()
 
                         while (CurTime() < WanderTimeout and self:GetIsMoving()) do
+                            if GetConVar("ai_disabled"):GetBool() then
+                                self.loco:SetDesiredSpeed(0)
+                                self:StartActivity(ACT_IDLE)
+                                break
+                            end
+
                             self.loco:FaceTowards(WanderTarget)
                             self.loco:Approach(WanderTarget, 1)
                             self:CommonLogic()
@@ -1620,6 +1712,10 @@ if SERVER then
                             end
 
                             if self:GetPos():DistToSqr(WanderTarget) < (50 * 50) then break end
+
+                            if CurTime() - WanderStartTime > self.PathTimeout then
+                                break
+                            end
 
                             coroutine.yield()
                         end
@@ -1687,7 +1783,10 @@ if SERVER then
 
     function ENT:OnContact(Ent)
         if not IsValid(Ent) then return end
-        if IsToiletMan(Ent) then return end
+
+        if self:IsResting() and (Ent:IsPlayer() or IsToiletMan(Ent)) then
+            self.RestUntil = 0
+        end
 
         if Ent:IsPlayer() and Ent:Alive() then
             if GetConVar("ai_ignoreplayers"):GetBool() or GetConVar("ai_disabled"):GetBool() then return end
@@ -1696,16 +1795,53 @@ if SERVER then
 
             self.NextPushTime = CurTime() + self.PushCooldown
 
-            local PushDir = (Ent:GetPos() - self:GetPos()):GetNormalized()
-            PushDir.z = 0
+            local PushForce = self:GetPushForce()
 
-            Ent:SetVelocity(PushDir * 500 + Vector(0, 0, 100))
-            Ent:ViewPunch(Angle(math.random(-5, 5), math.random(-5, 5), 0))
-            Ent:TakeDamage(1, self, self)
+            if PushForce > 150 then
+                local PushDir = (Ent:GetPos() - self:GetPos()):GetNormalized()
+                PushDir.z = 0
 
-            local SoundPath = "physics/body/body_medium_impact_soft" .. math.random(1, 7) .. ".wav"
-            sound.Play(SoundPath, self:GetPos(), 75, math.random(95, 110))
+                local VerticalPush = math.floor(PushForce * 0.2)
+                Ent:SetVelocity(PushDir * PushForce + Vector(0, 0, VerticalPush))
+                Ent:ViewPunch(Angle(math.random(-5, 5), math.random(-5, 5), 0))
+                Ent:TakeDamage(1, self, self)
+
+                self:EmitSound("physics/body/body_medium_impact_soft" .. math.random(1, 7) .. ".wav", 75, math.random(95, 110))
+            end
         end
+    end
+
+    local function IsDoorLocked(Ent)
+        if not IsValid(Ent) then return false end
+
+        if Ent.Locked ~= nil then
+            local Success, Result = pcall(Ent.Locked, Ent)
+            if Success and Result then return true end
+        end
+
+        local Flags = Ent:GetInternalVariable("m_spawnflags")
+        if Flags and bit.band(Flags, 2048) ~= 0 then
+            return true
+        end
+
+        local Locked = Ent:GetInternalVariable("m_bLocked")
+        if Locked == true or Locked == 1 then
+            return true
+        end
+
+        return false
+    end
+
+    local function IsPlayerOnlyDoor(Ent)
+        if not IsValid(Ent) then return false end
+
+        local Flags = Ent:GetInternalVariable("m_spawnflags")
+        if not Flags then return false end
+
+        if bit.band(Flags, 32) ~= 0 then return true end
+        if bit.band(Flags, 512) ~= 0 then return true end
+
+        return false
     end
 
     function ENT:HandleObstacles()
@@ -1719,8 +1855,7 @@ if SERVER then
         })
 
         local Ent = Tr.Entity
-        if not IsValid(Ent) then return end
-        if IsToiletMan(Ent) then return end
+        if not IsValid(Ent) or IsToiletMan(Ent) then return end
 
         local Class = Ent:GetClass()
 
@@ -1746,8 +1881,13 @@ if SERVER then
             Ent:TakeDamageInfo(Dmg)
             Ent:Fire("Shatter", "0.5 0.5 256")
             Ent:Fire("Break")
-        elseif Class:find("door") or Class:find("button") then
+        elseif Class:find("button") then
             Ent:Fire("Use")
+        elseif Class:find("door") then
+            if GMM.Func.CanOpenDoor(Ent) then
+                Ent:Fire("Use")
+                Ent:Fire("Open")
+            end
         elseif Class == "prop_physics" then
             Ent:Fire("Use")
             local Phys = Ent:GetPhysicsObject()
@@ -1755,6 +1895,12 @@ if SERVER then
                 Phys:ApplyForceCenter(self:GetForward() * 8000)
             end
         end
+    end
+
+    function ENT:Think()
+        self:KeepUpright()
+        self:NextThink(CurTime() + 0.05)
+        return true
     end
 end
 
@@ -1801,16 +1947,16 @@ if CLIENT then
         local R = self:GetNameColorR()
         local G = self:GetNameColorG()
         local B = self:GetNameColorB()
-        
+
         cam.Start3D2D(Pos, Ang, 0.2)
-            draw.SimpleText(
+        draw.SimpleText(
                 BotName,
                 "ChatFont",
                 0, 0,
                 Color(R, G, B, 255 * Alpha),
                 TEXT_ALIGN_CENTER,
                 TEXT_ALIGN_CENTER
-            )
+        )
         cam.End3D2D()
     end
 end

@@ -9,6 +9,12 @@ Liminal Woowz Dream, или же (GarrysModMap) карта которую я д�
 [img]https://woowz11.github.io/woowzsite/Lituism/art/STOLBDANCE.gif[/img]
 
 [hr][/hr]
+Особенности:
+[list]
+[*] Navmesh - Есть не везде, но я стараюсь...
+[/list]
+
+[hr][/hr]
 Есть разные форки карты, по типу:
 
 [list]

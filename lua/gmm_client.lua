@@ -69,76 +69,101 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
     end)
 	
 	-- ----------------------------------------------------------------------
-	
-	if GMM["Valid"] then
-		hook.Add("HUDPaint", "gmm_InterfaceDrawCoordinates", function()
+
+    if GMM["Valid"] then
+        local LastHitPos    = nil
+        local LastHitNormal = nil
+        
+        hook.Add("HUDPaint", "gmm_InterfaceDrawCoordinates", function()
+            local Developer = GetConVar("developer")
+
             if not GMM_C["Debug"] then
-                local Developer = GetConVar("developer")
                 if not Developer or Developer:GetInt() == 0 then return end
             end
-                
-			local Position = EyePos()
-			local Angle    = EyeAngles()
-			
-			local Trace = util.TraceLine({
-				start  = Position,
-				endpos = Position + Angle:Forward() * 32768,
-				filter = Player,
-				mask   = MASK_SHOT
-			})
-			
-			local HitPos    = Trace.HitPos
-			local HitEntity = Trace.Entity
-			
-			local EntityName = "None"
-			if IsValid(HitEntity) then
-				EntityName = HitEntity:GetClass()
-				if HitEntity:IsPlayer() then
-					EntityName = "Player: " .. HitEntity:Nick()
-				elseif HitEntity:GetModel() then
-					EntityName = EntityName .. " (" .. HitEntity:GetModel() .. ")"
-				end
-			end
-			
-			local Text = string.format(
-				"X: %.1f  Y: %.1f  Z: %.1f  |  Pitch: %.1f°  Yaw: %.1f°  Roll: %.1f°\n" ..
-				"Hit: X: %.1f  Y: %.1f  Z: %.1f | Dist.: %.1f | HitEnt.: %s",
-				Position.x, Position.y, Position.z,
-				Angle.pitch, Angle.yaw, Angle.roll,
-				HitPos.x, HitPos.y, HitPos.z,
-				Position:Distance(HitPos),
-				EntityName
-			)
-			
-			surface.SetFont("DermaDefaultBold")
-			local TextW, TextH = surface.GetTextSize(Text)
-			
-			local Padding = 10
-			local RectX = ScrW() / 2 - TextW / 2 - Padding
-			local RectY = 10 - Padding
-			local RectW = TextW + Padding * 2
-			local RectH = TextH + Padding * 2
-			
-			draw.RoundedBox(
-				8,
-				RectX, RectY,
-				RectW, RectH,
-				Color(0, 0, 0, 180)
-			)
-			
-			local Lines = string.Explode("\n", Text)
-			for i, Line in ipairs(Lines) do
-				draw.SimpleText(
-					Line,
-					"DermaDefaultBold",
-					ScrW() / 2, RectY + Padding + (i - 1) * (TextH / #Lines),
-					Color(255, 255, 255, 255),
-					TEXT_ALIGN_CENTER,
-					TEXT_ALIGN_TOP
-				)
-			end
-		end)
-	end
+
+            local Position = EyePos()
+            local Angle    = EyeAngles()
+
+            local Trace = util.TraceLine({
+                start  = Position,
+                endpos = Position + Angle:Forward() * 32768,
+                filter = Player,
+                mask   = bit.bor(MASK_SHOT, CONTENTS_TRANSLUCENT, CONTENTS_WATER, CONTENTS_SLIME, CONTENTS_GRATE)
+            })
+
+            local HitPos    = Trace.HitPos
+            local HitEntity = Trace.Entity
+
+            if Trace.Hit then
+                LastHitPos    = HitPos
+                LastHitNormal = Trace.HitNormal
+            else
+                LastHitPos    = nil
+                LastHitNormal = nil
+            end
+
+            local EntityName = "None"
+            if IsValid(HitEntity) then
+                EntityName = HitEntity:GetClass()
+                if HitEntity:IsPlayer() then
+                    EntityName = "Player: " .. HitEntity:Nick()
+                elseif HitEntity:GetModel() then
+                    EntityName = EntityName .. " (" .. HitEntity:GetModel() .. ")"
+                end
+            end
+
+            local Text = string.format(
+                "X: %.1f  Y: %.1f  Z: %.1f  |  Pitch: %.1f°  Yaw: %.1f°  Roll: %.1f°\n" ..
+                        "Hit: X: %.1f  Y: %.1f  Z: %.1f | Dist.: %.1f | HitEnt.: %s",
+                Position.x, Position.y, Position.z,
+                Angle.pitch, Angle.yaw, Angle.roll,
+                HitPos.x, HitPos.y, HitPos.z,
+                Position:Distance(HitPos),
+                EntityName
+            )
+
+            surface.SetFont("DermaDefaultBold")
+            local TextW, TextH = surface.GetTextSize(Text)
+
+            local Padding = 10
+            local RectX = ScrW() / 2 - TextW / 2 - Padding
+            local RectY = 10 - Padding
+            local RectW = TextW + Padding * 2
+            local RectH = TextH + Padding * 2
+
+            draw.RoundedBox(
+                8,
+                RectX, RectY,
+                RectW, RectH,
+                Color(0, 0, 0, 180)
+            )
+
+            local Lines = string.Explode("\n", Text)
+            for i, Line in ipairs(Lines) do
+                draw.SimpleText(
+                    Line,
+                    "DermaDefaultBold",
+                    ScrW() / 2, RectY + Padding + (i - 1) * (TextH / #Lines),
+                    Color(255, 255, 255, 255),
+                    TEXT_ALIGN_CENTER,
+                    TEXT_ALIGN_TOP
+                )
+            end
+        end)
+
+        hook.Add("PostDrawTranslucentRenderables", "gmm_DrawHitPoint", function()
+            local Developer = GetConVar("developer")
+            if not Developer or Developer:GetInt() == 0 then return end
+            if not GMM["Valid"] then return end
+            if not LastHitPos then return end
+
+            render.DrawWireframeSphere(LastHitPos, 1, 12, 12, Color(255, 255, 0, 255), true)
+
+            if LastHitNormal then
+                render.DrawLine(LastHitPos, LastHitPos + LastHitNormal * 15, Color(0, 255, 0, 255), true)
+            end
+        end)
+    end
 	
 	hook.Add("RenderScreenspaceEffects", "gmm_WaterOverlay", function()
 		if not GMM["Valid"] then return end
@@ -504,70 +529,76 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 			},
             
             Navmesh = {
-                {{"Default"}, {Vector(-517, 490, 448)}},
-                {{"Default"}, {Vector(-1301, 1978, 608)}},
-                {{"Default"}, {Vector(-1047, 1121, 784)}},
-                {{"Default"}, {Vector(-702, 709, 624)}},
-                {{"Default"}, {Vector(-561, -123, 848)}},
-                {{"Default"}, {Vector(-361, 256, 848)}},
-                {{"Default"}, {Vector(-861, 539, 848)}},
-                {{"Default"}, {Vector(-194, 614, 768)}},
-                {{"Default"}, {Vector(-1685, -1685, 722)}},
-                {{"Default"}, {Vector(-990, 1847, 32)}},
-                {{"Default"}, {Vector(-1397, 1831, 32)}},
-                {{"Default"}, {Vector(-969, 2526, -1016)}},
-                {{"Default"}, {Vector(106, 1400, -224)}},
-                {{"Default"}, {Vector(526, 366, -792)}},
-                {{"Default"}, {Vector(703, -343, -800)}},
-                {{"Default"}, {Vector(817, 301, -496)}},
-                {{"Default"}, {Vector(-128, 21, -224)}},
-                {{"Default"}, {Vector(-453, 175, 232)}},
-                {{"Default"}, {Vector(-547, 384, -224)}},
+                {{"Default", "Old"}, {Vector(-517, 490, 448)}},
+                {{"Default", "Old"}, {Vector(-1301, 1978, 608)}},
+                {{"Default", "Old"}, {Vector(-1047, 1121, 784)}},
+                {{"Default", "Old"}, {Vector(-702, 709, 624)}},
+                {{"Default", "Old"}, {Vector(-561, -123, 848)}},
+                {{"Default", "Old"}, {Vector(-361, 256, 848)}},
+                {{"Default", "Old"}, {Vector(-861, 539, 848)}},
+                {{"Default", "Old"}, {Vector(-194, 614, 768)}},
+                {{"Default", "Old"}, {Vector(-990, 1847, 32)}},
+                {{"Default", "Old"}, {Vector(-1397, 1831, 32)}},
+                {{"Default", "Old"}, {Vector(-969, 2526, -1016)}},
+                {{"Default", "Old"}, {Vector(106, 1400, -224)}},
+                {{"Default", "Old"}, {Vector(526, 366, -792)}},
+                {{"Default", "Old"}, {Vector(703, -343, -800)}},
+                {{"Default", "Old"}, {Vector(817, 301, -496)}},
+                {{"Default", "Old"}, {Vector(-128, 21, -224)}},
+                {{"Default", "Old"}, {Vector(-453, 175, 232)}},
+                {{"Default", "Old"}, {Vector(-547, 384, -224)}},
                 {{"Default"}, {Vector(-2086, -527, 384)}},
                 {{"Default"}, {Vector(-1717, -683, 432)}},
                 {{"Default"}, {Vector(-1733, -629, 576)}},
                 {{"Default"}, {Vector(-1621, -945, 528)}},
                 {{"Default"}, {Vector(-1167, -961, 528)}},
-                {{"Default"}, {Vector(-461, -949, 1216)}},
-                {{"Default"}, {Vector(-593, -320, 1216)}},
-                {{"Default"}, {Vector(-126, -163, 1024)}},
-                {{"Default"}, {Vector(71, -491, 1024)}},
-                {{"Default"}, {Vector(334, -437, 1024)}},
-                {{"Default"}, {Vector(752, -353, 1040)}},
-                {{"Default"}, {Vector(1192, -334, 1040)}},
-                {{"Default"}, {Vector(629, 247, 624)}},
+                {{"Default", "Old"}, {Vector(-461, -949, 1216)}},
+                {{"Default", "Old"}, {Vector(-593, -320, 1216)}},
+                {{"Default", "Old"}, {Vector(-126, -163, 1024)}},
+                {{"Default", "Old"}, {Vector(71, -491, 1024)}},
+                {{"Default", "Old"}, {Vector(334, -437, 1024)}},
+                {{"Default", "Old"}, {Vector(752, -353, 1040)}},
+                {{"Default", "Old"}, {Vector(1192, -334, 1040)}},
+                {{"Default", "Old"}, {Vector(629, 247, 624)}},
                 {{"Default"}, {Vector(1270, 1527, -1016)}},
-                {{"Default"}, {Vector(1190, 1813, 984)}},
-                {{"Default"}, {Vector(1132, 1859, 1424)}},
-                {{"Default"}, {Vector(1320, 674, 2016)}},
-                {{"Default"}, {Vector(1318, 577, 2464)}},
-                {{"Default"}, {Vector(1526, 545, 2464)}},
-                {{"Default"}, {Vector(1581, 564, 2656)}},
-                {{"Default"}, {Vector(557, 94, -496)}},
-                {{"Default"}, {Vector(574, 98, -360)}},
-                {{"Default"}, {Vector(1965, 787, 816)}},
-                {{"Default"}, {Vector(479, 1002, 816)}},
-                {{"Default"}, {Vector(2719, 464, 16)}},
-                {{"Default"}, {Vector(1184, 1101, 16)}},
-                {{"Default"}, {Vector(378, 1123, 240)}},
-                {{"Default"}, {Vector(1247, 840, -3929)}},
-                {{"Default"}, {Vector(204, 929, 1264)}},
-                {{"Default"}, {Vector(175, 941, 1032)}},
-                {{"Default"}, {Vector(342, 102, 1032)}},
-                {{"Default"}, {Vector(-1200, 143, 1040)}},
+                {{"Default", "Old"}, {Vector(1190, 1813, 984)}},
+                {{"Default", "Old"}, {Vector(1132, 1859, 1424)}},
+                {{"Default", "Old"}, {Vector(1320, 674, 2016)}},
+                {{"Default", "Old"}, {Vector(1318, 577, 2464)}},
+                {{"Default", "Old"}, {Vector(1526, 545, 2464)}},
+                {{"Default", "Old"}, {Vector(1581, 564, 2656)}},
+                {{"Default", "Old"}, {Vector(557, 94, -496)}},
+                {{"Default", "Old"}, {Vector(574, 98, -360)}},
+                {{"Default", "Old"}, {Vector(1965, 787, 816)}},
+                {{"Default", "Old"}, {Vector(479, 1002, 816)}},
+                {{"Default", "Old"}, {Vector(2719, 464, 16)}},
+                {{"Default", "Old"}, {Vector(1184, 1101, 16)}},
+                {{"Default", "Old"}, {Vector(378, 1123, 240)}},
+                {{"Default", "Old"}, {Vector(1247, 840, -3929)}},
+                {{"Default", "Old"}, {Vector(204, 929, 1264)}},
+                {{"Default", "Old"}, {Vector(175, 941, 1032)}},
+                {{"Default", "Old"}, {Vector(342, 102, 1032)}},
+                {{"Default", "Old"}, {Vector(-1200, 143, 1040)}},
                 {{"Default"}, {Vector(-1138, 125, 1544)}},
                 {{"Default"}, {Vector(-3358, -2288, 440)}},
-                {{"Default"}, {Vector(6651, 916, 544)}},
-                {{"Default"}, {Vector(-426, 1318, 9232)}},
-                {{"Default"}, {Vector(-586, -1008, 2357)}},
-                {{"Default"}, {Vector(-539, -658, 1965)}},
-                {{"Default"}, {Vector(-223, -421, 1886)}},
-                {{"Default"}, {Vector(481, 1740, 808)}},
+                {{"Default", "Old"}, {Vector(6651, 916, 544)}},
+                {{"Default", "Old"}, {Vector(-426, 1318, 9232)}},
+                {{"Default", "Old"}, {Vector(-590, -905, 2598)}},
+                {{"Default", "Old"}, {Vector(-526, -860, 2143)}},
+                {{"Default", "Old"}, {Vector(-223, -421, 1886)}},
+                {{"Default", "Old"}, {Vector(481, 1740, 808)}},
                 {{"Default"}, {Vector(486, 2234, 1656)}},
-                {{"Default"}, {Vector(393, -583, 432)}},
-                {{"Default"}, {Vector(1307, 1077, 624)}},
-                {{"Default"}, {Vector(379, -589, 624)}},
-                {{"Default"}, {Vector(849, -431, -2040)}},
+                {{"Default", "Old"}, {Vector(393, -583, 432)}},
+                {{"Default", "Old"}, {Vector(1307, 1077, 624)}},
+                {{"Default", "Old"}, {Vector(379, -589, 624)}},
+                {{"Default", "Old"}, {Vector(849, -431, -2040)}},
+                {{"Default", "Old"}, {Vector(537, 604, 8)}},
+                {{"Default", "Old"}, {Vector(891, 579, 240)}},
+
+                {{"Old"}, {Vector(2363, 956, 816)}},
+                {{"Old"}, {Vector(-131, 1548, 432)}},
+                {{"Old"}, {Vector(768, 1376, 592)}},
+                {{"Old"}, {Vector(-879, 145, 688)}},
             }
 		}
 		

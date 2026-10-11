@@ -6,6 +6,46 @@ GMM_S = {
 	}
 }
 
+GMM.Func.IsDoorLocked = function(Ent)
+    if not IsValid(Ent) then return false end
+
+    if Ent.Locked ~= nil then
+        local Success, Result = pcall(Ent.Locked, Ent)
+        if Success and Result then return true end
+    end
+
+    local Flags = Ent:GetInternalVariable("m_spawnflags")
+    if Flags and bit.band(Flags, 2048) ~= 0 then
+        return true
+    end
+
+    local Locked = Ent:GetInternalVariable("m_bLocked")
+    if Locked == true or Locked == 1 then
+        return true
+    end
+
+    return false
+end
+
+GMM.Func.IsPlayerOnlyDoor = function(Ent)
+    if not IsValid(Ent) then return false end
+
+    local Flags = Ent:GetInternalVariable("m_spawnflags")
+    if not Flags then return false end
+
+    if bit.band(Flags, 32) ~= 0 then return true end
+    if bit.band(Flags, 512) ~= 0 then return true end
+
+    return false
+end
+
+GMM.Func.CanOpenDoor = function(Ent)
+    if not IsValid(Ent) then return false end
+    if GMM.Func.IsDoorLocked(Ent) then return false end
+    if GMM.Func.IsPlayerOnlyDoor(Ent) then return false end
+    return true
+end
+
 hook.Add("InitPostEntity", "gmm_MapLoad", function()
 	if GMM["Valid"] then
 		-- Загрузка сервера
@@ -165,7 +205,67 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 		
 		return Props
 	end
-	
+
+    -- ----------------------------------------------------------------------
+
+    if GMM["MyMap_SToilet"] then
+
+        local MapMin = Vector(-1500, -9000, -70)
+        local MapMax = Vector( 9000,  2000,  500)
+
+        local SpawnToiletManAtRandomPos = function()
+            for OuterAttempt = 1, 5 do
+
+                for Attempt = 1, 20 do
+                    local RandomPos = Vector(
+                        math.random(MapMin.x, MapMax.x),
+                        math.random(MapMin.y, MapMax.y),
+                        math.random(500, 3000)
+                    )
+
+                    local Tr = util.TraceLine({
+                        start  = RandomPos,
+                        endpos = RandomPos - Vector(0, 0, 6000),
+                        mask   = MASK_SOLID_BRUSHONLY
+                    })
+
+                    if Tr.Hit and not Tr.HitSky then
+                        local SpawnPos = Tr.HitPos + Vector(0, 0, 5)
+
+                        local HullTr = util.TraceHull({
+                            start  = SpawnPos,
+                            endpos = SpawnPos,
+                            mins   = Vector(-8, -8, 0),
+                            maxs   = Vector(8, 8, 65),
+                            mask   = MASK_NPCSOLID
+                        })
+
+                        if not HullTr.StartSolid and util.IsInWorld(SpawnPos) then
+                            local Ent = ents.Create("gmm_toiletman")
+                            if IsValid(Ent) then
+                                Ent:SetPos(SpawnPos)
+                                Ent:SetAngles(Angle(0, math.random(0, 360), 0))
+                                Ent:Spawn()
+                                Ent:Activate()
+
+                                return Ent
+                            end
+                        end
+                    end
+                end
+
+            end
+
+            return nil
+        end
+
+        timer.Simple(2, function()
+            for i = 1, 200 do
+                local Ent = SpawnToiletManAtRandomPos()
+            end
+        end)
+    end
+    
 	-- ----------------------------------------------------------------------
 	-- Аномалии
 	
@@ -498,14 +598,31 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 			"func_movelinear",
 			"func_typewriter"
 		}
-		
-		local Found = {}
-		for _, Class in ipairs(InteractClasses) do
-			local EntsByClass = ents.FindByClass(Class)
-			for _, Entity in ipairs(EntsByClass) do
-				table.insert(Found, Entity)
-			end
-		end
+
+        local Found = {}
+        for _, Class in ipairs(InteractClasses) do
+            local EntsByClass = ents.FindByClass(Class)
+            for _, Entity in ipairs(EntsByClass) do
+                local Skip = false
+
+                if Entity:GetClass():find("door") then
+                    if GMM.Func and GMM.Func.CanOpenDoor then
+                        if not GMM.Func.CanOpenDoor(Entity) then
+                            Skip = true
+                        end
+                    else
+                        local Flags = Entity:GetInternalVariable("m_spawnflags")
+                        if Flags and (bit.band(Flags, 2048) ~= 0 or bit.band(Flags, 32) ~= 0 or bit.band(Flags, 512) ~= 0) then
+                            Skip = true
+                        end
+                    end
+                end
+
+                if not Skip then
+                    table.insert(Found, Entity)
+                end
+            end
+        end
 		
 		if #Found == 0 then return end
 		
@@ -531,7 +648,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
         "npc_manhack", "npc_cscanner", "npc_stalker", "npc_metropolice",
         "npc_pigeon", "npc_seagull", "npc_headcrab", "npc_antlion_grub",
         "npc_headcrab_fast", "npc_zombie", "npc_citizen", "Refugee",
-        "npc_gman", "weapon_crowbar", "gmm_download_map"
+        "npc_gman", "weapon_crowbar", "gmm_download_map", "gmm_toiletman"
     }
 
     local __Anomaly_Spawn_Models = {

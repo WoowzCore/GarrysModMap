@@ -209,14 +209,23 @@ if SERVER then
 			
 			local Direction = (TargetPosition - CurrentPosition):GetNormalized()
 		
-			local Separation = Vector(0,0,0)
+			local Separation = Vector(0, 0, 0)
 			for _, other in ipairs(GMM_ActiveErrors) do
 				if other ~= self and IsValid(other) then
 					local oPos = other:GetPos()
 					local diff = CurrentPos - oPos
 					local d2 = diff:LengthSqr()
+
+					if d2 < 0.01 then
+						diff = VectorRand()
+						diff.z = 0
+						diff:Normalize()
+						d2 = 0.01
+					end
+
 					if d2 < 3600 then
-						Separation = Separation + (diff / d2) * 10
+						local Force = math.min(10 / d2, 5)
+						Separation = Separation + diff:GetNormalized() * Force
 					end
 				end
 			end
@@ -233,9 +242,16 @@ if SERVER then
 			
 			self.Velocity = self.Velocity + (Direction * AccelRate) + (Separation * 0.1)
 			self.Velocity = self.Velocity * 0.96
-			
-			if self.Velocity:Length() > MaxSpeed then
-				self.Velocity = self.Velocity:GetNormalized() * MaxSpeed
+
+			if  self.Velocity.x ~= self.Velocity.x
+			or  self.Velocity.y ~= self.Velocity.y
+			or  self.Velocity.z ~= self.Velocity.z then
+				self.Velocity = Vector(0, 0, 0)
+			end
+
+			local Speed = self.Velocity:Length()
+			if Speed > MaxSpeed then
+				self.Velocity = self.Velocity / Speed * MaxSpeed
 			end
 			
 			self:SetPos(CurrentPosition + self.Velocity)

@@ -3,7 +3,7 @@
 local MapName = game.GetMap()
 
 GMM = {
-	["Valid"        ] = string.match(MapName, "^gmm_") or MapName == "toiletmap",
+	["Valid"        ] = (string.match(MapName, "^gmm_") ~= nil) or (MapName == "toiletmap"),
 	["CustomDebug"  ] = GMM_DEBUG or false,
     ["MyMap_Default"] = MapName == "gmm_garrymod_map_by_woowz_map_garry_game",
     ["MyMap_Flood"  ] = MapName == "gmm_garrymod_map_by_woowz_flooded_water_blob",

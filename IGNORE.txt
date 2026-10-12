@@ -1,0 +1,5 @@
+ignore.txt
+info.md
+compile_settings/*
+lua/.idea/*
+promo/*

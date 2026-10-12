@@ -846,7 +846,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
         local Model = Class == "prop_physics" and __Anomaly_Spawn_Models[math.random(#__Anomaly_Spawn_Models)] or "" 
         
         local SpawnCount = 1
-        if math.random() > 0.9 then
+        if math.random() > 0.97 then
             SpawnCount = math.random(2, 20)
         end
 

@@ -9,11 +9,6 @@ GMM_S = {
 GMM.Func.IsDoorLocked = function(Ent)
     if not IsValid(Ent) then return false end
 
-    if Ent.Locked ~= nil then
-        local Success, Result = pcall(Ent.Locked, Ent)
-        if Success and Result then return true end
-    end
-
     local Flags = Ent:GetInternalVariable("m_spawnflags")
     if Flags and bit.band(Flags, 2048) ~= 0 then
         return true
@@ -804,6 +799,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
         local Players = player.GetAll()
         if #Players == 0 then return end
         local TargetPlayer = Players[math.random(#Players)]
+        if not IsValid(TargetPlayer) then return end
         
         local SpawnPosition = nil
 
@@ -930,7 +926,7 @@ hook.Add("InitPostEntity", "gmm_MapLoad", function()
 	end
 	
 	if GMM["Valid"] and GMM["DoAnomalies"] then
-		local AnomalyTick = GMM["MyMap_Goofy"] and 1 or 5
+		local AnomalyTick = GMM["MyMap_Goofy"] and 0.5 or 10
 	
 		timer.Create("gmm_AnomalyTimer", 0.1, 0, function()
 			local T = CurTime()

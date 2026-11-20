@@ -1,0 +1,11 @@
+VertexlitGeneric{
+	$basetexture "woowz11\pavelpistv\shoe"
+	$rimlight 0
+	$bumpmap "woowz11\pavelpistv\shoe_n"
+	
+	$phong 1
+	$phongexponent 20
+	$phongboost 0.25
+	$phongfresnelranges "[1 1 1]"
+	$phongtint "[1 1 1]"
+}

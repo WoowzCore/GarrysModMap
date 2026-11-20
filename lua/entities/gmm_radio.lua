@@ -5,7 +5,7 @@ ENT.Base = "base_anim"
 ENT.PrintName = "RAD-10"
 ENT.Author = "Woowz11"
 ENT.Category = "GMM"
-ENT.Spawnable = GMM["Valid"]
+ENT.Spawnable = GMM.Valid
 
 ENT.Delay = 0
 
@@ -97,7 +97,7 @@ function ENT:Use(Activator, Caller)
 	Activator:PickupObject(self)
 	
 	if SERVER then
-		if GMM["Valid"] then
+		if GMM.Valid then
 			local ClientInfo = GMM_S["Clients"][Activator]
 			local ShiftPressed = false
 			local AltPressed   = false
@@ -119,7 +119,7 @@ end
 
 -- ----------------------------------------------------------------------
 
-if SERVER and GMM["Valid"] then
+if SERVER and GMM.Valid then
 	util.AddNetworkString("gmm_radio_ShowMessage")
 	util.AddNetworkString("gmm_radio_Play")
 
@@ -182,7 +182,7 @@ end
 
 -- ----------------------------------------------------------------------
 
-if CLIENT and GMM["Valid"] then
+if CLIENT and GMM.Valid then
     local __CurrentMessageText = ""
 	local __MessageEndTime = 0
 

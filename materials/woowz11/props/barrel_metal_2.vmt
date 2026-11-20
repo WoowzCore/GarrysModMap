@@ -1,0 +1,7 @@
+VertexlitGeneric
+{
+	$basetexture "woowz11\props\barrel_metal_2"
+	$bumpmap "woowz11\props\barrel_metal_n"
+	$phong 1 // Убирает темноту на объекте
+	$rimlight 0 // Делает блик на объекте
+}

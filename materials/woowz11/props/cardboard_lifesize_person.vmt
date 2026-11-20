@@ -1,0 +1,7 @@
+VertexlitGeneric
+{
+	$basetexture "woowz11\props\cardboard_lifesize_person"
+	$bumpmap "woowz11\props\cardboard_lifesize_person_n"
+	$phong 1 // Убирает темноту на объекте
+	$rimlight 0 // Делает блик на объекте
+}

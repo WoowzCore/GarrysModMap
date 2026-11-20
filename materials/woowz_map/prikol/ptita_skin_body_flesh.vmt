@@ -1,0 +1,6 @@
+VertexlitGeneric
+{
+	$basetexture "woowz_map\prikol\ptita_skin_body_flesh"
+	$bumpmap "woowz_map\prikol\ptita_skin_body_flesh_n"
+	$surfaceprop "flesh"
+}

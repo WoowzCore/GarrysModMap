@@ -1,0 +1,11 @@
+VertexlitGeneric
+{
+	$basetexture "woowz11\props\cardboard_lifesize"
+	$bumpmap "woowz11\props\cardboard_lifesize_n"
+	$envmap "env_cubemap"
+	$normalmapalphaenvmapmask "1"
+	$envmaptint 0.6
+	$envmapfresnel 1
+	$halflambert 1
+	$envmaptint 1
+}

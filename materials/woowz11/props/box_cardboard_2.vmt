@@ -1,0 +1,12 @@
+VertexlitGeneric
+{
+	$basetexture "woowz11\props\box_cardboard_2"
+	$bumpmap "woowz11\props\box_cardboard_n"
+	$envmap "env_cubemap"
+	$normalmapalphaenvmapmask "1"
+	$envmaptint 0.6
+	$envmapfresnel 1
+	$halflambert 1
+	$phong 0 // Убирает темноту на объекте
+	$rimlight 0 // Делает блик на объекте
+}

@@ -1,0 +1,11 @@
+"Sprite"
+{
+	"$basetexture" "sprites/physgun_glowV"
+	
+	"$spriteorientation" "vp_parallel"
+	"$spriteorigin" "[ 90 90 ]"
+	"$vertexalpha" 1
+	"$vertexcolor" 1
+	"$spriterendermode" 5
+	"$alpha" "0.5"
+}

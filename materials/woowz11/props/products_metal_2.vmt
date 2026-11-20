@@ -1,0 +1,9 @@
+VertexlitGeneric
+{
+	$basetexture "woowz11\props\products_metal_2"
+	$bumpmap "woowz11\props\products_metal_n"
+	$envmap "env_cubemap"
+	$normalmapalphaenvmapmask "1"
+	$phong 1 // Убирает темноту на объекте
+	$rimlight 1 // Делает блик на объекте
+}

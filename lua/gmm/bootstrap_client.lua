@@ -1,16 +1,16 @@
-if GMM["Valid"] then
+if GMM.Valid then
 	print("[GMM] BOOTSTRAP STARTED... (CLIENT)")
 end
 
 GMM_C = {
-	["Debug"] = nil
+	Debug = nil
 }
 
 list.Set("ContentCategoryIcons", "GMM", "icons16/gmm_category")
 	
 -- ----------------------------------------------------------------------
 	
-hook.Add("PopulateToolMenu", "GMM_PopulateTools", function()
+hook.Add("PopulateToolMenu", "gmm_PopulateTools", function()
 	spawnmenu.AddToolMenuOption("Utilities", "GMM", "GMM_Menu_Main", "Основное", "", "", function(panel)
 		panel:ClearControls()
 
@@ -88,8 +88,7 @@ end)
 -- ----------------------------------------------------------------------
 
 hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
-	if GMM["Valid"] then
-		-- Загрузка клиента
+	if GMM.Valid then
 		print("[GMM] CLIENT LOADED")
 	end
 	
@@ -149,7 +148,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	
 	-- ----------------------------------------------------------------------
 
-    if GMM["Valid"] then
+    if GMM.Valid then
         local LastHitPos    = nil
         local LastHitNormal = nil
         
@@ -233,7 +232,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
         hook.Add("PostDrawTranslucentRenderables", "gmm_DrawHitPoint", function()
             local Developer = GetConVar("developer")
             if not Developer or Developer:GetInt() == 0 then return end
-            if not GMM["Valid"] then return end
+            if not GMM.Valid then return end
             if not LastHitPos then return end
 
             render.DrawWireframeSphere(LastHitPos, 1, 12, 12, Color(255, 255, 0, 255), true)
@@ -245,7 +244,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
     end
 	
 	hook.Add("RenderScreenspaceEffects", "gmm_WaterOverlay", function()
-		if not GMM["Valid"] then return end
+		if not GMM.Valid then return end
 	
 		local Contents = util.PointContents(CameraPosition)
 		
@@ -272,7 +271,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
     local VoidMusicChannel = nil
     
     hook.Add("PreRender", "gmm_GlitchVoid_Clear", function()
-        if not GMM or not GMM["Valid"] or not GMM["DoAnomalies"] then return end
+        if not GMM or not GMM.Valid or not GMM.DoAnomalies then return end
         if not CameraInVoid() then return end
 
         local T = CurTime()
@@ -293,7 +292,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
     end)
 
     hook.Add("RenderScreenspaceEffects", "gmm_GlitchVoid", function()
-        if not GMM or not GMM["Valid"] or not GMM["DoAnomalies"] then return end
+        if not GMM or not GMM.Valid or not GMM.DoAnomalies then return end
         if not CameraInVoid() then return end
         
         local DistanceFromZero = math.sqrt(CameraPosition.x * CameraPosition.x + CameraPosition.y * CameraPosition.y)
@@ -304,7 +303,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
         
         local Power = FromZeroPower * FromZeroPower
 		
-		if GMM["MyMap_Goofy"] then
+		if GMM.Maps.Goofy then
 			Power = Power * 20 + 0.25
 		end
 		
@@ -647,7 +646,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
                 {{"Default"}, {Vector(1270, 1527, -1016)}},
                 {{"Default", "Old"}, {Vector(1190, 1813, 984)}},
                 {{"Default", "Old"}, {Vector(1132, 1859, 1424)}},
-                {{"Default", "Old"}, {Vector(1320, 674, 2016)}},
+                {{"Default"}, {Vector(1320, 674, 2016)}},
                 {{"Default", "Old"}, {Vector(1318, 577, 2464)}},
                 {{"Default", "Old"}, {Vector(1526, 545, 2464)}},
                 {{"Default", "Old"}, {Vector(1581, 564, 2656)}},
@@ -686,7 +685,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
             }
 		}
 		
-		if (GMM["MyMap_Real"]) then
+		if (GMM.Maps.Real) then
 			for i = 1, 3 do
 				table.insert(MapAssets.Particles, {{"Real"}, {"Droplet", Vector(-969, -306, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300}})
 				table.insert(MapAssets.Particles, {{"Real"}, {"Droplet", Vector(-969, -954, 424 + 2), 0, function() return Angle(-90 + math.random(-30, 30), math.random(0, 360), 0) end, 300}})
@@ -696,9 +695,9 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 		end
 		
 		local function ShouldSpawn(MapList)
-			if GMM["MyMap_Goofy"] then return true end
+			if GMM.Maps.Goofy then return true end
 			for _, MapSuffix in ipairs(MapList) do
-				if GMM["MyMap_" .. MapSuffix] then return true end
+				if GMM.Maps[MapSuffix] then return true end
 			end
 			return false
 		end
@@ -842,7 +841,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	end
 	
 	local PostCleanup = function()
-		if GMM["Valid"] then
+		if GMM.Valid then
 			print("[GMM] CLIENT CLEANUP")
 		end
 		
@@ -853,7 +852,7 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 
 	-- ----------------------------------------------------------------------
 	
-	if GMM["Valid"] and GMM_C["Debug"] then
+	if GMM.Valid and GMM_C.Debug then
 		hook.Add("PostDrawTranslucentRenderables", "gmm_DebugDraw", function()
 			local CurrentTime = RealTime()
 		
@@ -942,21 +941,21 @@ hook.Add("InitPostEntity", "gmm_PlayerLoad", function()
 	timer.Create("gmm_ThinkSecond", TimerSecondInterval, 0, function()
 		UpdateEnvironment()
 	
-		if GMM["Valid"] then
+		if GMM.Valid then
 			Player:SetDSP(3, true)
 		end
 
         -- ----------------------------------------------------------------------
 
         if true then
-            if not GMM or not GMM["Valid"] or not GMM["DoAnomalies"] then return end
+            if not GMM or not GMM.Valid or not GMM.DoAnomalies then return end
 
             local DistanceFromZero = CameraPosition:Length()
             local MinDist = 3000
             local MaxDist = 30000
 
 			local VolumePower = (DistanceFromZero - MinDist) / (MaxDist - MinDist)
-			if GMM["MyMap_Goofy"] then
+			if GMM.Maps.Goofy then
 				VolumePower = VolumePower * 5 + 0.5
 			else
 				VolumePower = math.Clamp(VolumePower, 0, 1)

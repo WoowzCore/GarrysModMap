@@ -1,0 +1,6 @@
+VertexlitGeneric{
+	$basetexture "woowz11\pavelpistv\brow"
+	$phong 1
+	$rimlight 0
+	$translucent 1
+}

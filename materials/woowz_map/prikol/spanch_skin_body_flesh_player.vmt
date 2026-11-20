@@ -1,0 +1,19 @@
+VertexlitGeneric
+{
+	$basetexture "woowz_map\prikol\spanch_skin_body_flesh_player"
+	$bumpmap "woowz_map\prikol\spanch_skin_body_flesh_n"
+	$surfaceprop "flesh"
+	$nocull 1
+	
+	"$blendtintbybasealpha" "1"
+	"$blendtintcoloroverbase" "0"
+    
+	Proxies
+	{
+		PlayerColor
+		{
+			resultVar	$color2
+			default		1 0 0
+		}
+	}
+}

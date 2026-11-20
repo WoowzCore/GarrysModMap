@@ -475,9 +475,9 @@ function ENT:Initialize()
         self:SetTextID(math.random(1, #Pool))
 		
 		if IsRandom then
-			timer.Create("GMM_TabletRandom_" .. self:EntIndex(), 0.5, 0, function()
+			timer.Create("gmm_TabletRandom_" .. self:EntIndex(), 0.5, 0, function()
 				if not IsValid(self) then
-					timer.Remove("GMM_TabletRandom_" .. self:EntIndex())
+					timer.Remove("gmm_TabletRandom_" .. self:EntIndex())
 					return
 				end
 				self:SetTextID(math.random(1, #Pool))
@@ -501,7 +501,7 @@ if CLIENT then
     local DisplayColor = Color(0, 255, 0)
     local TextID = -1
 
-    surface.CreateFont("GMM_TabletFont", {
+    surface.CreateFont("gmm_TabletFont", {
 		font = "Arial",
 		size = 22,
 		weight = 800,
@@ -559,7 +559,7 @@ if CLIENT then
 			local BoxW = 400
 			local Padding = 20
 			
-			surface.SetFont("GMM_TabletFont")
+			surface.SetFont("gmm_TabletFont")
 			local Margin = 25
 			local TextW = BoxW - Margin * 2
 			
@@ -587,9 +587,9 @@ if CLIENT then
             
 			draw.RoundedBox(0, X, Y, BoxW, BoxH, Color(0, 0, 0, 230 * LerpAlpha))
 			draw.RoundedBox(0, X, Y, 5, BoxH, FinalColor)
-			draw.SimpleText(TextID .. ":", "GMM_TabletFont", X + Margin, Y + 15, FinalColor)
+			draw.SimpleText(TextID .. ":", "gmm_TabletFont", X + Margin, Y + 15, FinalColor)
 			for i, Txt in ipairs(Lines) do
-				draw.SimpleText(Txt, "GMM_TabletFont", X + Margin, Y + 45 + (i-1) * LineHeight, Color(255, 255, 255, 255 * LerpAlpha))
+				draw.SimpleText(Txt, "gmm_TabletFont", X + Margin, Y + 45 + (i-1) * LineHeight, Color(255, 255, 255, 255 * LerpAlpha))
 			end
 		end
 	end)

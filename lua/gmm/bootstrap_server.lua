@@ -1,5 +1,3 @@
-print("[GMM] BOOTSTRAP STARTED... (SERVER)")
-
 GMM_S = {}
 
 include("gmm/data/anomaly_sounds.lua")

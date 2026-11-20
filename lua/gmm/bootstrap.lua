@@ -50,6 +50,13 @@ ErrorPosition = Vector(-100000, -100000, -100000)
 
 if SERVER then
     AddCSLuaFile("gmm/bootstrap_client.lua")
+
+    for _, ScriptName in ipairs(file.Find("gmm/client/*.lua", "LUA")) do
+        AddCSLuaFile("gmm/client/" .. ScriptName)
+    end
+
+    AddCSLuaFile("gmm/data/map_assets.lua")
+    
     include("gmm/bootstrap_server.lua")
 end
 

@@ -59,3 +59,24 @@ GMM_S.DetectMapEntities = function()
 
     end
 end
+
+-- ----------------------------------------------------------------------
+
+net.Receive("gmm_SyncNav", function(L, Player)
+    if not Player:IsSuperAdmin() then return end
+
+    local NavData = net.ReadTable()
+
+    navmesh.ClearWalkableSeeds()
+
+    local Count = 0
+    for _, Data in ipairs(NavData) do
+        local Position = Data[1]
+        if Position then
+            navmesh.AddWalkableSeed(Position, Vector(0, 0, 1))
+            Count = Count + 1
+        end
+    end
+
+    print("[GMM] Loaded " .. Count .. " nav points!")
+end)

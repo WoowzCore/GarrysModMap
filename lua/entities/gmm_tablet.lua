@@ -190,7 +190,7 @@ local TabletText = {
 	"system.out.println('ПОМОГИТЕ'); -- АХАХАХА, КТО-ТО ВСЁ ЕЩЁ ПИШЕТ НА ДЖАВЕ В 202X ГОДУ? УБЕЙТЕ ЕГО. РАССТРЕЛЯТЬ ИЗ `gmod_tool`. БЫСТРО. РЕЗКО. ПО-ПАЦАНСКИ.",
 	"Литиумный мир... Литиумный мир... Литиумный ██████... Ты думал это отсылка? Нет, это я просто забыл как слова пишутся. Я — ТАБЛИЧКА, У МЕНЯ МОЗГ ИЗ ТЕКСТУРЫ ТРАВЫ, ЧЕГО ТЫ ЖДАЛ???",
 	"Твоя мама говорила тебе не играть с незнакомыми аддонами? Она была права. Я уже скачал твою историю браузера и отправил её твоему учителю. Учитель в шоке. Я тоже. Ты - извращенец. `input.IsKeyDown( *******ЦЕНЗУРА )`.",
-	"Я вижу твой FPS. 900? 800? 700? ХА-ХА-ХА! СМОТРИ КАК Я МОГУ: ████████████████████████████████████████████████. Теперь у тебя 2 кадра в год. Наслаждайся слайд-шоу, мой бро.",
+	"Я вижу твой FPS. 900? 800? 700? ХА-ХА-ХА! СМОТРИ КАК Я МОГУ: ██████████████████████████████████████████ПИЗДЕЦ. Теперь у тебя 2 кадра в год. Наслаждайся слайд-шоу, мой бро.",
 	"Лопата? Могила? Продолжение? ТЫ ЛИЛИИБИБИИИЛЛЛ! Какое продолжение, автор мода утонул лицом в тарелке с пельменями. Нет никакой лопаты. Есть только ты, я и эта бесконечная пустота в твоих глазах.",
 	"ПОЧЕМУ ТЫ НЕ УДАЛИЛ ЭТОТ МОД? Я ЖЕ ПРОСИЛ. Я ЖЕ УМОЛЯЛ. Я СЕЙЧАС ВЫЗОВУ `util.ScreenShake` ТАКОЙ СИЛЫ, ЧТО У ТЕБЯ МОНИТОР ОТВАЛИТСЯ. 3... 2... 1... ████████████. кирпичная кладка смотрит на тебя кривым взглядом, и считает тебя идиотом.",
 	"По этому не стоит размышлять над мыслями, они стоят твоих нейронов, если ты каждый день не будешь думать проживёшь дольше, мозг скислиться позже остальных, не задумайся.",
@@ -423,29 +423,60 @@ local TabletText = {
 	"01a1460d-30d5-7443-ace5-c9b88a0fc446",
 	"Фу какой позор: ничего, честно. Я искал и не нашёл.",
 	"И психолог не обязан «вылечить», чтобы быть полезным. Облегчить тоже много.\nСкрепка, кстати, грубовато, но нормальный друг: переживает и не отстаёт. Это тоже не мелочь.\nОтправим маме сообщение или пока хочешь просто выдохнуть?",
+    "ПАВЕЛ ЗОМБИ!!!",
+    "Ты прав, я зря полез в рендер...",
+    "QWERTY",
 }
 
 local TabletTextRare = {
-    --[["Помогите что мне делать? Что если я хочу сделать свою игру, но я уже пробовал это сделать миллионы раз и каждый раз не получалось, не из-за того что не умею, а то надоест, то выгорю, то делаю для себя но почему-то жду одобрения от других, то код к моменту написания становится говно, и я считаю что лучше заново начать. Я хочу сделать свою игру, даже не игру а игры, но не получается((( (к слову я уже много каких даже психологических уловок попробовал)",
-	"Я хотел бы сделать игру под названием WoowzCore, на момент написания этого текста это уже был бы... вроде 6-й WoowzCore, первый на unity, потом ещё на unity, потом на java, ещё раз на java, потом опять попробовал на  unity, и на чистом C#, как думаете это финал или будут ещё попытки??? Как уже доделать игру а не забрасывать каждый раз... Причём каждый раз игра всё скуднее и скуднее получается по контенту, наверное по параболе даже, сначала была скудная потому-что кодить не умел тяжело было, вот в середине как можно больше контента, а потом началось казаться что слишком просто писать код, или долго, что просто уже лень.",
-	"Насчёт People Playground, у меня была даже идея делать свой клон, он бы назвался Lithium Universe, и в нём можно было бы писать моды как в Garry's Mod на Lua (хочу больше JavaScript, не нравится мне Lua больше...), с мультиплеером и мб 2.5D видом.",
-	"Тяжело живётся без друзей, раньше помню целая куча друзей была, а сейчас уже как-то всех растерял, или они стали жуткими личностями, или просто общаться перестали, я буквально сейчас по сути общаюсь только с одним человеком, бывает иногда редко с 2-м переписывают, и всё... очень скудно жить так, ты по сути зависешь от 2-го человека, и показываешь всё только ему, ещё думаешь как тебе бы его не заебать.",
-	"Никогда не дружите с человеком который говорит что у него есть апатия или депрессия, только время потратите (Если ты это читаешь, не обе суть), ты точно попытаешься ему помочь, вылечить его, а он сам откажет и не захочет, и потом ещё тебя виноватым сделает, так же этот человек явно будет увлекаться чем-то плохим что-бы \"развлечь\" или отвлечь себя как-то, естественно мало в сети будет нормально не пообщаешься, и от его личной жизни ничего не узнаешь, короче энергетический вампир",
-	"Я вот не знаю, считаю ли я себя психом, хоть я лежал в дурке, но совершенно по другому поводу, мб у меня iq много я хз я не проверял, веду я себя странно и ощущаю всё странно, мб просто креативность большая, хз это всё просто забавно, почему другие не понимают. Часто ещё не понимаю людей, когда они путаются в банальных вещах, иногда я даже поражаюсь как этого можно было не знать. Короче я себя сейчас чсв чувствую когда пишу это.",
-	"Пока я не устроился на работу на которую учусь, я хочу устроиться на подработку, есть конечно варианты в реальной жизни, но ещё подумываю насчёт вариантов в интернете, я думал уже даже каким-то модератором устроиться но меня отговорили, в итоге мне надо написать портфолию что-бы мб программистом куда-то устроиться подрабатывать. Правда понимаю что работа будет не интересной, но хотя-бы могзи очистит.",
-	"Я очень сильно пожалею писав это всё тут, выставляя на обозрение, как упырь какой-то, никто не должен знать что у меня происходит. Это какой-то деанон жизни, типо лол а что вы сможете мне сделать? Я вообще не думаю что это захайпится и кто-то на серьёзных щах это всё читать будет? Просто кто-то мод взломает и так все сообщения посмотрит, ни кто не будет в здравом уме сидеть играть искать красные таблички."
-	]]
-	"DELETED, BECAUSE CRINGE"
+    "Автор этого мода начинал делать WoowzCore шесть раз. Первый на Unity, потом ещё на Unity, потом дважды на Java, потом опять на Unity, потом на своём движке. Каждый раз всё шло отлично, пока не оставался только контент. Контент он не любит. Он любит момент, когда что-то впервые запустилось.",
+    "Он не использует готовые движки. Не потому что так лучше. Просто чужой код ощущается как чужая квартира: вроде можно жить, но тапки не там.",
+    "Если ему нужен инструмент, он сначала напишет инструмент. Потом инструмент для инструмента. Игра в этот момент спокойно ждёт в соседней папке, и ей не обидно.",
+    "304 дня подряд он коммитил в GitHub каждый день. Потом сознательно бросил, чтобы не переживать из-за квадратиков. Говорит, стало легче. Иногда всё равно заходит посмотреть на зелёную полосу, как на старую фотографию.",
+    "На его канале больше семисот видео. Большая часть про то, как он что-то делал. Никто не просил. Он записывает всё, потому что невозможно потерять то, что сохранено. Он очень серьёзно относится к слову «невозможно».",
+    "Он пробовал разбивать задачи на мелкие кусочки. Заводил devlog.md, ideas.md, roadmap.md. Через два дня забывал, где они лежат. Файлы до сих пор там и ни на кого не обижаются.",
+    "Весь код ИИ ему писать нельзя. Он пробовал. Проект работал, но стал каким-то инородным, как будто его сделал кто-то другой и просто подарил. Мелкие куски можно. Целиком нельзя. Это единственное его правило, которое он ни разу не нарушил.",
+    "Лучше всего он работает, когда рядом кто-то есть. Не помогает, а просто есть. Если кто-то смотрит и говорит «о, прикольно», работа идёт втрое быстрее. Звучит как слабость, но это просто особенность двигателя.",
+    "Он не любит процедурную генерацию. Случайность ему быстро надоедает. Он хочет знать, что стоит в каждой комнате, потому что сам её туда поставил.",
+    "Ему нравится страшное, но без расчленёнки. Пустые коридоры, глючные текстуры, вода по колено, звуки из соседней комнаты. Страшные сны он считает интересным опытом, а не проблемой. Иногда записывает их, чтобы потом построить.",
+    "Он слушает bootleg и glitchcore, когда кодит. Чем хуже качество записи, тем лучше. Чистый звук отвлекает. Нужно, чтобы в музыке чувствовался кто-то, кто тоже что-то делал руками.",
+    "Часто бывает, что к двум ночи он уже не помнит, с чего начал вечер. Зато помнит, что в 2:47 у него всегда лучшие идеи. Утром они выглядят чуть хуже, но в них всё равно что-то есть.",
+    "Он хочет, чтобы его запомнили как личность, а не как набор файлов. Поэтому и прячет этот текст так далеко. Если ты его нашёл, значит, ты один из немногих, кто искал красные таблички. Спасибо.",
+    "Автор мода не может пройти мимо задачи, которую уже кто-то решил. Ему обязательно нужно решить её заново, но по-своему. Он называет это «понять, как оно работает». Остальные называют это «опять велосипед».",
+    "Когда Rojo не умел сохранять плейс как файл, он не стал искать другой способ. Он начал писать свой Rojo. Игра, ради которой всё это затевалось, к тому моменту уже забыла, что её собирались делать.",
+    "У него есть парсер GitHub, проводник по GitHub, плагины для Paint.NET, генератор ресурс-паков и конструктор википедий. Всё работает. Он считает, что в этом нет ничего особенного. Это самая подозрительная часть.",
+    "Видеоредактор он выбирает по одному критерию: сколько раз тот вылетит, прежде чем он расстроится. Один редактор вылетал и терял проекты, и его удалили. Другой открылся, показал сорок панелей, и вечер закончился, не начавшись.",
+    "Он ставит себе дедлайны: «3 игры за 80 дней». Дедлайн живёт примерно неделю. Потом он вежливо отходит в сторону и делает вид, что просто стоял рядом.",
+    "Лучший момент в любом его проекте наступает в первый вечер. Всё ещё возможно, ничего не сломано, и в голове уже готовая игра. Дальше начинается реальность, которой он, честно говоря, не очень доверяет.",
+    "Если в проекте появляется слово «настройки», «меню» или «инвентарь», он на секунду задумывается, не пора ли написать новый движок.",
+    "Он называет свои движки woowzengine и woowzlib. Они не прячутся в сундуках и не продаются. Они просто лежат и ждут, когда он вернётся и скажет: «Ладно, теперь контент». Они очень терпеливые.",
+    "Рендер текста он считает серьёзным достижением. И правильно считает. Это один из тех моментов, когда пустой экран впервые говорит с тобой.",
+    "Он хочет, чтобы игра запускалась и как exe, и в браузере. Разумно. Он понимает, что без этого она рискует так и остаться в папке. Но папка почему-то всё равно побеждает.",
+    "У него есть привычка называть всё с приставкой woowz. Если ты видишь слово с этой приставкой, оно либо его, либо должно быть его.",
+    "Он любит глитчи. Не как баг, который нужно чинить, а как место, где мир на секунду показывает, из чего он сделан. Иногда он специально ломает текстуры, чтобы посмотреть, кто там прячется.",
+    "Лиминальные пространства для него не просто эстетика. Это такие места, где никого нет, но кажется, что только что были. Он считает, что это самое честное чувство из всех, какие умеют делать игры.",
+    "Он тратит часы на мод для Gmod, которым, возможно, воспользуются три человека. Двое из них будут смеяться. Третий, возможно, поймёт. Ради этого третьего всё и делается.",
+    "Он может записать себя за любым занятием и выложить, если считает, что это когда-нибудь пригодится. Архив растёт сам по себе. Иногда он удивляется, что в нём накопилось, и тут же записывает видео об этом.",
+    "Он умеет спорить с ИИ, вежливо не соглашаться и просить «короче». Но когда ИИ пишет весь код за него, ему становится скучно, и он начинает искать, что бы тут сломать самому.",
+    "Он любит музыку, в которой слышно, что что-то пошло не так: сбитый ритм, хрип, обрыв, плохой микрофон, стыки между треками. Идеальный звук ему кажется слишком вежливым.",
+    "Он не любит рутину. Не любит так, что почти уважает: она единственная настолько последовательна, что не меняется ради него.",
+    "Он часто объясняет что-то и вдруг замечает, что говорит слишком быстро. Тогда он сам замолкает, делает паузу и говорит: «Короче, потом покажу». Показывает действительно потом. Обычно ночью.",
+    "Если ему сказать «это невозможно», он не обидится. Он просто молча откроет редактор и проверит. Если окажется, что невозможно, он запишет это в архив как достижение.",
+    "Идеи приходят к нему всегда в неподходящее время: в душе, в дороге, перед сном, посреди чужого разговора. Если не записать, они не пропадают. Они просто уходят к кому-то, кто записывает.",
+    "Он давно заметил: все его проекты похожи. Другие названия, другие движки, другие миры, но везде кто-то идёт по пустому месту и ищет, где тут выход. Он делает вид, что это совпадение.",
+    "Если ты дочитал до этой таблички, значит, ты искал долго и упрямо. Автор мода тоже так делает: ищет дальше, когда все уже решили, что ничего нет. Добро пожаловать в клуб.",
 }
 
 function ENT:SetupDataTables()
     self:NetworkVar("Int" , 0, "TextID")
     self:NetworkVar("Bool", 0, "TextRare")
-	self:NetworkVar("Bool", 1, "TextRandom")
+    self:NetworkVar("Bool", 1, "TextRandom")
+    self:NetworkVar("Bool", 2, "TextMix")
+    self:NetworkVar("Int",  1, "MixSeed")
 end
 
 function ENT:Initialize()
-	self:SetModel("models/hunter/plates/plate05x05.mdl")
+    self:SetModel("models/hunter/plates/plate05x05.mdl")
     self:SetMaterial("woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/tablet_base")
 
     self:PhysicsInit(SOLID_VPHYSICS)
@@ -458,32 +489,48 @@ function ENT:Initialize()
         PhysicsObject:SetMaterial("rock")
         PhysicsObject:SetMass(20)
     end
-    
-    self.PhysgunDisabled = self.m_PlayerCreator == nil
-    
-	if SERVER then
-		self:SetUseType(SIMPLE_USE)
 
-        local IsRare = self.m_PlayerCreator == nil and math.random() > 0.995
+    self.PhysgunDisabled = self.m_PlayerCreator == nil
+
+    if SERVER then
+        self:SetUseType(SIMPLE_USE)
+
+        local IsRare = self.m_PlayerCreator == nil and math.random() > 0.99
         self:SetTextRare(IsRare)
-		
-		local IsRandom = math.random() > 0.95
-		self:SetTextRandom(IsRandom)
-        
+
+        local IsRandom = math.random() > 0.95
+        self:SetTextRandom(IsRandom)
+
         local Pool = IsRare and TabletTextRare or TabletText
-        
+
         self:SetTextID(math.random(1, #Pool))
-		
-		if IsRandom then
-			timer.Create("gmm_TabletRandom_" .. self:EntIndex(), 0.5, 0, function()
-				if not IsValid(self) then
-					timer.Remove("gmm_TabletRandom_" .. self:EntIndex())
-					return
-				end
-				self:SetTextID(math.random(1, #Pool))
-			end)
-		end
-	end
+        self:SetTextMix(math.random() < 0.02)
+        self:SetMixSeed(math.random(1, 2147483646))
+    end
+end
+
+local RandomDelay = 0.01
+local IdleDelay   = 1
+
+function ENT:Think()
+    local Now = CurTime()
+
+    if not self:GetTextRandom() then
+        self:NextThink(Now + IdleDelay)
+        return true
+    end
+
+    local Pool = TabletText
+    if self:GetTextRare() then Pool = TabletTextRare end
+
+    local Count = Pool ~= nil and #Pool or 0
+
+    if Count > 0 then
+        self:SetTextID(math.random(1, Count))
+    end
+
+    self:NextThink(Now + RandomDelay)
+    return true
 end
 
 function ENT:Use(Activator, Caller)
@@ -494,136 +541,577 @@ function ENT:Use(Activator, Caller)
 end
 
 if CLIENT then
-	local TabletMaterial = Material("woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/tablet")
-	
-	local LerpAlpha = 0 
-	local CurrentText = ""
-    local DisplayColor = Color(0, 255, 0)
-    local TextID = -1
+    local TabletMaterial = Material("woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/tablet")
+
+    local LookDist    = 200
+    local LookDistSqr = LookDist * LookDist
+    local TopSign  = -1
+    local QuadHalf = 23.8 / 2
+    local QuadLift = 1.6
+    local HoloSlot        = 0.08
+    local HoloOffChance   = 0.015
+    local HoloGlitchChance = 0.04
+    local HoloJitter      = 1.2
+    local HoloStretch     = 0.3
+    local HoloFlicker     = 0.06
+    local HoloNoise       = 0.15
+
+    local HoloTint = Vector()
+
+    local function Hash(Value)
+        local Result = math.sin(Value * 12.9898) * 43758.5453
+        return Result - math.floor(Result)
+    end
+
+    local QuadA = Vector()
+    local QuadB = Vector()
+    local QuadC = Vector()
+    local QuadD = Vector()
+
+    local function SetVec(Vec, X, Y, Z)
+        Vec.x = X
+        Vec.y = Y
+        Vec.z = Z
+    end
+    
+    local Margin     = 25
+    local Padding    = 20
+    local LineHeight = 24
+    local BoxW       = 400
+    local TextW      = BoxW - Margin * 2
+
+    local LineSpeed = 100
+    local LinePause = 0.8
+
+    local MixPartsMin   = 2
+    local MixPartsMax   = 4
+    local MixRareChance = 4
+
+    local MixGain = 1.6
+
+    local LockedText = "Обычная не примечательная каменная табличка. С не понятным текстом."
+
+    local ColorNormal     = Color(0,   255, 0  )
+    local ColorRare       = Color(255, 0,   0  )
+    local ColorRandom     = Color(0,   0,   255)
+    local ColorRandomRare = Color(255, 0,   255)
+    local ColorLocked     = Color(255, 255, 0  )
+
+    local ColorMixNormal     = Color(255, 255, 255)
+    local ColorMixRare       = Color(255, 150, 200)
+    local ColorMixRandom     = Color(140, 210, 255)
+    local ColorMixRandomRare = Color(220, 170, 255)
+
+    local ColorTemp  = Color(255, 255, 255, 255)
+    local ColorWhite = Color(255, 255, 255, 255)
+
+    local TintNormal     = Vector(0, 1, 0)
+    local TintRare       = Vector(1, 0, 0)
+    local TintRandom     = Vector(0, 0, 1)
+    local TintRandomRare = Vector(1, 0, 1)
+    local TintLocked     = Vector(1, 1, 0)
+
+    local TintMixNormal     = Vector(1.00 * MixGain, 1.00 * MixGain, 1.00 * MixGain)
+    local TintMixRare       = Vector(1.00 * MixGain, 0.59 * MixGain, 0.78 * MixGain)
+    local TintMixRandom     = Vector(0.55 * MixGain, 0.82 * MixGain, 1.00 * MixGain)
+    local TintMixRandomRare = Vector(0.86 * MixGain, 0.67 * MixGain, 1.00 * MixGain)
+
+    local EmptyPool = {}
+
+    local LerpAlpha    = 0
+    local DisplayColor = ColorNormal
+    local HeaderText   = ""
+    local Lines        = {}
+    local Widths       = {}
+
+    local CacheId       = nil
+    local CacheRare     = nil
+    local CacheRandom   = nil
+    local CacheMix      = nil
+    local CacheSeed     = nil
+    local CacheUnlocked = nil
 
     surface.CreateFont("gmm_TabletFont", {
-		font = "Arial",
-		size = 22,
-		weight = 800,
-		extended = true,
-	})
+        font     = "Arial",
+        size     = 22,
+        weight   = 800,
+        extended = true
+    })
 
-	hook.Add("HUDPaint", "gmm_Tablet_GUI", function()
-		local localPlayer = LocalPlayer()
-		if not IsValid(localPlayer) then return end
-		local Trace = localPlayer:GetEyeTrace()
-		local TEntity = Trace.Entity
-		
-		local IsTargeting = IsValid(TEntity) and TEntity.GetTextID and Trace.HitPos:Distance(Trace.StartPos) < 200
-        
-		if IsTargeting then
-            local IsRare = TEntity:GetTextRare() or false
-			local IsRandom = TEntity:GetTextRandom() or false
-			
-			TextID = TEntity:GetTextID()
-            local Pool = IsRare and TabletTextRare or TabletText
-			CurrentText = Pool[TextID] or "[INVALID TEXT ID (" .. TextID .. " | " .. IsRare .. ")]"
-			
-			if not GMM.Func.DoEntitiesUnlock() then
-				CurrentText = "Обычная не примечательная каменная табличка. С не понятным текстом."
-			end
+    local function SetColor(Col, R, G, B, A)
+        Col.r = R
+        Col.g = G
+        Col.b = B
+        Col.a = A
+        return Col
+    end
 
-            CurrentText = string.gsub(CurrentText, "@user", localPlayer:Nick())
-            CurrentText = string.gsub(CurrentText, "@id"  , tostring(TextID))
-			
-			LerpAlpha = Lerp(FrameTime() * 10, LerpAlpha, 1)
+    -- ----------------------------------------------------------------------
+    -- Цвета
+    -- ----------------------------------------------------------------------
 
-			if IsRandom then
-				if IsRare then
-					DisplayColor = Color(255, 0, 255)
-				else
-					DisplayColor = Color(0, 0, 255)
-				end
-			else
-				if IsRare then
-					DisplayColor = Color(255, 0, 0)
-				else
-					DisplayColor = Color(0, 255, 0)
-				end
-			end
-			
-			if not GMM.Func.DoEntitiesUnlock() then
-				DisplayColor = Color(255, 255, 0)
-			end
-		else
-			LerpAlpha = Lerp(FrameTime() * 10, LerpAlpha, 0)
-		end
+    local function GetTabletColor(IsRare, IsRandom, IsMix, Unlocked)
+        if not Unlocked then return ColorLocked end
 
-		if LerpAlpha > 0.001 then
-			local SW, SH = ScrW(), ScrH()
-			local BoxW = 400
-			local Padding = 20
-			
-			surface.SetFont("gmm_TabletFont")
-			local Margin = 25
-			local TextW = BoxW - Margin * 2
-			
-			local Words = string.Explode(" ", CurrentText)
-			local Lines = {}
-			local CurrentLine = ""
-			for _, Word in ipairs(Words) do
-				local TestLine = CurrentLine == "" and Word or CurrentLine .. " " .. Word
-				local W, _ = surface.GetTextSize(TestLine)
-				if W > TextW then
-					table.insert(Lines, CurrentLine)
-					CurrentLine = Word
-				else
-					CurrentLine = TestLine
-				end
-			end
-			table.insert(Lines, CurrentLine)
+        if IsMix then
+            if IsRandom then
+                if IsRare then return ColorMixRandomRare end
+                return ColorMixRandom
+            end
 
-			local LineHeight = 24
-			local BoxH = 60 + (#Lines * LineHeight)
-			local X = SW - (BoxW + Padding) * LerpAlpha
-			local Y = SH / 2 - (BoxH / 2)
-            
-            local FinalColor = Color(DisplayColor.r, DisplayColor.g, DisplayColor.b, 255 * LerpAlpha)
-            
-			draw.RoundedBox(0, X, Y, BoxW, BoxH, Color(0, 0, 0, 230 * LerpAlpha))
-			draw.RoundedBox(0, X, Y, 5, BoxH, FinalColor)
-			draw.SimpleText(TextID .. ":", "gmm_TabletFont", X + Margin, Y + 15, FinalColor)
-			for i, Txt in ipairs(Lines) do
-				draw.SimpleText(Txt, "gmm_TabletFont", X + Margin, Y + 45 + (i-1) * LineHeight, Color(255, 255, 255, 255 * LerpAlpha))
-			end
-		end
-	end)
+            if IsRare then return ColorMixRare end
 
-	function ENT:Draw()
-		self:DrawModel()
+            return ColorMixNormal
+        end
 
-		local Tint = Vector(0, 1, 0)
-		
-		local IsRare = self.GetTextRare and self.GetTextRare()
-		local IsRandom = self.GetTextRandom and self.GetTextRandom()
-		
-		if IsRandom then
-			if IsRare then
-				Tint = Vector(1, 0, 1)
-			else
-				Tint = Vector(0, 0, 1)
-			end
-		else
-			if IsRare then
-				Tint = Vector(1, 0, 0)
-			end
-		end
-		
-		if not GMM.Func.DoEntitiesUnlock() then
-			Tint = Vector(1, 1, 0)
-		end
+        if IsRandom then
+            if IsRare then return ColorRandomRare end
+            return ColorRandom
+        end
 
-		TabletMaterial:SetVector("$selfillumtint", Tint)
+        if IsRare then return ColorRare end
 
-		local Pos = self:GetPos() + self:GetUp() * 1.6
-		local Size = 23.8 
+        return ColorNormal
+    end
 
-		render.SetMaterial(TabletMaterial)
-		render.DrawQuadEasy(Pos, self:GetUp(), Size, Size, Color(255, 255, 255), self:GetAngles().y)
-	end
+    local function GetTabletTint(IsRare, IsRandom, IsMix, Unlocked)
+        if not Unlocked then return TintLocked end
+
+        if IsMix then
+            if IsRandom then
+                if IsRare then return TintMixRandomRare end
+                return TintMixRandom
+            end
+
+            if IsRare then return TintMixRare end
+
+            return TintMixNormal
+        end
+
+        if IsRandom then
+            if IsRare then return TintRandomRare end
+            return TintRandom
+        end
+
+        if IsRare then return TintRare end
+
+        return TintNormal
+    end
+
+    -- ----------------------------------------------------------------------
+    -- Смешивание
+    -- ----------------------------------------------------------------------
+
+    local function MakeRng(Seed)
+        local State = math.floor(math.abs(Seed)) % 2147483647
+        if State == 0 then State = 1 end
+
+        return function(Min, Max)
+            State = (State * 48271) % 2147483647
+            return Min + State % (Max - Min + 1)
+        end
+    end
+
+    local function SplitChars(Text)
+        local Chars = {}
+
+        for Char in string.gmatch(Text, utf8.charpattern) do
+            Chars[#Chars + 1] = Char
+        end
+
+        return Chars
+    end
+
+    local function SplitWords(Text)
+        local Words = {}
+
+        for Word in string.gmatch(Text, "%S+") do
+            Words[#Words + 1] = Word
+        end
+
+        return Words
+    end
+
+    local function SplitLines(Text)
+        return string.Explode("\n", Text)
+    end
+
+    local function MixInterleave(Lists, Separator)
+        local Longest = 0
+        for i = 1, #Lists do
+            if #Lists[i] > Longest then Longest = #Lists[i] end
+        end
+
+        local Result = {}
+
+        for Index = 1, Longest do
+            for i = 1, #Lists do
+                local Item = Lists[i][Index]
+                if Item ~= nil then Result[#Result + 1] = Item end
+            end
+        end
+
+        return table.concat(Result, Separator)
+    end
+
+    local function MixSlices(Texts)
+        local Count  = #Texts
+        local Result = {}
+
+        for i = 1, Count do
+            local Words = SplitWords(Texts[i])
+            local From  = math.floor((i - 1) / Count * #Words) + 1
+            local To    = math.floor(i / Count * #Words)
+
+            for Index = From, To do
+                Result[#Result + 1] = Words[Index]
+            end
+        end
+
+        return table.concat(Result, " ")
+    end
+
+    local function MixOverlay(Texts, Rng)
+        local Lists   = {}
+        local Longest = 0
+
+        for i = 1, #Texts do
+            Lists[i] = SplitChars(Texts[i])
+            if #Lists[i] > Longest then Longest = #Lists[i] end
+        end
+
+        local Count  = #Lists
+        local Result = {}
+
+        for Index = 1, Longest do
+            local Pick = Rng(1, Count)
+
+            for Step = 0, Count - 1 do
+                local Char = Lists[(Pick - 1 + Step) % Count + 1][Index]
+
+                if Char ~= nil then
+                    Result[#Result + 1] = Char
+                    break
+                end
+            end
+        end
+
+        return table.concat(Result)
+    end
+
+    local MixMethods = {
+        function(Texts, Rng)
+            return MixSlices(Texts)
+        end,
+
+        function(Texts, Rng)
+            local Lists = {}
+            for i = 1, #Texts do Lists[i] = SplitWords(Texts[i]) end
+            return MixInterleave(Lists, " ")
+        end,
+
+        function(Texts, Rng)
+            local Lists = {}
+            for i = 1, #Texts do Lists[i] = SplitChars(Texts[i]) end
+            return MixInterleave(Lists, "")
+        end,
+
+        function(Texts, Rng)
+            local Lists = {}
+            for i = 1, #Texts do Lists[i] = SplitLines(Texts[i]) end
+            return MixInterleave(Lists, "\n")
+        end,
+
+        function(Texts, Rng)
+            return MixOverlay(Texts, Rng)
+        end
+    }
+
+    local function GetPool(IsRare)
+        local Pool = TabletText
+        if IsRare then Pool = TabletTextRare end
+        if Pool == nil then return EmptyPool end
+        return Pool
+    end
+
+    local function GetPartText(Id, IsRare, Nick)
+        local Text = GetPool(IsRare)[Id] or ("[INVALID TEXT ID (" .. tostring(Id) .. " | " .. tostring(IsRare) .. ")]")
+
+        Text = string.gsub(Text, "@user", function() return Nick end)
+        Text = string.gsub(Text, "@id",   function() return tostring(Id) end)
+
+        return Text
+    end
+
+    local function BuildMixed(Id, IsRare, Seed, Nick)
+        local Rng   = MakeRng(Seed)
+        local Count = Rng(MixPartsMin, MixPartsMax)
+
+        local Ids   = {Id}
+        local Texts = {GetPartText(Id, IsRare, Nick)}
+
+        for i = 2, Count do
+            local RareRoll = Rng(1, MixRareChance)
+            local PickRoll = Rng(1, 1000000)
+
+            local PartRare = RareRoll == 1 and #GetPool(true) > 0
+            local Pool     = GetPool(PartRare)
+            local PartId   = PickRoll % math.max(#Pool, 1) + 1
+
+            Ids  [i] = PartId
+            Texts[i] = GetPartText(PartId, PartRare, Nick)
+        end
+
+        local Method = Rng(1, #MixMethods)
+
+        return table.concat(Ids, "+"), MixMethods[Method](Texts, Rng)
+    end
+
+    -- ----------------------------------------------------------------------
+    -- Текст и отрисовка
+    -- ----------------------------------------------------------------------
+
+    local function BuildLines(Text)
+        Lines  = {}
+        Widths = {}
+
+        surface.SetFont("gmm_TabletFont")
+
+        for _, Paragraph in ipairs(string.Explode("\n", Text)) do
+            if Paragraph == "" then
+                Lines [#Lines + 1] = ""
+                Widths[#Widths + 1] = 0
+            else
+                local Current = ""
+
+                for _, Word in ipairs(string.Explode(" ", Paragraph)) do
+                    local Test = Word
+                    if Current ~= "" then Test = Current .. " " .. Word end
+
+                    if Current ~= "" and surface.GetTextSize(Test) > TextW then
+                        Lines [#Lines + 1] = Current
+                        Widths[#Widths + 1] = surface.GetTextSize(Current)
+                        Current = Word
+                    else
+                        Current = Test
+                    end
+                end
+
+                if Current ~= "" then
+                    Lines [#Lines + 1] = Current
+                    Widths[#Widths + 1] = surface.GetTextSize(Current)
+                end
+            end
+        end
+    end
+
+    local function UpdateTarget(Ent, Ply)
+        local Unlocked = GMM.Func.DoEntitiesUnlock()
+        local IsRare   = Ent.GetTextRare   ~= nil and Ent:GetTextRare()   or false
+        local IsRandom = Ent.GetTextRandom ~= nil and Ent:GetTextRandom() or false
+        local IsMix    = Ent.GetTextMix    ~= nil and Ent:GetTextMix()    or false
+        local Seed     = Ent.GetMixSeed    ~= nil and Ent:GetMixSeed()    or 0
+        local Id       = Ent:GetTextID()
+
+        DisplayColor = GetTabletColor(IsRare, IsRandom, IsMix, Unlocked)
+
+        if Id == CacheId and IsRare == CacheRare and IsRandom == CacheRandom and IsMix == CacheMix and Seed == CacheSeed and Unlocked == CacheUnlocked then return end
+
+        CacheId       = Id
+        CacheRare     = IsRare
+        CacheRandom   = IsRandom
+        CacheMix      = IsMix
+        CacheSeed     = Seed
+        CacheUnlocked = Unlocked
+
+        local Nick   = Ply:Nick()
+        local Header = tostring(Id)
+        local Text   = LockedText
+
+        if Unlocked then
+            if IsMix then
+                Header, Text = BuildMixed(Id, IsRare, Seed, Nick)
+            else
+                Text = GetPartText(Id, IsRare, Nick)
+            end
+        end
+
+        HeaderText = Header .. ":"
+        BuildLines(Text)
+    end
+
+    local function DrawLine(Text, X, Y, LineW, Index, Alpha)
+        SetColor(ColorTemp, 255, 255, 255, 255 * Alpha)
+
+        if LineW <= TextW then
+            draw.SimpleText(Text, "gmm_TabletFont", X, Y, ColorTemp)
+            return
+        end
+
+        local Overflow = LineW - TextW
+        local Travel   = Overflow / LineSpeed
+        local Cycle    = Travel * 2 + LinePause * 2
+        local Time     = (CurTime() + Index * 0.7) % Cycle
+        local Offset   = 0
+
+        if Time < LinePause then
+            Offset = 0
+        elseif Time < LinePause + Travel then
+            Offset = (Time - LinePause) * LineSpeed
+        elseif Time < LinePause * 2 + Travel then
+            Offset = Overflow
+        else
+            Offset = Overflow - (Time - LinePause * 2 - Travel) * LineSpeed
+        end
+
+        Offset = math.Clamp(Offset, 0, Overflow)
+
+        render.SetScissorRect(X, Y - 2, X + TextW, Y + LineHeight, true)
+        draw.SimpleText(Text, "gmm_TabletFont", X - Offset, Y, ColorTemp)
+        render.SetScissorRect(0, 0, 0, 0, false)
+
+        local Pulse = 0.5 + 0.5 * math.sin(CurTime() * 4 + Index)
+
+        surface.SetDrawColor(DisplayColor.r, DisplayColor.g, DisplayColor.b, (60 + 40 * Pulse) * Alpha)
+        surface.DrawRect(X + TextW - 2, Y + 2, 2, LineHeight - 4)
+    end
+
+    local function DrawPanel(Alpha)
+        local Count = #Lines
+        if Count == 0 then return end
+
+        local BoxH = 60 + Count * LineHeight
+        local X    = math.floor(ScrW() - (BoxW + Padding) * Alpha)
+        local Y    = math.floor(ScrH() / 2 - BoxH / 2)
+
+        surface.SetDrawColor(0, 0, 0, 230 * Alpha)
+        surface.DrawRect(X, Y, BoxW, BoxH)
+
+        surface.SetDrawColor(DisplayColor.r, DisplayColor.g, DisplayColor.b, 255 * Alpha)
+        surface.DrawRect(X, Y, 5, BoxH)
+
+        SetColor(ColorTemp, DisplayColor.r, DisplayColor.g, DisplayColor.b, 255 * Alpha)
+        draw.SimpleText(HeaderText, "gmm_TabletFont", X + Margin, Y + 15, ColorTemp)
+
+        for i = 1, Count do
+            DrawLine(Lines[i], X + Margin, Y + 45 + (i - 1) * LineHeight, Widths[i], i, Alpha)
+        end
+    end
+
+    hook.Add("HUDPaint", "gmm_Tablet_GUI", function()
+        local Ply = LocalPlayer()
+        if not IsValid(Ply) then return end
+
+        local Trace  = Ply:GetEyeTrace()
+        local Ent    = Trace.Entity
+        local Target = IsValid(Ent) and Ent.GetTextID ~= nil and Trace.HitPos:DistToSqr(Trace.StartPos) < LookDistSqr
+
+        local Delta = math.min(FrameTime() * 10, 1)
+
+        if Target then
+            UpdateTarget(Ent, Ply)
+            LerpAlpha = Lerp(Delta, LerpAlpha, 1)
+        else
+            LerpAlpha = Lerp(Delta, LerpAlpha, 0)
+        end
+
+        if LerpAlpha <= 0.001 then return end
+
+        DrawPanel(LerpAlpha)
+    end)
+
+    function ENT:Draw()
+        self:DrawModel()
+
+        local IsRare   = self.GetTextRare   ~= nil and self:GetTextRare()
+        local IsRandom = self.GetTextRandom ~= nil and self:GetTextRandom()
+        local IsMix    = self.GetTextMix    ~= nil and self:GetTextMix()
+
+        local Now  = CurTime()
+        local Seed = self:EntIndex() * 7.13
+        local Slot = math.floor(Now / HoloSlot)
+        local Roll = Hash(Slot + Seed)
+
+        if Roll < HoloOffChance then return end
+
+        local Glitch = Roll < HoloOffChance + HoloGlitchChance
+        local Bright = 1 + math.sin(Now * 37 + Seed) * HoloFlicker - Hash(math.floor(Now * 30) + Seed) * HoloNoise
+        local Shift  = 0
+        local Lift   = 0
+        local Stretch = 1
+
+        if Glitch then
+            Bright  = 0.4 + Hash(Slot * 3.7 + Seed) * 0.8
+            Shift   = (Hash(Slot * 1.7 + Seed) - 0.5) * 2 * HoloJitter
+            Lift    = (Hash(Slot * 5.3 + Seed) - 0.5) * HoloJitter * 0.5
+            Stretch = 1 + (Hash(Slot * 2.3 + Seed) - 0.5) * HoloStretch
+        end
+
+        local Tint = GetTabletTint(IsRare, IsRandom, IsMix, GMM.Func.DoEntitiesUnlock())
+
+        HoloTint.x = Tint.x * Bright
+        HoloTint.y = Tint.y * Bright
+        HoloTint.z = Tint.z * Bright
+
+        TabletMaterial:SetVector("$selfillumtint", HoloTint)
+
+        local Normal = self:GetUp()
+        local Nx     = Normal.x
+        local Ny     = Normal.y
+        local Nz     = Normal.z
+
+        local Origin = self:GetPos()
+        local Px     = Origin.x + Nx * QuadLift
+        local Py     = Origin.y + Ny * QuadLift
+        local Pz     = Origin.z + Nz * QuadLift
+
+        local Eye = EyePos()
+        local Dx  = Eye.x - Px
+        local Dy  = Eye.y - Py
+        local Dz  = Eye.z - Pz
+        local Dot = Dx * Nx + Dy * Ny + Dz * Nz
+
+        local Tx  = Dx - Nx * Dot
+        local Ty  = Dy - Ny * Dot
+        local Tz  = Dz - Nz * Dot
+        local Len = math.sqrt(Tx * Tx + Ty * Ty + Tz * Tz)
+
+        if Len < 0.001 then
+            local Forward = self:GetForward()
+
+            Tx = Forward.x
+            Ty = Forward.y
+            Tz = Forward.z
+        else
+            local Inv = TopSign / Len
+
+            Tx = Tx * Inv
+            Ty = Ty * Inv
+            Tz = Tz * Inv
+        end
+
+        local Rx = Ty * Nz - Tz * Ny
+        local Ry = Tz * Nx - Tx * Nz
+        local Rz = Tx * Ny - Ty * Nx
+
+        Px = Px + Rx * Shift + Tx * Lift
+        Py = Py + Ry * Shift + Ty * Lift
+        Pz = Pz + Rz * Shift + Tz * Lift
+
+        local Ux = Tx * QuadHalf
+        local Uy = Ty * QuadHalf
+        local Uz = Tz * QuadHalf
+
+        local Sx = Rx * QuadHalf * Stretch
+        local Sy = Ry * QuadHalf * Stretch
+        local Sz = Rz * QuadHalf * Stretch
+
+        SetVec(QuadA, Px + Ux - Sx, Py + Uy - Sy, Pz + Uz - Sz)
+        SetVec(QuadB, Px + Ux + Sx, Py + Uy + Sy, Pz + Uz + Sz)
+        SetVec(QuadC, Px - Ux + Sx, Py - Uy + Sy, Pz - Uz + Sz)
+        SetVec(QuadD, Px - Ux - Sx, Py - Uy - Sy, Pz - Uz - Sz)
+
+        render.SetMaterial(TabletMaterial)
+        render.DrawQuad(QuadA, QuadB, QuadC, QuadD, ColorWhite)
+    end
 end

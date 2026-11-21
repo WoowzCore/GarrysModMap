@@ -109,6 +109,7 @@ ErrorPosition = Vector(-100000, -100000, -100000)
 
 include("gmm/shared/convars.lua")
 include("gmm/shared/playermodels.lua")
+include("gmm/shared/graphic_zones.lua")
 
 if SERVER then
     AddCSLuaFile("gmm/bootstrap_client.lua")

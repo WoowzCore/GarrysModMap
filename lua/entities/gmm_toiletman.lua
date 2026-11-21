@@ -1,5 +1,10 @@
 ﻿AddCSLuaFile()
 
+if SERVER then
+    local Ok, Err = pcall(include, "gmm/data/toiletman_talk.lua")
+    if not Ok then print("[GMM] TOILETMAN TALK DATA FAILED! " .. tostring(Err)) end
+end
+
 ENT.Type	  = "nextbot"
 ENT.Base	  = "base_nextbot"
 ENT.PrintName = "TOILET LIVING MAN"
@@ -190,19 +195,32 @@ local Texture_Costume = {
 		"perftest/gman/gman_shin1","perftest/gman/gman_arm-l1","perftest/gman/gman_pantsbtm1",
 		"perftest/gman/gman_slvtip1"
 	},
-	{
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_back",
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pants",
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_arm",
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume4_front",
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pelvis",
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_collar",
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_armr",
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_shin",
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_arml",
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pantsbottom",
-		"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_slvtip"
-	},
+    {
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_back",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pants",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_arm",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume4_front",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pelvis",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_collar",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_armr",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_shin",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_arml",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pantsbottom",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_slvtip"
+    },
+    {
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_back",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pants",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_arm",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume5_front",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pelvis",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_collar",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_armr",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_shin",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_arml",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_pantsbottom",
+        "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/model/toiletman/costume1_slvtip"
+    },
 }
 
 local Texture_Shoe = {
@@ -233,25 +251,33 @@ local RareModels = {
 	"models/shadertest/vertexlitenvmappedbumpmap.mdl",
 	"models/shadertest/vertexlittextureplusmaskedenvbump.mdl",
 	"models/zombie/poison.mdl",
-	"models/gman_high.mdl"
+	"models/gman_high.mdl",
+    "models/woowz11/player/pavelpistv.mdl",
+    "models/woowz_map/prikol/le_sponge_rag_player.mdl"
 }
 
 function ENT:SetupDataTables()
-	self:NetworkVar("Bool", 0, "IsMoving")
-	self:NetworkVar("Bool", 1, "IsPanicking")
-	self:NetworkVar("Bool", 2, "Init")
+    self:NetworkVar("Bool", 0, "IsMoving")
+    self:NetworkVar("Bool", 1, "IsPanicking")
+    self:NetworkVar("Bool", 2, "Init")
 
-	self:NetworkVar("Int", 0, "RunSpeed")
-	self:NetworkVar("Int", 1, "NameColorR")
-	self:NetworkVar("Int", 2, "NameColorG")
-	self:NetworkVar("Int", 3, "NameColorB")
-	self:NetworkVar("Int", 4, "TextureCase")
-	self:NetworkVar("Int", 5, "TextureCostume")
-	self:NetworkVar("Int", 6, "TextureShoe")
-	self:NetworkVar("Int", 7, "RareModel")
-	self:NetworkVar("Int", 8, "PushForce")
+    self:NetworkVar("Int", 0, "RunSpeed")
+    self:NetworkVar("Int", 1, "NameColorR")
+    self:NetworkVar("Int", 2, "NameColorG")
+    self:NetworkVar("Int", 3, "NameColorB")
+    self:NetworkVar("Int", 4, "TextureCase")
+    self:NetworkVar("Int", 5, "TextureCostume")
+    self:NetworkVar("Int", 6, "TextureShoe")
+    self:NetworkVar("Int", 7, "RareModel")
+    self:NetworkVar("Int", 8, "PushForce")
+    self:NetworkVar("Int", 9, "SayId")
+    self:NetworkVar("Int", 10, "SayKind")
 
-	self:NetworkVar("String", 0, "BotName")
+    self:NetworkVar("Float", 0, "SayStart")
+    self:NetworkVar("Float", 1, "SayDuration")
+
+    self:NetworkVar("String", 0, "BotName")
+    self:NetworkVar("String", 1, "SayText")
 end
 
 function ENT:Initialize()
@@ -503,6 +529,10 @@ if SERVER then
 		end
 
 		self.LastAttacker = Attacker
+        if CurTime() > (self.NextHurtSay or 0) then
+            self.NextHurtSay = CurTime() + 2.5
+            self:SayRandom("Hurt", "", 1)
+        end
 		self:SetIsPanicking(true)
 		self.PanicEndTime = CurTime() + 12
 
@@ -542,6 +572,11 @@ if SERVER then
 	function ENT:OnKilled(dmg)
 		if self.Died then return end
 		self.Died = true
+        for _, Other in ipairs(ents.FindInSphere(self:GetPos(), 400)) do
+            if Other ~= self and IsToiletMan(Other) and math.random() < 0.5 then
+                Other:SayRandom("Witness", "", 2)
+            end
+        end
 
 		local Pos = self:GetPos() + Vector(0, 0, 30)
 
@@ -1171,7 +1206,250 @@ if SERVER then
 		end
 	end
 
-	function ENT:Think()
+    -- ----------------------------------------------------------------------
+    -- Разговоры
+    -- ----------------------------------------------------------------------
+
+    local TalkStop       = true
+    local TalkRange      = 450
+    local TalkRangeSqr   = TalkRange * TalkRange
+    local TalkStartRange = 300
+    local TalkDelayMin   = 6
+    local TalkDelayMax   = 20
+    local TalkEyeOffset  = Vector(0, 0, 50)
+
+    local AiDisabledVar = GetConVar("ai_disabled")
+
+    local function IsAiDisabled()
+        return AiDisabledVar ~= nil and AiDisabledVar:GetBool()
+    end
+
+    local function GetTalkData()
+        if GMM == nil or GMM.Data == nil then return nil end
+        return GMM.Data.ToiletTalk
+    end
+
+    local function FormatLine(Line, SelfName, OtherName)
+        Line = string.Replace(Line, "{Self}", SelfName)
+        Line = string.Replace(Line, "{Other}", OtherName)
+        return Line
+    end
+
+    local function HoldForTalk(Bot, Other)
+        if not TalkStop then return end
+
+        Bot.loco:SetDesiredSpeed(0)
+        Bot.loco:FaceTowards(Other:GetPos())
+        Bot.LastPosTime = CurTime()
+
+        if Bot:GetActivity() ~= ACT_IDLE then
+            Bot:StartActivity(ACT_IDLE)
+        end
+    end
+
+    local function ReleaseFromTalk(Bot)
+        if not TalkStop then return end
+        if not IsValid(Bot) then return end
+        if Bot:GetIsPanicking() then return end
+        if Bot:IsResting() then return end
+
+        Bot.loco:SetDesiredSpeed(Bot:GetRunSpeed())
+        Bot:StartActivity(Bot:GetIsMoving() and ACT_WALK or ACT_IDLE)
+    end
+
+    function ENT:Say(Text, Kind)
+        if IsAiDisabled() then return 0 end
+        if Text == nil or Text == "" then return 0 end
+
+        Kind = Kind or 1
+
+        local Length = utf8.len(Text) or #Text
+        local Duration
+
+        if Kind == 2 then
+            -- Мысли: читаем медленнее, даём больше времени
+            -- минимум 5 сек, +0.12 сек на символ, максимум 18 сек
+            Duration = math.Clamp(3.5 + Length * 0.12, 5, 18)
+        else
+            -- Речь: чуть щедрее, чем было (было 1.8 + 0.07, 2.5..10)
+            Duration = math.Clamp(2.2 + Length * 0.09, 3, 12)
+        end
+
+        self:SetSayText(Text)
+        self:SetSayKind(Kind)
+        self:SetSayDuration(Duration)
+        self:SetSayStart(CurTime())
+        self:SetSayId(self:GetSayId() + 1)
+
+        return Duration
+    end
+
+    function ENT:SayRandom(GroupName, OtherName, Kind)
+        local Data = GetTalkData()
+        if Data == nil then return 0 end
+
+        local Group = Data[GroupName]
+        if Group == nil or #Group == 0 then return 0 end
+
+        local Line = FormatLine(Group[math.random(#Group)], self:GetBotName(), OtherName or "")
+        return self:Say(Line, Kind)
+    end
+
+    function ENT:IsTalking()
+        return self.Dialogue ~= nil or IsValid(self.TalkWith)
+    end
+
+    function ENT:FindTalkPartner()
+        local MyPos    = self:GetPos()
+        local Best     = nil
+        local BestDist = TalkStartRange * TalkStartRange
+
+        for _, Other in ipairs(ents.FindInSphere(MyPos, TalkStartRange)) do
+            if Other ~= self and IsToiletMan(Other) and not Other.Died and not Other:IsTalking() and not Other:GetIsPanicking() then
+                local Dist = MyPos:DistToSqr(Other:GetPos())
+
+                if Dist < BestDist then
+                    local Tr = util.TraceLine({
+                        start  = MyPos + TalkEyeOffset,
+                        endpos = Other:GetPos() + TalkEyeOffset,
+                        filter = {self, Other},
+                        mask   = MASK_SOLID_BRUSHONLY
+                    })
+
+                    if not Tr.Hit then
+                        Best     = Other
+                        BestDist = Dist
+                    end
+                end
+            end
+        end
+
+        return Best
+    end
+
+    function ENT:StartDialogue(Partner, Data)
+        local Dialogues = Data.Dialogues
+        if Dialogues == nil or #Dialogues == 0 then return end
+
+        self.Dialogue = {
+            ["Script"]  = Dialogues[math.random(#Dialogues)],
+            ["Index"]   = 1,
+            ["Partner"] = Partner,
+            ["NextAt"]  = CurTime()
+        }
+        Partner.TalkWith = self
+    end
+
+    function ENT:EndDialogue(Lost)
+        local State = self.Dialogue
+        self.Dialogue = nil
+        self.TalkNext = CurTime() + math.Rand(TalkDelayMin, TalkDelayMax)
+
+        if State == nil then return end
+
+        local Partner = State.Partner
+        ReleaseFromTalk(self)
+
+        if IsValid(Partner) then
+            Partner.TalkWith = nil
+            Partner.TalkNext = CurTime() + math.Rand(TalkDelayMin, TalkDelayMax)
+            ReleaseFromTalk(Partner)
+        end
+
+        if Lost then
+            local PartnerName = IsValid(Partner) and Partner:GetBotName() or ""
+            self:SayRandom("Lost", PartnerName, 2)
+            if IsValid(Partner) and not Partner.Died then
+                Partner:SayRandom("Lost", self:GetBotName(), 2)
+            end
+        end
+    end
+
+    function ENT:DialogueThink(Now)
+        local State   = self.Dialogue
+        local Partner = State.Partner
+
+        if not IsValid(Partner) or Partner.Died or self.Died then
+            self:EndDialogue(true)
+            return
+        end
+
+        if self:GetIsPanicking() or Partner:GetIsPanicking() then
+            self:EndDialogue(false)
+            return
+        end
+
+        if self:GetPos():DistToSqr(Partner:GetPos()) > TalkRangeSqr then
+            self:EndDialogue(true)
+            return
+        end
+
+        HoldForTalk(self, Partner)
+        HoldForTalk(Partner, self)
+
+        if Now < State.NextAt then return end
+
+        local Line = State.Script[State.Index]
+        if Line == nil then
+            self:EndDialogue(false)
+            return
+        end
+
+        local Speaker  = (State.Index % 2 == 1) and self or Partner
+        local Listener = (Speaker == self) and Partner or self
+
+        local Kind = 1
+        if string.sub(Line, 1, 1) == "~" then
+            Kind = 2
+            Line = string.sub(Line, 2)
+        end
+
+        local Duration = Speaker:Say(FormatLine(Line, Speaker:GetBotName(), Listener:GetBotName()), Kind)
+
+        State.Index  = State.Index + 1
+        State.NextAt = Now + Duration + math.Rand(0.4, 1.2)
+    end
+
+    function ENT:TalkThink()
+        if IsAiDisabled() then
+            if self.Dialogue ~= nil then self:EndDialogue(false) end
+            return
+        end
+
+        local Now = CurTime()
+
+        if self.TalkNext == nil then
+            self.TalkNext = Now + math.Rand(3, TalkDelayMax)
+            return
+        end
+
+        if self.Dialogue ~= nil then
+            self:DialogueThink(Now)
+            return
+        end
+
+        if Now < self.TalkNext then return end
+        self.TalkNext = Now + math.Rand(TalkDelayMin, TalkDelayMax)
+
+        if self.Died or self:GetIsPanicking() or IsValid(self.TalkWith) then return end
+
+        local Data = GetTalkData()
+        if Data == nil then return end
+
+        if math.random() < 0.5 then
+            local Partner = self:FindTalkPartner()
+            if Partner ~= nil then
+                self:StartDialogue(Partner, Data)
+                return
+            end
+        end
+
+        if math.random() < 0.4 then
+            self:SayRandom("Thoughts", "", 2)
+        end
+    end
+
+    function ENT:Think()
         self:KeepUpright()
 
         local Pos = self:GetPos()
@@ -1182,59 +1460,272 @@ if SERVER then
             self:FixStuckInGeometry()
         end
 
+        self:TalkThink()
+
         self:NextThink(CurTime() + 0.05)
         return true
     end
 end
 
 if CLIENT then
-	local NICK_NEAR_DIST  = 300
-	local NICK_FAR_DIST   = 600
-	local NICK_FADE_SPEED = 3
+    local NICK_NEAR_DIST  = 300
+    local NICK_FAR_DIST   = 600
+    local NICK_FADE_SPEED = 3
 
-	function ENT:Initialize()
-		self.NickAlpha = 0
-	end
+    local BubbleNearDist = 600
+    local BubbleFarDist  = 1000
+    local BubbleMaxWidth = 340
+    local BubblePadX     = 18
+    local BubblePadY     = 12
+    local BubbleRadius   = 14
+    local BubbleTailH    = 18
+    local BubbleOffset   = Vector(0, 0, 92)
 
-	function ENT:Think()
-		local Ply = LocalPlayer()
-		if not IsValid(Ply) then return end
+    local FontSpeech  = "gmm_ToiletBubble"
+    local FontThought = "gmm_ToiletBubbleThought"
 
-		local Dist = self:GetPos():Distance(Ply:GetPos())
+    -- Основной текст: вес 900 (максимум), плюс запасной шрифт пожирнее
+    surface.CreateFont(FontSpeech,  {
+        font = "Arial",
+        size = 32,
+        weight = 900,
+        extended = true,
+        antialias = true,
+    })
 
-		local TargetAlpha
-		if Dist <= NICK_NEAR_DIST then
-			TargetAlpha = 1
-		elseif Dist >= NICK_FAR_DIST then
-			TargetAlpha = 0
-		else
-			TargetAlpha = 1 - (Dist - NICK_NEAR_DIST) / (NICK_FAR_DIST - NICK_NEAR_DIST)
-		end
+    -- Мысли: курсив, но тоже жирный
+    surface.CreateFont(FontThought, {
+        font = "Arial",
+        size = 30,
+        weight = 800,
+        italic = true,
+        extended = true,
+        antialias = true,
+    })
 
-		self.NickAlpha = Lerp(FrameTime() * NICK_FADE_SPEED, self.NickAlpha or 0, TargetAlpha)
+    -- Тонкий шрифт для обводки (рисуем текст несколько раз вокруг)
+    surface.CreateFont(FontSpeech .. "Outline", {
+        font = "Arial",
+        size = 32,
+        weight = 900,
+        extended = true,
+        antialias = true,
+        outline = true,
+    })
+    surface.CreateFont(FontThought .. "Outline", {
+        font = "Arial",
+        size = 30,
+        weight = 800,
+        italic = true,
+        extended = true,
+        antialias = true,
+        outline = true,
+    })
 
-		self:NextThink(CurTime() + 0.05)
-		return true
-	end
+    local ColorOutline     = Color(20, 20, 20, 255)
+    local ColorSpeechBack  = Color(255, 255, 255, 255)
+    local ColorSpeechText  = Color(10, 10, 10, 255)
+    local ColorThoughtBack = Color(225, 235, 255, 255)
+    local ColorThoughtText = Color(40, 50, 80, 255)
 
-	function ENT:Draw()
-		self:DrawModel()
+    local TailPoly = {
+        {x = -10, y = -BubbleTailH - 4},
+        {x =  10, y = -BubbleTailH - 4},
+        {x =   0, y = 0}
+    }
 
-		local Alpha = self.NickAlpha or 0
-		if Alpha <= 0.01 then return end
+    -- Хвост
+    local TailOutlinePoly = {
+        {x = -15, y = -BubbleTailH - 4},
+        {x =  15, y = -BubbleTailH - 4},
+        {x =   0, y = 6}
+    }
 
-		local Pos = self:GetPos() + Vector(0, 0, 80)
-		local Ang = Angle(0, LocalPlayer():EyeAngles().y - 90, 90)
+    local function WrapText(Text, FontName, MaxWidth)
+        surface.SetFont(FontName)
 
-		cam.Start3D2D(Pos, Ang, 0.2)
-		draw.SimpleText(
-			self:GetBotName(),
-			"ChatFont",
-			0, 0,
-			Color(self:GetNameColorR(), self:GetNameColorG(), self:GetNameColorB(), 255 * Alpha),
-			TEXT_ALIGN_CENTER,
-			TEXT_ALIGN_CENTER
-		)
-		cam.End3D2D()
-	end
+        local Lines = {}
+        local Line  = ""
+
+        for Word in string.gmatch(Text, "%S+") do
+            local Test = Word
+            if Line ~= "" then Test = Line .. " " .. Word end
+
+            local Width = surface.GetTextSize(Test)
+            if Width > MaxWidth and Line ~= "" then
+                Lines[#Lines + 1] = Line
+                Line = Word
+            else
+                Line = Test
+            end
+        end
+
+        if Line ~= "" then Lines[#Lines + 1] = Line end
+        return Lines
+    end
+
+    local function DrawCircle(X, Y, Radius, Color)
+        draw.RoundedBox(Radius, X - Radius, Y - Radius, Radius * 2, Radius * 2, Color)
+    end
+
+    function ENT:Initialize()
+        self.NickAlpha = 0
+        self.BubbleId  = 0
+    end
+
+    function ENT:Think()
+        local Ply = LocalPlayer()
+        if not IsValid(Ply) then return end
+
+        local Dist = self:GetPos():Distance(Ply:GetPos())
+
+        local TargetAlpha
+        if Dist <= NICK_NEAR_DIST then
+            TargetAlpha = 1
+        elseif Dist >= NICK_FAR_DIST then
+            TargetAlpha = 0
+        else
+            TargetAlpha = 1 - (Dist - NICK_NEAR_DIST) / (NICK_FAR_DIST - NICK_NEAR_DIST)
+        end
+
+        self.NickAlpha = Lerp(FrameTime() * NICK_FADE_SPEED, self.NickAlpha or 0, TargetAlpha)
+
+        self:NextThink(CurTime() + 0.05)
+        return true
+    end
+
+    function ENT:BuildBubble(Id)
+        local Kind     = self:GetSayKind()
+        local FontName = (Kind == 2) and FontThought or FontSpeech
+        local Lines    = WrapText(self:GetSayText(), FontName, BubbleMaxWidth)
+
+        surface.SetFont(FontName)
+
+        local MaxWidth = 0
+        for _, Line in ipairs(Lines) do
+            local Width = surface.GetTextSize(Line)
+            if Width > MaxWidth then MaxWidth = Width end
+        end
+
+        local _, LineH = surface.GetTextSize("A")
+
+        self.BubbleId     = Id
+        self.BubbleKind   = Kind
+        self.BubbleFont   = FontName
+        self.BubbleLines  = Lines
+        self.BubbleLineH  = LineH
+        self.BubbleWidth  = MaxWidth + BubblePadX * 2
+        self.BubbleHeight = #Lines * LineH + BubblePadY * 2
+    end
+
+    function ENT:DrawBubble()
+        local Id = self:GetSayId()
+        if Id == 0 then return end
+
+        local Age      = math.max(CurTime() - self:GetSayStart(), 0)
+        local Duration = self:GetSayDuration()
+        if Age >= Duration then return end
+
+        local Ply = LocalPlayer()
+        if not IsValid(Ply) then return end
+
+        local Dist      = self:GetPos():Distance(Ply:GetPos())
+        local DistAlpha = 1 - math.Clamp((Dist - BubbleNearDist) / (BubbleFarDist - BubbleNearDist), 0, 1)
+        if DistAlpha <= 0.01 then return end
+
+        if Id ~= self.BubbleId then self:BuildBubble(Id) end
+
+        local FadeIn  = math.min(Age / 0.2, 1)
+        local FadeOut = math.min((Duration - Age) / 0.4, 1)
+        local Alpha   = math.min(FadeIn, FadeOut) * DistAlpha
+        local A       = math.floor(255 * Alpha)
+        local Pop     = 0.6 + 0.4 * FadeIn * (2 - FadeIn)
+
+        local IsThought = self.BubbleKind == 2
+        local ColorBack = IsThought and ColorThoughtBack or ColorSpeechBack
+        local ColorText = IsThought and ColorThoughtText or ColorSpeechText
+
+        ColorOutline.a = A
+        ColorBack.a    = A
+        ColorText.a    = A
+
+        local Width  = self.BubbleWidth
+        local Height = self.BubbleHeight
+        local Bob    = IsThought and math.sin(CurTime() * 2 + self:EntIndex()) * 3 or 0
+        local X      = -Width / 2
+        local Y      = -BubbleTailH - Height + Bob
+
+        local Pos = self:GetPos() + BubbleOffset
+        local Ang = Angle(0, Ply:EyeAngles().y - 90, 90)
+
+        cam.Start3D2D(Pos, Ang, 0.1 * Pop)
+        local OutlineSize = 4
+        draw.RoundedBox(BubbleRadius + OutlineSize, X - OutlineSize, Y - OutlineSize,
+                Width + OutlineSize * 2, Height + OutlineSize * 2, ColorOutline)
+
+        if IsThought then
+            -- Точки мысли
+            DrawCircle(-8, -15 + Bob * 0.5, 11, ColorOutline)
+            DrawCircle(-3,  -5 + Bob * 0.3,  8, ColorOutline)
+        else
+            draw.NoTexture()
+            surface.SetDrawColor(ColorOutline)
+            surface.DrawPoly(TailOutlinePoly)
+        end
+
+        draw.RoundedBox(BubbleRadius, X, Y, Width, Height, ColorBack)
+
+        if IsThought then
+            DrawCircle(-6, -13 + Bob * 0.5, 6, ColorBack)
+            DrawCircle(-2,  -4 + Bob * 0.3, 3, ColorBack)
+        else
+            draw.NoTexture()
+            surface.SetDrawColor(ColorBack)
+            surface.DrawPoly(TailPoly)
+        end
+
+        local TextY = Y + BubblePadY
+
+        -- Цвет обводки текста (тёмный, полупрозрачный)
+        local TextOutline = Color(0, 0, 0, math.floor(A * 0.85))
+        local OutlineOffsets = {
+            {-1, 0}, {1, 0}, {0, -1}, {0, 1},
+            {-1, -1}, {1, 1}, {-1, 1}, {1, -1},
+        }
+
+        for Index, Line in ipairs(self.BubbleLines) do
+            local LY = TextY + (Index - 1) * self.BubbleLineH
+
+            -- 1) Обводка (8 направлений)
+            for _, Off in ipairs(OutlineOffsets) do
+                draw.SimpleText(Line, self.BubbleFont, Off[1], LY + Off[2], TextOutline, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+            end
+
+            -- 2) Основной текст
+            draw.SimpleText(Line, self.BubbleFont, 0, LY, ColorText, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+        end
+        cam.End3D2D()
+    end
+
+    function ENT:Draw()
+        self:DrawModel()
+        self:DrawBubble()
+
+        local Alpha = self.NickAlpha or 0
+        if Alpha <= 0.01 then return end
+
+        local Pos = self:GetPos() + Vector(0, 0, 80)
+        local Ang = Angle(0, LocalPlayer():EyeAngles().y - 90, 90)
+
+        cam.Start3D2D(Pos, Ang, 0.2)
+        draw.SimpleText(
+                self:GetBotName(),
+                "ChatFont",
+                0, 0,
+                Color(self:GetNameColorR(), self:GetNameColorG(), self:GetNameColorB(), 255 * Alpha),
+                TEXT_ALIGN_CENTER,
+                TEXT_ALIGN_CENTER
+        )
+        cam.End3D2D()
+    end
 end

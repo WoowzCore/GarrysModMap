@@ -16,7 +16,8 @@ GMM.Data.AnomalySpawn.Rare = {
     "npc_manhack", "npc_cscanner", "npc_stalker", "npc_metropolice",
     "npc_pigeon", "npc_seagull", "npc_headcrab", "npc_antlion_grub",
     "npc_headcrab_fast", "npc_zombie", "npc_citizen", "Refugee",
-    "npc_gman", "weapon_crowbar", "gmm_download_map", "gmm_toiletman"
+    "npc_gman", "weapon_crowbar", "gmm_download_map", "gmm_toiletman",
+    "gmm_pavelzombie", "gmm_crybird"
 }
 
 GMM.Data.AnomalySpawn.Models = {
@@ -165,5 +166,20 @@ GMM.Data.AnomalySpawn.Models = {
     "models/props/de_inferno/claypot03.mdl",
     "models/props/de_prodigy/desk_console1b.mdl",
     "models/props/de_tides/vending_hat.mdl",
-    "models/props/de_tides/vending_turtle.mdl"
+    "models/props/de_tides/vending_turtle.mdl",
+    "models/props_c17/door01_left.mdl",
+    "models/woowz11/barrel_metal.mdl",
+    "models/woowz11/cardboard_lifesize_person.mdl",
+    "models/woowz11/box_cardboard.mdl",
+    "models/woowz_map/prikol/le_sponge.mdl",
+    "models/woowz_map/prikol/le_bird.mdl",
+    "models/woowz11/box_cardboard_open.mdl",
+    "models/woowz11/product_metal_bread_bin.mdl",
+    "models/woowz11/product_metal_fastener.mdl",
+    "models/woowz11/product_metal_handbrake.mdl",
+    "models/woowz11/product_metal_ring_long.mdl",
+    "models/woowz11/barrel_metal_broken.mdl",
+    "models/woowz11/barrel_metal_broken_open.mdl",
+    "models/woowz11/barrel_metal_lid.mdl",
+    "models/woowz11/barrel_metal_open.mdl"
 }

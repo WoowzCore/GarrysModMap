@@ -9,6 +9,7 @@ list.Set("ContentCategoryIcons", "GMM", "icons16/gmm_category")
 include("gmm/data/map_assets.lua")
 
 include("gmm/client/utilities.lua")
+include("gmm/client/utilities_core.lua")
 
 local Start = function()
     if GMM.Valid then

@@ -11,6 +11,17 @@ end)
 
 -- ----------------------------------------------------------------------
 
+GMM_C.SendToServerClientInfo = function()
+    net.Start("gmm_ClientInfo")
+        net.WriteTable({
+            Shift = input.IsKeyDown(KEY_LSHIFT) or input.IsKeyDown(KEY_RSHIFT),
+            Alt   = input.IsKeyDown(KEY_LALT  ) or input.IsKeyDown(KEY_RALT  )
+        })
+    net.SendToServer()
+end
+
+-- ----------------------------------------------------------------------
+
 net.Receive("gmm_RequestSyncNav", function()
     local MaxDistance = net.ReadFloat()
     local Result = {}

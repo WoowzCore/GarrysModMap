@@ -1,4 +1,6 @@
-GMM_S = {}
+GMM_S = {
+    Func = {}
+}
 
 include("gmm/data/anomaly_sounds.lua")
 include("gmm/data/anomaly_spawn.lua")

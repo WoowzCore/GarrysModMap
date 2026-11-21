@@ -929,7 +929,7 @@ if SERVER then
 		elseif Class:find("button") then
 			Ent:Fire("Use")
 		elseif Class:find("door") then
-			if GMM.Func.CanOpenDoor(Ent) then
+			if GMM_S.Func.CanOpenDoor(Ent) then
 				Ent:Fire("Use")
 				Ent:Fire("Open")
 			end

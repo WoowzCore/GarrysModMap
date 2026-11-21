@@ -13,7 +13,6 @@ end
 GMM = {}
 GMM.Func = {}
 
-GMM.DoAnomalies = true
 GMM.CustomDebug = GMM_DEBUG or false
 GMM.CurrentMap = game.GetMap()
 
@@ -38,15 +37,28 @@ end
 
 GMM.Valid = (string.match(GMM.CurrentMap, "^gmm_") ~= nil) or GMM.Maps.SToilet
 
--- ----------------------------------------------------------------------
+GMM.Func.DoAnomalies = function()
+    local Mode = GMM.ConVars.GetInt("anomalies")
 
-if GMM.Maps.Real then GMM.DoAnomalies = false end
+    if Mode == 2 then return true end
+    if Mode ~= 1 then return false end
+
+    if not GMM.Valid then return false end
+    if GMM.Maps.Real then return false end
+
+    return true
+end
 
 -- ----------------------------------------------------------------------
 
 Woowz11 = "STEAM_0:0:158204257"
 
 ErrorPosition = Vector(-100000, -100000, -100000)
+
+-- ----------------------------------------------------------------------
+
+include("gmm/shared/convars.lua")
+include("gmm/shared/playermodels.lua")
 
 if SERVER then
     AddCSLuaFile("gmm/bootstrap_client.lua")

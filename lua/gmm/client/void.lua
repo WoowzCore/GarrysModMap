@@ -9,7 +9,7 @@ local MusicChannel = nil
 
 GMM_C.Void.Think = function()
     if true then
-        if not GMM or not GMM.Valid or not GMM.DoAnomalies then return end
+        if not GMM or not GMM.Valid then return end
 
         local DistanceFromZero = GMM_C.CameraPosition:Length()
         local MinDist = 3000
@@ -65,7 +65,7 @@ local __VoidGlitchMaterial = CreateMaterial("gmm_VoidGlitchMaterial", "UnlitGene
 })
 
 hook.Add("PreRender", "gmm_GlitchVoid_Clear", function()
-    if not GMM or not GMM.Valid or not GMM.DoAnomalies then return end
+    if not GMM or not GMM.Valid then return end
     if not GMM_C.Func.CameraInVoid() then return end
 
     local T = CurTime()
@@ -86,7 +86,7 @@ hook.Add("PreRender", "gmm_GlitchVoid_Clear", function()
 end)
 
 hook.Add("RenderScreenspaceEffects", "gmm_GlitchVoid", function()
-    if not GMM or not GMM.Valid or not GMM.DoAnomalies then return end
+    if not GMM or not GMM.Valid then return end
     if not GMM_C.Func.CameraInVoid() then return end
 
     local DistanceFromZero = math.sqrt(GMM_C.CameraPosition.x * GMM_C.CameraPosition.x + GMM_C.CameraPosition.y * GMM_C.CameraPosition.y)

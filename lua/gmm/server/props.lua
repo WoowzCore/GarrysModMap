@@ -1,4 +1,4 @@
-﻿GMM.Func.ShakeProp = function(Prop, Power)
+﻿GMM_S.Func.ShakeProp = function(Prop, Power)
     if not IsValid(Prop) then return end
 
     local Phys = Prop:GetPhysicsObject()
@@ -28,7 +28,7 @@
     Phys:ApplyTorqueCenter(Torque * (Mass / 10))
 end
 
-GMM.Func.GetPhysicsProps = function()
+GMM_S.Func.GetPhysicsProps = function()
     local Props = {}
 
     for _, Ent in ipairs(ents.GetAll()) do

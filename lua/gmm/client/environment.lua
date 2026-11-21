@@ -130,6 +130,10 @@ GMM_C.Environment.Create = function()
 end
 
 GMM_C.Environment.Update = function()
+    if GMM.Valid then
+        GMM_C.Player:SetDSP(3, true)
+    end
+    
     local CurrentTime = RealTime()
 
     for i = #GMM_C.Environment.AmbientSounds, 1, -1 do

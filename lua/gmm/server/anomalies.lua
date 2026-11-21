@@ -29,13 +29,13 @@ end
 -- ----------------------------------------------------------------------
 
 GMM_S.Anomaly.Shake = function()
-    local Props = GMM.Func.GetPhysicsProps()
+    local Props = GMM_S.Func.GetPhysicsProps()
 
     if #Props == 0 then return end
 
     for _, Prop in ipairs(Props) do
         if math.random() > 0.99 then
-            GMM.Func.ShakeProp(Prop, (math.random() > 0.9 and 10000000 or 10000) * math.random())
+            GMM_S.Func.ShakeProp(Prop, (math.random() > 0.9 and 10000000 or 10000) * math.random())
         end
     end
 end
@@ -85,8 +85,8 @@ GMM_S.Anomaly.Interact = function()
             local Skip = false
 
             if Entity:GetClass():find("door") then
-                if GMM.Func and GMM.Func.CanOpenDoor then
-                    if not GMM.Func.CanOpenDoor(Entity) then
+                if GMM_S.Func.CanOpenDoor then
+                    if not GMM_S.Func.CanOpenDoor(Entity) then
                         Skip = true
                     end
                 else

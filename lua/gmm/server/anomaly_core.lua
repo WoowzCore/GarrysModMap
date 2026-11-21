@@ -2,7 +2,7 @@ local NextAnomalyTick = 0
 local FastModeEndTime = 0
 local ActiveFastAnomaly = nil
 
-GMM.Func.FireAnomaly = function()
+GMM_S.Func.FireAnomaly = function()
     local Anomaly = nil
 
     if ActiveFastAnomaly then
@@ -23,7 +23,7 @@ GMM.Func.FireAnomaly = function()
     end
 end
 
-if GMM.Valid and GMM.DoAnomalies then
+if GMM.Valid and GMM.Func.DoAnomalies() then
     local AnomalyTick = GMM.Maps.Goofy and 0.5 or 10
 
     timer.Create("gmm_AnomalyTimer", 0.1, 0, function()
@@ -34,11 +34,11 @@ if GMM.Valid and GMM.DoAnomalies then
                 ActiveFastAnomaly = nil
                 NextAnomalyTick = T + AnomalyTick
             else
-                GMM.Func.FireAnomaly()
+                GMM_S.Func.FireAnomaly()
             end
         else
             if T >= NextAnomalyTick then
-                GMM.Func.FireAnomaly()
+                GMM_S.Func.FireAnomaly()
                 NextAnomalyTick = T + AnomalyTick
             end
         end
@@ -46,7 +46,7 @@ if GMM.Valid and GMM.DoAnomalies then
 else
     timer.Create("gmm_AnomalyTimer", 1, 0, function()
         if math.random() > 0.999 then
-            GMM.Func.FireAnomaly()
+            GMM_S.Func.FireAnomaly()
         end
     end)
 end

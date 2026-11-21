@@ -160,15 +160,15 @@ end
 GMM.ConVars.GetDefOrError = function(ShortName)
     local Def = GMM.ConVars.ByName[GMM.ConVars.Prefix .. ShortName]
     if Def == nil then
-        error("[GMM] КОНВАР НЕ НАЙДЕН! ShortName: " .. tostring(ShortName), 3)
+        error("[GMM] CONVAR NOT FOUND! SHORTNAME: " .. tostring(ShortName), 3)
     end
 
     return Def
 end
 
-GMM.ConVars.GetInt    = function(ShortName) return GMM.ConVars.GetDefOrError(ShortName).ConVar:GetInt() end
-GMM.ConVars.GetFloat  = function(ShortName) return GMM.ConVars.GetDefOrError(ShortName).ConVar:GetFloat() end
-GMM.ConVars.GetBool   = function(ShortName) return GMM.ConVars.GetDefOrError(ShortName).ConVar:GetBool() end
+GMM.ConVars.GetInt    = function(ShortName) return GMM.ConVars.GetDefOrError(ShortName).ConVar:GetInt   () end
+GMM.ConVars.GetFloat  = function(ShortName) return GMM.ConVars.GetDefOrError(ShortName).ConVar:GetFloat () end
+GMM.ConVars.GetBool   = function(ShortName) return GMM.ConVars.GetDefOrError(ShortName).ConVar:GetBool  () end
 GMM.ConVars.GetString = function(ShortName) return GMM.ConVars.GetDefOrError(ShortName).ConVar:GetString() end
 
 GMM.ConVars.GetEnumName = function(ShortName)
@@ -181,7 +181,7 @@ GMM.ConVars.IsEnum = function(ShortName, OptionName)
     local Def   = GMM.ConVars.GetDefOrError(ShortName)
     local Value = Def.ValueByName and Def.ValueByName[OptionName]
     if Value == nil then
-        error("[GMM] У КОНВАРА НЕТ ТАКОГО ВАРИАНТА! ShortName: " .. ShortName .. ", OptionName: " .. tostring(OptionName), 2)
+        error("[GMM] CONVAR HAS NO SUCH OPTION! SHORTNAME: " .. ShortName .. ", OPTIONNAME: " .. tostring(OptionName), 2)
     end
 
     return Def.ConVar:GetInt() == Value
@@ -219,7 +219,9 @@ end
 -- ----------------------------------------------------------------------
 
 GMM.ConVars.AddEnum(true, "anomalies", 1, "Отвечает за работу аномалий.", {
-    {"Выключено"           , 0},
-    {"Только на GMM картах", 1},
-    {"Везде"               , 2}
+    {"Никогда"      , 0},
+    {"Только на GMM", 1},
+    {"Всегда"       , 2}
 })
+GMM.ConVars.Add(true, "Float", "anomalies_timer", 10, "Скорость вызова аномалий.", 0.1, 240)
+GMM.ConVars.Add(true, "Bool" , "anomalies_rare" , 1, "Редкие аномалии, даже если отключены аномалии")

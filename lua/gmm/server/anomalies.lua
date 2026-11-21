@@ -1,28 +1,38 @@
 GMM_S.Anomaly = {}
 
 GMM_S.Anomaly.List = {
-    {1, function() return GMM_S.Anomaly.Shake end},
-    {1, function() return GMM_S.Anomaly.PlaySound end},
-    {1, function() return GMM_S.Anomaly.Interact end},
-    {1, function() return GMM_S.Anomaly.SpawnEntity end}
+    {1, "Shake"      , "ТРЯСКА"},
+    {1, "PlaySound"  , "ЗВУКИ"},
+    {1, "Interact"   , "ВЗАИМОДЕЙСТВИЕ"},
+    {1, "SpawnEntity", "СПАВН"}
 }
 
-GMM_S.Anomaly.GetRandom = function()
-    local TotalWeight = 0
-    for _, A in ipairs(GMM_S.Anomaly.List) do
-        TotalWeight = TotalWeight + A[1]
+GMM_S.Anomaly.FindEntryOrNil = function(Key)
+    local List = GMM_S.Anomaly.List
+    for i = 1, #List do
+        if List[i][2] == Key then return List[i] end
     end
 
-    local RandomChoice = math.random(1, TotalWeight)
+    return nil
+end
+
+GMM_S.Anomaly.GetRandom = function()
+    local List = GMM_S.Anomaly.List
+    if #List == 0 then return nil end
+
+    local TotalWeight = 0
+    for i = 1, #List do
+        TotalWeight = TotalWeight + List[i][1]
+    end
+
+    local RandomChoice  = math.random(1, TotalWeight)
     local CurrentWeight = 0
 
-    for _, A in ipairs(GMM_S.Anomaly.List) do
-        CurrentWeight = CurrentWeight + A[1]
-        if RandomChoice <= CurrentWeight then
-            return A[2]()
-        end
+    for i = 1, #List do
+        CurrentWeight = CurrentWeight + List[i][1]
+        if RandomChoice <= CurrentWeight then return GMM_S.Anomaly[List[i][2]] end
     end
-    
+
     return nil
 end
 

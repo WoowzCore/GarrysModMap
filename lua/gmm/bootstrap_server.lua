@@ -44,6 +44,7 @@ local Start = function()
     -- ----------------------------------------------------------------------
 
     include("gmm/server/anomaly_core.lua")
+    include("gmm/server/network_anomaly.lua")
 end
 
 hook.Add("InitPostEntity", "gmm_MapLoad", function()

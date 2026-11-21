@@ -2,7 +2,7 @@ ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName = "DOWNLOAD MAP"
 ENT.Author = "Woowz11"
-ENT.Spawnable = (GMM and GMM["Valid"]) or game.GetMap() == "gmm_garrymod_map_by_woowz_help_me"
+ENT.Spawnable = (GMM and GMM.Func.DoEntitiesUnlock()) or game.GetMap() == "gmm_garrymod_map_by_woowz_help_me"
 ENT.Category = "GMM"
 
 local RandomPhrases = {
@@ -96,9 +96,34 @@ local RandomThanksSounds = {
     "vo/npc/male01/yougotit02.wav"
 }
 
+local ImageChance = 0.1
+local ImageSize   = 300
+
+local RandomImages = {
+    "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/1.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/2.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/3.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/4.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/5.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/6.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/7.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/8.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/9.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/10.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/11.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/12.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/13.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/14.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/15.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/16.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/17.png",
+	"woowz_map/gm_garrymod_map_by_woowz_map_garry_game/faces/18.png",
+}
+
 function ENT:SetupDataTables()
     self:NetworkVar("String", 0, "DisplayText")
     self:NetworkVar("Int", 0, "Rarity")
+    self:NetworkVar("Int", 1, "ImageIndex")
     self:NetworkVar("Bool", 0, "GMM")
 end
 
@@ -137,9 +162,14 @@ if SERVER then
                 self:SetDisplayText(table.Random(HasGMM and RandomPhrasesGMM or RandomPhrases))
             end
 		end
+		
+		if #RandomImages > 0 and math.random() < ImageChance then
+            self:SetImageIndex(math.random(1, #RandomImages))
+        end
         
-        if GMM and not GMM["Valid"] then
+        if GMM and not GMM.Valid then
             self:SetDisplayText("T H A T   N O T   G M M")
+            self:SetImageIndex(0)
         end
 
 		self.Velocity = Vector(0, 0, 0)
@@ -280,7 +310,7 @@ if SERVER then
         local HasGMM = self:GetGMM()
         local Rarity = self:GetRarity()
 
-        if GMM and not GMM["Valid"] then
+        if GMM and not GMM.Valid then
             ply:EmitSound("music/hl2_song23_suitsong3.mp3", 100)
             ply:Kill()
 
@@ -342,6 +372,33 @@ end
 
 if CLIENT then
 	local GMM_HUD = {}
+
+    local ImageMaterials = {}
+
+    local function GetImageMaterial(Index)
+        local Cached = ImageMaterials[Index]
+        if Cached ~= nil then
+            if Cached == false then return nil end
+            return Cached
+        end
+
+        local Path = RandomImages[Index]
+        if Path == nil then
+            ImageMaterials[Index] = false
+            return nil
+        end
+
+        local Mat = Material(Path, "smooth mips")
+        if Mat:IsError() then
+            print("[GMM] IMAGE NOT FOUND! PATH: " .. Path)
+            ImageMaterials[Index] = false
+            return nil
+        end
+
+        ImageMaterials[Index] = Mat
+
+        return Mat
+    end
 
 	surface.CreateFont("GMM_WorldFontFixed", { font = "Arial", size = 50,weight = 900, extended = true, outline = true,antialias = true })
 	surface.CreateFont("GMM_ErrorFont", { font = "Tahoma", size = 16, weight = 800 })
@@ -439,40 +496,58 @@ if CLIENT then
 			local CurrentFOV = LPlayer:GetFOV()
 			local FOVMultiplier = 75 / CurrentFOV 
 			
-			local Scale = (150 / Dist) * FOVMultiplier
-			
-			surface.SetFont("GMM_WorldFontFixed")
-			local TW, TH = surface.GetTextSize(Text)
-			
-			local TX, TY = ScreenData.x, ScreenData.y
-			local Wave = math.abs(math.sin(CurTime() * 8)) * 255
+						local Scale = (150 / Dist) * FOVMultiplier
 
+			local Wave = math.abs(math.sin(CurTime() * 8)) * 255
 			local HasGMM = Ent:GetGMM()
 			local Rarity = Ent:GetRarity()
 			local MainColor = HasGMM and Color(0, 255, Wave, Alpha) or Color(255, Wave, 0, Alpha)
-
 			if Rarity == 1 then
 				MainColor = Color(0, Wave, 255, Alpha)
 			elseif Rarity == 2 then
 				local hue = (CurTime() * 2000) % 360
 				MainColor = HSVToColor(hue, 0.7, 1)
-
-				Scale = Scale * 4
 			end
-
-			if GMM and not GMM["Valid"] then
+			if GMM and not GMM.Valid then
 				MainColor = Color(Wave, Wave, 0, Alpha)
 			end
-			
+
+			local ImageIndex = Ent:GetImageIndex()
+			if ImageIndex > 0 then
+				local Mat = GetImageMaterial(ImageIndex)
+				if Mat ~= nil then
+					local Time   = CurTime()
+					local Seed   = Ent:EntIndex()
+					local Aspect = Mat:Width() / Mat:Height()
+					local Height = ImageSize * Scale * (1 + math.sin(Time * 7 + Seed) * 0.05)
+					local Width  = Height * Aspect
+					local Close  = math.Clamp(1 - (Dist - 100) / 500, 0, 1)
+					local ShakeX = math.Rand(-1, 1) * 6 * Close
+					local ShakeY = math.Rand(-1, 1) * 6 * Close
+					local Angle  = math.sin(Time * 3 + Seed) * 12
+					local Flicker = Alpha
+					if math.random() < 0.03 then Flicker = Alpha * 0.3 end
+					surface.SetMaterial(Mat)
+					surface.SetDrawColor(MainColor.r, MainColor.g, MainColor.b, Flicker)
+					surface.DrawTexturedRectRotated(ScreenData.x + ShakeX, ScreenData.y + ShakeY, Width, Height, Angle)
+					continue
+				end
+			end
+
+			surface.SetFont("GMM_WorldFontFixed")
+			local TW, TH = surface.GetTextSize(Text)
+
+			local TX, TY = ScreenData.x, ScreenData.y
+			if Rarity == 2 then Scale = Scale * 4 end
+
 			RenderMat:Identity()
 			RenderMat:Translate(Vector(TX, TY, 0))
 			RenderMat:Scale(Vector(Scale, Scale, 1))
-			
+
 			cam.PushModelMatrix(RenderMat)
 				surface.SetTextColor(0, 0, 0, Alpha * 0.7)
 				surface.SetTextPos(-TW / 2 + 5, -TH / 2 + 5)
 				surface.DrawText(Text)
-
 				surface.SetTextColor(MainColor.r, MainColor.g, MainColor.b, Alpha)
 				surface.SetTextPos(-TW / 2, -TH / 2)
 				surface.DrawText(Text)

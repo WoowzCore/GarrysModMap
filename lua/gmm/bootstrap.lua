@@ -40,6 +40,13 @@ GMM.Func.ThatMap = function(Map) return GMM.CurrentMap == Map end
 * [ ] Особняк версия, всё богато
 * [ ] WoowzCore версия, с столбами персонажами и т.д
 * [ ] Литуимская версия, всё в микросхемах и т.д.
+* [ ] Frutigier aero версия
+* [ ] Пляжная версия
+* [ ] Гнилая, полная трупов, расчленёнки и крови версия, postal отсылка, ржавый металл
+* [ ] Китайский бекрумс версия
+* [ ] Арбузная версия, всё в арбузах, вся карта арбуз
+* [ ] Мясная версия, карта из мяса, карта живая
+* [ ] Заставить кого-то по памяти построить мою gmm карту
 ]]
 
 GMM.Maps = {
@@ -62,14 +69,32 @@ end
 
 GMM.Valid = (string.match(GMM.CurrentMap, "^gmm_") ~= nil) or GMM.Maps.SToilet
 
+GMM.NoValidExtra = function()
+    return not GMM.Valid or GMM.Maps.Real
+end
+
 GMM.Func.DoAnomalies = function()
     local Mode = GMM.ConVars.GetInt("anomalies")
 
     if Mode == 2 then return true end
     if Mode ~= 1 then return false end
 
-    if not GMM.Valid then return false end
-    if GMM.Maps.Real then return false end
+    if GMM.NoValidExtra() then return false end
+
+    return true
+end
+
+GMM.Func.DoEntitiesUnlock = function()
+    return GMM.Valid or GMM.ConVars.GetBool("entities_unlock")
+end
+
+GMM.Func.DoVoid = function()
+    local Mode = GMM.ConVars.GetInt("void")
+
+    if Mode == 2 then return true end
+    if Mode ~= 1 then return false end
+
+    if GMM.NoValidExtra() then return false end
 
     return true
 end

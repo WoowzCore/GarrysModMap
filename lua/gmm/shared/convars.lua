@@ -120,6 +120,44 @@ GMM.ConVars.AddEnum = function(Server, Name, Default, Description, Options)
     return GMM.ConVars.Add(Server, "Enum", Name, Default, Description, nil, nil, Options)
 end
 
+GMM.ConVars.AddFlags = function(Server, Name, Description, Options)
+    local Flags   = {}
+    local Full    = 0
+    local Default = 0
+
+    for i, Option in ipairs(Options) do
+        local Value = bit.lshift(1, i - 1)
+
+        Full = bit.bor(Full, Value)
+        if Option[3] then Default = bit.bor(Default, Value) end
+
+        table.insert(Flags, {Key = Option[1], Name = Option[2], Value = Value})
+    end
+
+    GMM.ConVars.Add(Server, "Int", Name, Default, Description, 0, Full)
+
+    local Def = GMM.ConVars.GetDefOrError(Name)
+    Def.Flags = Flags
+
+    return Def
+end
+
+GMM.ConVars.GetFlagValue = function(Name, Key)
+    local Def = GMM.ConVars.GetDefOrError(Name)
+
+    if Def.Flags == nil then error("[GMM] CONVAR HAS NO FLAGS! SHORTNAME: " .. Name) end
+
+    for i = 1, #Def.Flags do
+        if Def.Flags[i].Key == Key then return Def.Flags[i].Value end
+    end
+
+    error("[GMM] CONVAR HAS NO SUCH FLAG! SHORTNAME: " .. Name .. ", KEY: " .. Key)
+end
+
+GMM.ConVars.HasFlag = function(Mask, Flag)
+    return bit.band(Mask, Flag) ~= 0
+end
+
 GMM.ConVars.NormalizeValue = function(Def, Text)
     if Def.Type == "Bool" then
         if Text == "1" or Text == "true" then return "1" end
@@ -218,10 +256,31 @@ end
 
 -- ----------------------------------------------------------------------
 
-GMM.ConVars.AddEnum(true, "anomalies", 1, "Отвечает за работу аномалий.", {
+GMM.ConVars.AddEnum(true, "anomalies", 1, "Отвечает за работу аномалий", {
     {"Никогда"      , 0},
     {"Только на GMM", 1},
     {"Всегда"       , 2}
 })
-GMM.ConVars.Add(true, "Float", "anomalies_timer", 10, "Скорость вызова аномалий.", 0.1, 240)
+GMM.ConVars.Add(true, "Float", "anomalies_timer", 10, "Скорость вызова аномалий", 0.1, 240)
 GMM.ConVars.Add(true, "Bool" , "anomalies_rare" , 1, "Редкие аномалии, даже если отключены аномалии")
+GMM.ConVars.Add(true, "Bool" , "entities_unlock", 0, "GMM энтити можно спавнить на любой карте (нужен перезапуск что-бы появилась вкладка GMM)")
+
+GMM.ConVars.AddEnum(false, "void", 1, "Отображать эффект Void", {
+    {"Никогда"      , 0},
+    {"Только на GMM", 1},
+    {"Всегда"       , 2},
+    {"ABSOLUTE"     , 3}
+})
+GMM.ConVars.Add(false, "Bool", "debug_showposition", 0, "Отображать позицию и поворот камеры игрока")
+GMM.ConVars.Add(false, "Bool", "debug_showhit", 0, "Отображать Trace.Hit из камеры игрока")
+GMM.ConVars.AddFlags(false, "debug_hit_surfaces", "На какие поверхности и объекты реагирует отладочный луч", {
+    {"Solid"      , "Твёрдые"                   , true },
+    {"Transparent", "Прозрачные"                , true },
+    {"Water"      , "Вода"                      , false},
+    {"Clip"       , "Невидимые стены (clip)"    , false},
+    {"Sky"        , "Небо"                      , true },
+    {"NoDraw"     , "Скрытая геометрия (nodraw)", true },
+    {"Entities"   , "Энтити"                    , true },
+    {"Props"      , "Пропы"                     , true }
+})
+GMM.ConVars.Add(false, "Bool", "debug_showsounds", 0, "Отображать информацию об Ambient Sounds")

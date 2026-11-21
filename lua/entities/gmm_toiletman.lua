@@ -5,7 +5,7 @@ ENT.Base	  = "base_nextbot"
 ENT.PrintName = "TOILET LIVING MAN"
 ENT.Author	= "Woowz11"
 ENT.Category  = "GMM"
-ENT.Spawnable = GMM.Valid
+ENT.Spawnable = GMM.Func.DoEntitiesUnlock()
 
 local Names = {
 	"Toilet Man","John","Gregory","Barry","Steve","Harold","Gerald","Clive","Nigel","Desmond",

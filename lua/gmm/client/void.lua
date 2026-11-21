@@ -5,12 +5,77 @@ GMM_C.Func.CameraInVoid = function()
     return bit.band(util.PointContents(GMM_C.CameraPosition), CONTENTS_SOLID) == CONTENTS_SOLID
 end
 
+GMM_C.Func.IsVoidForced = function()
+    return GMM.ConVars.GetInt("void") == 3 or GMM.Maps.Goofy
+end
+
+GMM_C.Func.IsVoidActive = function()
+    if GMM_C.Func.IsVoidForced() then return true end
+    if not GMM.Func.DoVoid() then return false end
+
+    return GMM_C.Func.CameraInVoid()
+end
+
 local MusicChannel = nil
+local MusicLoading = false
+
+local RateDrift     = 1
+local RateDriftGoal = 1
+local RateNextGoal  = 0
+local RateLastTime  = 0
+
+local SpikeActive   = false
+local SpikeNext     = 0
+local SpikeStart    = 0
+local SpikeDuration = 1
+local SpikeTarget   = 1
+
+local function GetMusicRate()
+    local Now   = CurTime()
+    local Delta = math.Clamp(Now - RateLastTime, 0, 0.2)
+    RateLastTime = Now
+
+    if Now >= RateNextGoal then
+        RateNextGoal  = Now + math.Rand(1.5, 7)
+        RateDriftGoal = math.Rand(0.8, 1.25)
+    end
+
+    RateDrift = Lerp(math.min(Delta * 0.8, 1), RateDrift, RateDriftGoal)
+
+    local Wobble = math.sin(Now * 0.5) * 0.08 + math.sin(Now * 1.3 + 1.7) * 0.05 + math.sin(Now * 3.1 + 4.2) * 0.025
+    local Rate   = RateDrift + Wobble
+
+    if SpikeNext == 0 then SpikeNext = Now + math.Rand(60, 240) end
+
+    if not SpikeActive and Now >= SpikeNext then
+        SpikeActive   = true
+        SpikeStart    = Now
+        SpikeDuration = math.Rand(1.5, 5)
+
+        if math.random() < 0.5 then
+            SpikeTarget = math.Rand(0.35, 0.6)
+        else
+            SpikeTarget = math.Rand(1.8, 2.8)
+        end
+    end
+
+    if SpikeActive then
+        local Progress = (Now - SpikeStart) / SpikeDuration
+
+        if Progress >= 1 then
+            SpikeActive = false
+            SpikeNext   = Now + math.Rand(60, 240)
+        else
+            local Envelope = math.sin(Progress * math.pi)
+            Rate = Lerp(Envelope, Rate, SpikeTarget)
+        end
+    end
+
+    return math.Clamp(Rate, 0.25, 3)
+end
 
 GMM_C.Void.Think = function()
     if true then
-        if not GMM or not GMM.Valid then return end
-
         local DistanceFromZero = GMM_C.CameraPosition:Length()
         local MinDist = 3000
         local MaxDist = 30000
@@ -24,14 +89,22 @@ GMM_C.Void.Think = function()
 
         local VoidVolume = VolumePower
 
-        if GMM_C.Func.CameraInVoid() and VoidVolume > 0.001 then
+        if GMM_C.Func.IsVoidActive() and VoidVolume > 0.001 then
             if not IsValid(MusicChannel) then
+                if MusicLoading then return end
+                MusicLoading = true
+
                 sound.PlayFile("sound/woowz/music/ManiyaVelichiaGOLUFUNNY.wav", "noplay loop", function(Station, ErrCode, ErrStr)
-                    if IsValid(Station) then
-                        MusicChannel = Station
-                        MusicChannel:SetVolume(0)
-                        MusicChannel:Play()
-                    end
+                    MusicLoading = false
+
+                    if not IsValid(Station) then return end
+
+                    local Length = Station:GetLength()
+                    if Length > 1 then Station:SetTime(math.Rand(0, Length - 1)) end
+
+                    MusicChannel = Station
+                    MusicChannel:SetVolume(0)
+                    MusicChannel:Play()
                 end)
             else
                 if MusicChannel:GetState() ~= GMOD_CHANNEL_PLAYING then
@@ -40,7 +113,7 @@ GMM_C.Void.Think = function()
 
 
                 MusicChannel:SetVolume(VoidVolume)
-                MusicChannel:SetPlaybackRate(1 + math.sin(CurTime() * 0.5) * 0.1 * VoidVolume)
+                MusicChannel:SetPlaybackRate(GetMusicRate())
             end
         else
             if IsValid(MusicChannel) then
@@ -65,8 +138,7 @@ local __VoidGlitchMaterial = CreateMaterial("gmm_VoidGlitchMaterial", "UnlitGene
 })
 
 hook.Add("PreRender", "gmm_GlitchVoid_Clear", function()
-    if not GMM or not GMM.Valid then return end
-    if not GMM_C.Func.CameraInVoid() then return end
+    if not GMM_C.Func.IsVoidActive() then return end
 
     local T = CurTime()
 
@@ -86,8 +158,7 @@ hook.Add("PreRender", "gmm_GlitchVoid_Clear", function()
 end)
 
 hook.Add("RenderScreenspaceEffects", "gmm_GlitchVoid", function()
-    if not GMM or not GMM.Valid then return end
-    if not GMM_C.Func.CameraInVoid() then return end
+    if not GMM_C.Func.IsVoidActive() then return end
 
     local DistanceFromZero = math.sqrt(GMM_C.CameraPosition.x * GMM_C.CameraPosition.x + GMM_C.CameraPosition.y * GMM_C.CameraPosition.y)
 

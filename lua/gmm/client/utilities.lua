@@ -79,12 +79,27 @@ local function ConVarDecimals(Def)
     return 2
 end
 
+local FormatFlags = function(Def, Text)
+    local Mask  = tonumber(Text) or 0
+    local Names = {}
+
+    for i = 1, #Def.Flags do
+        local Flag = Def.Flags[i]
+        if bit.band(Mask, Flag.Value) ~= 0 then table.insert(Names, Flag.Name) end
+    end
+
+    if #Names == 0 then return Text .. " (ничего)" end
+
+    return Text .. " (" .. table.concat(Names, ", ") .. ")"
+end
+
 local FormatValue = function(Def, Text)
     if Def.Type == "Bool" then
         if (tonumber(Text) or 0) ~= 0 then return "TRUE" end
         return "FALSE"
     end
     if Def.Type == "Enum" then return Text .. " (" .. GMM.ConVars.GetDisplayText(Def, Text) .. ")" end
+    if Def.Flags ~= nil then return FormatFlags(Def, Text) end
     if Text == "" then return "(nil)" end
 
     return Text
@@ -497,6 +512,54 @@ local BuildEnumControl = function(Row)
     return Control
 end
 
+local BuildFlagsControl = function(Row)
+    local Def = Row.__Def
+
+    local Control = vgui.Create("DPanel", Row)
+    Control:SetPaintBackground(false)
+    Control.__Buttons   = {}
+    Row.__ControlHeight = #Def.Flags * EnumLineH
+
+    for i = 1, #Def.Flags do
+        local Flag = Def.Flags[i]
+
+        local Button = vgui.Create("DButton", Control)
+        Button:SetText("")
+        Button:SetPos(0, (i - 1) * EnumLineH)
+        Button:SetTall(EnumLineH - 2)
+
+        Button.Paint = function(self, w, h)
+            local Selected = bit.band(tonumber(Row.__Text) or 0, Flag.Value) ~= 0
+            local Hot      = self:IsHovered()
+
+            if Selected then
+                DrawItemBox(0, 0, w, h, ItemStyles.Selected)
+            elseif Hot then
+                DrawItemBox(0, 0, w, h, ItemStyles.Hover)
+            end
+
+            DrawCheckBox(8, math.floor(h / 2) - 7, Selected, Hot)
+
+            draw.SimpleText(Flag.Name, "gmm_UI_Value", 32, h / 2, ColorText, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        end
+
+        Button.DoClick = function()
+            local Mask = bit.bxor(tonumber(Row.__Text) or 0, Flag.Value)
+            SetRowText(Row, tostring(Mask))
+        end
+
+        table.insert(Control.__Buttons, Button)
+    end
+
+    Control.PerformLayout = function(self, w, h)
+        for i = 1, #self.__Buttons do
+            self.__Buttons[i]:SetWide(w)
+        end
+    end
+
+    return Control
+end
+
 -- ----------------------------------------------------------------------
 
 local CreateRow = function(Panel, Def, Index, CanEdit)
@@ -517,7 +580,10 @@ local CreateRow = function(Panel, Def, Index, CanEdit)
     local RealmText = "CLIENT"
     if Def.Server then RealmText = "SERVER" end
 
-    local Tag = Def.Type .. " / " .. RealmText
+    local TypeText = Def.Type
+    if Def.Flags ~= nil then TypeText = "Flags" end
+
+    local Tag = TypeText .. " / " .. RealmText
     if not CanEdit then Tag = Tag .. " / ONLY READ" end
 
     local DefaultText = Def.ConVar:GetDefault()
@@ -543,7 +609,9 @@ local CreateRow = function(Panel, Def, Index, CanEdit)
     Row.__ControlHeight = 24
     Row.__ResetButton   = nil
 
-    if Def.Type == "Bool" then
+    if Def.Flags ~= nil then
+        Row.__Control = BuildFlagsControl(Row)
+    elseif Def.Type == "Bool" then
         Row.__Control = BuildBoolControl(Row)
     elseif Def.Type == "Enum" then
         Row.__Control = BuildEnumControl(Row)

@@ -5,7 +5,7 @@ ENT.Base = "base_anim"
 ENT.PrintName = "I-N-F-O-T-A-S-K"
 ENT.Author = "Woowz11"
 ENT.Category = "GMM"
-ENT.Spawnable = GMM.Valid
+ENT.Spawnable = GMM.Func.DoEntitiesUnlock()
 
 local TabletText = {
     "Я НЕ ВЕРЮ, ЭТО ЖЕ ПЕРВЫЙ ТЕКСТ, ПЕРВЫЙ АЙДИ!! РАДИ ЭТОГО ТЕКСТА Я СДВИНУЛ ДАЖЕ ВЕСЬ МАССИВ НА +1! ПИЗДЕЦ!!! надо фиксить где были указаны айди в текстах там все дела бляяяя",
@@ -524,7 +524,7 @@ if CLIENT then
             local Pool = IsRare and TabletTextRare or TabletText
 			CurrentText = Pool[TextID] or "[INVALID TEXT ID (" .. TextID .. " | " .. IsRare .. ")]"
 			
-			if not GMM.Valid then
+			if not GMM.Func.DoEntitiesUnlock() then
 				CurrentText = "Обычная не примечательная каменная табличка. С не понятным текстом."
 			end
 
@@ -547,7 +547,7 @@ if CLIENT then
 				end
 			end
 			
-			if not GMM.Valid then
+			if not GMM.Func.DoEntitiesUnlock() then
 				DisplayColor = Color(255, 255, 0)
 			end
 		else
@@ -614,7 +614,7 @@ if CLIENT then
 			end
 		end
 		
-		if not GMM.Valid then
+		if not GMM.Func.DoEntitiesUnlock() then
 			Tint = Vector(1, 1, 0)
 		end
 

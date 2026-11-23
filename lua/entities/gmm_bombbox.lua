@@ -6,6 +6,12 @@ ENT.PrintName = "Wнat тbe бox?"
 ENT.Author    = "Woowz11"
 ENT.Category  = "GMM"
 ENT.Spawnable = GMM.Func.DoEntitiesUnlock()
+ENT.GMMFreezeImmune = true
+
+if CLIENT then
+    killicon.Add("gmm_bombbox", "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/icons/killicon_boom")
+    language.Add("gmm_bombbox", "БbОМБА В k0РОБКЕ!!!")
+end
 
 -- ----------------------------------------------------------------------
 -- Общее
@@ -124,10 +130,9 @@ if SERVER then
     local GasTickDelay = 0.5
     local GasDamage    = 4
 
-    local CryoRadius  = 500
-    local CryoSeconds = 6
-    local CryoSlow    = 0.25
-    local CryoColor   = Color(120, 180, 255, 140)
+    local CryoRadius   = 500
+    local CryoPowerMin = 40
+    local CryoPowerMax = 140
 
     local VoidHeight  = 260
     local VoidSeconds = 12
@@ -299,43 +304,27 @@ if SERVER then
     end
 
     local function EffectCryo(Source, Pos, Box)
-        local Found   = ents.FindInSphere(Pos, CryoRadius)
-        local Players = {}
-        local Frozen  = {}
+        if GMM_S == nil or GMM_S.Func == nil or GMM_S.Func.FreezeEntity == nil then
+            print("[GMM] BOMB BOX CRYO FAILED! FUNCTION NOT FOUND: GMM_S.Func.FreezeEntity")
+            return
+        end
+
+        local FreezeEntity = GMM_S.Func.FreezeEntity
+        local Found        = ents.FindInSphere(Pos, CryoRadius)
 
         for i = 1, #Found do
             local Ent  = Found[i]
             local Kind = GetKind(Source, Ent)
 
-            if Kind == "Player" then
-                Ent:SetLaggedMovementValue(CryoSlow)
-                Ent:ScreenFade(SCREENFADE.IN, CryoColor, 1, 0.5)
+            if Kind == "Prop" then
+                if Ent ~= Box then FreezeEntity(Ent) end
+            elseif Kind ~= nil then
+                local Dist     = Ent:WorldSpaceCenter():Distance(Pos)
+                local Fraction = 1 - math.min(Dist / CryoRadius, 1)
 
-                Players[#Players + 1] = Ent
-            elseif Kind == "Prop" and Ent ~= Box then
-                for p = 0, Ent:GetPhysicsObjectCount() - 1 do
-                    local Phys = Ent:GetPhysicsObjectNum(p)
-
-                    if IsValid(Phys) and Phys:IsMotionEnabled() then
-                        Phys:EnableMotion(false)
-                        Frozen[#Frozen + 1] = Phys
-                    end
-                end
+                FreezeEntity(Ent, CryoPowerMin + (CryoPowerMax - CryoPowerMin) * Fraction)
             end
         end
-
-        timer.Simple(CryoSeconds, function()
-            for i = 1, #Players do
-                if IsValid(Players[i]) then Players[i]:SetLaggedMovementValue(1) end
-            end
-
-            for i = 1, #Frozen do
-                if IsValid(Frozen[i]) then
-                    Frozen[i]:EnableMotion(true)
-                    Frozen[i]:Wake()
-                end
-            end
-        end)
     end
 
     local function EffectVoid(Source, Pos, Box)

@@ -116,7 +116,7 @@ GMM.Data.AnomalySounds.Common = {
 }
 
 GMM.Data.AnomalySounds.Rare = {
-    "woowz/other/popy.wav",
+    "woowz11/other/popy.wav",
     "ambient/3dmeagle.wav",
     "ambient/alarms/razortrain_horn1.wav",
     "ambient/alarms/train_horn2.wav",

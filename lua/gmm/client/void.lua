@@ -86,6 +86,8 @@ GMM_C.Void.Think = function()
         else
             VolumePower = math.Clamp(VolumePower, 0, 1)
         end
+        
+        VolumePower = VolumePower * GMM_C.Func.VoidPower()
 
         local VoidVolume = VolumePower
 
@@ -94,7 +96,7 @@ GMM_C.Void.Think = function()
                 if MusicLoading then return end
                 MusicLoading = true
 
-                sound.PlayFile("sound/woowz/music/ManiyaVelichiaGOLUFUNNY.wav", "noplay loop", function(Station, ErrCode, ErrStr)
+                sound.PlayFile("sound/woowz11/music/ManiyaVelichiaGOLUFUNNY.wav", "noplay loop", function(Station, ErrCode, ErrStr)
                     MusicLoading = false
 
                     if not IsValid(Station) then return end
@@ -171,6 +173,8 @@ hook.Add("RenderScreenspaceEffects", "gmm_GlitchVoid", function()
     if GMM.Maps.Goofy then
         Power = Power * 15 + 0.25
     end
+    
+    Power = Power * GMM_C.Func.VoidPower()
 
     if Power <= 0.0001 then return end
 

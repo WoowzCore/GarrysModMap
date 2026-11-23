@@ -200,23 +200,20 @@ ErrorPosition = Vector(-100000, -100000, -100000)
 
 -- ----------------------------------------------------------------------
 
-include("gmm/shared/convars.lua")
-include("gmm/shared/playermodels.lua")
-include("gmm/shared/graphic_zones.lua")
+local function IncludeBoth(ScriptName)
+    if SERVER then AddCSLuaFile(ScriptName) end
+    include(ScriptName)
+end
+
+IncludeBoth("gmm/shared/convars.lua")
+IncludeBoth("gmm/shared/playermodels.lua")
+IncludeBoth("gmm/shared/graphic_zones.lua")
 
 if GMM.Maps.f5099cd then
-    if SERVER then AddCSLuaFile("gmm/server/f5099cd.lua") end
-    
-    include("gmm/server/f5099cd.lua")
+    IncludeBoth("gmm/server/f5099cd.lua")
 end
 
 if SERVER then
-    AddCSLuaFile("gmm/bootstrap_client.lua")
-
-    AddCSLuaFile("gmm/shared/convars.lua")
-    AddCSLuaFile("gmm/shared/playermodels.lua")
-    AddCSLuaFile("gmm/shared/graphic_zones.lua")
-
     for _, ScriptName in ipairs(file.Find("gmm/client/*.lua", "LUA")) do
         AddCSLuaFile("gmm/client/" .. ScriptName)
     end
@@ -229,3 +226,5 @@ end
 if CLIENT then
     include("gmm/bootstrap_client.lua")
 end
+
+IncludeBoth("gmm/shared/other.lua")

@@ -15,6 +15,12 @@ ENT.Author       = "Woowz11"
 ENT.Category     = "GMM"
 ENT.Spawnable    = GMM.Func.DoEntitiesUnlock()
 ENT.IsGMMCryBird = true
+ENT.GMMFreezeImmune = true
+
+if CLIENT then
+    killicon.Add("gmm_crybird", "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/icons/killicon_freeze")
+    language.Add("gmm_crybird", "CRYBIRD.lit")
+end
 
 -- ----------------------------------------------------------------------
 -- Общее
@@ -89,8 +95,8 @@ if SERVER then
 
     local WrathDuration    = 6
     local WrathTick        = 0.5
-    local WrathTickDamage  = 5
-    local WrathSlow        = 0.4
+    local WrathCold        = 16
+    local WrathFinishCold  = 100
     local ApologyChance    = 0.35
 
     local ThrowSpeed       = 250
@@ -116,8 +122,6 @@ if SERVER then
     local BuddyLookRangeSqr = BuddyLookRange * BuddyLookRange
     local BuddyDropRangeSqr = BuddyDropRange * BuddyDropRange
     local FarewellRangeSqr  = FarewellRange * FarewellRange
-
-    local ColorFrost = Color(140, 190, 255, 70)
 
     local Offences = {
         Pickup     = {Anger = 12, Group = "Pickup"},
@@ -526,8 +530,6 @@ if SERVER then
         if self.Chat ~= nil then return end
 
         self:LureThink(Now, self:GetMemoryOrNew(Visitor))
-        
-        self:LureThink(Now, self:GetMemoryOrNew(Visitor))
     end
 
     -- ----------------------------------------------------------------------
@@ -914,15 +916,6 @@ if SERVER then
         end
     end
 
-    function ENT:HurtCold(Ply, Amount)
-        local Dmg = DamageInfo()
-        Dmg:SetDamage(Amount)
-        Dmg:SetAttacker(self)
-        Dmg:SetInflictor(self)
-        Dmg:SetDamageType(DMG_GENERIC)
-        Ply:TakeDamageInfo(Dmg)
-    end
-
     function ENT:StartWrath(Ply, Now)
         self.Wrath = {
             ["Target"]   = Ply,
@@ -957,8 +950,6 @@ if SERVER then
         self.MoodUntil   = Now
 
         if not IsValid(Target) then return end
-
-        Target:SetLaggedMovementValue(1)
 
         local Mem = self:GetMemoryOrNew(Target)
 
@@ -1008,18 +999,14 @@ if SERVER then
             return
         end
 
-        Target:SetLaggedMovementValue(WrathSlow)
-        Target:ScreenFade(SCREENFADE.IN, ColorFrost, 0.6, 0.2)
         Target:ViewPunch(Angle(math.Rand(-3, 3), math.Rand(-3, 3), math.Rand(-4, 4)))
 
         if State.Ticks % 4 == 0 then self:SayGroup("WrathLine", MoodAngry, Target) end
 
-        if Now - State.Start >= WrathDuration then
-            self:HurtCold(Target, Target:Health() + Target:Armor() + 10)
-            return
-        end
+        local Power = WrathCold
+        if Now - State.Start >= WrathDuration then Power = WrathFinishCold end
 
-        self:HurtCold(Target, WrathTickDamage)
+        GMM_S.Func.FreezeEntity(Target, Power, self)
     end
 
     -- ----------------------------------------------------------------------
@@ -1081,10 +1068,7 @@ if SERVER then
     end
 
     function ENT:OnRemove()
-        local State    = self.Wrath
-        local Wrathful = State ~= nil
-
-        if Wrathful and IsValid(State.Target) then State.Target:SetLaggedMovementValue(1) end
+        local Wrathful = self.Wrath ~= nil
 
         self:LeaveBuddy()
 

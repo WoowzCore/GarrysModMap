@@ -11,6 +11,12 @@ include("gmm/data/map_assets.lua")
 include("gmm/client/utilities.lua")
 include("gmm/client/utilities_core.lua")
 
+GMM_C.Func.VoidPower = function()
+    local Power = GMM.ConVars.GetFloat("void_power")
+    if GMM.Maps.Goofy then return math.max(1, Power) end
+    return Power
+end
+
 local Start = function()
     if GMM.Valid then
         print("[GMM] CLIENT LOADED")

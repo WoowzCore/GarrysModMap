@@ -265,12 +265,15 @@ GMM.ConVars.Add(true, "Float", "anomalies_timer", 10, "Скорость вызо
 GMM.ConVars.Add(true, "Bool" , "anomalies_rare" , 1, "Редкие аномалии, даже если отключены аномалии")
 GMM.ConVars.Add(true, "Bool" , "entities_unlock", 0, "GMM энтити можно спавнить на любой карте (нужен перезапуск что-бы появилась вкладка GMM)")
 
+-- ----------------------------------------------------------------------
+
 GMM.ConVars.AddEnum(false, "void", 1, "Отображать эффект Void", {
     {"Никогда"      , 0},
     {"Только на GMM", 1},
     {"Всегда"       , 2},
     {"ABSOLUTE"     , 3}
 })
+GMM.ConVars.Add(false, "Float", "void_power", 1, "Сила эффекта Void", 0.01, 30)
 GMM.ConVars.Add(false, "Bool", "debug_showposition", 0, "Отображать позицию и поворот камеры игрока")
 GMM.ConVars.Add(false, "Bool", "debug_showhit", 0, "Отображать Trace.Hit из камеры игрока")
 GMM.ConVars.AddFlags(false, "debug_hit_surfaces", "На какие поверхности и объекты реагирует отладочный луч", {

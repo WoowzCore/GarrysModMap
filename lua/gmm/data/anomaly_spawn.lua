@@ -6,7 +6,6 @@ GMM.Data.AnomalySpawn.Common = {
     "prop_physics", "prop_physics", "prop_physics",
     "gmm_tablet", "gmm_tablet", "gmm_tablet",
     "prop_physics", "prop_physics", "prop_physics",
-    "prop_physics", "prop_physics", "prop_physics",
     "gmm_tablet", "gmm_tablet", "gmm_tablet",
     "gmm_radio"
 }
@@ -17,11 +16,13 @@ GMM.Data.AnomalySpawn.Rare = {
     "npc_pigeon", "npc_seagull", "npc_headcrab", "npc_antlion_grub",
     "npc_headcrab_fast", "npc_zombie", "npc_citizen", "Refugee",
     "npc_gman", "weapon_crowbar", "gmm_download_map", "gmm_toiletman",
-    "gmm_pavelzombie", "gmm_crybird"
+    "gmm_pavelzombie", "gmm_crybird", "npc_rollermine", "npc_antlion",
+    "gmm_bombbox"
 }
 
 GMM.Data.AnomalySpawn.SuperRare = {
-    "gmm_blackhole"
+    "gmm_blackhole", "npc_helicopter", "npc_strider", "npc_combinegunship", "npc_antlionguard",
+    "npc_dog", "nb_example", "doudou_pet"
 }
 
 GMM.Data.AnomalySpawn.Models = {

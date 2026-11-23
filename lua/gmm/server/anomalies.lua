@@ -1,10 +1,10 @@
 GMM_S.Anomaly = {}
 
 GMM_S.Anomaly.List = {
-    {4, "Shake"      , "ТРЯСКА"},
-    {4, "PlaySound"  , "ЗВУКИ"},
-    {4, "Interact"   , "ВЗАИМОДЕЙСТВИЕ"},
-    {2, "SpawnEntity", "СПАВН"},
+    {10, "Shake"      , "ТРЯСКА"},
+    {10, "PlaySound"  , "ЗВУКИ"},
+    {10, "Interact"   , "ВЗАИМОДЕЙСТВИЕ"},
+    {5, "SpawnEntity", "СПАВН"},
     {1, "Vanish"     , "ИСЧЕЗНОВЕНИЕ"}
 }
 
@@ -579,7 +579,7 @@ local SpawnFloorNormal     = 0.9
 local SpawnLift            = 1
 local SpawnHullPad         = 1.15
 local SpawnRareChance      = 0.05
-local SpawnSuperRareChance = 0.005
+local SpawnSuperRareChance = 0.01
 
 local SpawnGroupChance = 0.03
 local SpawnGroupMin    = 2

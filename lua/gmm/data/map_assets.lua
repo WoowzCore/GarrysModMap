@@ -1,9 +1,9 @@
 ﻿GMM.Data = GMM.Data or {}
 GMM.Data.MapAssets = {
     Sounds = {
-        {{"Default", "Flood", "Old", "Pavel"}, {"woowz/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.9}},
-        {{"Dark"}, {"woowz/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.7}},
-        {{"Default", "Flood", "Old", "Pavel"}, {"woowz/music/concrete_halls.wav", 1, 10, 300, 20}},
+        {{"Default", "Flood", "Old", "Pavel"}, {"woowz11/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.9}},
+        {{"Dark"}, {"woowz11/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.7}},
+        {{"Default", "Flood", "Old", "Pavel"}, {"woowz11/music/concrete_halls.wav", 1, 10, 300, 20}},
         {{"Default", "Flood", "Old", "Pavel"}, {"friends/friend_online.wav", Vector(-355, 175, 302), 10, 200, 10, nil, 0.1}},
         {{"Default", "Flood", "Old"}, {"ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000}},
         {{"Default", "Flood", "Old"}, {"ambient/atmosphere/inside_lighthouse_amb.wav", Vector(-488, -667, 2546), 100, 2000}},
@@ -34,7 +34,7 @@ GMM.Data.MapAssets = {
         {{"Flood"}, {"ambient/water/drip_loop1.wav", Vector(-488, -667, 2546), 100, 2500}},
         {{"Flood"}, {"ambient/weather/rumble_rain_nowind.wav", Vector(-357, 1182, 2679), 100, 500}},
         {{"Flood"}, {"ambient/outro/messagepacketsmultiple02.wav", Vector(-1511, 437, 445), 100, 500}},
-        {{"Dark"}, {"woowz/other/siren.wav", Vector(573, 1643, 872), 300, 700}},
+        {{"Dark"}, {"woowz11/other/siren.wav", Vector(573, 1643, 872), 300, 700}},
         {{"Default"}, {"ambient/weather/lake_water.wav", Vector(2554, -1637, 1328), 500, 1200}},
         {{"Default"}, {"ambient/wind/lightwind.wav", Vector(3744, -4194, 1370), 1000, 2000}},
         {{"Default"}, {"ambient/water/wave1.wav", Vector(4264, -2859, 1269), 50, 400, 0.25, 5}},

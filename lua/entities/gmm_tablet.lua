@@ -495,7 +495,7 @@ function ENT:Initialize()
     if SERVER then
         self:SetUseType(SIMPLE_USE)
 
-        local IsRare = self.m_PlayerCreator == nil and math.random() > 0.99
+        local IsRare = self.m_PlayerCreator == nil and math.random() > 0.975
         self:SetTextRare(IsRare)
 
         local IsRandom = math.random() > 0.95

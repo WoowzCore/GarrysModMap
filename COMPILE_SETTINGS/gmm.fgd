@@ -1,0 +1,8 @@
+@PointClass base(Targetname, Angles) studio("models/woowz11/box_cardboard.mdl") = gmm_bombbox : "Коробка с бомбой"
+[
+    skin(integer) : "Skin" : 1 : "Скин для превью в редакторе"
+]
+
+@PointClass base(Targetname, Angles) studio("models/props/cs_office/radio.mdl") = gmm_radio : "Радио"
+[
+]

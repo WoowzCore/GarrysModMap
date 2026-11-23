@@ -169,7 +169,7 @@ hook.Add("RenderScreenspaceEffects", "gmm_GlitchVoid", function()
     local Power = FromZeroPower * FromZeroPower
 
     if GMM.Maps.Goofy then
-        Power = Power * 20 + 0.25
+        Power = Power * 15 + 0.25
     end
 
     if Power <= 0.0001 then return end

@@ -20,6 +20,10 @@ GMM.Data.AnomalySpawn.Rare = {
     "gmm_pavelzombie", "gmm_crybird"
 }
 
+GMM.Data.AnomalySpawn.SuperRare = {
+    "gmm_blackhole"
+}
+
 GMM.Data.AnomalySpawn.Models = {
     "models/props_c17/oildrum001.mdl",
     "models/Gibs/HGIBS_rib.mdl",

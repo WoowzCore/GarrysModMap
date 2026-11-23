@@ -11,11 +11,12 @@ ENT.Spawnable = GMM.Func.DoEntitiesUnlock()
 -- Данные
 -- ----------------------------------------------------------------------
 
-local ModelPavel  = "models/woowz11/player/pavelpistv.mdl"
-local ModelPiss   = "models/player/pissbaby.mdl"
-local ModelSponge = "models/woowz_map/prikol/le_sponge_rag_player.mdl"
+local ModelPavel     = "models/woowz11/player/pavelpistv.mdl"
+local ModelPiss      = "models/woowz11/player/pisechnik.mdl"
+local ModelPissStill = "models/woowz11/player/pisechnik_stilllife.mdl"
+local ModelSponge    = "models/woowz_map/prikol/le_sponge_rag_player.mdl"
 
-local Models = {ModelPavel, ModelPiss, ModelSponge}
+local Models = {ModelPavel, ModelPiss, ModelPissStill, ModelSponge}
 
 local PlayerColors = {
     Color(255, 255, 255),
@@ -132,10 +133,10 @@ if SERVER then
             return
         end
 
-        if ModelPath == ModelPiss then
+        if ModelPath == ModelPiss or ModelPath == ModelPissStill then
             pcall(function()
                 local Skins = self:SkinCount() or 0
-                if Skins > 0 then self:SetSkin(math.random(0, math.min(12, Skins - 1))) end
+                if Skins > 0 then self:SetSkin(math.random(0, Skins - 1)) end
             end)
         end
 

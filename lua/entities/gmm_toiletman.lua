@@ -244,7 +244,7 @@ local RareModels = {
 	"models/zombie/fast.mdl",
 	"models/zombie/zombie_soldier.mdl",
 	"models/zombie/classic.mdl",
-	"models/player/pissbaby.mdl",
+	"models/woowz11/player/pisechnik.mdl",
 	"models/player/t_leet.mdl",
 	"models/magnusson.mdl",
 	"models/shadertest/vertexlitbumpedtexturewithselfillum.mdl",

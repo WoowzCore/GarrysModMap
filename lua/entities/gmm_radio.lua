@@ -30,7 +30,7 @@ local ActionNext   = 3
 local ActionMode   = 4
 local ActionRandom = 5
 
-local VariantMax = 5
+local VariantMax = 6
 
 local Variants = {
     [0] = {Key = "Normal",  Title = "STANDARD (?)", Weight = 70, Volume = 5,    Rate = 1,   Color = Color(235, 235, 240), Tint = Color(255, 255, 255)},
@@ -38,7 +38,8 @@ local Variants = {
     [2] = {Key = "Fast",    Title = "FAST x1.5",    Weight = 8,  Volume = 5,    Rate = 1.5, Color = Color(70, 255, 90),   Tint = Color(130, 255, 130)},
     [3] = {Key = "Slow",    Title = "SLOW x0.7",    Weight = 8,  Volume = 5,    Rate = 0.7, Color = Color(255, 60, 70),   Tint = Color(255, 110, 110)},
     [4] = {Key = "Stutter", Title = "DJ GOLUCUBE",  Weight = 4,  Volume = 5,    Rate = 1,   Color = Color(60, 150, 255),  Tint = Color(110, 160, 255)},
-    [5] = {Key = "Warp",    Title = "~WARP~",       Weight = 5,  Volume = 5,    Rate = 1,   Color = Color(190, 90, 255),  Tint = Color(200, 130, 255)}
+    [5] = {Key = "Warp",    Title = "~WARP~",       Weight = 5,  Volume = 5,    Rate = 1,   Color = Color(190, 90, 255),  Tint = Color(200, 130, 255)},
+    [6] = {Key = "Chaos",   Title = "CACOPHONY",    Weight = 2,  Volume = 3,    Rate = 1,   Color = Color(235, 235, 240), Tint = Color(25, 25, 28)}
 }
 
 local function GetVariantDef(Index)
@@ -462,7 +463,9 @@ if CLIENT then
     surface.CreateFont("gmm_radio_Small",  {font = "Consolas", size = 15, weight = 700, antialias = true, extended = true})
     surface.CreateFont("gmm_radio_Tiny",   {font = "Consolas", size = 13, weight = 600, antialias = true, extended = true})
 
-    local Weirdness = 1
+    local BaseWeirdness  = 1
+    local ChaosWeirdness = 3.2
+    local Weirdness      = BaseWeirdness
 
     local PanelW = 520
     local PanelH = 152
@@ -584,6 +587,65 @@ if CLIENT then
         return Words[2 + math.floor(Hash(Tick * 4.1 + Salt) * (#Words - 1))]
     end
 
+    local ChaosColors = {
+        Color(255, 40, 90),
+        Color(40, 255, 220),
+        Color(255, 220, 40),
+        Color(190, 90, 255),
+        Color(235, 235, 240)
+    }
+
+    local ChaosStatusWords = {
+        ["Play"]    = {"PLAY", "P L A Y ??", "PLAYPLAYPLAY", "ИГРАЕТ ВСЁ", "PL4Y 4LL", "NO MORE SILENCE"},
+        ["Pause"]   = {"PAUSE", "PAUSE?!", "P4US3", "ОНО СЛЫШИТ", "NOT PAUSED"},
+        ["Stop"]    = {"STOP", "S T O P ?", "ST0P", "..."},
+        ["Loading"] = {"LOADING...", "L04D1NG 4LL", "MORE...", "0x47554C"},
+        ["Error"]   = {"ERROR!", "3RR0R!", "ERR 0x47554C", "TOO MANY SIGNALS"}
+    }
+
+    local function IsChaos(Radio)
+        return GetVariantDef(Radio:GetVariant()).Key == "Chaos"
+    end
+
+    local function ApplyWeirdness(Radio)
+        if IsChaos(Radio) then
+            Weirdness = ChaosWeirdness
+        else
+            Weirdness = BaseWeirdness
+        end
+    end
+
+    local function GetStatusWords(Radio, Key)
+        if IsChaos(Radio) then return ChaosStatusWords[Key] end
+        return StatusWords[Key]
+    end
+
+    local function GetTitleText(Radio, Index)
+        local Name = TrackNames[Index] or "???"
+        if not IsChaos(Radio) then return Name end
+
+        local Layers = Radio.ChaosLayers
+        if Layers == nil then return Name end
+
+        local Version = Radio.ChaosVersion or 0
+        if Radio.ChaosTitle ~= nil and Radio.ChaosTitleVersion == Version and Radio.ChaosTitleIndex == Index then
+            return Radio.ChaosTitle
+        end
+
+        local Parts = {Name}
+
+        for i = 1, #Layers do
+            local LayerIndex = Layers[i].Index
+            if LayerIndex ~= nil then Parts[#Parts + 1] = TrackNames[LayerIndex] or "???" end
+        end
+
+        Radio.ChaosTitle        = table.concat(Parts, "  //  ")
+        Radio.ChaosTitleVersion = Version
+        Radio.ChaosTitleIndex   = Index
+
+        return Radio.ChaosTitle
+    end
+
     local function NoticeChange(Ent)
         local Ply = LocalPlayer()
         if not IsValid(Ply) then return end
@@ -600,6 +662,11 @@ if CLIENT then
         end
 
         if not Radio:GetPlaying() then return ColorOff end
+
+        if IsChaos(Radio) then
+            local Pick = 1 + math.floor(Hash(math.floor(RealTime() * 14) * 1.37) * #ChaosColors)
+            return ChaosColors[Pick]
+        end
 
         return GetVariantDef(Radio:GetVariant()).Color
     end
@@ -679,7 +746,8 @@ if CLIENT then
 
     function ENT:RadioStop()
         self:GlitchReset()
-        
+        self:ChaosStop()
+
         self.RadioToken   = (self.RadioToken or 0) + 1
         self.RadioLoading = false
         self.RadioError   = false
@@ -783,6 +851,8 @@ if CLIENT then
                 end
             end
 
+            self:ChaosSetPlaying(Playing)
+            
             if Old ~= nil then NoticeChange(self) end
         end
 
@@ -972,14 +1042,378 @@ if CLIENT then
         return Mult
     end
 
+    -- ----------------------------------------------------------------------
+    -- Какофония (чёрное радио)
+    -- ----------------------------------------------------------------------
+
+    local ChaosLayerCount    = 5
+    local ChaosLayerDelayMin = 0.2
+    local ChaosLayerDelayMax = 1.5
+    local ChaosEventMin      = 1.5
+    local ChaosEventMax      = 6
+    local ChaosRateMin       = 0.3
+    local ChaosRateMax       = 2.6
+    local ChaosVolumeMin     = 0.4
+    local ChaosVolumeMax     = 1
+    local ChaosDropMin       = 0.04
+    local ChaosDropMax       = 0.3
+    local ChaosNoiseDots     = 24
+
+    local ChaosTypes = {
+        {Weight = 4, Key = "Rate"},
+        {Weight = 3, Key = "Drop"},
+        {Weight = 3, Key = "Loop"},
+        {Weight = 3, Key = "Seek"},
+        {Weight = 1, Key = "Swap"},
+    }
+
+    local function PickChaosKey()
+        local Sum = 0
+        for _, Type in ipairs(ChaosTypes) do
+            Sum = Sum + Type.Weight
+        end
+
+        local Roll = math.Rand(0, Sum)
+        for _, Type in ipairs(ChaosTypes) do
+            Roll = Roll - Type.Weight
+            if Roll <= 0 then return Type.Key end
+        end
+
+        return "Rate"
+    end
+
+    local function PickChaosLayerOrNil(Layers)
+        local Ready = {}
+
+        for i = 1, #Layers do
+            if IsValid(Layers[i].Channel) then Ready[#Ready + 1] = Layers[i] end
+        end
+
+        if #Ready == 0 then return nil end
+
+        return Ready[math.random(#Ready)]
+    end
+
+    function ENT:ChaosPickIndex(Slot)
+        local Count = #Tracks
+        local Index = 1 + math.floor(Hash(self:GetSession() * 13.7 + Slot * 91.3 + self:EntIndex() * 3.1) * Count)
+
+        if Index == self:GetTrackIndex() then Index = Index % Count + 1 end
+
+        return Index
+    end
+
+    function ENT:ChaosStop()
+        self.ChaosToken     = (self.ChaosToken or 0) + 1
+        self.ChaosNextEvent = nil
+        self.ChaosMainDrop  = nil
+
+        local Layers = self.ChaosLayers
+        self.ChaosLayers = nil
+
+        if Layers == nil then return end
+
+        for i = 1, #Layers do
+            local Channel = Layers[i].Channel
+            if IsValid(Channel) then Channel:Stop() end
+        end
+    end
+
+    function ENT:ChaosSetPlaying(Playing)
+        local Layers = self.ChaosLayers
+        if Layers == nil then return end
+
+        for i = 1, #Layers do
+            local Channel = Layers[i].Channel
+
+            if IsValid(Channel) then
+                if Playing then
+                    Channel:Play()
+                else
+                    Channel:Pause()
+                end
+            end
+        end
+    end
+
+    function ENT:ChaosStartLayer(Layer, Index)
+        local Url = Tracks[Index]
+        if Url == nil then return end
+
+        local Old = Layer.Channel
+        Layer.Channel = nil
+        if IsValid(Old) then Old:Stop() end
+
+        Layer.Index   = Index
+        Layer.Loading = true
+        Layer.Serial  = Layer.Serial + 1
+
+        self.ChaosVersion = (self.ChaosVersion or 0) + 1
+
+        local Serial = Layer.Serial
+        local Token  = self.ChaosToken
+
+        sound.PlayURL(Url, "3d mono noblock", function(Channel, ErrorId, ErrorName)
+            if not IsValid(self) or self.ChaosToken ~= Token or Layer.Serial ~= Serial then
+                if IsValid(Channel) then Channel:Stop() end
+                return
+            end
+
+            Layer.Loading = false
+
+            if not IsValid(Channel) then
+                print("[GMM] RADIO CHAOS LOAD ERROR! TRACK: " .. tostring(TrackNames[Index]) .. ", CODE: " .. tostring(ErrorId) .. ", " .. tostring(ErrorName) .. ", URL: " .. Url)
+
+                Layer.Index   = math.random(#Tracks)
+                Layer.StartAt = RealTime() + 5
+                return
+            end
+
+            local VariantDef = GetVariantDef(self:GetVariant())
+
+            Layer.Channel = Channel
+            Layer.Born    = RealTime()
+            Layer.Volume  = VariantDef.Volume * math.Rand(ChaosVolumeMin, ChaosVolumeMax)
+            Layer.Rate    = math.Rand(ChaosRateMin, ChaosRateMax)
+
+            Channel:EnableLooping(false)
+            Channel:SetPos(self:GetPos())
+            Channel:SetVolume(Layer.Volume)
+            Channel:SetPlaybackRate(Layer.Rate)
+
+            local Length = Channel:GetLength()
+            if Length > 3 then Channel:SetTime(math.Rand(0, Length * 0.8)) end
+
+            if self:GetPlaying() then Channel:Play() end
+        end)
+    end
+
+    function ENT:ChaosSwapLayer(Layer)
+        self:ChaosStartLayer(Layer, math.random(#Tracks))
+    end
+
+    function ENT:ChaosStart()
+        self.ChaosToken   = (self.ChaosToken or 0) + 1
+        self.ChaosVersion = (self.ChaosVersion or 0) + 1
+
+        local Now    = RealTime()
+        local Layers = {}
+
+        for i = 1, ChaosLayerCount do
+            Layers[i] = {
+                Channel   = nil,
+                Loading   = false,
+                Serial    = 0,
+                Index     = self:ChaosPickIndex(i),
+                StartAt   = Now + math.Rand(ChaosLayerDelayMin, ChaosLayerDelayMax) * i,
+                Born      = Now,
+                Volume    = 1,
+                Rate      = 1,
+                Wobble    = math.Rand(0.5, 3),
+                DropUntil = 0,
+                LoopLeft  = 0,
+                LoopPos   = 0,
+                LoopLen   = 0,
+                LoopNext  = 0
+            }
+        end
+
+        self.ChaosLayers    = Layers
+        self.ChaosNextEvent = Now + math.Rand(ChaosEventMin, ChaosEventMax)
+    end
+
+    function ENT:ChaosLayerThink(Layer, Now)
+        local Channel = Layer.Channel
+
+        if not IsValid(Channel) then
+            if Layer.Loading or Now < Layer.StartAt then return end
+
+            self:ChaosStartLayer(Layer, Layer.Index)
+            return
+        end
+
+        Channel:SetPos(self:GetPos())
+
+        if Layer.DropUntil > 0 and Now >= Layer.DropUntil then
+            Layer.DropUntil = 0
+            Channel:SetVolume(Layer.Volume)
+        end
+
+        if Layer.LoopLeft > 0 and Now >= Layer.LoopNext then
+            Channel:SetTime(Layer.LoopPos)
+
+            Layer.LoopLeft = Layer.LoopLeft - 1
+            Layer.LoopNext = Now + Layer.LoopLen
+        end
+
+        Channel:SetPlaybackRate(Layer.Rate * (1 + 0.08 * math.sin(Now * Layer.Wobble)))
+
+        if not self:GetPlaying() then return end
+        if Now - Layer.Born < 1 then return end
+        if Channel:GetState() ~= GMOD_CHANNEL_STOPPED then return end
+
+        self:ChaosSwapLayer(Layer)
+    end
+
+    function ENT:ChaosEvent(Channel, Layers, Now)
+        local Key = PickChaosKey()
+
+        if Key == "Rate" then
+            for i = 1, #Layers do
+                Layers[i].Rate = math.Rand(ChaosRateMin, ChaosRateMax)
+            end
+            return
+        end
+
+        if Key == "Drop" then
+            local Duration = math.Rand(ChaosDropMin, ChaosDropMax)
+            local All      = math.random() < 0.35
+            local Pick     = math.random(#Layers)
+
+            for i = 1, #Layers do
+                if All or i == Pick then
+                    local Layer = Layers[i]
+                    Layer.DropUntil = Now + Duration
+
+                    if IsValid(Layer.Channel) then Layer.Channel:SetVolume(0) end
+                end
+            end
+
+            if All then
+                self.ChaosMainDrop = Now + Duration
+                Channel:SetVolume(0)
+            end
+
+            return
+        end
+
+        local Layer = PickChaosLayerOrNil(Layers)
+        if Layer == nil then return end
+
+        local LayerChannel = Layer.Channel
+        local Length       = LayerChannel:GetLength()
+
+        if Key == "Swap" then
+            self:ChaosSwapLayer(Layer)
+            return
+        end
+
+        if Length < 3 then return end
+
+        if Key == "Loop" then
+            Layer.LoopPos  = LayerChannel:GetTime()
+            Layer.LoopLen  = math.Rand(0.05, 0.25)
+            Layer.LoopLeft = math.random(4, 12)
+            Layer.LoopNext = Now + Layer.LoopLen
+            return
+        end
+
+        LayerChannel:SetTime(math.Rand(0, Length - 1))
+    end
+
+    function ENT:ChaosThink(Channel, Now)
+        if self.ChaosLayers == nil then self:ChaosStart() end
+
+        local Layers = self.ChaosLayers
+
+        if self.ChaosMainDrop ~= nil and Now >= self.ChaosMainDrop then
+            self.ChaosMainDrop = nil
+            Channel:SetVolume(self.RadioVolume or 1)
+        end
+
+        for i = 1, #Layers do
+            self:ChaosLayerThink(Layers[i], Now)
+        end
+
+        if Now < self.ChaosNextEvent then return end
+        self.ChaosNextEvent = Now + math.Rand(ChaosEventMin, ChaosEventMax)
+
+        self:ChaosEvent(Channel, Layers, Now)
+    end
+
+    function ENT:DrawChaosNoise(X, Y, Width, Height, Alpha)
+        if not IsChaos(self) then return end
+
+        local Tick   = math.floor(RealTime() * 18)
+        local SplitX = math.floor((Hash(Tick * 1.7) - 0.5) * 10)
+        local SplitY = math.floor((Hash(Tick * 2.9) - 0.5) * 4)
+
+        surface.SetDrawColor(255, 0, 60, 110 * Alpha)
+        surface.DrawOutlinedRect(X + SplitX, Y + SplitY, Width, Height, 1)
+
+        surface.SetDrawColor(0, 255, 220, 110 * Alpha)
+        surface.DrawOutlinedRect(X - SplitX, Y - SplitY, Width, Height, 1)
+
+        for i = 1, 3 do
+            if Hash(Tick * 3.1 + i * 7.7) > 0.7 then
+                local TearY = Y + math.floor(Hash(Tick * 5.3 + i) * Height)
+                local TearH = 2 + math.floor(Hash(Tick * 1.1 + i * 3) * 10)
+                local TearX = math.floor((Hash(Tick * 2.3 + i * 5) - 0.5) * 30)
+
+                surface.SetDrawColor(235, 235, 240, 40 * Alpha)
+                surface.DrawRect(X + TearX, TearY, Width, TearH)
+
+                surface.SetDrawColor(255, 0, 60, 60 * Alpha)
+                surface.DrawRect(X - TearX, TearY + TearH, Width, 1)
+            end
+        end
+
+        surface.SetDrawColor(235, 235, 240, 90 * Alpha)
+        for i = 1, ChaosNoiseDots do
+            local DotX = X + math.floor(Hash(Tick * 1.3 + i * 9.1) * Width)
+            local DotY = Y + math.floor(Hash(Tick * 2.1 + i * 4.3) * Height)
+
+            surface.DrawRect(DotX, DotY, 2, 2)
+        end
+
+        if Hash(Tick * 0.37) > 0.96 then
+            surface.SetDrawColor(235, 235, 240, 45 * Alpha)
+            surface.DrawRect(X, Y, Width, Height)
+        end
+    end
+
+    function ENT:DrawChaosLayers(X, Y, Width, Alpha)
+        if not IsChaos(self) then return end
+
+        local Layers = self.ChaosLayers
+        if Layers == nil then return end
+
+        local Tick = math.floor(RealTime() * 8)
+
+        for i = 1, #Layers do
+            local Layer  = Layers[i]
+            local Active = IsValid(Layer.Channel)
+            local RowY   = Y + (i - 1) * 14
+            local Pick   = ChaosColors[1 + math.floor(Hash(Tick * 1.3 + i * 4.1) * #ChaosColors)]
+            local Name   = "........"
+            local Level  = 0
+
+            if Active then
+                Name = TrackNames[Layer.Index] or "???"
+
+                local Cut = utf8.offset(Name, 37)
+                if Cut ~= nil then Name = string.sub(Name, 1, Cut - 1) .. ".." end
+
+                if Layer.DropUntil == 0 then Level = math.Clamp(Layer.Rate / ChaosRateMax, 0.05, 1) end
+            end
+
+            draw.SimpleText(Garble("L" .. i .. "  " .. Name, 40 + i), "gmm_radio_Tiny", X, RowY, SetColor(ColorTemp, Pick.r, Pick.g, Pick.b, 200 * Alpha), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP)
+
+            surface.SetDrawColor(Pick.r, Pick.g, Pick.b, 160 * Alpha)
+            surface.DrawRect(X + Width - 60, RowY + 3, math.floor(60 * Level), 6)
+        end
+    end
+
     function ENT:RadioEffects()
+        local VariantDef = GetVariantDef(self:GetVariant())
+        local Key        = VariantDef.Key
+
+        if Key ~= "Chaos" and self.ChaosLayers ~= nil then self:ChaosStop() end
+
         if not self:GetPlaying() then return end
 
         local Channel = self.RadioChannel
         if not IsValid(Channel) then return end
-
-        local VariantDef = GetVariantDef(self:GetVariant())
-        local Key        = VariantDef.Key
 
         if Key == "Warp" then
             local Time = CurTime()
@@ -987,6 +1421,12 @@ if CLIENT then
         elseif Key == "Stutter" then
             local Mult = self:GlitchThink(Channel, RealTime())
             Channel:SetPlaybackRate(VariantDef.Rate * Mult)
+        elseif Key == "Chaos" then
+            local Now  = RealTime()
+            local Mult = self:GlitchThink(Channel, Now)
+
+            Channel:SetPlaybackRate(VariantDef.Rate * Mult)
+            self:ChaosThink(Channel, Now)
         end
     end
 
@@ -1020,6 +1460,7 @@ if CLIENT then
         local Time    = CurTime()
         local Frame   = FrameTime()
         local Delta   = math.min(Frame * 14, 1)
+        local Chaos   = IsChaos(self)
 
         for i = 1, BarCount do
             local Target = 0
@@ -1034,6 +1475,10 @@ if CLIENT then
                 Target = math.min(math.sqrt(Peak) * EqGain * (0.7 + i / BarCount), 1)
             elseif Loading then
                 Target = 0.12 + 0.1 * math.sin(Time * 5 + i * 0.6)
+            end
+
+            if Chaos then
+                Target = math.min(Target * (0.3 + 1.7 * Hash(Time * 31 + i * 1.7)), 1)
             end
 
             local Value = Lerp(Delta, Bars[i], Target)
@@ -1053,10 +1498,17 @@ if CLIENT then
 
     function ENT:OnRemove()
         local Channel = self.RadioChannel
+        local Layers  = self.ChaosLayers
 
         timer.Simple(0, function()
             if IsValid(self) then return end
             if IsValid(Channel) then Channel:Stop() end
+            if Layers == nil then return end
+
+            for i = 1, #Layers do
+                local LayerChannel = Layers[i].Channel
+                if IsValid(LayerChannel) then LayerChannel:Stop() end
+            end
         end)
     end
 
@@ -1106,6 +1558,8 @@ if CLIENT then
     -- ----------------------------------------------------------------------
 
     function ENT:DrawRadioPanel(Alpha)
+        ApplyWeirdness(self)
+
         local Playing   = self:GetPlaying()
         local Index     = self:GetTrackIndex()
         local Bars      = self.RadioBars
@@ -1115,7 +1569,7 @@ if CLIENT then
         local Accent    = GetAccent(self)
         local Variant   = GetVariantDef(self:GetVariant())
         local StatusKey = GetStatusKey(self)
-        local Status    = Garble(PickWord(StatusWords[StatusKey], 2), 2)
+        local Status    = Garble(PickWord(GetStatusWords(self, StatusKey), 2), 2)
 
         local Burst = Weirdness > 0 and Hash(Tick * 2.3) > 1 - 0.1 * Weirdness
 
@@ -1192,7 +1646,7 @@ if CLIENT then
 
         -- Название
         local TitleY     = Y + 32
-        local Title      = Garble(TrackNames[Index] or "???", 1)
+        local Title      = Garble(GetTitleText(self, Index), 1)
         local TitleAlpha = Playing and 255 or 140
         local Start      = self.RadioScrollStart or Time
 
@@ -1242,6 +1696,9 @@ if CLIENT then
         DrawProgress(self, InnerX, Y + 122, InnerW, Alpha, Accent)
 
         draw.SimpleText(Garble("CTRL+E MENU   SHIFT+E >>   ALT+E <<   BOTH = PAUSE", 5), "gmm_radio_Tiny", InnerX + InnerW / 2, Y + 130, SetColor(ColorTemp, 110, 110, 120, 170 * Alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+
+        self:DrawChaosNoise(X, Y, PanelW, PanelH, Alpha)
+        self:DrawChaosLayers(X, Y + PanelH + 6, PanelW, Alpha)
     end
 
     hook.Add("HUDPaint", "gmm_radio_Hud", function()
@@ -1345,7 +1802,10 @@ if CLIENT then
 
         local Menu = vgui.Create("DPanel")
         Menu:SetSize(MenuW, MenuH)
-        Menu:SetPos(math.floor(ScrW() / 2 - MenuW / 2), ScrH() - MenuH - 90)
+        local BaseX = math.floor(ScrW() / 2 - MenuW / 2)
+        local BaseY = ScrH() - MenuH - 90
+
+        Menu:SetPos(BaseX, BaseY)
         Menu:MakePopup()
         Menu:SetKeyboardInputEnabled(false)
 
@@ -1355,25 +1815,43 @@ if CLIENT then
         GMM.RadioMenuPanel = Menu
 
         Menu.Think = function(Self)
-            local Ply   = LocalPlayer()
+            local Ply    = LocalPlayer()
             local Target = Self.Radio
 
             if not IsValid(Ply) or not IsValid(Target) or Ply:GetPos():DistToSqr(Target:GetPos()) > MenuDistanceSqr then
                 Self:Remove()
+                return
             end
+
+            local OffX = 0
+            local OffY = 0
+
+            if IsChaos(Target) then
+                local Tick = math.floor(RealTime() * 20)
+
+                if Hash(Tick * 1.9) > 0.8 then
+                    OffX = math.floor((Hash(Tick * 3.3) - 0.5) * 24)
+                    OffY = math.floor((Hash(Tick * 5.7) - 0.5) * 10)
+                end
+            end
+
+            Self:SetPos(BaseX + OffX, BaseY + OffY)
         end
 
         Menu.Paint = function(Self, PaintW, PaintH)
             local Target = Self.Radio
             if not IsValid(Target) then return end
 
+            ApplyWeirdness(Target)
+
             local Time = CurTime()
             if Time - Self.OpenTime < 0.2 and Hash(Time * 80) < 0.4 then return end
+            if IsChaos(Target) and Hash(math.floor(Time * 30) * 1.3) < 0.08 then return end
 
             local Accent    = GetAccent(Target)
             local Variant   = GetVariantDef(Target:GetVariant())
             local StatusKey = GetStatusKey(Target)
-            local Status    = Garble(PickWord(StatusWords[StatusKey], 12), 12)
+            local Status    = Garble(PickWord(GetStatusWords(Target, StatusKey), 12), 12)
             local Index     = Target:GetTrackIndex()
 
             surface.SetDrawColor(8, 8, 12, 245)
@@ -1390,7 +1868,7 @@ if CLIENT then
             draw.SimpleText(Garble(Variant.Title, 13), "gmm_radio_Small", PaintW - 48, 12, SetColor(ColorTemp, Variant.Color.r, Variant.Color.g, Variant.Color.b, 255), TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP)
 
             local ScreenX, ScreenY = Self:LocalToScreen(0, 0)
-            local Title = Garble(TrackNames[Index] or "???", 10)
+            local Title = Garble(GetTitleText(Target, Index), 10)
 
             DrawMarquee(Title, "gmm_radio_Big", 18, 35, InnerW, Target.RadioScrollStart or Time, SetColor(ColorTemp, Accent.r, Accent.g, Accent.b, 70), ScreenX, ScreenY)
             DrawMarquee(Title, "gmm_radio_Big", 16, 34, InnerW, Target.RadioScrollStart or Time, SetColor(ColorTemp, 235, 235, 240, 255), ScreenX, ScreenY)
@@ -1399,6 +1877,7 @@ if CLIENT then
 
             draw.SimpleText(string.format("%03d / %03d  //  %s", Index, #Tracks, ModeNames[Target:GetMode()] or "?"), "gmm_radio_Tiny", 16, PaintH - 28, SetColor(ColorTemp, 110, 110, 120, 200), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP)
             draw.SimpleText(Garble("MOVE AWAY TO CLOSE", 14), "gmm_radio_Tiny", PaintW - 16, PaintH - 28, SetColor(ColorTemp, 110, 110, 120, 200), TEXT_ALIGN_RIGHT, TEXT_ALIGN_TOP)
+            Target:DrawChaosNoise(0, 0, PaintW, PaintH, 1)
         end
 
         local function GetPauseLabel()

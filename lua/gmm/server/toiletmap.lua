@@ -73,7 +73,7 @@ local function SpawnToiletMan(Areas)
     Ent:Spawn()
 end
 
-timer.Simple(2, function()
+local function StartToiletSpawn()
     local Missing = ToiletCount - #ents.FindByClass("gmm_toiletman")
     if Missing <= 0 then return end
 
@@ -82,4 +82,14 @@ timer.Simple(2, function()
     timer.Create("gmm_ToiletSpawn", SpawnDelay, Missing, function()
         SpawnToiletMan(Areas)
     end)
-end)
+end
+
+local function ScheduleToiletSpawn()
+    timer.Remove("gmm_ToiletSpawn")
+    timer.Create("gmm_ToiletStart", 2, 1, StartToiletSpawn)
+end
+
+hook.Add("InitPostEntity", "gmm_ToiletSpawn", ScheduleToiletSpawn)
+hook.Add("PostCleanupMap", "gmm_ToiletSpawn", ScheduleToiletSpawn)
+
+ScheduleToiletSpawn()

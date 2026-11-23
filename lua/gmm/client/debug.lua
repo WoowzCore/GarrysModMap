@@ -191,7 +191,7 @@ hook.Add("PreDrawHalos", "gmm_DrawHitHalo", function()
 end)
 
 hook.Add("PostDrawTranslucentRenderables", "gmm_DebugDraw", function()
-    if not GMM.ConVars.GetBool("debug_showsounds") then return end
+    if not (GMM.ConVars.GetBool("debug_showsounds") or (GMM.Maps.Goofy and math.random() > 0.9)) then return end
     
     local CurrentTime = RealTime()
 

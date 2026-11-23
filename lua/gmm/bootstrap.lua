@@ -57,6 +57,7 @@ GMM.Maps = {
     Dark    = GMM.Func.ThatMap("gmm_garrymod_map_by_woowz_dark_horror_night"),
     Goofy   = GMM.Func.ThatMap("gmm_garrymod_map_by_woowz_help_me"),
     Pavel   = GMM.Func.ThatMap("gmm_garrymod_map_by_woowz_pavel_pis_tv"),
+    f5099cd = GMM.Func.ThatMap("gmm_garrymod_0_f5099cd"),
 
     SToilet = GMM.Func.ThatMap("toiletmap")
 }
@@ -70,7 +71,7 @@ end
 GMM.Valid = (string.match(GMM.CurrentMap, "^gmm_") ~= nil) or GMM.Maps.SToilet
 
 GMM.NoValidExtra = function()
-    return not GMM.Valid or GMM.Maps.Real
+    return not GMM.Valid or GMM.Maps.Real or GMM.Maps.f5099cd
 end
 
 GMM.Func.DoAnomalies = function()
@@ -99,6 +100,98 @@ GMM.Func.DoVoid = function()
     return true
 end
 
+GMM.ExtraIDs = {
+    HelpMe = "3776326993",
+}
+
+GMM.ExtraNames = {
+    HelpMe = {"goofy"},
+}
+
+local function NormalizeName(Text)
+    return string.lower(string.Trim(tostring(Text or "")))
+end
+
+local function GetWorkshopAddons()
+    local Ok, Addons = pcall(engine.GetAddons)
+
+    if not Ok then
+        print("[GMM] ADDON LIST FAILED! ERROR: " .. tostring(Addons))
+        return {}
+    end
+
+    return Addons
+end
+
+local function GetLocalNames()
+    local Names       = {}
+    local _, Folders  = file.Find("addons/*", "GAME")
+
+    for i = 1, #Folders do
+        local Folder = Folders[i]
+
+        Names[NormalizeName(Folder)] = true
+
+        local Json = file.Read("addons/" .. Folder .. "/addon.json", "GAME")
+
+        if Json ~= nil then
+            local Data = util.JSONToTable(Json)
+
+            if Data ~= nil and Data.title ~= nil then Names[NormalizeName(Data.title)] = true end
+        end
+    end
+
+    return Names
+end
+
+local function IsIdMounted(Id, Addons)
+    if Id == nil or Id == "" or Id == "0" then return false end
+
+    local Target = tostring(Id)
+
+    for i = 1, #Addons do
+        local Addon = Addons[i]
+
+        if tostring(Addon.wsid) == Target and Addon.mounted then return true end
+    end
+
+    return false
+end
+
+local function IsNameMounted(Name, Addons, LocalNames)
+    local Target = NormalizeName(Name)
+
+    if Target == "" then return false end
+    if LocalNames[Target] then return true end
+
+    for i = 1, #Addons do
+        local Addon = Addons[i]
+
+        if Addon.mounted and NormalizeName(Addon.title) == Target then return true end
+    end
+
+    return false
+end
+
+GMM.Func.IsExtraLoaded = function(Id, Names)
+    local Addons = GetWorkshopAddons()
+
+    if IsIdMounted(Id, Addons) then return true end
+    if Names == nil or #Names == 0 then return false end
+
+    local LocalNames = GetLocalNames()
+
+    for i = 1, #Names do
+        if IsNameMounted(Names[i], Addons, LocalNames) then return true end
+    end
+
+    return false
+end
+
+GMM.Extra = {
+    HelpMe = GMM.Func.IsExtraLoaded("3776326993", {"goofy"})
+}
+
 -- ----------------------------------------------------------------------
 
 Woowz11 = "STEAM_0:0:158204257"
@@ -111,15 +204,25 @@ include("gmm/shared/convars.lua")
 include("gmm/shared/playermodels.lua")
 include("gmm/shared/graphic_zones.lua")
 
+if GMM.Maps.f5099cd then
+    if SERVER then AddCSLuaFile("gmm/server/f5099cd.lua") end
+    
+    include("gmm/server/f5099cd.lua")
+end
+
 if SERVER then
     AddCSLuaFile("gmm/bootstrap_client.lua")
+
+    AddCSLuaFile("gmm/shared/convars.lua")
+    AddCSLuaFile("gmm/shared/playermodels.lua")
+    AddCSLuaFile("gmm/shared/graphic_zones.lua")
 
     for _, ScriptName in ipairs(file.Find("gmm/client/*.lua", "LUA")) do
         AddCSLuaFile("gmm/client/" .. ScriptName)
     end
 
     AddCSLuaFile("gmm/data/map_assets.lua")
-    
+
     include("gmm/bootstrap_server.lua")
 end
 

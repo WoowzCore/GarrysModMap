@@ -1,0 +1,51 @@
+"Water"
+{
+	"$abovewater" 1
+	"%compilewater" 1
+	"$forceexpensive" 1
+	"$reflectentities" 1
+
+	"$envmap" "env_cubemap"
+	"$refracttexture" "_rt_WaterRefraction"
+	"$refractamount" "1"
+	"$reflecttexture" "_rt_WaterReflection"
+	"$reflectamount" "10"
+
+	"%tooltexture" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_glitch_normal"
+	"$bumpmap" "nature/water_coast01_dudv"
+	"$normalmap" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_glitch_normal"
+	"$bumptransform" "center 0 0 scale 0.35 0.35 rotate 0 translate 0 0"
+	"$bumpframe" "0"
+
+	"$surfaceprop" "water"
+	"$bottommaterial" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/water_silent_beneath"
+
+	"$fogenable" 1
+	"$fogcolor" "{255 0 80}"
+	"$fogstart" 100
+	"$fogend" 600
+
+	"$color" "{255 40 40}"
+	"$color2" "{80 0 128}"
+
+	"$scroll1" "[0.05 0.06 0]"
+	"$scroll2" "[-0.05 0.05 0]"
+
+	"$selfillum" 1
+	"$selfillumtint" "{255 40 180}"
+	"$selfillumfresnel" 1
+	"$selfillumfresnelminmaxexp" "[0.2 1 1]"
+
+	"$reflecttint" "{255 100 180}"
+	"$refracttint" "{100 0 255}"
+
+	"$alpha" "0.75"
+	"$translucent" 1
+	"$nocull" 1
+
+	"$forcephong" 1
+	"$phongexponent" 5
+	"$phongboost" 3
+	"$phongtint" "{255 100 200}"
+	"$phongfresnelranges" "[0.05 0.3 1]"
+}

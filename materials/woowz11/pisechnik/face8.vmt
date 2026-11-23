@@ -1,0 +1,13 @@
+VertexlitGeneric{
+	"$basetexture" "woowz11/pisechnik/face8"
+	"$bumpmap" "woowz11/pisechnik/face8_n"
+
+	"$blendtintbybasealpha" "1"
+
+	Proxies{
+		PlayerColor{
+			resultVar	$color2
+			default 	0.75 0.75 0.75
+		}
+	}
+}

@@ -1,0 +1,10 @@
+VertexlitGeneric{
+	"$basetexture" "woowz11/pisechnik/body"
+
+	Proxies{
+		PlayerColor{
+			resultVar	$color2
+			default 	0.75 0.75 0.75
+		}
+	}
+}

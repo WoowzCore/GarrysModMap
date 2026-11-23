@@ -9,7 +9,7 @@ util.AddNetworkString("gmm_Send_ServerData")
 
 net.Receive("gmm_Get_ServerData", function(L, Player)
     net.Start("gmm_Send_ServerData")
-    net.WriteTable(GMM_S.Data)
+        net.WriteTable(GMM_S.Data)
     net.Send(Player)
 end)
 
@@ -39,7 +39,6 @@ GMM_S.DetectMapEntities = function()
     -- ----------------------------------------------------------------------
 
     if GMM.Maps.Default or GMM.Maps.Flood or GMM.Maps.Old then
-        local __PROP_CASE = MapEntities["PROP_CASE"  ]
         local __SPEAKER   = MapEntities["SPEAKER"    ]
         local __TURTLE    = MapEntities["PROP_TURTLE"]
 
@@ -52,7 +51,6 @@ GMM_S.DetectMapEntities = function()
         end
 
         hook.Add("Think", "gmm_MapThink", function()
-            ReportEntity(__PROP_CASE, 0)
             ReportEntity(__SPEAKER  , 1)
             ReportEntity(__TURTLE   , 2)
         end)

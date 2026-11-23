@@ -1,9 +1,9 @@
-ENT.Type = "anim"
-ENT.Base = "base_anim"
+ENT.Type      = "anim"
+ENT.Base      = "base_anim"
 ENT.PrintName = "DOWNLOAD MAP"
-ENT.Author = "Woowz11"
+ENT.Author    = "Woowz11"
 ENT.Spawnable = (GMM and GMM.Func.DoEntitiesUnlock()) or game.GetMap() == "gmm_garrymod_map_by_woowz_help_me"
-ENT.Category = "GMM"
+ENT.Category  = "GMM"
 
 local RandomPhrases = {
     "PLEASE, DOWNLOAD MAP",

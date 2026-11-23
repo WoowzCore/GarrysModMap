@@ -40,7 +40,7 @@ local MapAlias = {SToilet = "Toilet", Stoilet = "Toilet", ToiletMap = "Toilet"}
 
 local Pages = {
     {
-        Title = "ПИСЬМО_0.TXT",
+        Title = "Readme0.md",
         Text  = {
             "Ты открыл это не первым.",
             "",
@@ -54,10 +54,22 @@ local Pages = {
         }
     },
     {
-        Title = "ПИСЬМО_1.TXT",
-        Maps  = true,
+        Title = "Readme1.md",
         Text  = {
             "Оно тебя запомнило.",
+            "",
+            "Теперь ты должен уйти.",
+            "",
+            "Есть место, где нет карты. Стены там не помнят дороги, но дорога помнит тебя.",
+            "",
+            "Найди выход из лабиринта. Не лети. Иди ногами. Иди на гул глитча..."
+        }
+    },
+    {
+        Title = "Readme2.md",
+        Maps  = true,
+        Text  = {
+            "Ты вышел. Это редкость.",
             "",
             "Теперь выйди за пределы.",
             "",
@@ -66,7 +78,7 @@ local Pages = {
         }
     },
     {
-        Title = "ПИСЬМО_2.TXT",
+        Title = "Readme3.md",
         Text  = {
             "Ты был везде. Я посчитал.",
             "",
@@ -75,7 +87,7 @@ local Pages = {
         }
     },
     {
-        Title = "ПИСЬМО_3.TXT",
+        Title = "Readme4.md",
         Text  = {
             "Всё это время ты слушал тишину.",
             "",
@@ -87,7 +99,7 @@ local Pages = {
         }
     },
     {
-        Title = "ПИСЬМО_4.TXT",
+        Title = "Readme5.md",
         Text  = {
             "Ты слышал. Это правильно.",
             "",
@@ -144,6 +156,8 @@ local FallSpeed       = 600
 local FallGrace       = 2
 local RadioLoud       = 1
 local RadioDistSqr    = 500 * 500
+
+local MazePassFile = "gmm_exit_pass.txt"
 
 local Pad       = 12
 local BannerH   = 140
@@ -1303,6 +1317,10 @@ Conditions[2] = function(Ply)
 end
 
 Conditions[3] = function(Ply)
+    return file.Exists(MazePassFile, "DATA")
+end
+
+Conditions[4] = function(Ply)
     for i = 1, #MapList do
         if GetProgress(MapList[i].Key) < ExploreGoal then return false end
     end
@@ -1310,7 +1328,7 @@ Conditions[3] = function(Ply)
     return true
 end
 
-Conditions[4] = function(Ply)
+Conditions[5] = function(Ply)
     local Trace = Ply:GetEyeTrace()
     local Ent   = Trace.Entity
 

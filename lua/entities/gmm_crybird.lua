@@ -1,12 +1,13 @@
 ﻿AddCSLuaFile()
 
 if SERVER then
-    local Ok, Err = pcall(include, "gmm/data/crybird_talk.lua")
-    if not Ok then print("[GMM] CRYBIRD TALK DATA FAILED! " .. tostring(Err)) end
+	AddCSLuaFile("gmm/data/crybird_talk.lua")
 
     util.AddNetworkString("gmm_CryBirdChat")
     util.AddNetworkString("gmm_CryBirdFarewell")
 end
+
+include("gmm/data/crybird_talk.lua")
 
 ENT.Type         = "anim"
 ENT.Base         = "base_anim"

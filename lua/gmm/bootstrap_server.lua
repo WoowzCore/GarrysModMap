@@ -7,6 +7,7 @@ include("gmm/data/anomaly_spawn.lua")
 
 include("gmm/server/doors.lua")
 include("gmm/server/props.lua")
+include("gmm/server/entity_schedule.lua")
 
 local Start = function()
     if GMM.Valid then

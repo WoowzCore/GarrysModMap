@@ -220,6 +220,7 @@ if SERVER then
 
     AddCSLuaFile("gmm/data/map_assets.lua")
 
+	AddCSLuaFile("gmm/bootstrap_client.lua")
     include("gmm/bootstrap_server.lua")
 end
 

@@ -17,7 +17,7 @@ GMM.Data.AnomalySpawn.Rare = {
     "npc_headcrab_fast", "npc_zombie", "npc_citizen", "Refugee",
     "npc_gman", "weapon_crowbar", "gmm_download_map", "gmm_toiletman",
     "gmm_pavelzombie", "gmm_crybird", "npc_rollermine", "npc_antlion",
-    "gmm_bombbox"
+    "gmm_bombbox", "npc_rollermine_friendly"
 }
 
 GMM.Data.AnomalySpawn.SuperRare = {

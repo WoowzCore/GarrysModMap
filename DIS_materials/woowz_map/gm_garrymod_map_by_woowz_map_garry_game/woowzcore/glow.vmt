@@ -1,0 +1,8 @@
+"UnlitGeneric" {
+	"$basetexture" "vgui/white"
+	"$surfaceprop" "default"
+	"$model" "1"
+
+	"$color"  "[4.0 3.4 0.4]"
+	"$color2" "[4.0 3.4 0.4]"
+}

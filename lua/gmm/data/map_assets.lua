@@ -1,5 +1,6 @@
 ﻿GMM.Data = GMM.Data or {}
 GMM.Data.MapAssets = {
+    -- (Звук), (Позиция || Объект), (Минимальная дистанция), (Максимальная дистанция), (Громкость), (Задержка), (Скорость)
     Sounds = {
         {{"Default", "Flood", "Old", "Pavel"}, {"woowz11/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.9}},
         {{"Dark"}, {"woowz11/music/greetings.wav", Vector(392, 488, 1328), 10, 500, 50, nil, 0.7}},
@@ -8,7 +9,7 @@ GMM.Data.MapAssets = {
         {{"Default", "Flood", "Old"}, {"ambient/wind/wind_rooftop1.wav", Vector(1405, 473, 2489), 100, 1000}},
         {{"Default", "Flood", "Old"}, {"ambient/atmosphere/inside_lighthouse_amb.wav", Vector(-488, -667, 2546), 100, 2000}},
         {{"Default", "Floor"}, {"ambient/machines/combine_shield_touch_loop1.wav", Vector(-565, -643, 512), 100, 500}},
-        {{"Default", "Floor"}, {"ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2}},
+        {{"Default"}, {"ambient/alarms/razortrain_horn1.wav", Vector(0, 0, 0), 100, 500, nil, nil, 2}},
         {{"Default", "Floor", "Dark"}, {"ambient/machines/engine4.wav", Vector(-1527, 508, 1401), 250, 750, 2}},
         {{"Default", "Old"}, {"ambient/forest_night.wav", Vector(1400, 491, 637), 100, 750}},
         {{"Default", "Old"}, {"ambient/gas/steam_loop1.wav", Vector(1364, 747, -1984), 100, 500}},
@@ -33,6 +34,7 @@ GMM.Data.MapAssets = {
         {{"Flood"}, {"ambient/water/water_flow_loop1.wav", Vector(-518, -658, 1011), 50, 350}},
         {{"Flood"}, {"ambient/water/drip_loop1.wav", Vector(-488, -667, 2546), 100, 2500}},
         {{"Flood"}, {"ambient/weather/rumble_rain_nowind.wav", Vector(-357, 1182, 2679), 100, 500}},
+        {{"Flood"}, {"ambient/weather/rumble_rain_nowind.wav", Vector(-44, 620, 1020), 100, 200}},
         {{"Flood"}, {"ambient/outro/messagepacketsmultiple02.wav", Vector(-1511, 437, 445), 100, 500}},
         {{"Dark"}, {"woowz11/other/siren.wav", Vector(573, 1643, 872), 300, 700}},
         {{"Default"}, {"ambient/weather/lake_water.wav", Vector(2554, -1637, 1328), 500, 1200}},
@@ -49,6 +51,7 @@ GMM.Data.MapAssets = {
         {{"Flood"}, {"Rain", Vector(1007, 1040, 9232), Vector(-972, 2031, 10203), nil, 15}},
         {{"Flood"}, {"Rain", Vector(-8, 888, 3064), Vector(-352, 1463, 2615), Vector(0.5, 0.5, 0.5)}},
         {{"Flood"}, {"Rain", Vector(-503, 1024, 3064), Vector(-384, 1376, 2579), Vector(0.25, 0.25, 0.25)}},
+        {{"Flood"}, {"Rain", Vector(-1, 702, 2048), Vector(-96, 515, 1995), Vector(0.25, 0.25, 0.25)}},
     },
 
     Particles = {
@@ -58,6 +61,7 @@ GMM.Data.MapAssets = {
         {{"Flood"}, {"Bubbles", Vector(2443, 646, 32), 2.1}},
         {{"Flood"}, {"Bubbles", Vector(2450, 636, 32), 2.3}},
         {{"Flood"}, {"Bubbles", Vector(103, -468, 428), 0.9}},
+        {{"Flood"}, {"Bubbles", Vector(-451, 262, 624), 3}},
     },
 
     Navmesh = {

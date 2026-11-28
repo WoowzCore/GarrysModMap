@@ -1,0 +1,11 @@
+VertexlitGeneric
+{
+	$basetexture "woowz11\pavelpistv\eye_2"
+	$phong 1
+	$rimlight 0
+	$alphatest 0
+	$alphatestreference 0.5
+
+	$selfillum 1
+	$selfillummask "woowz11\pavelpistv\eye_2_e"
+}

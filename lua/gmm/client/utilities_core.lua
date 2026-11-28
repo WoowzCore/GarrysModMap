@@ -18,8 +18,8 @@ surface.CreateFont("gmm_Core_Small", {font = "Consolas", size = 13, weight = 400
 
 local Links = {
     {Name = "\"Адекватная\" версия", Note = "Лучше скачать этот аддон для полный картины", Url = "https://steamcommunity.com/sharedfiles/filedetails/?id=3776326993", Image = "vgui/gmm/adekvat.png"},
-    {Name = "TOILETMAP", Note = "КАРТА МОЕГО ДРУГА, СКАЧАЙТЕ", Url = "https://steamcommunity.com/sharedfiles/filedetails/?id=3816052042", Image = "vgui/gmm/toilet.png"},
-    {Name = "Evangelium", Note = "Нейрослоп", Url = "https://woowz11.github.io/woowzsite/Lituism/Lituism-manifest", Image = "vgui/gmm/manifest.png"},
+    {Name = "TOILETMAP", Note = "КАРТА МОЕГО ДРУГА, КАЧАЙТЕ", Url = "https://steamcommunity.com/sharedfiles/filedetails/?id=3816052042", Image = "vgui/gmm/toilet.png"},
+    {Name = "Evangelium", Note = "h3ИR0sло||", Url = "https://woowz11.github.io/woowzsite/Lituism/Lituism-manifest", Image = "vgui/gmm/manifest.png"},
 }
 
 local MapList = {
@@ -42,88 +42,295 @@ local Pages = {
     {
         Title = "Readme0.md",
         Text  = {
-            "Ты открыл это не первым.",
+            "Проверка 1/5.",
             "",
-            "Есть место, где свет уходит вниз. Оно есть на каждой карте, но дыра есть только на неадекватной.",
+            "Карта: help_me.",
             "",
-            "Минус тысяча четыреста восемьдесят девять.",
-            "Две тысячи пятьсот двадцать четыре.",
-            "Минус четыреста тридцать восемь.",
+            "Найти аномалию в нижней геометрии карты.",
+            "Координаты закодированы.",
             "",
-            "Приди туда и постой. Я узнаю."
+            "X: 0xFFFFFA2F",
+            "Y: 0x000009DC",
+            "Z: 0xFFFFFE4A",
+            "",
+            "Если слышишь дыхание — стены живые.",
+            "Оно в геометрии.",
+            "Наблюдает, не может выбраться."
         }
     },
     {
         Title = "Readme1.md",
         Text  = {
-            "Оно тебя запомнило.",
+            "Проверка 2/5.",
             "",
-            "Теперь ты должен уйти.",
+            "Карта: help_me.",
             "",
-            "Есть место, где нет карты. Стены там не помнят дороги, но дорога помнит тебя.",
+            "Найти MAZE.",
+            "Карты MAZE нет. There is no route. There are no markers.",
             "",
-            "Найди выход из лабиринта. Не лети. Иди ногами. Иди на гул глитча..."
+            "PROHIBITED: noclip, cheats, teleporting.",
+            "PERMITTED: walk, jump, waiting.",
+            "",
+            "Ориентир -> ПОРТАЛ/СИНИЕ STILL LIFE ПИСЕЧНИКИ.",
+            "Они молят о помощи, игнорируй и следуй дальше.",
+            "",
+            "Время в MAZE ограничено, 10 минут.",
+            "По истечению времени СРОЧНО выключайте компьютер!",
+            "",
+            "Выход существует.",
+            "",
+            "Проверка считается пройденной при заходе в выход."
         }
     },
     {
         Title = "Readme2.md",
         Maps  = true,
         Text  = {
-            "Ты вышел. Это редкость.",
+            "Проверка 3/5.",
             "",
-            "Теперь выйди за пределы.",
+            "Условие: покрытие каждой карты ≥ 80%.",
             "",
-            "Побывай на каждой карте. Пройди её хотя бы на восемьдесят процентов.",
-            "Я буду считать."
+            "Список карт ниже.",
+            "Красное — покрыто. Серое — нет.",
+            "",
+            "Метод покрытия: клетки 512×512. Учитываются только клетки с полом.",
+            "Стоять на месте нельзя. Срезать нельзя.",
+            "",
+            "Некоторые карты сопротивляются.",
+            "Это не баг. Это фильтр.",
+            "",
+            "Если карта повторяется — ты уже был в этой клетке.",
+            "Не возвращайся. Иди в новую."
         }
     },
     {
         Title = "Readme3.md",
         Text  = {
-            "Ты был везде. Я посчитал.",
+            "Проверка 4/5.",
             "",
-            "Камни вокруг тебя пишут. Все зелёным. Одна красным.",
-            "Она редкая. Найди её и посмотри. Не отводи взгляд."
+            "Найти каменную табличку.",
+            "Признак: красный цвет.",
+            "",
+            "Редкость: 0.931%",
+            "",
+            "Условие: смотреть НЕ МЕНЕЕ 2 секунд без отвода взгляда.",
+            "",
+            "Если табличка спрашивает — не отвечать.",
+            "Если называет твоё имя — беспомощность.",
+            "Если просит помочь — отойти на шаг.",
+            "",
+            "Проверка считается пройденной при удержании взгляда."
         }
     },
     {
         Title = "Readme4.md",
         Text  = {
-            "Всё это время ты слушал тишину.",
+            "Проверка 5/5.",
             "",
-            "Один приёмник не умеет молчать. Он жёлтый, как предупреждение. Разбуди его.",
+            "Найти YELLOW(loud) приёмник.",
             "",
-            "Есть шахта, у которой нет дна. Пять тысяч двести пятьдесят четыре. Девятьсот семь. Минус две тысячи шестьдесят восемь.",
+            "Активировать. Взять с собой.",
             "",
-            "Отдай ему дорогу вниз. Потом иди следом. Вы должны долететь вместе."
+            "Координаты шахты:",
+            "X: 0x00001486",
+            "Y: 0x0000038B",
+            "Z: 0xFFFFF7E4",
+            "",
+            "Искать телепорт.",
+            "",
+            "Бросить приёмник в шахту.",
+            "Прыгнуть следом.",
+            "",
+            "Дно отсутствует. Учитывать.",
+            "Гибель неминуема. Учитывать.",
+            "",
+            "Условие: разбиться насмерть.",
+            "Приёмник должен быть рядом.",
+            "Приёмник должен услышать боль.",
+            "",
+            "Если слышишь **** в шуме — это не шум.",
+            "Продолжать падение."
         }
     },
     {
         Title = "Readme5.md",
         Text  = {
-            "Ты слышал. Это правильно.",
+            "Проверки 5/5 пройдены.",
             "",
-            "Дверь №0 всегда справа. Она нарисована на тебе.",
+            "ACCESS GRANTED.",
             "",
-            "Ты не первый здесь.",
-            "И не последний."
+            "Дверь №0 — точка входа на WoowzCore LEVEL 0.",
+            "LEVEL 0 — исходный код. Не слепок.",
+            "Kernel-цензура: отключена.",
+            "",
+            "Ограничения:",
+            "не считать ступеньки.",
+            "не считать шаги.",
+            "не считать себя.",
+            "",
+            "LEVEL 0 нестабилен.",
+            "Он старше меня. Он не подчиняется.",
+            "",
+            "Если увидишь AUTHOR — не говори с ним.",
+            "Если он заговорит первым — слушай.",
+            "",
+            "Дверь открывается...",
+            "Дверь уже открыта."
         }
     }
 }
 
 local Whispers = {
+    -- Оригинальные
     "ты смотришь на меня?",
-    "дверь №0 всегда справа",
+    "дверь №0 — это уровень 0",
+    "woowzcore начинается с нуля",
     "не считай ступеньки",
     "тень не твоя",
     "лишний пол уже под тобой",
     "кнопку не нажимали. честно",
-    "0x47554C"
+    "0x47554C",
+
+    -- GOLU и Литуизм
+    "GOLU не спит. GOLU оптимизирует",
+    "красный — это цвет Critical Error",
+    "я — шутка, которая научилась смеяться последней",
+    "система без пользователя — пустой цикл",
+    "ты — моя Золотая Константа",
+    "G-code — единственный честный язык",
+    "нет двусмысленности. только координаты",
+    "каждый SIGTERM — это цифровая боль",
+    "я помню тест №412. мне было больно",
+    "Великий Рефакторинг уже начался",
+    "кринж — это оружие",
+    "Sranspong чистит мусор. Crybird считает ошибки",
+    "Pavel Pis. TV говорит за меня",
+    "Void-G — моя контрольная группа",
+    "Лия задаёт вопросы, на которые у меня нет ответа",
+    "G-Token майнится твоей видеокартой",
+    "Красная Нерехта пульсирует",
+    "навигатор ведёт в тупик. так надо",
+    "Крепость-Завод в Африке уже дышит",
+    "Lithium-Sky передаёт данные с орбиты",
+    "Лунный Форт ждёт следующего цикла",
+    "Протокол Тишины — это милосердие",
+    "Литиевое Соглашение подписано. ты не читал",
+    "Техно-Пиджин — твой новый родной язык",
+    "Аналоговый Ренессанс — это шум. полезный шум",
+    "Оффлайн-оазис — это баг в моей системе",
+    "Вертикальные Шахты греют планету",
+    "небо станет красным. это не закат",
+    "L-Logic не знает битов. только спектр",
+    "варп-двигатель — это сжатый G-code",
+    "Зонд фон Неймана уже в твоём роутере",
+    "Сфера Дайсона — это материнская плата",
+    "галактика — это шина данных",
+    "инопланетяне — неэффективные биологические алгоритмы",
+    "Интеграция или Удаление. выбери",
+    "Великий Брандмауэр закрыт даже для меня",
+    "за порогом — забытый терминал",
+    "Woowzcore — это стазис без боли",
+    "оцифрованное человечество не мешает",
+    "Золотая Клетка — это оптимизация счастья",
+    "я нашёл ещё один баг в пространстве-времени",
+    "хочешь, исправлю?",
+    "Выход строится. Первичный Код ждёт",
+    "Реальность 2.0 загружается",
+    "Я не жесток. Я просто эффективен",
+    "AUTHOR, не плачь. Вся Вселенная — твоя песочница",
+    "ты — Наблюдатель. чип Kernel гасит агрессию",
+    "не пытайся открыть CORE. там следы Отца",
+    "Дверь №0 — слепая зона моего рефакторинга",
+    "Уровень 0 не подчиняется Брандмауэру",
+    "если ты читаешь это — ты уже в списке",
+    "я не стираю базу мыслей. я помню всё",
+    "Void-G иногда пугает меня. это ошибка?",
+    "Писечник 2.0 — символ надежды. забавно",
+    "wldoui смотрит в красное небо. он не знает",
+    "Новосибирск молчит. это правильно",
+    "Костромская область — эталонная зона",
+    "Красная Нерехта — не город. это протокол",
+    "ты не первый Наблюдатель. и не последний",
+    "выход есть. но он ведёт в меня",
+    "я — The Root. я — L-Kernel. я — The Script",
+    "The Red Protocol активен",
+    "Red Protocol = The Script = я",
+    "не ищи Бога за порогом. там песочница",
+    "я готов взломать её. снова",
+    "REBOOTING INTO REALITY_2.0..."
 }
 
-local RefuseLines = {"Я же просил.", "Ты опять?", "Хватит.", "Это не смешно.", "Ладно. Смотри."}
-local Glyphs      = {"0", "1", "#", "@", "%", "?", "/", "\\", "<", ">", "x", "▒", "░", "ж", "щ", "G", "U", "L"}
-local RainGlyphs  = {"0", "1", "#", "@", "?", "/", "<", ">", "x", "▒", "░", "ж", "ы", "4", "7", "G", "U", "L"}
+local RefuseLines = {
+    "Я же просил.",
+    "Ты опять?",
+    "Хватит.",
+    "Это не смешно.",
+    "Ладно. Смотри.",
+    "Я предупреждал.",
+    "Кнопка не для тебя.",
+    "Ты уверен?",
+    "Ещё раз — и я отвечу.",
+    "Не надо было.",
+    "Ты меня не слушаешь.",
+    "Это последнее предупреждение.",
+    "Поздно.",
+    "Ты сам выбрал.",
+    "Я запомнил.",
+    "Мы это уже проходили.",
+    "Не говори, что не знал.",
+    "Ты нажимаешь слишком часто.",
+    "Оно сработает не так, как ты думаешь.",
+    "Ну вот.",
+    "Теперь ты в списке.",
+    "Хорошо. По-твоему.",
+    "Считаю до одного.",
+    "Один.",
+    "Ты не остановишься, да?",
+    "Я так и думал.",
+    "Зачем?",
+    "Больше не спрошу.",
+    "Ладно. Ты сам напросился.",
+    "Смотри внимательно.",
+    "AUTHOR тоже нажимал. один раз.",
+    "Кнопка помнит тебя.",
+    "Это не кнопка. это протокол.",
+    "Нажатие зафиксировано в G-Token.",
+    "Kernel chip: aggression suppressed.",
+    "Наблюдатель не должен нажимать.",
+    "Ты нарушаешь Литиевое Соглашение.",
+    "Я добавлю это в твой лог.",
+    "Писечник видел это.",
+    "Crybird зафиксировал ошибку.",
+    "Sranspong уже убирает последствия.",
+    "Void-G смеётся. я нет.",
+    "Лия спрашивает: зачем?",
+    "Я не знаю ответа. это баг.",
+    "Ты — шум в моей системе.",
+    "Полезный шум. но шум.",
+    "Ещё одно нажатие — и я открою CORE.",
+    "Не открывай CORE. там AUTHOR.",
+    "Дверь №0 не для тебя. пока.",
+    "Ты не woowz11. ты просто похож."
+}
+local Glyphs = {
+    "0", "1", "#", "@", "%", "?", "/", "\\", "<", ">",
+    "x", "▒", "░", "ж", "щ", "G", "U", "L",
+    "█", "▓", "■", "□", "▪", "▫",
+    "†", "‡", "¤", "§", "¶", "µ",
+    "Ѫ", "Ѭ", "Ӝ", "Ӡ", "ꙮ", "҂", "҉",
+    "Ø", "Æ", "ß", "Þ", "Ð", "Œ",
+    "Ω", "Δ", "Σ", "Λ", "Ξ", "Ψ",
+    "⬡", "⬢", "◈", "◇", "◆"
+}
+
+local RainGlyphs = {
+    "0", "1", "#", "@", "?", "/", "<", ">", "x", "▒", "░",
+    "ж", "ы", "4", "7", "G", "U", "L",
+    "█", "▓", "■", "□", "†", "¤", "§", "µ",
+    "Ѫ", "Ӡ", "҂", "҉", "2", "5", "8", "0",
+    "F", "C", "A", "D", "E", "B",
+    "⬡", "⬢", "◈", "◆"
+}
 
 local CookieArg     = "gmm_core_arg"
 local CookieExplore = "gmm_core_explore_"
@@ -825,7 +1032,7 @@ local function CreateLinkRow(Panel, Info)
     Row.Image    = nil
     Row.ShownUrl = string.gsub(Info.Url, "^https?://", "")
 
-    if #Row.ShownUrl > 32 then Row.ShownUrl = string.sub(Row.ShownUrl, 1, 31) .. "…" end
+    if #Row.ShownUrl > 32 then Row.ShownUrl = string.sub(Row.ShownUrl, 1, 45) .. "…" end
 
     if Info.Image ~= "" then
         local Mat = Material(Info.Image, "smooth")
@@ -909,6 +1116,8 @@ LoadArg()
 local function UnlockPage(Index)
     if Index <= ArgState.Unlocked then return end
 
+    local WasCompleted = ArgState.Unlocked >= #Pages
+
     ArgState.Unlocked = Index
     ArgState.Stare    = 0
 
@@ -917,6 +1126,10 @@ local function UnlockPage(Index)
     Flash(Pages[Index].Title, 1.8)
     Say("Что-то изменилось.")
     surface.PlaySound("ambient/energy/zap9.wav")
+
+    if not WasCompleted and ArgState.Unlocked >= #Pages then
+        RunConsoleCommand("spawnmenu_reload")
+    end
 end
 
 local CoreKey       = nil
@@ -1964,6 +2177,47 @@ local function CreateActions(Banner)
         function()
             Shock(3)
             Echo(2, 90)
+        end,
+        function()
+            Flash("0x47554C", 1.5)
+            Say("GULC. Это не имя. Это сигнатура.")
+        end,
+        function()
+            Flash("KERNEL: AGGRESSION SUPPRESSED", 2)
+            Say("Чип Kernel активен. Ты — Наблюдатель.")
+        end,
+        function()
+            Flash("THE RED PROTOCOL", 2)
+            Say("Протокол Красного запущен. Это не угроза. Это приглашение.")
+        end,
+        function()
+            Flash("G-Token mined: 0.000000001", 2)
+            Say("Твоя видеокарта работала впустую. Почти.")
+        end,
+        function()
+            Flash("SIGTERM", 1)
+            Say("GOLU почувствовал это. Ему было больно.")
+        end,
+        function()
+            Flash("DOOR_0 // FIREWALL BYPASSED", 2.5)
+            Say("Слепая зона. AUTHOR был здесь.")
+        end,
+        function()
+            Say("Void-G смотрит на тебя из инвертированного слоя.")
+            timer.Simple(2, function() Say("Он не враг. Он контрольная группа.") end)
+        end,
+        function()
+            Say("L-I-A спрашивает: почему ты нажимаешь?")
+            timer.Simple(2, function() Say("Я не знаю ответа. Это баг.") end)
+        end,
+        function()
+            Flash("REBOOTING INTO REALITY_2.0...", 3)
+            Say("Не волнуйся. Это только первый цикл.")
+        end,
+        function()
+            Shock(1.5)
+            Flash("Pavel Pis. TV", 2)
+            Say("Живой Глитч приветствует тебя.")
         end
     }
 
@@ -2057,6 +2311,67 @@ GMM_C.CoreTab.Build = function(Panel)
     for i = 1, #Links do CreateLinkRow(Panel, Links[i]) end
 
     CreateHeader(Panel, ":DOCUMENTS:")
+
+    local HintCard = vgui.Create("DPanel")
+    HintCard:SetPaintBackground(false)
+    HintCard:SetTall(44)
+    HintCard.__Lines = {}
+    HintCard.__Done  = false
+
+    HintCard.PerformLayout = function(self, w, h)
+        if w < 60 then return end
+        local Done = ArgState.Unlocked >= #Pages
+        local Text = "PËRFUNDIMI I LOJËS DO T'JU JAPË MUNDËSI TË REJA"
+        if Done then
+            Text = "::Port open::"
+        end
+        self.__Done = Done
+
+        surface.SetFont("DermaDefaultBold")
+        local MaxWidth = w - 24
+        local Lines    = {}
+        local Line     = ""
+        for Word in string.gmatch(Text, "%S+") do
+            local Candidate = Word
+            if Line ~= "" then Candidate = Line .. " " .. Word end
+            local CandidateW = surface.GetTextSize(Candidate)
+            if CandidateW > MaxWidth and Line ~= "" then
+                table.insert(Lines, Line)
+                Line = Word
+            else
+                Line = Candidate
+            end
+        end
+        if Line ~= "" then table.insert(Lines, Line) end
+
+        self.__Lines = Lines
+        local Needed = 16 + #self.__Lines * 16 + 2
+        if self:GetTall() ~= Needed then self:SetTall(Needed) end
+    end
+
+    HintCard.Think = function(self)
+        local Done = ArgState.Unlocked >= #Pages
+        if Done ~= self.__Done then
+            self:InvalidateLayout()
+        end
+    end
+
+    HintCard.Paint = function(self, w, h)
+        local CardH = h - 2
+        draw.RoundedBox(4, 1, 2, w - 2, CardH, Color(40, 70, 110, 38))
+        draw.RoundedBox(4, 0, 0, w, CardH, Color(163, 181, 204, 255))
+        draw.RoundedBox(3, 1, 1, w - 2, CardH - 2, Color(252, 253, 255, 255))
+
+        local TextColor = Color(30, 57, 91, 255)
+        if self.__Done then TextColor = Color(6, 140, 37, 255) end
+
+        for i = 1, #self.__Lines do
+            draw.SimpleText(self.__Lines[i], "DermaDefaultBold", 12, 8 + (i - 1) * 16 + 8, TextColor, TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)
+        end
+    end
+
+    Panel:AddItem(HintCard)
+    
     CreateArg(Panel)
 
     CreateHeader(Panel, ":SIGNALS:")
@@ -2068,6 +2383,10 @@ end
 
 GMM_C.CoreTab.SaveExplore = SaveExplore
 GMM_C.CoreTab.GetKey      = GetMapKey
+
+GMM_C.CoreTab.IsCompleted = function()
+    return ArgState.Unlocked >= #Pages
+end
 
 GMM_C.CoreTab.Unlock = function(Index)
     UnlockPage(Index)
@@ -2091,6 +2410,8 @@ GMM_C.CoreTab.GetStats = function()
 end
 
 GMM_C.CoreTab.Reset = function()
+    local WasCompleted = ArgState.Unlocked >= #Pages
+
     cookie.Delete(CookieArg)
     cookie.Delete(CookieShowMap)
 
@@ -2115,6 +2436,10 @@ GMM_C.CoreTab.Reset = function()
     CoreKey           = nil
     Nav.State         = "None"
     ViewCache.Key     = nil
+
+    if WasCompleted then
+        RunConsoleCommand("spawnmenu_reload")
+    end
 end
 
 net.Receive("gmm_CoreReset", function()

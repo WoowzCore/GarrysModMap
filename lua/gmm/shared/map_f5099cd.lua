@@ -247,6 +247,32 @@ if SERVER then
         Ghost.Seen = 0
         TurnToOwner(Ent, Owner)
 
+        if Ghost.NextStep == nil then Ghost.NextStep = Now + math.Rand(2.5, 5.0) end
+
+        if Now >= Ghost.NextStep then
+            Ghost.NextStep = Now + math.Rand(2.5, 5.0)
+
+            local EntPos   = Ent:GetPos()
+            local OwnerPos = Owner:GetPos()
+            local ToOwner  = OwnerPos - EntPos
+            ToOwner.z = 0
+
+            local Dist = ToOwner:Length()
+            if Dist > CloseRadius + 90 then
+                ToOwner:Normalize()
+
+                local StepPos = EntPos + ToOwner * math.Rand(55, 95) + Vector(0, 0, 24)
+                local Floor   = util.TraceLine({start = StepPos, endpos = StepPos - DropVector, mask = MASK_SOLID_BRUSHONLY})
+
+                if Floor.Hit and not Floor.StartSolid and Floor.HitNormal.z >= SpawnFloorNormal then
+                    local NewPos = Floor.HitPos + Vector(0, 0, SpawnLift)
+                    if not IsSeenBy(Owner, Ent) then
+                        Ent:SetPos(NewPos)
+                    end
+                end
+            end
+        end
+
         return false
     end
 
@@ -971,11 +997,154 @@ if CLIENT then
     -- Видения: выбор и показ
     -- ------------------------------------------------------------------
 
+    -- ------------------------------------------------------------------
+    -- Видение: Trigger (каркасный триггер из Hammer Editor)
+    -- ------------------------------------------------------------------
+
+    local TriggerLabels = {
+        "TRIGGER_ONCE // UNBOUND",
+        "FUNC_DOOR_0 // MISSING_TARGET",
+        "INFO_TELEPORT // LEVEL_0",
+        "AI_HINT_NODE // ORPHANED",
+        "LIGHT_ENVIRONMENT // TODO",
+        "FUNC_AREAPORTAL // LEAK"
+    }
+
+    local ColorWire     = Color(255, 190, 70, 255)
+    local ColorWireHit  = Color(255, 255, 255, 255)
+    local TriggerBoxMin = Vector(-44, -44, 0)
+    local TriggerBoxMax = Vector(44, 44, 88)
+
+    local function SetupTrigger(Vision)
+        local Floor = FindFloorPoint(70, 120, 550)
+        if Floor == nil then return false end
+
+        local Ceil = GetCeilingHeight(Floor, 200)
+        if Ceil < 95 then return false end
+
+        Vision.Pos       = Floor + Vector(0, 0, 2)
+        Vision.Center    = Floor + Vector(0, 0, 46)
+        Vision.Label     = TriggerLabels[math.random(#TriggerLabels)]
+        Vision.Triggered = false
+
+        return true
+    end
+
+    local function DrawTrigger(Vision, K, Now)
+        local Ply = LocalPlayer()
+        if not IsValid(Ply) then return end
+
+        if not Vision.Triggered and Ply:GetPos():DistToSqr(Vision.Pos) < (52 * 52) then
+            Vision.Triggered = true
+            Vision.Label     = "FIRED BY: " .. string.upper(Ply:Nick())
+            Vision.Stop      = math.min(Vision.Stop, Now + 3.5)
+            DesyncStepsTill  = Now + 20
+            surface.PlaySound("buttons/lightswitch2.wav")
+        end
+
+        local Col = Vision.Triggered and ColorWireHit or ColorWire
+        Col.a = math.floor(200 * K)
+
+        local Min = Vision.Pos + TriggerBoxMin
+        local Max = Vision.Pos + TriggerBoxMax
+
+        render.SetMaterial(BeamMat)
+
+        local Corners = {
+            Vector(Min.x, Min.y, Min.z), Vector(Max.x, Min.y, Min.z),
+            Vector(Max.x, Max.y, Min.z), Vector(Min.x, Max.y, Min.z),
+            Vector(Min.x, Min.y, Max.z), Vector(Max.x, Min.y, Max.z),
+            Vector(Max.x, Max.y, Max.z), Vector(Min.x, Max.y, Max.z)
+        }
+
+        for i = 1, 4 do
+            local Next = (i % 4) + 1
+            render.DrawBeam(Corners[i],     Corners[Next],     2, 0, 1, Col)
+            render.DrawBeam(Corners[i + 4], Corners[Next + 4], 2, 0, 1, Col)
+            render.DrawBeam(Corners[i],     Corners[i + 4],    2, 0, 1, Col)
+        end
+
+        local Dir = Ply:EyePos() - Vision.Center
+        local Ang = Angle(0, Dir:Angle().y - 90, 90)
+
+        cam.Start3D2D(Vision.Center + Vector(0, 0, 54), Ang, 0.12)
+        draw.SimpleText(Vision.Label, "gmm_Dev_VerseText", 0, 0, Col, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+        cam.End3D2D()
+
+        AddLight(Vision.LightIndex, Vision.Center, K * 0.4, 240)
+    end
+
+    -- ------------------------------------------------------------------
+    -- Видение: Doorway (разрыв / дверь, которая схлопывается при подходе)
+    -- ------------------------------------------------------------------
+
+    local function SetupDoorway(Vision)
+        local Floor = FindFloorPoint(50, 160, 600)
+        if Floor == nil then return false end
+
+        local Ceil = GetCeilingHeight(Floor, 200)
+        if Ceil < 105 then return false end
+
+        local Ply = LocalPlayer()
+        local Dir = IsValid(Ply) and (Ply:GetPos() - Floor) or Vector(1, 0, 0)
+
+        Vision.Pos      = Floor
+        Vision.Center   = Floor + Vector(0, 0, 52)
+        Vision.Yaw      = Dir:Angle().y
+        Vision.Collapse = 0
+        Vision.Shut     = false
+
+        return true
+    end
+
+    local function DrawDoorway(Vision, K, Now)
+        local Ply = LocalPlayer()
+        if not IsValid(Ply) then return end
+
+        if not Vision.Shut and Ply:GetPos():DistToSqr(Vision.Pos) < (140 * 140) then
+            Vision.Shut     = true
+            Vision.Collapse = Now
+            Vision.Stop     = math.min(Vision.Stop, Now + 0.6)
+            surface.PlaySound("buttons/blip1.wav")
+        end
+
+        local WidthFrac = 1
+        if Vision.Shut then
+            WidthFrac = math.Clamp(1 - (Now - Vision.Collapse) / 0.35, 0.02, 1)
+        end
+
+        local Rad    = math.rad(Vision.Yaw)
+        local Right  = Vector(-math.sin(Rad), math.cos(Rad), 0)
+        local HalfW  = 24 * WidthFrac
+        local Height = 96
+
+        local BL = Vision.Pos - Right * HalfW
+        local BR = Vision.Pos + Right * HalfW
+        local TL = BL + Vector(0, 0, Height)
+        local TR = BR + Vector(0, 0, Height)
+
+        ColorDraw.a = 255 * K
+
+        render.SetMaterial(BeamMat)
+        render.DrawBeam(BL, TL, 5, 0, 1, ColorDraw)
+        render.DrawBeam(BR, TR, 5, 0, 1, ColorDraw)
+        render.DrawBeam(TL, TR, 5, 0, 1, ColorDraw)
+        render.DrawBeam(BL, BR, 3, 0, 1, ColorDraw)
+
+        render.SetMaterial(GlowMat)
+        ColorDraw.a = 180 * K * WidthFrac
+        render.DrawSprite(Vision.Center, 90 * WidthFrac, 130, ColorDraw)
+
+        AddLight(Vision.LightIndex, Vision.Center, K * WidthFrac, 380)
+    end
+
     local BugTypes = {
-        {Key = "Beams", Weight = 4, Seconds = 40, Setup = SetupBeams, Draw = DrawBeams},
-        {Key = "Halo",  Weight = 4, Seconds = 35, Setup = SetupHalo,  Draw = DrawHalo},
-        {Key = "Eye",   Weight = 3, Seconds = 30, Setup = SetupEye,   Draw = DrawEye},
-        {Key = "Verse", Weight = 3, Seconds = 25, Setup = SetupVerse, Draw = DrawVerse}
+        {Key = "Beams",   Weight = 3, Seconds = 40, Setup = SetupBeams,   Draw = DrawBeams},
+        {Key = "Halo",    Weight = 3, Seconds = 35, Setup = SetupHalo,    Draw = DrawHalo},
+        {Key = "Eye",     Weight = 3, Seconds = 30, Setup = SetupEye,     Draw = DrawEye},
+        {Key = "Verse",   Weight = 3, Seconds = 25, Setup = SetupVerse,   Draw = DrawVerse},
+        {Key = "Trigger", Weight = 4, Seconds = 45, Setup = SetupTrigger, Draw = DrawTrigger},
+        {Key = "Doorway", Weight = 3, Seconds = 40, Setup = SetupDoorway, Draw = DrawDoorway}
     }
 
     local function FindBugTypeOrNil(Key)
@@ -1152,6 +1321,93 @@ if CLIENT then
 
     -- ------------------------------------------------------------------
 
+    local WasMoving    = false
+    local MoveStart    = 0
+    local NextEcho     = 0
+    local DevLogText   = ""
+    local DevLogUntil  = 0
+    local NextDevLog   = RealTime() + 18
+
+    local DevLogTemplates = {
+        "WARNING: Node graph out of date. Rebuilding...",
+        "VRAD: Lighting pass stalled at 99.4%",
+        "Playback: woowz11_session_04.dem (loop)",
+        "L-I-A: Не выключай сервер. Я ещё здесь.",
+        "Warning: Unclosed portal -> LEVEL_0",
+        "Memory leak in sector f5099cd: 412 KB",
+        "Entity [observer] has no valid exit target",
+        "Building cubemaps... failed (skybox = NULL)"
+    }
+
+    local MoveAccum       = 0
+    local LastMoveCheck   = 0
+    local NextEcho        = 0
+    local DesyncStepsTill = 0
+    local NextDesyncStep  = 0
+
+    local function PlayDelayedStep(Delay, PitchMin, PitchMax, Volume)
+        timer.Simple(Delay, function()
+            local Ply = LocalPlayer()
+            if not IsValid(Ply) then return end
+
+            local BackPos = Ply:GetPos() - Angle(0, Ply:EyeAngles().y, 0):Forward() * 35
+            sound.Play("player/footsteps/concrete" .. math.random(1, 4) .. ".wav", BackPos, 75, math.random(PitchMin, PitchMax), Volume)
+        end)
+    end
+
+    local function UpdateFootEcho(Now)
+        local Ply = LocalPlayer()
+        if not IsValid(Ply) or not Ply:Alive() then
+            MoveAccum = 0
+            return
+        end
+
+        local Dt = math.min(Now - LastMoveCheck, 0.25)
+        LastMoveCheck = Now
+
+        local SpeedSqr = Ply:GetVelocity():Length2DSqr()
+        local Moving   = SpeedSqr > (80 * 80) and Ply:OnGround()
+
+        if Moving then
+            MoveAccum = MoveAccum + Dt
+
+            if Now < DesyncStepsTill and Now >= NextDesyncStep then
+                NextDesyncStep = Now + 0.38
+                PlayDelayedStep(0.45, 80, 92, 0.9)
+            end
+
+            return
+        end
+
+        if MoveAccum >= 1.2 and Now >= NextEcho then
+            NextEcho = Now + math.Rand(6, 14)
+
+            local StepCount = math.random(2, 3)
+            for i = 1, StepCount do
+                PlayDelayedStep(0.15 + (i - 1) * 0.38, 82, 95, 0.95)
+            end
+        end
+
+        if SpeedSqr < (20 * 20) then
+            MoveAccum = 0
+        end
+    end
+
+    local function UpdateDevLog(Now)
+        if Now < NextDevLog then return end
+
+        NextDevLog  = Now + math.Rand(22, 55)
+        DevLogUntil = Now + math.Rand(5, 9)
+
+        local Ply = LocalPlayer()
+        if IsValid(Ply) and math.random() < 0.3 then
+            local P = Ply:GetPos()
+            DevLogText = "LEAK: Hull breach at (" .. math.floor(P.x) .. ", " .. math.floor(P.y) .. ", " .. math.floor(P.z) .. ")"
+        else
+            DevLogText = DevLogTemplates[math.random(#DevLogTemplates)]
+        end
+    end
+    
     local function UpdateInfo(Now)
         if Now < NextInfo then return end
 
@@ -1213,6 +1469,8 @@ if CLIENT then
         UpdateGolou(Now)
         UpdateBug(Now)
         UpdateWhiteVerse(Now)
+        UpdateFootEcho(Now)
+        UpdateDevLog(Now)
 
         local Width  = ScrW()
         local Height = ScrH()
@@ -1238,6 +1496,10 @@ if CLIENT then
         DrawLine(FpsText, Margin, Margin, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, Fore, Back)
 
         if ShowPos then DrawLine(PosText, Margin, Margin + LineGap, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, Fore, Back) end
+
+        if Now < DevLogUntil then
+            DrawLine(DevLogText, Margin, Margin + LineGap * 2, TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, Fore, Back)
+        end
     end)
 
     Dev.Cleanup = function()

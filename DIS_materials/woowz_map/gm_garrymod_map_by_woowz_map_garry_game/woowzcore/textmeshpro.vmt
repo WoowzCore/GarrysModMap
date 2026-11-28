@@ -1,0 +1,8 @@
+"LightmappedGeneric" {
+	"$basetexture" "woowz_map/gm_garrymod_map_by_woowz_map_garry_game/woowzcore/textmeshpro"
+	"$surfaceprop" "default"
+	"$nodecal" "0"
+
+	"$basetexturetransform" "center 0.5 0.5 scale 1 1 rotate 0 translate 0 0"
+	"$color" "[0.5 0.5 0.5]"
+}

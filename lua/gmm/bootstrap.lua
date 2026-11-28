@@ -58,6 +58,8 @@ GMM.Maps = {
     Goofy   = GMM.Func.ThatMap("gmm_garrymod_map_by_woowz_help_me"),
     Pavel   = GMM.Func.ThatMap("gmm_garrymod_map_by_woowz_pavel_pis_tv"),
     f5099cd = GMM.Func.ThatMap("gmm_garrymod_0_f5099cd"),
+    
+    WoowzCoreLevel0 = GMM.Func.ThatMap("woowzcore_level_0"),
 
     SToilet = GMM.Func.ThatMap("toiletmap")
 }
@@ -72,6 +74,10 @@ GMM.Valid = (string.match(GMM.CurrentMap, "^gmm_") ~= nil) or GMM.Maps.SToilet
 
 GMM.NoValidExtra = function()
     return not GMM.Valid or GMM.Maps.Real or GMM.Maps.f5099cd
+end
+
+GMM.WaterPostEffectWork = function()
+    return GMM.Valid or GMM.Maps.WoowzCoreLevel0
 end
 
 GMM.Func.DoAnomalies = function()
@@ -210,7 +216,11 @@ IncludeBoth("gmm/shared/playermodels.lua")
 IncludeBoth("gmm/shared/graphic_zones.lua")
 
 if GMM.Maps.f5099cd then
-    IncludeBoth("gmm/server/f5099cd.lua")
+    IncludeBoth("gmm/shared/map_f5099cd.lua")
+end
+
+if GMM.Maps.WoowzCoreLevel0 then
+    IncludeBoth("gmm/shared/map_woowzcore_level_0.lua")
 end
 
 if SERVER then

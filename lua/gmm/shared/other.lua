@@ -1447,4 +1447,131 @@
             ResetIceLook()
         end
     end
+end
+
+do
+    local NwPlayerCorpseFlag  = "gmm_PlayerCorpse"
+    local NwPlayerCorpseColor = "gmm_PlayerCorpseColor"
+
+    if SERVER then
+        GMM.Func.TakePlayerSnapshot = function(Ply)
+            if not IsValid(Ply) then return nil end
+
+            local Snap = {
+                Model       = Ply:GetModel(),
+                Skin        = Ply:GetSkin(),
+                Pos         = Ply:GetPos(),
+                Ang         = Angle(0, Ply:EyeAngles().y, 0),
+                Vel         = Ply:GetVelocity(),
+                Color       = Ply:GetPlayerColor(),
+                RenderColor = Ply:GetColor(),
+                Groups      = {},
+                Bones       = {}
+            }
+
+            for i = 0, Ply:GetNumBodyGroups() - 1 do
+                Snap.Groups[i] = Ply:GetBodygroup(i)
+            end
+
+            for i = 0, Ply:GetBoneCount() - 1 do
+                local Pos, Ang = Ply:GetBonePosition(i)
+                if Pos ~= nil and Ang ~= nil then
+                    Snap.Bones[i] = {Pos = Pos, Ang = Ang}
+                end
+            end
+
+            return Snap
+        end
+
+        GMM.Func.CreatePlayerRagdoll = function(PlyOrSnap, LifeTime)
+            local Snap = PlyOrSnap
+            if IsEntity(PlyOrSnap) then
+                Snap = GMM.Func.TakePlayerSnapshot(PlyOrSnap)
+            end
+
+            if Snap == nil or Snap.Model == nil then return nil end
+
+            local Ragdoll = ents.Create("prop_ragdoll")
+            if not IsValid(Ragdoll) then
+                print("[GMM] [ERROR] PLAYER RAGDOLL CREATE FAILED! MODEL: [" .. tostring(Snap.Model) .. "]!")
+                return nil
+            end
+
+            Ragdoll:SetModel(Snap.Model)
+            Ragdoll:SetPos(Snap.Pos)
+            Ragdoll:SetAngles(Snap.Ang)
+            Ragdoll:SetSkin(Snap.Skin or 0)
+            Ragdoll:SetColor(Snap.RenderColor or Color(255, 255, 255, 255))
+
+            if Snap.Groups ~= nil then
+                for Group, Value in pairs(Snap.Groups) do
+                    Ragdoll:SetBodygroup(Group, Value)
+                end
+            end
+
+            Ragdoll:Spawn()
+            Ragdoll:Activate()
+
+            local Count = Ragdoll:GetPhysicsObjectCount()
+            if Count < 1 then
+                print("[GMM] [ERROR] PLAYER RAGDOLL HAS NO PHYSICS! MODEL: [" .. tostring(Snap.Model) .. "]!")
+                Ragdoll:Remove()
+                return nil
+            end
+
+            for i = 0, Count - 1 do
+                local Phys = Ragdoll:GetPhysicsObjectNum(i)
+                if IsValid(Phys) then
+                    local BoneId = Ragdoll:TranslatePhysBoneToBone(i)
+                    local Data   = Snap.Bones and Snap.Bones[BoneId] or nil
+
+                    if Data ~= nil then
+                        Phys:SetPos(Data.Pos)
+                        Phys:SetAngles(Data.Ang)
+                    end
+
+                    if Snap.Vel ~= nil then
+                        Phys:SetVelocity(Snap.Vel)
+                    end
+                    Phys:Wake()
+                end
+            end
+
+            Ragdoll:SetNWBool(NwPlayerCorpseFlag, true)
+            if Snap.Color ~= nil then
+                Ragdoll:SetNWVector(NwPlayerCorpseColor, Snap.Color)
+            end
+
+            if LifeTime ~= nil and LifeTime > 0 then
+                SafeRemoveEntityDelayed(Ragdoll, LifeTime)
+            end
+
+            return Ragdoll
+        end
+    end
+
+    if CLIENT then
+        local CorpseColorDelay = 0.5
+        local CorpseColorNext  = 0
+
+        local function GetCorpsePlayerColor(Self)
+            return Self.GMMCorpseColor
+        end
+
+        hook.Add("Think", "gmm_PlayerCorpseColor", function()
+            local Now = RealTime()
+            if Now < CorpseColorNext then return end
+
+            CorpseColorNext = Now + CorpseColorDelay
+
+            local List = ents.FindByClass("prop_ragdoll")
+            for i = 1, #List do
+                local Ent = List[i]
+                if Ent.GMMCorpseColor == nil and Ent:GetNWBool(NwPlayerCorpseFlag) then
+                    Ent.GMMCorpseColor = Ent:GetNWVector(NwPlayerCorpseColor)
+                    Ent.GetPlayerColor = GetCorpsePlayerColor
+                end
+            end
+        end)
+    end
 end 

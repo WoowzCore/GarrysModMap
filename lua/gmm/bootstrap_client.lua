@@ -40,6 +40,7 @@ local Start = function()
     include("gmm/client/debug.lua")
     include("gmm/client/graphic.lua")
     include("gmm/client/void.lua")
+    include("gmm/client/anomaly_glitch.lua")
 
     -- ----------------------------------------------------------------------
     

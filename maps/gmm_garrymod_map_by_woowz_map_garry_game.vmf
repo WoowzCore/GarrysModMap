@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8873"
-	"mapversion" "1358"
+	"mapversion" "1359"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -89,7 +89,7 @@ bgimages_plus
 world
 {
 	"id" "1"
-	"mapversion" "1358"
+	"mapversion" "1359"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -235466,9 +235466,9 @@ world
 				"v" "-8 704 2792"
 			}
 			"material" "WOOWZ_MAP/GM_GARRYMOD_MAP_BY_WOOWZ_MAP_GARRY_GAME/SKY"
-			"uaxis" "[0 0.939693 0.34202 0] 4"
-			"vaxis" "[0 0.34202 -0.939693 0] 4"
-			"rotation" "20"
+			"uaxis" "[-0 -0.939693 0.34202 86.0482] 4"
+			"vaxis" "[-0 -0.34202 -0.939693 124.495] 4"
+			"rotation" "0"
 			"lightmapscale" "8"
 			"smoothing_groups" "0"
 		}
@@ -235738,9 +235738,9 @@ world
 				"v" "-504 888 2792"
 			}
 			"material" "WOOWZ_MAP/GM_GARRYMOD_MAP_BY_WOOWZ_MAP_GARRY_GAME/SKY"
-			"uaxis" "[0.939693 0 0.34202 0] 4"
-			"vaxis" "[0.34202 0 -0.939693 0] 4"
-			"rotation" "20"
+			"uaxis" "[-0.939693 0 0.34202 -124.443] 4"
+			"vaxis" "[-0.34202 0 -0.939693 47.8828] 4"
+			"rotation" "0"
 			"lightmapscale" "8"
 			"smoothing_groups" "0"
 		}
@@ -546994,8 +546994,8 @@ entity
 				"v" "1456 1264 2112"
 			}
 			"material" "BRICK/BRICKWALL001A"
-			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 -1 0 212] 0.25"
+			"uaxis" "[0 1 0 0] 0.25"
+			"vaxis" "[-1 0 0 -364] 0.25"
 			"rotation" "0"
 			"lightmapscale" "8"
 			"smoothing_groups" "0"
@@ -547112,8 +547112,8 @@ entity
 				"v" "1376 -256 2112"
 			}
 			"material" "BRICK/BRICKWALL001A"
-			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 -1 0 212] 0.25"
+			"uaxis" "[0 1 0 0] 0.25"
+			"vaxis" "[-1 0 0 -364] 0.25"
 			"rotation" "0"
 			"lightmapscale" "8"
 			"smoothing_groups" "0"
@@ -547242,8 +547242,8 @@ entity
 				"v" "1728 1264 1936"
 			}
 			"material" "BRICK/BRICKWALL001A"
-			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 -1 0 212] 0.25"
+			"uaxis" "[0 1 0 0] 0.25"
+			"vaxis" "[-1 0 0 -364] 0.25"
 			"rotation" "0"
 			"lightmapscale" "8"
 			"smoothing_groups" "0"
@@ -547478,8 +547478,8 @@ entity
 				"v" "1280 848 1936"
 			}
 			"material" "BRICK/BRICKWALL001A"
-			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 -1 0 212] 0.25"
+			"uaxis" "[0 1 0 0] 0.25"
+			"vaxis" "[-1 0 0 -364] 0.25"
 			"rotation" "0"
 			"lightmapscale" "8"
 			"smoothing_groups" "0"
@@ -547714,8 +547714,8 @@ entity
 				"v" "1040 144 1936"
 			}
 			"material" "BRICK/BRICKWALL001A"
-			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 -1 0 212] 0.25"
+			"uaxis" "[0 1 0 0] 0.25"
+			"vaxis" "[-1 0 0 -364] 0.25"
 			"rotation" "0"
 			"lightmapscale" "8"
 			"smoothing_groups" "0"
@@ -547962,8 +547962,8 @@ entity
 				"v" "1677.31 528 2576"
 			}
 			"material" "BRICK/BRICKWALL001A"
-			"uaxis" "[0 -1 0 384] 0.25"
-			"vaxis" "[-1 0 0 148] 0.25"
+			"uaxis" "[0 1 0 0] 0.25"
+			"vaxis" "[-1 0 0 -364] 0.25"
 			"rotation" "0"
 			"lightmapscale" "8"
 			"smoothing_groups" "0"
@@ -548198,8 +548198,8 @@ entity
 				"v" "1131.62 1264 2576"
 			}
 			"material" "BRICK/BRICKWALL001A"
-			"uaxis" "[0 -1 0 384] 0.25"
-			"vaxis" "[-1 0 0 148] 0.25"
+			"uaxis" "[0 1 0 0] 0.25"
+			"vaxis" "[-1 0 0 -364] 0.25"
 			"rotation" "0"
 			"lightmapscale" "8"
 			"smoothing_groups" "0"

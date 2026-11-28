@@ -18548,3 +18548,1366 @@ Level flags = 0
 Total triangle count: 47447
 Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
 6 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:04:08
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1094 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4114 brushes and 26612 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1405360 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 3096 texinfos to 1557
+Reduced 320 texdatas to 292 (10076 bytes to 7743)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:04:11
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt
+1433 portalclusters
+2663 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 214 visible clusters (0.31%)
+Total clusters visible: 68587
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 208
+visdatasize:170539  compressed from 527344
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+Wrote ZIP buffer, estimated size 129829, actual size 126265
+0 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:04:11
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+139 props added to raytrace
+16329 faces
+2 degenerate faces
+382 fake patch planes
+1794599 square feet [258422352.00 square inches]
+4 Displacements
+3259 Square Feet [469401.19 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1016327 patches before subdivision
+196339 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10400 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 21782820, max 1011
+transfer lists: 166.2 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(2259094, 432509, 267308)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(553329, 83983, 52100)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(159686, 23080, 14363)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(50122, 7772, 4802)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(16614, 2942, 1776)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(5717, 1186, 696)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(2034, 498, 283)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(746, 216, 118)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(283, 95, 50)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(111, 43, 22)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(45, 20, 9)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(19, 9, 4)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(8, 4, 2)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(4, 2, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(2, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0835 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+66 of 354 (18% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities               872/65536    ( 1.3%) 
+models                 105/4096     ( 2.6%) 
+brushes               4114/65536    ( 6.3%) 
+brushsides           26612/655350   ( 4.1%) 
+planes                7114/65536    (10.9%) 
+vertexes             28700/65536    (43.8%) 
+nodes                 4397/65536    ( 6.7%) 
+texinfos              1557/32768    ( 4.8%) 
+texdata                292/8192     ( 3.6%) 
+dispinfos                4/16384    ( 0.0%) 
+faces                16329/65536    (24.9%) 
+hdr faces            16329/65536    (24.9%) 
+origfaces             8406/65536    (12.8%) 
+leaves                4503/65536    ( 6.9%) 
+leaffaces            19169/65536    (29.2%) 
+leafbrushes           8701/65536    (13.3%) 
+areas                   78/1024     ( 7.6%) 
+surfedges            80165/512000   (15.7%) 
+edges                45055/256000   (17.6%) 
+leafwaterdata            8/32768    ( 0.0%) 
+primitives            2558/32768    ( 7.8%) 
+primverts                0/65536    ( 0.0%) 
+primindices          39366/65536    (60.1%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays               104/8192     ( 1.3%) 
+vertnormalindices    80067/256000   (31.3%) 
+visdata             170539/16777216 ( 1.0%) 
+entdata             328064/393216   (83.4%) VERY FULL!
+LDR ambient table     4503/65536    ( 6.9%) 
+HDR ambient table     4503/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            400     
+LDR lightdata              0       
+HDR lightdata              31576916
+LDR leaf ambient           4503    
+HDR leaf ambient           10728   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19348   
+pakfile                    126265  
+physics                    1405360 
+physics terrain            1376    
+
+Level flags = 0
+
+Total triangle count: 47409
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+6 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:12:54
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1094 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4116 brushes and 26630 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1411244 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 3112 texinfos to 1571
+Reduced 321 texdatas to 292 (10167 bytes to 7743)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:12:57
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt
+1438 portalclusters
+2647 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 215 visible clusters (0.31%)
+Total clusters visible: 69087
+Average clusters visible: 48
+Building PAS...
+Average clusters audible: 209
+visdatasize:171806  compressed from 529184
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+Wrote ZIP buffer, estimated size 130365, actual size 126667
+0 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:12:57
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+139 props added to raytrace
+16396 faces
+2 degenerate faces
+382 fake patch planes
+1806539 square feet [260141680.00 square inches]
+4 Displacements
+3259 Square Feet [469401.19 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1016394 patches before subdivision
+196380 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10398 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 21808092, max 1011
+transfer lists: 166.4 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(2252122, 428961, 263426)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(551379, 82447, 50841)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(158886, 22205, 13740)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(49714, 7271, 4471)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(16389, 2662, 1601)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(5592, 1033, 605)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(1965, 417, 236)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(709, 173, 95)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(263, 73, 39)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(100, 31, 16)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(39, 14, 7)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(16, 6, 3)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(7, 3, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(3, 1, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(1, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0821 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+66 of 354 (18% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities               861/65536    ( 1.3%) 
+models                 105/4096     ( 2.6%) 
+brushes               4116/65536    ( 6.3%) 
+brushsides           26630/655350   ( 4.1%) 
+planes                7142/65536    (10.9%) 
+vertexes             28738/65536    (43.9%) 
+nodes                 4416/65536    ( 6.7%) 
+texinfos              1571/32768    ( 4.8%) 
+texdata                292/8192     ( 3.6%) 
+dispinfos                4/16384    ( 0.0%) 
+faces                16396/65536    (25.0%) 
+hdr faces            16396/65536    (25.0%) 
+origfaces             8423/65536    (12.9%) 
+leaves                4522/65536    ( 6.9%) 
+leaffaces            19392/65536    (29.6%) 
+leafbrushes           8752/65536    (13.4%) 
+areas                   77/1024     ( 7.5%) 
+surfedges            80514/512000   (15.7%) 
+edges                45214/256000   (17.7%) 
+leafwaterdata            9/32768    ( 0.0%) 
+primitives            2560/32768    ( 7.8%) 
+primverts                0/65536    ( 0.0%) 
+primindices          39438/65536    (60.2%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays               104/8192     ( 1.3%) 
+vertnormalindices    80416/256000   (31.4%) 
+visdata             171806/16777216 ( 1.0%) 
+entdata             325839/393216   (82.9%) VERY FULL!
+LDR ambient table     4522/65536    ( 6.9%) 
+HDR ambient table     4522/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            398     
+LDR lightdata              0       
+HDR lightdata              31590068
+LDR leaf ambient           4522    
+HDR leaf ambient           10546   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19348   
+pakfile                    126667  
+physics                    1411244 
+physics terrain            1376    
+
+Level flags = 0
+
+Total triangle count: 47624
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+6 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:16:30
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 100646: areaportal brush doesn't touch two areas
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:17:18
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 100646: areaportal brush doesn't touch two areas
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:18:16
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 100646: areaportal brush doesn't touch two areas
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:18:24
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 100646: areaportal brush doesn't touch two areas
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:18:42
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 71797: areaportal brush doesn't touch two areas
+Wrote w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin
+Areaportal leak ! File: w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin 
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:19:25
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 100646: areaportal brush doesn't touch two areas
+Wrote w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin
+Areaportal leak ! File: w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin 
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:19:33
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 100646: areaportal brush doesn't touch two areas
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:19:46
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 71797: areaportal brush doesn't touch two areas
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:20:36
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 100646: areaportal brush doesn't touch two areas
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:20:51
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 15435: areaportal brush doesn't touch two areas
+Wrote w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin
+Areaportal leak ! File: w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin 
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:22:16
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 15435: areaportal brush doesn't touch two areas
+Wrote w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin
+Areaportal leak ! File: w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin 
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:22:47
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 15435: areaportal brush doesn't touch two areas
+Wrote w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin
+Areaportal leak ! File: w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin 
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:23:13
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 15435: areaportal brush doesn't touch two areas
+Wrote w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin
+Areaportal leak ! File: w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin 
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:24:21
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 15435: areaportal brush doesn't touch two areas
+Wrote w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin
+Areaportal leak ! File: w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin 
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:24:50
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...Brush 15435: areaportal brush doesn't touch two areas
+Wrote w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin
+Areaportal leak ! File: w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.lin 
+--- AREAPORTAL LEAKED ---
+
+==================================================================
+Date: 2026-11-27 18:32:29
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1094 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4109 brushes and 26588 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1410248 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 3094 texinfos to 1561
+Reduced 320 texdatas to 292 (10076 bytes to 7743)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:32:31
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt
+1434 portalclusters
+2675 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 218 visible clusters (0.32%)
+Total clusters visible: 68688
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 208
+visdatasize:170319  compressed from 527712
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+Wrote ZIP buffer, estimated size 129829, actual size 126265
+0 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:32:32
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+139 props added to raytrace
+16383 faces
+2 degenerate faces
+382 fake patch planes
+1806596 square feet [260149872.00 square inches]
+4 Displacements
+3259 Square Feet [469401.19 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1016381 patches before subdivision
+196421 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10398 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 21809485, max 1011
+transfer lists: 166.4 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(2252628, 429136, 263501)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(551469, 82490, 50868)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(158909, 22236, 13764)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(49723, 7289, 4484)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(16395, 2671, 1608)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(5595, 1038, 608)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(1967, 419, 238)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(710, 174, 95)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(263, 74, 39)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(100, 32, 16)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(39, 14, 7)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(16, 6, 3)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(7, 3, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(3, 1, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(1, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0878 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+66 of 354 (18% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities               856/65536    ( 1.3%) 
+models                 105/4096     ( 2.6%) 
+brushes               4109/65536    ( 6.3%) 
+brushsides           26588/655350   ( 4.1%) 
+planes                7142/65536    (10.9%) 
+vertexes             28736/65536    (43.8%) 
+nodes                 4391/65536    ( 6.7%) 
+texinfos              1561/32768    ( 4.8%) 
+texdata                292/8192     ( 3.6%) 
+dispinfos                4/16384    ( 0.0%) 
+faces                16383/65536    (25.0%) 
+hdr faces            16383/65536    (25.0%) 
+origfaces             8422/65536    (12.9%) 
+leaves                4497/65536    ( 6.9%) 
+leaffaces            19303/65536    (29.5%) 
+leafbrushes           8739/65536    (13.3%) 
+areas                   74/1024     ( 7.2%) 
+surfedges            80486/512000   (15.7%) 
+edges                45148/256000   (17.6%) 
+leafwaterdata            8/32768    ( 0.0%) 
+primitives            2567/32768    ( 7.8%) 
+primverts                0/65536    ( 0.0%) 
+primindices          39561/65536    (60.4%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays               104/8192     ( 1.3%) 
+vertnormalindices    80388/256000   (31.4%) 
+visdata             170319/16777216 ( 1.0%) 
+entdata             325245/393216   (82.7%) VERY FULL!
+LDR ambient table     4497/65536    ( 6.9%) 
+HDR ambient table     4497/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            398     
+LDR lightdata              0       
+HDR lightdata              31585056
+LDR leaf ambient           4497    
+HDR leaf ambient           10604   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19348   
+pakfile                    126265  
+physics                    1410248 
+physics terrain            1376    
+
+Level flags = 0
+
+Total triangle count: 47622
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+6 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:36:38
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1094 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4109 brushes and 26590 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1410640 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 3093 texinfos to 1561
+Reduced 320 texdatas to 292 (10076 bytes to 7743)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:36:41
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt
+1434 portalclusters
+2675 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 216 visible clusters (0.31%)
+Total clusters visible: 68686
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 208
+visdatasize:170319  compressed from 527712
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+Wrote ZIP buffer, estimated size 129829, actual size 126265
+0 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:36:41
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+139 props added to raytrace
+16383 faces
+2 degenerate faces
+382 fake patch planes
+1806596 square feet [260149872.00 square inches]
+4 Displacements
+3259 Square Feet [469401.19 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1016381 patches before subdivision
+196421 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10398 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 21809485, max 1011
+transfer lists: 166.4 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(2252634, 429141, 263503)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(551471, 82491, 50868)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(158909, 22236, 13764)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(49724, 7289, 4484)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(16395, 2671, 1608)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(5595, 1038, 608)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(1967, 419, 238)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(710, 174, 95)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(263, 74, 39)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(100, 32, 16)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(39, 14, 7)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(16, 6, 3)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(7, 3, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(3, 1, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(1, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0826 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+66 of 354 (18% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities               856/65536    ( 1.3%) 
+models                 105/4096     ( 2.6%) 
+brushes               4109/65536    ( 6.3%) 
+brushsides           26590/655350   ( 4.1%) 
+planes                7150/65536    (10.9%) 
+vertexes             28736/65536    (43.8%) 
+nodes                 4391/65536    ( 6.7%) 
+texinfos              1561/32768    ( 4.8%) 
+texdata                292/8192     ( 3.6%) 
+dispinfos                4/16384    ( 0.0%) 
+faces                16383/65536    (25.0%) 
+hdr faces            16383/65536    (25.0%) 
+origfaces             8422/65536    (12.9%) 
+leaves                4497/65536    ( 6.9%) 
+leaffaces            19303/65536    (29.5%) 
+leafbrushes           8739/65536    (13.3%) 
+areas                   74/1024     ( 7.2%) 
+surfedges            80486/512000   (15.7%) 
+edges                45138/256000   (17.6%) 
+leafwaterdata            8/32768    ( 0.0%) 
+primitives            2566/32768    ( 7.8%) 
+primverts                0/65536    ( 0.0%) 
+primindices          39549/65536    (60.3%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays               104/8192     ( 1.3%) 
+vertnormalindices    80388/256000   (31.4%) 
+visdata             170319/16777216 ( 1.0%) 
+entdata             325245/393216   (82.7%) VERY FULL!
+LDR ambient table     4497/65536    ( 6.9%) 
+HDR ambient table     4497/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            398     
+LDR lightdata              0       
+HDR lightdata              31585056
+LDR leaf ambient           4497    
+HDR leaf ambient           10604   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19348   
+pakfile                    126265  
+physics                    1410640 
+physics terrain            1376    
+
+Level flags = 0
+
+Total triangle count: 47622
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+6 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:38:34
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1094 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4109 brushes and 26590 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1410640 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 3092 texinfos to 1559
+Reduced 320 texdatas to 292 (10076 bytes to 7743)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:38:36
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt
+1433 portalclusters
+2668 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 216 visible clusters (0.31%)
+Total clusters visible: 68591
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 208
+visdatasize:169767  compressed from 527344
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+Wrote ZIP buffer, estimated size 129829, actual size 126265
+0 seconds elapsed
+
+==================================================================
+Date: 2026-11-27 18:38:36
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+139 props added to raytrace
+16374 faces
+2 degenerate faces
+382 fake patch planes
+1806553 square feet [260143696.00 square inches]
+4 Displacements
+3259 Square Feet [469401.19 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1016372 patches before subdivision
+196376 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10400 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 21800927, max 1011
+transfer lists: 166.3 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(2253025, 429408, 263736)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(551563, 82549, 50911)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(158930, 22249, 13772)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(49728, 7292, 4485)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(16396, 2672, 1608)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(5596, 1038, 608)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(1967, 419, 238)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(710, 174, 95)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(263, 74, 39)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(100, 32, 16)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(39, 14, 7)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(16, 6, 3)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(7, 3, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(3, 1, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(1, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.1056 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+66 of 356 (18% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities               856/65536    ( 1.3%) 
+models                 105/4096     ( 2.6%) 
+brushes               4109/65536    ( 6.3%) 
+brushsides           26590/655350   ( 4.1%) 
+planes                7148/65536    (10.9%) 
+vertexes             28721/65536    (43.8%) 
+nodes                 4390/65536    ( 6.7%) 
+texinfos              1559/32768    ( 4.8%) 
+texdata                292/8192     ( 3.6%) 
+dispinfos                4/16384    ( 0.0%) 
+faces                16374/65536    (25.0%) 
+hdr faces            16374/65536    (25.0%) 
+origfaces             8424/65536    (12.9%) 
+leaves                4496/65536    ( 6.9%) 
+leaffaces            19355/65536    (29.5%) 
+leafbrushes           8698/65536    (13.3%) 
+areas                   74/1024     ( 7.2%) 
+surfedges            80425/512000   (15.7%) 
+edges                45104/256000   (17.6%) 
+leafwaterdata            8/32768    ( 0.0%) 
+primitives            2556/32768    ( 7.8%) 
+primverts                0/65536    ( 0.0%) 
+primindices          39408/65536    (60.1%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays               104/8192     ( 1.3%) 
+vertnormalindices    80327/256000   (31.4%) 
+visdata             169767/16777216 ( 1.0%) 
+entdata             325245/393216   (82.7%) VERY FULL!
+LDR ambient table     4496/65536    ( 6.9%) 
+HDR ambient table     4496/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            400     
+LDR lightdata              0       
+HDR lightdata              31580680
+LDR leaf ambient           4496    
+HDR leaf ambient           10617   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19348   
+pakfile                    126265  
+physics                    1410640 
+physics terrain            1376    
+
+Level flags = 0
+
+Total triangle count: 47579
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+6 seconds elapsed
+
+==================================================================
+Date: 2026-11-28 02:47:52
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vbspplusplus.exe -allowdynamicpropsasstatic -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.vmf
+Can't find surfaceprop antlion_eggshell for material NATURE/ROCKWALL_ANTLION03A, using default
+Locating GameData file 'garrysmod.fgd'...
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\garrysmod.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\halflife2.fgd
+Parsing GameData file w:\programs\steam\steamapps\common\garrysmod\bin\base.fgd
+fixing up env_cubemap materials on brush sides...
+FloodEntities...
+FloodEntities...
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1094 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt...
+Building visibility clusters...
+done (0)
+Generating blank default cubemaps...
+Generating blank default cubemaps...
+Emitted 4109 brushes and 26590 brushsides
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Building Physics collision data...
+done (0) (1410640 bytes)
+Emitting static props...
+Model "models/props_phx/construct/metal_wire1x2x2b.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Model "models/props_phx/construct/metal_wire_angle360x2.mdl" is missing $staticprop. Allowing due to -allowdynamicpropsasstatic
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Water found with no water_lod_control entity, creating a default one.
+Compacting texture/material tables...
+Reduced 3092 texinfos to 1559
+Reduced 320 texdatas to 292 (10076 bytes to 7743)
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+2 seconds elapsed
+
+==================================================================
+Date: 2026-11-28 02:47:55
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vvisplusplus.exe -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+16 threads
+CPU supports AVX2
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+reading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.prt
+1433 portalclusters
+2668 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 213 visible clusters (0.31%)
+Total clusters visible: 68588
+Average clusters visible: 47
+Building PAS...
+Average clusters audible: 208
+visdatasize:169767  compressed from 527344
+writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+Wrote ZIP buffer, estimated size 129829, actual size 126265
+0 seconds elapsed
+
+==================================================================
+Date: 2026-11-28 02:47:55
+W:\Programs\Steam\steamapps\common\GarrysMod\bin\win64\vradplusplus.exe -both -final -game W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob
+==================================================================
+---------------
+gamedir: W:\Programs\Steam\steamapps\common\GarrysMod\garrysmod\
+---------------
+16 threads
+Compiling in LDR+HDR mode
+Reading texlights from 'lights.rad'...
+53 texlights parsed
+Loading w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+139 props added to raytrace
+16374 faces
+2 degenerate faces
+382 fake patch planes
+1806553 square feet [260143696.00 square inches]
+4 Displacements
+3259 Square Feet [469401.19 Square Inches]
+0...1...2...3...4...5...6...7...8...9...1016372 patches before subdivision
+196376 patches after subdivision
+CreateDirectLights...
+0...1...2...3...4...5...6...7...8...9...10400 lights, 6 styled (0.01 seconds)
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 21800927, max 1011
+transfer lists: 166.3 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(2253034, 429409, 263737)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(551565, 82550, 50911)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(158931, 22249, 13772)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(49728, 7292, 4486)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(16396, 2672, 1608)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(5596, 1038, 608)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(1967, 419, 238)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(710, 174, 95)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(263, 74, 39)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #10 added RGB(100, 32, 16)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #11 added RGB(39, 14, 7)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #12 added RGB(16, 6, 3)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #13 added RGB(7, 3, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #14 added RGB(3, 1, 1)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #15 added RGB(1, 1, 0)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #16 added RGB(1, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0828 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0...1...2...3...4...5...6...7...8...9...10Setting up leaf ambient computation...
+66 of 356 (18% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Fullness 
+------------       ---------------  -------- 
+entities               855/65536    ( 1.3%) 
+models                 105/4096     ( 2.6%) 
+brushes               4109/65536    ( 6.3%) 
+brushsides           26590/655350   ( 4.1%) 
+planes                7148/65536    (10.9%) 
+vertexes             28721/65536    (43.8%) 
+nodes                 4390/65536    ( 6.7%) 
+texinfos              1559/32768    ( 4.8%) 
+texdata                292/8192     ( 3.6%) 
+dispinfos                4/16384    ( 0.0%) 
+faces                16374/65536    (25.0%) 
+hdr faces            16374/65536    (25.0%) 
+origfaces             8424/65536    (12.9%) 
+leaves                4496/65536    ( 6.9%) 
+leaffaces            19355/65536    (29.5%) 
+leafbrushes           8698/65536    (13.3%) 
+areas                   74/1024     ( 7.2%) 
+surfedges            80425/512000   (15.7%) 
+edges                45104/256000   (17.6%) 
+leafwaterdata            8/32768    ( 0.0%) 
+primitives            2556/32768    ( 7.8%) 
+primverts                0/65536    ( 0.0%) 
+primindices          39408/65536    (60.1%) 
+cubemapsamples           0/1024     ( 0.0%) 
+overlays               104/8192     ( 1.3%) 
+vertnormalindices    80327/256000   (31.4%) 
+visdata             169767/16777216 ( 1.0%) 
+entdata             324912/393216   (82.6%) VERY FULL!
+LDR ambient table     4496/65536    ( 6.9%) 
+HDR ambient table     4496/65536    ( 6.9%) 
+LDR worldlights            0       
+HDR worldlights            400     
+LDR lightdata              0       
+HDR lightdata              31580680
+LDR leaf ambient           4496    
+HDR leaf ambient           10617   
+occluders                  0       
+occluder polygons          0       
+occluder vert ind          0       
+detail props               1140    
+dtl prp lght               4       
+HDR dtl prp lght           4       
+static props               19348   
+pakfile                    126265  
+physics                    1410640 
+physics terrain            1376    
+
+Level flags = 0
+
+Total triangle count: 47579
+Writing w:\programs\steam\steamapps\common\garrysmod\garrysmod\addons\garrysmodmap\maps\gmm_garrymod_map_by_woowz_flooded_water_blob.bsp
+6 seconds elapsed

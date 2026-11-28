@@ -48,8 +48,9 @@ local PlayerColors = {
 }
 
 local Speed        = 220
-local AttackRange  = 70
+local AttackRange  = 75
 local AttackDamage = 15
+local AttackRageDamage = 35
 local AttackDelay  = 1.2
 
 local AttackRangeSqr = AttackRange * AttackRange
@@ -72,48 +73,54 @@ local Bootleg = {
 
 local HeadEyeOffset = Vector(0, 0, 64)
 
-local RageDuration = 10
+local RageDuration         = 10
 local RageDistanceIncrease = 350
-local RageProgressTimeout = 8
-local RageCheckDelay = 1
-local RageSpeed = 650
-local RageAcceleration = 1800
-local RageDeceleration = 400
-local RageBoneUpdateDelay = 0.08
+local RageProgressTimeout  = 8
+local RageCheckDelay       = 1
+local RageSpeed            = 650
+local RageAcceleration     = 1800
+local RageDeceleration     = 400
+local RageBoneUpdateDelay  = 0.08
 
--- Дополнительное поведение
-local SightRange = 2400
-local SightRangeSqr = SightRange * SightRange
-local LoseSightDelay = 1.0
-local SearchDuration = 12
-local SearchArriveRange = 90
-local SearchArriveRangeSqr = SearchArriveRange * SearchArriveRange
-local SearchPauseMin = 0.7
-local SearchPauseMax = 2.0
-local SoundHearMin = 68
-local SoundInvestigateTime = 7
-local SoundInvestigateRange = 1800
+local SightRange               = 2400
+local SightRangeSqr            = SightRange * SightRange
+local LoseSightDelay           = 1.0
+local SearchDuration           = 12
+local SearchArriveRange        = 90
+local SearchArriveRangeSqr     = SearchArriveRange * SearchArriveRange
+local SearchPauseMin           = 0.7
+local SearchPauseMax           = 2.0
+local SoundHearMin             = 68
+local SoundInvestigateTime     = 7
+local SoundInvestigateRange    = 1800
 local SoundInvestigateRangeSqr = SoundInvestigateRange * SoundInvestigateRange
-local IdleThinkDelay = 0.25
-local IdleWanderChance = 0.12
-local IdleWanderDistance = 180
-local AmbushMinRange = 300
-local AmbushMaxRange = 850
-local AmbushChance = 0.18
-local AmbushPauseMin = 0.8
-local AmbushPauseMax = 1.8
-local AmbushRushDuration = 2.5
-local LowHealthRatio = 0.35
-local LowHealthPriority = 0.72
-local PropPushRange = 58
-local PropPushDelay = 0.7
-local PropPushForce = 260
-local SatietyPerBite = 1.8
-local SatietyDecay = 0.025
-local SatietyFull = 100
-local SatietySearchThreshold = 92
-local CorpseThreatRange = 360
-local CorpseThreatRangeSqr = CorpseThreatRange * CorpseThreatRange
+local IdleThinkDelay           = 0.25
+local IdleWanderChance         = 0.12
+local IdleWanderDistance       = 180
+local AmbushMinRange           = 300
+local AmbushMaxRange           = 850
+local AmbushChance             = 0.18
+local AmbushPauseMin           = 0.8
+local AmbushPauseMax           = 1.8
+local AmbushRushDuration       = 2.5
+local LowHealthRatio           = 0.35
+local LowHealthPriority        = 0.72
+local PropPushRange            = 58
+local PropPushDelay            = 0.7
+local PropPushForce            = 260
+local SatietyPerBite           = 1.8
+local SatietyDecay             = 0.025
+local SatietyFull              = 100
+local SatietySearchThreshold   = 92
+local CorpseThreatRange        = 360
+local CorpseThreatRangeSqr     = CorpseThreatRange * CorpseThreatRange
+
+local BasePlayerHeight = 72
+local MinHeightUnits   = 62  -- чуть ниже стандартного роста игрока (72)
+local MaxHeightUnits   = 118 -- около 3 метров
+
+local MinModelScale = MinHeightUnits / BasePlayerHeight
+local MaxModelScale = MaxHeightUnits / BasePlayerHeight
 
 local SoundPitchMin = 90
 local SoundPitchMax = 110
@@ -125,8 +132,7 @@ local VoiceRangeSqr = VoiceRange * VoiceRange
 
 local NetVoice = "gmm_PavelZombie_Voice"
 
-local NwCorpseFlag  = "gmm_PavelCorpse"
-local NwCorpseColor = "gmm_PavelCorpseColor"
+local NwCorpseFlag = "gmm_PlayerCorpse"
 
 local Sounds = {
     Idle = {
@@ -284,20 +290,20 @@ if SERVER then
     local GrudgeTime     = 3
 
     local IgnoreClasses = {
-        gmm_pavelzombie       = true,
-        npc_bullseye          = true,
-        npc_grenade_frag      = true,
-        npc_satchel           = true,
-        npc_tripmine          = true,
-        npc_furniture         = true,
-        npc_crow              = true,
-        npc_seagull           = true,
-        npc_pigeon            = true,
-        npc_cscanner          = true,
-        npc_clawscanner       = true,
-        npc_combinegunship    = true,
-        npc_helicopter        = true,
-        npc_combinedropship   = true
+        gmm_pavelzombie     = true,
+        npc_bullseye        = true,
+        npc_grenade_frag    = true,
+        npc_satchel         = true,
+        npc_tripmine        = true,
+        npc_furniture       = true,
+        npc_crow            = true,
+        npc_seagull         = true,
+        npc_pigeon          = true,
+        npc_cscanner        = true,
+        npc_clawscanner     = true,
+        npc_combinegunship  = true,
+        npc_helicopter      = true,
+        npc_combinedropship = true
     }
 
     GMM_S.Func.GetPavelThreat = function(Ent, Range)
@@ -367,44 +373,40 @@ if SERVER then
     -- Трупы: данные
     -- ----------------------------------------------------------------------
 
-    local CorpseOfferDelay     = 0.15
-    local CorpseOfferRetry     = 0.2
+    local CorpseOfferDelay     = 0.05
+    local CorpseOfferRetry     = 0.15
     local CorpseOfferTries     = 5
-    local CorpseNoticeRange    = 1500
+    local CorpseNoticeRange    = 1800
     local CorpseNoticeRangeSqr = CorpseNoticeRange * CorpseNoticeRange
     local CorpseMaxTime        = 90
 
     local PlayerCorpseLife = 120
 
-    local DistractRange    = 400
-    local DistractRangeSqr = DistractRange * DistractRange
-    local DistractCheck    = 0.25
-
-    local FetchTimeout  = 12
-    local GrabRange     = 60
-    local GrabRangeSqr  = GrabRange * GrabRange
+    local FetchTimeout = 14
+    local GrabRange    = 85
+    local GrabRangeSqr = GrabRange * GrabRange
 
     local DragSpeed       = 130
     local DragTimeout     = 10
-    local DragDistMin     = 250
-    local DragDistMax     = 600
+    local DragDistMin     = 500
+    local DragDistMax     = 3000
     local DragTries       = 8
     local DragFloorDepth  = 80
     local DragFloorDiff   = 40
-    local DragArriveRange = 50
+    local DragArriveRange = 60
     local DragArriveSqr   = DragArriveRange * DragArriveRange
     local DragDecalDelay  = 0.3
 
     local GripForward   = 34
     local GripHeight    = 26
-    local GripPull      = 12
-    local GripBreakDist = 200
+    local GripPull      = 14
+    local GripBreakDist = 240
     local GripBreakSqr  = GripBreakDist * GripBreakDist
     local MaxGripBreaks = 3
 
-    local FeedRange         = 42
+    local FeedRange         = 75
     local FeedRangeSqr      = FeedRange * FeedRange
-    local FeedArriveTimeout = 8
+    local FeedArriveTimeout = 6
     local FeedRestTime      = 2.5
 
     local BiteDelay     = 0.3
@@ -470,6 +472,30 @@ if SERVER then
     -- Трупы: вспомогательные функции
     -- ----------------------------------------------------------------------
 
+    local EdibleSurfaceProps = {
+        flesh       = true,
+        bloodyflesh = true,
+        alienflesh  = true,
+        zombieflesh = true,
+        antlion     = true,
+        watermelon  = true,
+        armorflesh  = true
+    }
+
+    local InedibleModelWords = {
+        "skeleton",
+        "strider",
+        "dog.mdl",
+        "hunter",
+        "turret",
+        "manhack",
+        "scanner",
+        "rollermine",
+        "helicopter",
+        "gunship",
+        "dropship"
+    }
+
     local EdibleMaterialWords = {
         "flesh",
         "meat",
@@ -479,42 +505,85 @@ if SERVER then
         "antlion",
         "headcrab",
         "gib",
-        "gore"
+        "gore",
+        "skin",
+        "body"
+    }
+
+    local function GetCorpsePos(Corpse)
+        if not IsValid(Corpse) then return nil end
+
+        local Phys = Corpse:GetPhysicsObjectNum(0)
+        if IsValid(Phys) then return Phys:GetPos() end
+
+        return Corpse:WorldSpaceCenter()
+    end
+
+    local function GetCorpseDistSqr(BotPos, Corpse)
+        local Pos = GetCorpsePos(Corpse)
+        if Pos == nil then return math.huge end
+
+        local d1 = BotPos:DistToSqr(Pos)
+        local d2 = BotPos:DistToSqr(Corpse:NearestPoint(BotPos))
+
+        return math.min(d1, d2)
+    end
+
+    local ForbiddenCorpseModels = {
+        ["models/woowz11/player/pavelpistv.mdl"] = true,
+        ["models/woowz_map/prikol/le_sponge_rag_player.mdl"] = true,
     }
 
     local function IsEdibleCorpse(Corpse)
         if not IsValid(Corpse) then return false end
+        if Corpse.GMMIsSkeleton then return false end
 
         local Model = string.lower(Corpse:GetModel() or "")
-
-        if string.find(Model, "skeleton", 1, true) then
+        if ForbiddenCorpseModels[Model] then
             return false
         end
 
-        local Materials = Corpse:GetMaterials()
-
-        if Materials == nil then return false end
-
-        local HasEdibleMaterial = false
-
-        for i = 1, #Materials do
-            local Material = string.lower(Materials[i] or "")
-
-            if string.find(Material, "skeleton", 1, true) then
+        for i = 1, #InedibleModelWords do
+            if string.find(Model, InedibleModelWords[i], 1, true) then
                 return false
             end
-
-            for j = 1, #EdibleMaterialWords do
-                if string.find(Material, EdibleMaterialWords[j], 1, true) then
-                    HasEdibleMaterial = true
-                    break
-                end
-            end
-
-            if HasEdibleMaterial then break end
         end
 
-        return HasEdibleMaterial
+        if Corpse:GetNWBool(NwCorpseFlag) then return true end
+
+        local PhysCount = Corpse:GetPhysicsObjectCount()
+        for i = 0, PhysCount - 1 do
+            local Phys = Corpse:GetPhysicsObjectNum(i)
+            if IsValid(Phys) then
+                local Mat = string.lower(Phys:GetMaterial() or "")
+                if EdibleSurfaceProps[Mat] or string.find(Mat, "flesh", 1, true) then
+                    return true
+                end
+            end
+        end
+
+        local Pelvis = Corpse:LookupBone("ValveBiped.Bip01_Pelvis")
+        local Head   = Corpse:LookupBone("ValveBiped.Bip01_Head1")
+        if (Pelvis ~= nil and Pelvis >= 0) or (Head ~= nil and Head >= 0) then
+            return true
+        end
+
+        local Materials = Corpse:GetMaterials()
+        if Materials ~= nil then
+            for i = 1, #Materials do
+                local Material = string.lower(Materials[i] or "")
+                if string.find(Material, "skeleton", 1, true) then
+                    return false
+                end
+                for j = 1, #EdibleMaterialWords do
+                    if string.find(Material, EdibleMaterialWords[j], 1, true) then
+                        return true
+                    end
+                end
+            end
+        end
+
+        return false
     end
 
     local function IsCorpseUsable(Corpse)
@@ -531,7 +600,7 @@ if SERVER then
     local function CollectBones(Ent, Bone, Seen, Out)
         if Seen[Bone] then return end
 
-        Seen[Bone]  = true
+        Seen[Bone]    = true
         Out[#Out + 1] = Bone
 
         local Children = Ent:GetChildBones(Bone)
@@ -578,7 +647,7 @@ if SERVER then
             if Pos ~= nil then return Pos end
         end
 
-        return Corpse:WorldSpaceCenter()
+        return GetCorpsePos(Corpse) or Corpse:WorldSpaceCenter()
     end
 
     local function CreateSkeletonFromCorpse(Corpse)
@@ -591,7 +660,7 @@ if SERVER then
             return
         end
 
-        local Pos = Corpse:GetPos()
+        local Pos = GetCorpsePos(Corpse) or Corpse:GetPos()
         local Ang = Corpse:GetAngles()
 
         local Skeleton = ents.Create("prop_ragdoll")
@@ -607,6 +676,7 @@ if SERVER then
         Skeleton:Spawn()
         Skeleton:Activate()
         Skeleton:SetSkin(2)
+        Skeleton:SetCollisionGroup(COLLISION_GROUP_NONE)
 
         Skeleton.GMMIsSkeleton = true
 
@@ -616,7 +686,7 @@ if SERVER then
             local SkeletonBone = Skeleton:TranslatePhysBoneToBone(i)
 
             if SkeletonBone ~= nil and SkeletonBone >= 0 then
-                local BoneName = Skeleton:GetBoneName(SkeletonBone)
+                local BoneName   = Skeleton:GetBoneName(SkeletonBone)
                 local CorpseBone = Corpse:LookupBone(BoneName)
 
                 if CorpseBone ~= nil and CorpseBone >= 0 then
@@ -689,6 +759,8 @@ if SERVER then
     function ENT:InitState()
         local Now = CurTime()
 
+        self.ModelScale = 1
+
         self.AnimCycle       = 0
         self.LastAnimTime    = Now
         self.NextFrameTime   = 0
@@ -718,8 +790,6 @@ if SERVER then
         self.CorpseState    = nil
         self.CorpseDeadline = 0
         self.StateUntil     = 0
-        self.NextDistract   = 0
-        self.Distracted     = false
         self.GripBreaks     = 0
         self.GripPhys       = 0
         self.GripBroken     = false
@@ -734,47 +804,68 @@ if SERVER then
         self.NextBloodDecal = 0
         self.BloodyUntil    = 0
 
-        self.RageUntil = 0
-        self.WasRaging = false
-        self.ExhaustedUntil = 0
-        self.IrritatedUntil = 0
-        self.NextRageCheck = 0
+        self.RageUntil          = 0
+        self.WasRaging          = false
+        self.RageSoundPlayed    = false
+        self.NextRageSound      = 0
+        self.ExhaustedUntil     = 0
+        self.IrritatedUntil     = 0
+        self.NextRageCheck      = 0
         self.LastTargetDistance = nil
         self.TargetProgressTime = 0
-        self.RageBones = {}
+        self.RageBones          = {}
         self.NextRageBoneUpdate = 0
-        self.NextRageArmSwing = 0
+        self.NextRageArmSwing   = 0
 
         self.NextCorpseSearch = 0
 
-        self.LastSeenPos = nil
-        self.LastSeenTarget = nil
-        self.LastSeenTime = 0
-        self.SearchUntil = 0
-        self.SearchPos = nil
-        self.SearchNextMove = 0
-        self.SearchPauseUntil = 0
-        self.SearchLookUntil = 0
-        self.SearchLookPos = nil
-        self.HeardPos = nil
-        self.HeardUntil = 0
-        self.HeardSource = nil
-        self.NextIdleThink = 0
-        self.IdleUntil = 0
-        self.IdleLookPos = nil
-        self.IdleWanderPos = nil
-        self.AmbushUntil = 0
-        self.AmbushRushUntil = 0
-        self.AmbushTarget = nil
-        self.GrudgeTarget = nil
-        self.GrudgeUntil = 0
-        self.NextPropPush = 0
-        self.Satiety = 0
-        self.FeedBiteDelay = BiteDelay
-        self.LastVisibleTarget = nil
+        self.LastSeenPos          = nil
+        self.LastSeenTarget       = nil
+        self.LastSeenTime         = 0
+        self.SearchUntil          = 0
+        self.SearchPos            = nil
+        self.SearchNextMove       = 0
+        self.SearchPauseUntil     = 0
+        self.SearchLookUntil      = 0
+        self.SearchLookPos        = nil
+        self.HeardPos             = nil
+        self.HeardUntil           = 0
+        self.HeardSource          = nil
+        self.NextIdleThink        = 0
+        self.IdleUntil            = 0
+        self.IdleLookPos          = nil
+        self.IdleWanderPos        = nil
+        self.AmbushUntil          = 0
+        self.AmbushRushUntil      = 0
+        self.AmbushTarget         = nil
+        self.GrudgeTarget         = nil
+        self.GrudgeUntil          = 0
+        self.NextPropPush         = 0
+        self.Satiety              = 0
+        self.FeedBiteDelay        = BiteDelay
+        self.LastVisibleTarget    = nil
         self.NextSoundInvestigate = 0
+
+        self.FeedArms         = {}
+        self.FeedArmsActive   = false
+        self.NextFeedArmUpdate = 0
+        self.FeedTearDir      = 1
     end
 
+    function ENT:ApplyHeightScale()
+        local Scale = math.Rand(MinModelScale, MaxModelScale)
+        self.ModelScale = Scale
+
+        self:SetModelScale(Scale, 0)
+        self:SetCollisionBounds(Vector(-16 * Scale, -16 * Scale, 0), Vector(16 * Scale, 16 * Scale, 72 * Scale))
+
+        if self.loco ~= nil then
+            self.loco:SetStepHeight(40 * Scale)
+            self.loco:SetJumpHeight(140 * Scale)
+            self.loco:SetDesiredSpeed(Speed * math.Clamp(0.85 + Scale * 0.2, 0.8, 1.35))
+        end
+    end
+    
     function ENT:FindSeq(Names, Acts)
         for _, Name in ipairs(Names) do
             local Seq = self:LookupSequence(Name)
@@ -803,7 +894,9 @@ if SERVER then
                 local Count = self:GetBodygroupCount(Group)
                 if Count == nil or Count <= 1 then return end
 
-                self:SetBodygroup(Group, math.random(1, math.min(10, Count - 1)))
+                self:SetBodygroup(Group, math.random(1, Count - 1))
+                
+                self:SetSkin(1)
             end)
             return
         end
@@ -842,7 +935,8 @@ if SERVER then
         self:SetSolid(SOLID_BBOX)
         self:SetMoveType(MOVETYPE_STEP)
         self:SetCollisionBounds(Vector(-16, -16, 0), Vector(16, 16, 72))
-
+        self:SetCustomCollisionCheck(true)
+        
         self:ApplyLook(ModelPath)
         self:SetGlow(ModelPath ~= ModelSponge)
 
@@ -854,17 +948,19 @@ if SERVER then
         Loco:SetStepHeight(40)
         if Loco.SetAvoidAllowed then Loco:SetAvoidAllowed(false) end
 
+        self:ApplyHeightScale()
+        
         self.WalkSeq = self:FindSeq(WalkSeqNames, {ACT_HL2MP_RUN, ACT_HL2MP_WALK, ACT_RUN, ACT_WALK})
         self.IdleSeq = self:FindSeq(IdleSeqNames, {ACT_HL2MP_IDLE, ACT_IDLE})
         self.FeedSeq = self:FindSeq(FeedSeqNames, {ACT_HL2MP_IDLE_CROUCH, ACT_CROUCHIDLE})
-
+        
         if self.WalkSeq < 0 then
             print("[GMM] PAVELZOMBIE WALK SEQUENCE NOT FOUND! MODEL: " .. ModelPath)
             for i, Name in ipairs(self:GetSequenceList() or {}) do
                 print("  ", i - 1, Name)
             end
         end
-
+        
         self.Target = self:FindNearestEnemy()
 
         self:PlaySeq(self.WalkSeq >= 0 and self.WalkSeq or self.IdleSeq)
@@ -878,21 +974,21 @@ if SERVER then
     function ENT:EnterRage(Reason)
         local Now = CurTime()
 
-        self.RageUntil = math.max(self.RageUntil, Now + RageDuration)
+        self.RageUntil          = math.max(self.RageUntil, Now + RageDuration)
         self.NextRageBoneUpdate = 0
-        self.NextRageArmSwing = 0
+        self.NextRageArmSwing   = 0
 
-        if not self.RageSoundPlayed or Now >= self.NextRageSound then
+        if not self.RageSoundPlayed or Now >= (self.NextRageSound or 0) then
             self.RageSoundPlayed = true
-            self.NextRageSound = Now + 3
+            self.NextRageSound   = Now + 3
 
             self:PlayVoice("Attack")
         end
     end
 
     function ENT:CalmDown()
-        self.RageUntil = 0
-        self.RageSoundPlayed = false
+        self.RageUntil          = 0
+        self.RageSoundPlayed    = false
         self.LastTargetDistance = nil
         self.TargetProgressTime = 0
 
@@ -960,13 +1056,13 @@ if SERVER then
     local function CanSeeTarget(Bot, Target)
         if not IsValid(Target) then return false end
 
-        local Start = Bot:EyePos()
+        local Start  = Bot:EyePos()
         local Finish = Target:IsPlayer() and Target:EyePos() or Target:WorldSpaceCenter()
-        local Trace = util.TraceLine({
-            start = Start,
+        local Trace  = util.TraceLine({
+            start  = Start,
             endpos = Finish,
             filter = {Bot, Target},
-            mask = MASK_VISIBLE
+            mask   = MASK_VISIBLE
         })
 
         return not Trace.Hit
@@ -975,14 +1071,14 @@ if SERVER then
     function ENT:RememberTarget(Target, Now)
         if not IsValid(Target) then return end
 
-        self.LastSeenPos = Target:GetPos()
-        self.LastSeenTarget = Target
-        self.LastSeenTime = Now
+        self.LastSeenPos       = Target:GetPos()
+        self.LastSeenTarget    = Target
+        self.LastSeenTime      = Now
         self.LastVisibleTarget = Target
     end
 
     function ENT:GetEnemyPriority(Enemy)
-        local Dist = GetEnemyDistSqr(self, Enemy)
+        local Dist  = GetEnemyDistSqr(self, Enemy)
         local Score = Dist
 
         if Enemy == self.GrudgeTarget and CurTime() < (self.GrudgeUntil or 0) then
@@ -990,7 +1086,7 @@ if SERVER then
         end
 
         if Enemy:IsPlayer() then
-            local MaxHealth = math.max(Enemy:GetMaxHealth(), 1)
+            local MaxHealth   = math.max(Enemy:GetMaxHealth(), 1)
             local HealthRatio = math.Clamp(Enemy:Health() / MaxHealth, 0, 1)
             if HealthRatio <= LowHealthRatio then Score = Score * LowHealthPriority end
         end
@@ -999,15 +1095,15 @@ if SERVER then
     end
 
     function ENT:FindNearestEnemy()
-        local Best = nil
+        local Best      = nil
         local BestScore = math.huge
-        local MyPos = self:GetPos()
+        local MyPos     = self:GetPos()
 
         for _, Ply in ipairs(player.GetAll()) do
             if IsEnemyValid(Ply) then
                 local Score = self:GetEnemyPriority(Ply)
                 if Score < BestScore then
-                    Best = Ply
+                    Best      = Ply
                     BestScore = Score
                 end
             end
@@ -1019,7 +1115,7 @@ if SERVER then
             if Ent ~= self and not Ent:IsPlayer() and IsEnemyValid(Ent) then
                 local Score = self:GetEnemyPriority(Ent)
                 if Score < BestScore then
-                    Best = Ent
+                    Best      = Ent
                     BestScore = Score
                 end
             end
@@ -1031,23 +1127,22 @@ if SERVER then
     function ENT:StartSearch(Position, Now)
         if Position == nil then return end
         local Destination = Vector(Position.x, Position.y, Position.z)
-        local Direction = Destination - self:GetPos()
+        local Direction   = Destination - self:GetPos()
         Direction.z = 0
 
-        -- Если последняя позиция скрыта за стеной, сначала пробуем обойти её сбоку.
         if Direction:LengthSqr() > 1 then
             Direction:Normalize()
-            local Side = Vector(-Direction.y, Direction.x, 0)
+            local Side       = Vector(-Direction.y, Direction.x, 0)
             local Candidates = {Destination + Side * 100, Destination - Side * 100}
             for i = 1, #Candidates do
                 local Candidate = Candidates[i]
                 local Trace = util.TraceHull({
-                    start = self:GetPos() + Vector(0, 0, 36),
+                    start  = self:GetPos() + Vector(0, 0, 36),
                     endpos = Candidate + Vector(0, 0, 36),
-                    mins = Vector(-14, -14, -8),
-                    maxs = Vector(14, 14, 8),
+                    mins   = Vector(-14, -14, -8),
+                    maxs   = Vector(14, 14, 8),
                     filter = self,
-                    mask = MASK_NPCSOLID
+                    mask   = MASK_NPCSOLID
                 })
                 if not Trace.Hit and not Trace.StartSolid then
                     Destination = Candidate
@@ -1056,12 +1151,12 @@ if SERVER then
             end
         end
 
-        self.SearchPos = Destination
-        self.SearchUntil = Now + SearchDuration
-        self.SearchNextMove = Now
+        self.SearchPos        = Destination
+        self.SearchUntil      = Now + SearchDuration
+        self.SearchNextMove   = Now
         self.SearchPauseUntil = 0
-        self.SearchLookUntil = 0
-        self.Target = nil
+        self.SearchLookUntil  = 0
+        self.Target           = nil
     end
 
     function ENT:StepSearch(Now)
@@ -1071,7 +1166,7 @@ if SERVER then
         end
 
         local Loco = self.loco
-        local Pos = self:GetPos()
+        local Pos  = self:GetPos()
 
         if self.SearchLookPos ~= nil and Now < self.SearchLookUntil then
             Loco:SetDesiredSpeed(0)
@@ -1082,9 +1177,9 @@ if SERVER then
         if Pos:DistToSqr(self.SearchPos) <= SearchArriveRangeSqr then
             if self.SearchPauseUntil <= 0 then
                 self.SearchPauseUntil = Now + math.Rand(SearchPauseMin, SearchPauseMax)
-                self.SearchLookPos = self.SearchPos + VectorRand() * 180 + Vector(0, 0, 35)
-                self.SearchLookUntil = self.SearchPauseUntil
-                self.SearchNextMove = self.SearchPauseUntil
+                self.SearchLookPos    = self.SearchPos + VectorRand() * 180 + Vector(0, 0, 35)
+                self.SearchLookUntil  = self.SearchPauseUntil
+                self.SearchNextMove   = self.SearchPauseUntil
                 self:PlayVoice("Idle")
             end
 
@@ -1096,9 +1191,9 @@ if SERVER then
 
             local Offset = VectorRand() * math.Rand(100, 240)
             Offset.z = 0
-            self.SearchPos = self.SearchPos + Offset
+            self.SearchPos        = self.SearchPos + Offset
             self.SearchPauseUntil = 0
-            self.SearchLookPos = nil
+            self.SearchLookPos    = nil
         end
 
         Loco:SetDesiredSpeed(math.max(Speed * 0.72, 80))
@@ -1112,14 +1207,14 @@ if SERVER then
         if IsValid(Source) and Source == self then return end
         if self:GetPos():DistToSqr(Position) > SoundInvestigateRangeSqr then return end
 
-        self.HeardPos = Vector(Position.x, Position.y, Position.z)
-        self.HeardUntil = Now + SoundInvestigateTime
+        self.HeardPos    = Vector(Position.x, Position.y, Position.z)
+        self.HeardUntil  = Now + SoundInvestigateTime
         self.HeardSource = IsValid(Source) and Source or nil
     end
 
     function ENT:StepInvestigateSound(Now)
         if self.HeardPos == nil or Now >= self.HeardUntil then
-            self.HeardPos = nil
+            self.HeardPos    = nil
             self.HeardSource = nil
             return false
         end
@@ -1179,13 +1274,13 @@ if SERVER then
             local Offset = VectorRand() * IdleWanderDistance
             Offset.z = 0
             self.IdleWanderPos = self:GetPos() + Offset
-            self.IdleLookPos = self.IdleWanderPos
-            self.IdleUntil = Now + math.Rand(1.5, 3.0)
+            self.IdleLookPos   = self.IdleWanderPos
+            self.IdleUntil     = Now + math.Rand(1.5, 3.0)
             self.loco:SetDesiredSpeed(55)
             self.loco:FaceTowards(self.IdleWanderPos)
         elseif math.Rand(0, 1) < 0.08 then
             self.IdleLookPos = self:GetPos() + VectorRand() * 100
-            self.IdleUntil = Now + math.Rand(0.4, 1.2)
+            self.IdleUntil   = Now + math.Rand(0.4, 1.2)
             self.loco:SetDesiredSpeed(0)
             self.loco:FaceTowards(self.IdleLookPos)
         elseif math.Rand(0, 1) < 0.08 then
@@ -1202,8 +1297,8 @@ if SERVER then
         if Dist < AmbushMinRange * AmbushMinRange or Dist > AmbushMaxRange * AmbushMaxRange then return end
         if math.Rand(0, 1) > AmbushChance then return end
 
-        self.AmbushTarget = Target
-        self.AmbushUntil = Now + math.Rand(AmbushPauseMin, AmbushPauseMax)
+        self.AmbushTarget    = Target
+        self.AmbushUntil     = Now + math.Rand(AmbushPauseMin, AmbushPauseMax)
         self.AmbushRushUntil = self.AmbushUntil + AmbushRushDuration
     end
 
@@ -1215,7 +1310,7 @@ if SERVER then
         local List = ents.FindInSphere(self:GetPos(), PropPushRange)
         for i = 1, #List do
             local Ent = List[i]
-            if IsValid(Ent) and Ent:GetMoveType() == MOVETYPE_VPHYSICS and not Ent:IsPlayer() then
+            if IsValid(Ent) and Ent:GetMoveType() == MOVETYPE_VPHYSICS and not Ent:IsPlayer() and not Ent:IsRagdoll() then
                 local Phys = Ent:GetPhysicsObject()
                 if IsValid(Phys) and Phys:IsMotionEnabled() then
                     local Direction = (Ent:WorldSpaceCenter() - self:WorldSpaceCenter())
@@ -1223,7 +1318,9 @@ if SERVER then
                     if Direction:LengthSqr() > 0 then
                         Direction:Normalize()
                         Phys:ApplyForceCenter(Direction * PropPushForce * math.max(Phys:GetMass(), 1))
-                        if Ent:GetClass() == "prop_physics" then Ent:EmitSound("physics/wood/wood_box_impact_hard" .. math.random(1, 3) .. ".wav", 55, math.random(85, 110)) end
+                        if Ent:GetClass() == "prop_physics" then
+                            Ent:EmitSound("physics/wood/wood_box_impact_hard" .. math.random(1, 3) .. ".wav", 55, math.random(85, 110))
+                        end
                     end
                 end
             end
@@ -1240,8 +1337,12 @@ if SERVER then
 
         if GetEnemyDistSqr(self, Enemy) > AttackRangeSqr then return end
 
+        if Enemy:IsNPC() and Enemy.SetShouldServerRagdoll then
+            Enemy:SetShouldServerRagdoll(true)
+        end
+
         local Damage = DamageInfo()
-        Damage:SetDamage(AttackDamage)
+        Damage:SetDamage(self.RageUntil > Now and AttackRageDamage or AttackDamage)
         Damage:SetAttacker(self)
         Damage:SetInflictor(self)
         Damage:SetDamageType(DMG_SLASH)
@@ -1265,9 +1366,9 @@ if SERVER then
         local Delta = math.Clamp(Now - self.LastAnimTime, 0, 0.2)
         self.LastAnimTime = Now
 
-        local Velocity = self.loco:GetVelocity()
+        local Velocity  = self.loco:GetVelocity()
         local MoveSpeed = Velocity:Length2D()
-        local IsMoving = MoveSpeed > 8
+        local IsMoving  = MoveSpeed > 8
 
         local Seq = self.IdleSeq
         if Seq < 0 then Seq = self.WalkSeq end
@@ -1305,8 +1406,9 @@ if SERVER then
         if Now > self.RateMulUntil then self.RateMul = 1 end
 
         local SpeedMul = IsMoving and math.Clamp(MoveSpeed / Speed, 0.35, 1.5) or 0.35
-        local Rate = Bootleg.BaseRate * (0.75 + 0.45 * math.sin(Now * 2.7 + self:EntIndex())) * self.RateMul * SpeedMul
+        local Rate     = Bootleg.BaseRate * (0.75 + 0.45 * math.sin(Now * 2.7 + self:EntIndex())) * self.RateMul * SpeedMul
 
+        if Now < self.ReverseUntil then Rate = -Rate end
         if Now < self.FreezeUntil then Rate = 0 end
 
         self.AnimCycle = self.AnimCycle + Delta * Rate
@@ -1335,14 +1437,16 @@ if SERVER then
     function ENT:GetLookPos()
         local Corpse = self.Corpse
 
-        if self.CorpseState ~= nil and IsValid(Corpse) then return Corpse:GetPos() end
+        if self.CorpseState ~= nil and IsValid(Corpse) then
+            return GetCorpsePos(Corpse)
+        end
         if IsValid(self.Target) then return self.Target:EyePos() end
 
         return nil
     end
 
     function ENT:UpdateHead()
-        local Now = CurTime()
+        local Now         = CurTime()
         local TargetYaw   = 0
         local TargetPitch = 0
 
@@ -1434,16 +1538,16 @@ if SERVER then
     end
 
     local function FindWaterSurface(Pos)
-        local StartZ = Pos.z - 8
+        local StartZ   = Pos.z - 8
         local StartPos = Vector(Pos.x, Pos.y, StartZ)
 
         if not IsWaterAt(StartPos) then return nil end
 
         local WaterZ = StartZ
-        local AirZ = nil
+        local AirZ   = nil
 
         for i = 1, 256 do
-            local CheckZ = StartZ + i * 8
+            local CheckZ   = StartZ + i * 8
             local CheckPos = Vector(Pos.x, Pos.y, CheckZ)
 
             if not IsWaterAt(CheckPos) then
@@ -1457,7 +1561,7 @@ if SERVER then
         if AirZ == nil then return nil end
 
         for i = 1, 8 do
-            local MidZ = (WaterZ + AirZ) * 0.5
+            local MidZ   = (WaterZ + AirZ) * 0.5
             local MidPos = Vector(Pos.x, Pos.y, MidZ)
 
             if IsWaterAt(MidPos) then
@@ -1471,8 +1575,8 @@ if SERVER then
     end
 
     function ENT:UpdateWaterWalk()
-        local Loco = self.loco
-        local Pos = self:GetPos()
+        local Loco     = self.loco
+        local Pos      = self:GetPos()
         local SurfaceZ = FindWaterSurface(Pos)
 
         if SurfaceZ == nil then
@@ -1482,7 +1586,7 @@ if SERVER then
 
         self.WaterWalking = true
 
-        local TargetZ = SurfaceZ + 2
+        local TargetZ  = SurfaceZ + 2
         local Velocity = Loco:GetVelocity()
 
         if math.abs(Pos.z - TargetZ) > 1 then
@@ -1501,7 +1605,7 @@ if SERVER then
         local GroundNormal = Loco:GetGroundNormal()
         if GroundNormal.z >= 0.999 then return end
 
-        local Gravity = Vector(0, 0, -Loco:GetGravity())
+        local Gravity      = Vector(0, 0, -Loco:GetGravity())
         local SlopeGravity = Gravity - GroundNormal * Gravity:Dot(GroundNormal)
 
         if SlopeGravity:LengthSqr() <= 0.01 then return end
@@ -1527,6 +1631,7 @@ if SERVER then
 
         self:UpdateBootlegAnim()
         self:UpdateHead()
+        self:UpdateFeedArms()
         self:UpdateSpeedSurge()
         self:UpdateSoundGlitch()
         self:UpdateGrip()
@@ -1544,7 +1649,7 @@ if SERVER then
         if self.CorpseState ~= nil then return false, "ZOMBIE BUSY" end
         if IsAiDisabled() then return false, "AI DISABLED" end
         if not IsCorpseUsable(Corpse) then return false, "CORPSE NOT USABLE" end
-        if Corpse.GMMEatenBy ~= nil then return false, "CORPSE TAKEN" end
+        if IsValid(Corpse.GMMEatenBy) and Corpse.GMMEatenBy ~= self then return false, "CORPSE TAKEN" end
 
         return true
     end
@@ -1556,10 +1661,10 @@ if SERVER then
 
         self.Corpse         = Corpse
         self.CorpseDeadline = Now + CorpseMaxTime
-        self.NextDistract   = Now + DistractCheck
-        self.Distracted     = false
         self.GripBreaks     = 0
         self.GripBroken     = false
+        self.SearchPos      = nil
+        self.HeardPos       = nil
 
         self:StartFetch(Now)
     end
@@ -1578,26 +1683,18 @@ if SERVER then
     end
 
     function ENT:EndCorpse()
+        if IsValid(self.Corpse) and self.Corpse.GMMEatenBy == self then
+            self.Corpse.GMMEatenBy = nil
+        end
+
         self:ReleaseGrip(self.Corpse)
+        self:ResetFeedArms()
         self:SetFeeding(false)
 
         self.Corpse      = nil
         self.CorpseState = nil
         self.DragPos     = nil
         self.FeedEnd     = nil
-        self.Distracted  = false
-    end
-
-    function ENT:IsDistracted(Now)
-        if Now >= self.NextDistract then
-            self.NextDistract = Now + DistractCheck
-
-            local Ply = self:FindNearestPlayer()
-
-            self.Distracted = IsValid(Ply) and self:GetPos():DistToSqr(Ply:GetPos()) < DistractRangeSqr
-        end
-
-        return self.Distracted
     end
 
     function ENT:PickGripIndex(Corpse)
@@ -1668,9 +1765,10 @@ if SERVER then
         self.EatIndex    = 1
         self.EatBites    = 0
         self.FeedEnd     = nil
+
         local PhysCount = math.max(self.Corpse:GetPhysicsObjectCount(), 1)
         self.FeedBiteDelay = math.Clamp(BiteDelay * math.sqrt(PhysCount / 8), 0.18, 0.65)
-        self.NextBite    = Now + self.FeedBiteDelay
+        self.NextBite      = Now + self.FeedBiteDelay
     end
 
     function ENT:UpdateGrip()
@@ -1690,9 +1788,9 @@ if SERVER then
         GripTarget.z = Pos.z + GripHeight
 
         local PhysPos = Phys:GetPos()
-        local Dx = GripTarget.x - PhysPos.x
-        local Dy = GripTarget.y - PhysPos.y
-        local Dz = GripTarget.z - PhysPos.z
+        local Dx      = GripTarget.x - PhysPos.x
+        local Dy      = GripTarget.y - PhysPos.y
+        local Dz      = GripTarget.z - PhysPos.z
 
         if Dx * Dx + Dy * Dy + Dz * Dz > GripBreakSqr then
             self.GripBroken = true
@@ -1705,6 +1803,12 @@ if SERVER then
 
         Phys:Wake()
         Phys:SetVelocity(GripVel)
+
+        local RootPhys = Corpse:GetPhysicsObjectNum(0)
+        if IsValid(RootPhys) and RootPhys ~= Phys then
+            RootPhys:Wake()
+            RootPhys:SetVelocity(GripVel * 0.6)
+        end
     end
 
     function ENT:UpdateBloodTrail()
@@ -1725,10 +1829,16 @@ if SERVER then
         end
 
         local Loco = self.loco
-        local Pos  = Corpse:GetPos()
+        local Pos  = GetCorpsePos(Corpse)
+        if Pos == nil then
+            self:EndCorpse()
+            return
+        end
 
-        if self:GetPos():DistToSqr(Pos) <= GrabRangeSqr then
-            if self.GripBreaks >= MaxGripBreaks or not self:StartDrag(Corpse, Now) then self:StartFeed(Now) end
+        if GetCorpseDistSqr(self:GetPos(), Corpse) <= GrabRangeSqr then
+            if self.GripBreaks >= MaxGripBreaks or not self:StartDrag(Corpse, Now) then
+                self:StartFeed(Now)
+            end
             return
         end
 
@@ -1755,8 +1865,8 @@ if SERVER then
 
         if Now >= self.NextDragDecal then
             self.NextDragDecal = Now + DragDecalDelay
-
-            PlaceBlood(Corpse:GetPos(), 12, self, Corpse)
+            local cPos = GetCorpsePos(Corpse)
+            if cPos ~= nil then PlaceBlood(cPos, 12, self, Corpse) end
         end
 
         if self:GetPos():DistToSqr(self.DragPos) <= DragArriveSqr or Now > self.StateUntil then
@@ -1765,6 +1875,48 @@ if SERVER then
         end
     end
 
+    function ENT:ApplyBloodySkin()
+        if self:GetModel() ~= ModelPavel then return end
+
+        local Skins = self:SkinCount() or 0
+        if Skins > 2 and self:GetSkin() < 2 then
+            self:SetSkin(2)
+        end
+    end
+
+    local TearVecA = Vector()
+    local TearVecB = Vector()
+
+    local function RipCorpseApart(Zombie, Corpse, OriginPos, Intensity)
+        if not IsValid(Corpse) then return end
+
+        local Count = Corpse:GetPhysicsObjectCount()
+        if Count < 1 then return end
+
+        local PhysA = Corpse:GetPhysicsObjectNum(math.random(0, Count - 1))
+        local PhysB = Count > 1 and Corpse:GetPhysicsObjectNum(math.random(0, Count - 1)) or nil
+
+        local Forward = Zombie:GetForward()
+        local Right   = Zombie:GetRight()
+        local Dir     = (Right * (math.random(0, 1) == 0 and -1 or 1) + Forward * 0.45 + Vector(0, 0, 0.35)):GetNormalized()
+
+        if IsValid(PhysA) then
+            TearVecA.x = Dir.x * Intensity
+            TearVecA.y = Dir.y * Intensity
+            TearVecA.z = math.abs(Dir.z) * Intensity * 0.65
+            PhysA:Wake()
+            PhysA:AddVelocity(TearVecA)
+        end
+
+        if IsValid(PhysB) and PhysB ~= PhysA then
+            TearVecB.x = -Dir.x * Intensity * 0.85
+            TearVecB.y = -Dir.y * Intensity * 0.85
+            TearVecB.z = math.Rand(20, 65)
+            PhysB:Wake()
+            PhysB:AddVelocity(TearVecB)
+        end
+    end
+    
     function ENT:Bite(Corpse, Now)
         local Item = self.EatList[self.EatIndex]
 
@@ -1785,7 +1937,8 @@ if SERVER then
 
         self.EatBites    = self.EatBites + 1
         self.BloodyUntil = Now + BloodyFeetTime
-        self.Satiety = math.min(SatietyFull, (self.Satiety or 0) + SatietyPerBite)
+        self.Satiety     = math.min(SatietyFull, (self.Satiety or 0) + SatietyPerBite)
+        self:ApplyBloodySkin()
 
         local Scale    = math.max(1 - self.EatBites / BoneBites, MinScale)
         local Finished = self.EatBites >= BoneBites
@@ -1805,13 +1958,17 @@ if SERVER then
         end
 
         if Finished then
-            Corpse:EmitSound(FinishSound, 70, math.random(SoundPitchMin, SoundPitchMax))
+            Corpse:EmitSound(FinishSound, 75, math.random(SoundPitchMin - 5, SoundPitchMax + 5))
+            RipCorpseApart(self, Corpse, Pos, TugSpeed * 2.4)
 
             self.EatIndex = self.EatIndex + 1
             self.EatBites = 0
         else
-            self:EmitSound(EatSounds[math.random(#EatSounds)], 70, math.random(SoundPitchMin, SoundPitchMax))
+            self:EmitSound(EatSounds[math.random(#EatSounds)], 72, math.random(SoundPitchMin, SoundPitchMax))
+            RipCorpseApart(self, Corpse, Pos, TugSpeed * 1.35)
         end
+
+        self:RestartGesture(ACT_GMOD_GESTURE_RANGE_ZOMBIE)
 
         if self.EatBites % 2 == 0 then self:RestartGesture(ACT_GMOD_GESTURE_RANGE_ZOMBIE) end
 
@@ -1820,12 +1977,16 @@ if SERVER then
 
     function ENT:StepFeed(Corpse, Now)
         local Loco = self.loco
-        local Pos  = Corpse:GetPos()
+        local Pos  = GetCorpsePos(Corpse)
+        if Pos == nil then
+            self:EndCorpse()
+            return
+        end
 
         Loco:FaceTowards(Pos)
 
         if not self:GetFeeding() then
-            if self:GetPos():DistToSqr(Pos) > FeedRangeSqr and Now <= self.StateUntil then
+            if GetCorpseDistSqr(self:GetPos(), Corpse) > FeedRangeSqr and Now <= self.StateUntil then
                 Loco:SetDesiredSpeed(Speed)
                 self:MoveWithWallSlide(Pos)
                 return
@@ -1856,7 +2017,7 @@ if SERVER then
         end
 
         local Threat = self.Target
-        if IsEnemyValid(Threat) and self:GetPos():DistToSqr(Threat:GetPos()) <= CorpseThreatRangeSqr then
+        if IsEnemyValid(Threat) and GetEnemyDistSqr(self, Threat) <= CorpseThreatRangeSqr and CanSeeTarget(self, Threat) then
             self:SetFeeding(false)
             return false
         end
@@ -1875,19 +2036,19 @@ if SERVER then
     end
 
     function ENT:FindNearestCorpse()
-        local Best = nil
+        local Best     = nil
         local BestDist = CorpseNoticeRangeSqr
-        local List = ents.FindByClass("prop_ragdoll")
-        local MyPos = self:GetPos()
+        local List     = ents.FindByClass("prop_ragdoll")
+        local MyPos    = self:GetPos()
 
         for i = 1, #List do
             local Corpse = List[i]
 
             if self:WantsCorpse(Corpse) then
-                local Dist = MyPos:DistToSqr(Corpse:GetPos())
+                local Dist = GetCorpseDistSqr(MyPos, Corpse)
 
                 if Dist < BestDist then
-                    Best = Corpse
+                    Best     = Corpse
                     BestDist = Dist
                 end
             end
@@ -1900,12 +2061,10 @@ if SERVER then
     -- Поведение
     -- ----------------------------------------------------------------------
 
-
     function ENT:MoveWithWallSlide(TargetPos)
         local Loco = self.loco
-        local Pos = self:GetPos()
+        local Pos  = self:GetPos()
 
-        -- На воде идём напрямую к цели, без обхода препятствий.
         if self.WaterWalking then
             local WaterTarget = Vector(TargetPos.x, TargetPos.y, Pos.z)
 
@@ -1920,17 +2079,15 @@ if SERVER then
 
         Direction:Normalize()
 
-        -- Проверяем препятствия на уровне корпуса, а не у поверхности земли.
         local Trace = util.TraceHull({
-            start = Pos + Vector(0, 0, 42),
+            start  = Pos + Vector(0, 0, 42),
             endpos = Pos + Vector(0, 0, 42) + Direction * 48,
-            mins = Vector(-14, -14, -8),
-            maxs = Vector(14, 14, 8),
+            mins   = Vector(-14, -14, -8),
+            maxs   = Vector(14, 14, 8),
             filter = self,
-            mask = MASK_NPCSOLID
+            mask   = MASK_NPCSOLID
         })
 
-        -- Наклонные поверхности не считаем вертикальными стенами.
         if Trace.Hit and not Trace.StartSolid and Trace.HitNormal.z < 0.2 then
             local Slide = Direction - Trace.HitNormal * Direction:Dot(Trace.HitNormal)
 
@@ -1954,15 +2111,17 @@ if SERVER then
         Loco:Approach(TargetPos, 1)
     end
 
-
     function ENT:BehaviourStep()
         local Loco = self.loco
-        local Now = CurTime()
+        local Now  = CurTime()
 
         self.Satiety = math.max((self.Satiety or 0) - SatietyDecay, 0)
 
         local Raging = self:IsRaging()
-        if self.WasRaging and not Raging then self.ExhaustedUntil = Now + 4 end
+        if self.WasRaging and not Raging then
+            self.ExhaustedUntil = Now + 4
+            self:CalmDown()
+        end
         self.WasRaging = Raging
 
         if IsAiDisabled() then
@@ -1971,7 +2130,6 @@ if SERVER then
             return
         end
 
-        -- Сначала обновляем/подтверждаем текущую цель.
         if IsEnemyValid(self.Target) then
             if CanSeeTarget(self, self.Target) then
                 self:RememberTarget(self.Target, Now)
@@ -1990,19 +2148,18 @@ if SERVER then
             end
 
             if IsValid(NewTarget) then
-                self.Target = NewTarget
+                self.Target    = NewTarget
                 self.SearchPos = nil
-                self.HeardPos = nil
+                self.HeardPos  = nil
                 if Lost and NewTarget ~= self.LastSeenTarget then self:PlayVoice("Alert") end
             elseif Lost then
                 self.Target = nil
             end
         end
 
-        -- Труп остаётся закреплённым за Павлом, пока он отгоняет угрозу.
         if self.CorpseState ~= nil then
             local Threat = self.Target
-            if IsEnemyValid(Threat) and self:GetPos():DistToSqr(Threat:GetPos()) <= CorpseThreatRangeSqr then
+            if IsEnemyValid(Threat) and GetEnemyDistSqr(self, Threat) <= CorpseThreatRangeSqr and CanSeeTarget(self, Threat) then
                 self:SetFeeding(false)
                 Loco:SetDesiredSpeed(math.max(Speed * self.SpeedMul, 80))
                 Loco:FaceTowards(Threat:GetPos())
@@ -2014,21 +2171,19 @@ if SERVER then
             if self:CorpseStep() then return end
         end
 
-        -- Поиск трупов ограничен уровнем сытости.
         if self.Satiety < SatietySearchThreshold and self.CorpseState == nil and Now >= self.NextCorpseSearch then
-            self.NextCorpseSearch = Now + 0.5
+            self.NextCorpseSearch = Now + 0.4
             local Corpse = self:FindNearestCorpse()
             if IsValid(Corpse) then
                 self:StartCorpse(Corpse)
-                self:CorpseStep()
-                return
+                if self:CorpseStep() then return end
             end
         end
 
         if IsEnemyValid(self.Target) then
-            local Target = self.Target
+            local Target    = self.Target
             local TargetPos = Target:GetPos()
-            local Visible = CanSeeTarget(self, Target)
+            local Visible   = CanSeeTarget(self, Target)
 
             if Visible then
                 self:RememberTarget(Target, Now)
@@ -2064,7 +2219,6 @@ if SERVER then
                 return
             end
 
-            -- Цель за стеной: сначала обследуем последнюю известную позицию.
             if self.LastSeenPos ~= nil and Now - self.LastSeenTime < SearchDuration then
                 self:StartSearch(self.LastSeenPos, Now)
             end
@@ -2077,7 +2231,6 @@ if SERVER then
 
         if self:StepInvestigateSound(Now) then return end
 
-        -- В спокойном состоянии Павел не обязан стоять абсолютно неподвижно.
         self:UpdateIdleBehaviour(Now)
         if Now >= self.IdleUntil then
             Loco:SetDesiredSpeed(0)
@@ -2108,8 +2261,6 @@ if SERVER then
             self.GrudgeUntil  = Now + GrudgeTime
             self.NextRetarget = Now + GrudgeTime
             self:RememberTarget(Attacker, Now)
-
-            -- Не бросаем добычу: после устранения угрозы Павел вернётся к ней.
         end
 
         if Now >= self.NextHurtSound then
@@ -2127,16 +2278,87 @@ if SERVER then
         self:EndCorpse()
         self:PlayVoice("Death")
 
-        local Color = self:GetColor()
+        local Color   = self:GetColor()
         local Ragdoll = self:BecomeRagdoll(Damage)
-
-        if IsValid(Ragdoll) then Ragdoll:SetColor(Color) end
+        local Skin    = self:GetSkin()
+        local Scale   = self.ModelScale or 1
+        
+        if IsValid(Ragdoll) then
+            Ragdoll:SetColor(Color)
+            Ragdoll:SetSkin(Skin)
+            Ragdoll:SetModelScale(Scale, 0)
+        end
     end
 
     function ENT:OnRemove()
         self:EndCorpse()
     end
 
+    local FeedArmBoneNames = {
+        "ValveBiped.Bip01_L_UpperArm",
+        "ValveBiped.Bip01_R_UpperArm",
+        "ValveBiped.Bip01_L_Forearm",
+        "ValveBiped.Bip01_R_Forearm",
+        "ValveBiped.Bip01_L_Hand",
+        "ValveBiped.Bip01_R_Hand"
+    }
+
+    function ENT:InitFeedArms()
+        self.FeedArms = {}
+
+        for i = 1, #FeedArmBoneNames do
+            local Bone = self:LookupBone(FeedArmBoneNames[i])
+
+            if Bone ~= nil and Bone >= 0 then
+                self.FeedArms[#self.FeedArms + 1] = Bone
+            end
+        end
+    end
+
+    function ENT:ResetFeedArms()
+        if not self.FeedArmsActive then return end
+        self.FeedArmsActive = false
+
+        for i = 1, #self.FeedArms do
+            local Bone = self.FeedArms[i]
+            if Bone >= 0 then
+                self:ManipulateBoneAngles(Bone, Angle(0, 0, 0))
+            end
+        end
+    end
+
+    function ENT:UpdateFeedArms()
+        if not self:GetFeeding() then
+            self:ResetFeedArms()
+            return
+        end
+
+        if #self.FeedArms == 0 then
+            self:InitFeedArms()
+        end
+
+        local Now = CurTime()
+        if Now < self.NextFeedArmUpdate then return end
+
+        self.NextFeedArmUpdate = Now + 0.06
+        self.FeedArmsActive    = true
+        self.FeedTearDir       = -self.FeedTearDir
+
+        local Dir = self.FeedTearDir
+
+        for i = 1, #self.FeedArms do
+            local Bone = self.FeedArms[i]
+            if Bone >= 0 then
+                local Side  = (i % 2 == 0) and 1 or -1
+                local Pitch = math.Rand(-45, 35) * Dir
+                local Yaw   = math.Rand(20, 65) * Side * Dir
+                local Roll  = math.Rand(-55, 55) * Side
+
+                self:ManipulateBoneAngles(Bone, Angle(Pitch, Yaw, Roll))
+            end
+        end
+    end
+    
     function ENT:InitRageBones()
         self.RageBones = {}
 
@@ -2172,8 +2394,8 @@ if SERVER then
             local Bone = self.RageBones[i]
 
             local Pitch = math.Rand(-35, 35)
-            local Yaw = math.Rand(-55, 55)
-            local Roll = math.Rand(-65, 65)
+            local Yaw   = math.Rand(-55, 55)
+            local Roll  = math.Rand(-65, 65)
 
             self:ManipulateBoneAngles(Bone, Angle(Pitch, Yaw, Roll))
         end
@@ -2186,100 +2408,18 @@ if SERVER then
     end
 
     -- ----------------------------------------------------------------------
-    -- Рэгдолл игрока
-    -- ----------------------------------------------------------------------
-
-    local function TakeSnapshot(Ply, ByPavel)
-        local Snap = {
-            Pavel       = ByPavel,
-            Model       = Ply:GetModel(),
-            Skin        = Ply:GetSkin(),
-            Pos         = Ply:GetPos(),
-            Ang         = Angle(0, Ply:EyeAngles().y, 0),
-            Vel         = Ply:GetVelocity(),
-            Color       = Ply:GetPlayerColor(),
-            RenderColor = Ply:GetColor(),
-            Groups      = {},
-            Bones       = {}
-        }
-
-        for i = 0, Ply:GetNumBodyGroups() - 1 do
-            Snap.Groups[i] = Ply:GetBodygroup(i)
-        end
-
-        for i = 0, Ply:GetBoneCount() - 1 do
-            local Pos, Ang = Ply:GetBonePosition(i)
-
-            if Pos ~= nil and Ang ~= nil then Snap.Bones[i] = {Pos = Pos, Ang = Ang} end
-        end
-
-        return Snap
-    end
-
-    local function CreatePlayerCorpse(Snap)
-        local Ragdoll = ents.Create("prop_ragdoll")
-
-        if not IsValid(Ragdoll) then
-            print("[GMM] PAVELZOMBIE CORPSE CREATE FAILED! MODEL: " .. tostring(Snap.Model))
-            return nil
-        end
-
-        Ragdoll:SetModel(Snap.Model)
-        Ragdoll:SetPos(Snap.Pos)
-        Ragdoll:SetAngles(Snap.Ang)
-        Ragdoll:SetSkin(Snap.Skin)
-        Ragdoll:SetColor(Snap.RenderColor)
-
-        for Group, Value in pairs(Snap.Groups) do
-            Ragdoll:SetBodygroup(Group, Value)
-        end
-
-        Ragdoll:Spawn()
-        Ragdoll:Activate()
-
-        local Count = Ragdoll:GetPhysicsObjectCount()
-
-        if Count < 1 then
-            print("[GMM] PAVELZOMBIE CORPSE HAS NO PHYSICS! MODEL: " .. tostring(Snap.Model))
-            Ragdoll:Remove()
-            return nil
-        end
-
-        for i = 0, Count - 1 do
-            local Phys = Ragdoll:GetPhysicsObjectNum(i)
-
-            if IsValid(Phys) then
-                local Data = Snap.Bones[Ragdoll:TranslatePhysBoneToBone(i)]
-
-                if Data ~= nil then
-                    Phys:SetPos(Data.Pos)
-                    Phys:SetAngles(Data.Ang)
-                end
-
-                Phys:SetVelocity(Snap.Vel)
-                Phys:Wake()
-            end
-        end
-
-        Ragdoll:SetNWBool(NwCorpseFlag, true)
-        Ragdoll:SetNWVector(NwCorpseColor, Snap.Color)
-
-        SafeRemoveEntityDelayed(Ragdoll, PlayerCorpseLife)
-
-        return Ragdoll
-    end
-
-    -- ----------------------------------------------------------------------
     -- Трупы: хуки
     -- ----------------------------------------------------------------------
 
     local function GiveCorpse(Ragdoll)
-        local Pos       = Ragdoll:GetPos()
-        local Best      = nil
-        local BestDist  = math.huge
-        local Why       = nil
-        local WhyDist   = math.huge
-        local List      = ents.FindByClass(ClassName)
+        if not IsValid(Ragdoll) then return end
+
+        local Pos      = GetCorpsePos(Ragdoll) or Ragdoll:GetPos()
+        local Best     = nil
+        local BestDist = math.huge
+        local Why      = nil
+        local WhyDist  = math.huge
+        local List     = ents.FindByClass(ClassName)
 
         for i = 1, #List do
             local Zombie = List[i]
@@ -2318,7 +2458,7 @@ if SERVER then
                 timer.Simple(CorpseOfferRetry, function()
                     OfferCorpse(Ragdoll, Tries - 1)
                 end)
-            else
+            elseif IsDeveloper() then
                 print("[GMM] PAVELZOMBIE CORPSE NOT USABLE! CLASS: " .. Ragdoll:GetClass() .. ", PHYS COUNT: " .. Ragdoll:GetPhysicsObjectCount())
             end
 
@@ -2328,48 +2468,34 @@ if SERVER then
         GiveCorpse(Ragdoll)
     end
 
-    local function OfferPlayerCorpse(Ply, Snap, Tries)
-        local Ragdoll = Snap.Corpse
-
-        if not IsValid(Ragdoll) and IsValid(Ply) then Ragdoll = Ply:GetRagdollEntity() end
-
-        if IsValid(Ragdoll) and Ragdoll:GetPhysicsObjectCount() > 0 then
-            GiveCorpse(Ragdoll)
-            return
-        end
-
-        if Tries > 0 then
-            timer.Simple(CorpseOfferRetry, function()
-                OfferPlayerCorpse(Ply, Snap, Tries - 1)
-            end)
-            return
-        end
-
-        if not IsValid(Ragdoll) then return end
-
-        local Own = CreatePlayerCorpse(Snap)
-        if not IsValid(Own) then return end
-
-        Ragdoll:Remove()
-
-        Snap.Corpse = Own
-
-        GiveCorpse(Own)
-    end
-
     hook.Add("DoPlayerDeath", "gmm_PavelZombie_PlayerSnapshot", function(Ply, Attacker, Damage)
-        if #ents.FindByClass(ClassName) == 0 then
-            Ply.GMMPavelSnap = nil
-            return
-        end
+        Ply.GMMPavelSnap = nil
 
-        local Inflictor = Damage:GetInflictor()
+        local Inflictor = IsValid(Damage) and Damage:GetInflictor() or nil
         local ByPavel   = false
 
         if IsValid(Attacker) and Attacker:GetClass() == ClassName then ByPavel = true end
         if IsValid(Inflictor) and Inflictor:GetClass() == ClassName then ByPavel = true end
 
-        Ply.GMMPavelSnap = TakeSnapshot(Ply, ByPavel)
+        if not ByPavel then return end
+
+        if GMM.Func and GMM.Func.TakePlayerSnapshot then
+            Ply.GMMPavelSnap = GMM.Func.TakePlayerSnapshot(Ply)
+        end
+    end)
+
+    hook.Add("ShouldCollide", "gmm_PavelZombie_NoRagdollCollide", function(EntA, EntB)
+        if not IsValid(EntA) or not IsValid(EntB) then return end
+
+        local AIsZombie = EntA:GetClass() == ClassName
+        local BIsZombie = EntB:GetClass() == ClassName
+
+        if not AIsZombie and not BIsZombie then return end
+
+        local Other = AIsZombie and EntB or EntA
+        if IsValid(Other) and Other:GetClass() == "prop_ragdoll" then
+            return false
+        end
     end)
 
     hook.Add("PostPlayerDeath", "gmm_PavelZombie_PlayerCorpse", function(Ply)
@@ -2378,13 +2504,19 @@ if SERVER then
 
         Ply.GMMPavelSnap = nil
 
-        if Snap.Pavel and not IsValid(Ply:GetRagdollEntity()) then
-            Snap.Corpse = CreatePlayerCorpse(Snap)
+        local DefaultRagdoll = Ply:GetRagdollEntity()
+        if IsValid(DefaultRagdoll) then
+            DefaultRagdoll:Remove()
         end
 
-        timer.Simple(CorpseOfferDelay, function()
-            OfferPlayerCorpse(Ply, Snap, CorpseOfferTries)
-        end)
+        if GMM.Func and GMM.Func.CreatePlayerRagdoll then
+            local Corpse = GMM.Func.CreatePlayerRagdoll(Snap, PlayerCorpseLife)
+            if IsValid(Corpse) then
+                timer.Simple(CorpseOfferDelay, function()
+                    OfferCorpse(Corpse, CorpseOfferTries)
+                end)
+            end
+        end
     end)
 
     hook.Add("CreateEntityRagdoll", "gmm_PavelZombie_NpcCorpse", function(Owner, Ragdoll)
@@ -2395,7 +2527,6 @@ if SERVER then
         end)
     end)
 
-    -- Звуки окружения привлекают Павла, но не заставляют его реагировать на каждый тик физики.
     hook.Add("EntityEmitSound", "gmm_PavelZombie_InvestigateSound", function(Data)
         local Source = Data.Entity
         if IsValid(Source) and Source:GetClass() == ClassName then return end
@@ -2536,31 +2667,6 @@ if CLIENT then
         end
     end)
 
-    local CorpseColorDelay = 0.5
-    local CorpseColorNext  = 0
-
-    local function GetCorpseColor(Self)
-        return Self.GMMCorpseColor
-    end
-
-    hook.Add("Think", "gmm_PavelZombie_CorpseColor", function()
-        local Now = RealTime()
-        if Now < CorpseColorNext then return end
-
-        CorpseColorNext = Now + CorpseColorDelay
-
-        local List = ents.FindByClass("prop_ragdoll")
-
-        for i = 1, #List do
-            local Ent = List[i]
-
-            if Ent.GMMCorpseColor == nil and Ent:GetNWBool(NwCorpseFlag) then
-                Ent.GMMCorpseColor = Ent:GetNWVector(NwCorpseColor)
-                Ent.GetPlayerColor = GetCorpseColor
-            end
-        end
-    end)
-
     local HaloColor = Color(255, 40, 40)
     local HaloList  = {}
     local HaloNext  = 0
@@ -2573,11 +2679,11 @@ if CLIENT then
         local Id  = self:EntIndex()
 
         if self.GlitchMatrix == nil then
-            self.GlitchMatrix  = Matrix()
-            self.GlitchOffset  = Vector()
-            self.GlitchAng     = Angle()
-            self.GlitchScale   = Vector(1, 1, 1)
-            self.NextVisGlitch = 0
+            self.GlitchMatrix   = Matrix()
+            self.GlitchOffset   = Vector()
+            self.GlitchAng      = Angle()
+            self.GlitchScale    = Vector(1, 1, 1)
+            self.NextVisGlitch  = 0
             self.VisGlitchUntil = 0
         end
 

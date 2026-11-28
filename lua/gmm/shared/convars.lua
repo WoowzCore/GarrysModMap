@@ -9,23 +9,121 @@
 
 GMM.ConVars.Prefix = "gmm_convar_"
 
+local GlitchChars = {
+    "#", "%", "&", "?", "@", "!", "$", "*", "+", "=",
+    "~", "^", "/", "\\", "|", "<", ">", ":", ";", "_",
+    "0", "1", "3", "7", "9", "X", "Z", "E", "R", "R"
+}
+
+GMM.ConVars.IsDoorFound = function()
+    if CLIENT then
+        if GMM_C ~= nil and GMM_C.CoreTab ~= nil and GMM_C.CoreTab.IsCompleted ~= nil then
+            return GMM_C.CoreTab.IsCompleted()
+        end
+
+        return cookie.GetNumber("gmm_core_arg", 1) >= 6
+    end
+
+    return true
+end
+
+GMM.ConVars.CanUse = function(Def)
+    if type(Def) == "string" then
+        Def = GMM.ConVars.GetDefOrError(Def)
+    end
+    if Def == nil then return false end
+
+    if type(Def.CanUse) == "function" then
+        return Def.CanUse(Def) == true
+    end
+    if Def.CanUse == false then
+        return false
+    end
+
+    if type(Def.Secret) == "function" then
+        return Def.Secret(Def) == true
+    end
+    if Def.Secret == true then
+        return GMM.ConVars.IsDoorFound()
+    end
+
+    return true
+end
+
+GMM.ConVars.CanUseOption = function(Def, Option)
+    if not GMM.ConVars.CanUse(Def) then return false end
+    if Option == nil then return false end
+
+    if type(Option.CanUse) == "function" then
+        return Option.CanUse(Def, Option) == true
+    end
+    if Option.CanUse == false then
+        return false
+    end
+
+    if type(Option.Secret) == "function" then
+        return Option.Secret(Def, Option) == true
+    end
+    if Option.Secret == true then
+        return GMM.ConVars.IsDoorFound()
+    end
+
+    return true
+end
+
+GMM.ConVars.GetGlitchText = function(SeedText, Length)
+    SeedText = tostring(SeedText or "")
+
+    if Length == nil then
+        local UtfLength = utf8 and utf8.len(SeedText) or #SeedText
+        Length = math.Clamp(UtfLength or #SeedText, 5, 32)
+    end
+
+    local Now  = CLIENT and RealTime() or CurTime()
+    local Tick = math.floor(Now * 10)
+    local Hash = 0
+
+    for i = 1, #SeedText do
+        Hash = (Hash * 31 + string.byte(SeedText, i)) % 2147483647
+    end
+
+    local Out = {}
+    for i = 1, Length do
+        local Index = ((Hash + i * 73 + Tick * 19 + math.floor((Tick + i) / 3) * 131) % #GlitchChars) + 1
+        Out[i] = GlitchChars[Index]
+    end
+
+    return table.concat(Out)
+end
+
+GMM.ConVars.__ApplyExtra = function(Target, Extra)
+    if type(Extra) ~= "table" then return end
+
+    Target.Extra  = Extra
+    Target.Secret = Extra.Secret or Extra.NeedDoor or false
+    Target.CanUse = Extra.CanUse
+end
+
 GMM.ConVars.__BuildEnum = function(Def, Options)
     if type(Options) ~= "table" or #Options == 0 then
         error("[GMM] AddConVar: FOR Enum NEED Options! Name: " .. tostring(Def.Name))
     end
 
-    Def.Options     = {}
-    Def.ValueByName = {}
-    Def.NameByValue = {}
+    Def.Options      = {}
+    Def.ValueByName  = {}
+    Def.NameByValue  = {}
+    Def.OptionByValue = {}
 
     for i = 1, #Options do
         local Option      = Options[i]
         local OptionName  = Option
         local OptionValue = i - 1
+        local OptionExtra = nil
 
         if type(Option) == "table" then
             OptionName  = Option[1]
             OptionValue = Option[2]
+            OptionExtra = Option[3]
         end
 
         if type(OptionName) ~= "string" then
@@ -41,9 +139,20 @@ GMM.ConVars.__BuildEnum = function(Def, Options)
             error("[GMM] AddConVar: Enum DUPLICATE OPTION VALUE! Name: " .. Def.Name .. ", Value: " .. OptionValue)
         end
 
-        table.insert(Def.Options, {Name = OptionName, Value = OptionValue})
-        Def.ValueByName[OptionName]  = OptionValue
-        Def.NameByValue[OptionValue] = OptionName
+        local OptionDef = {
+            Name  = OptionName,
+            Value = OptionValue
+        }
+        if OptionExtra == true then
+            OptionDef.Secret = true
+        elseif type(OptionExtra) == "table" then
+            GMM.ConVars.__ApplyExtra(OptionDef, OptionExtra)
+        end
+
+        table.insert(Def.Options, OptionDef)
+        Def.ValueByName[OptionName]    = OptionValue
+        Def.NameByValue[OptionValue]   = OptionName
+        Def.OptionByValue[OptionValue] = OptionDef
 
         if Def.Min == nil or OptionValue < Def.Min then Def.Min = OptionValue end
         if Def.Max == nil or OptionValue > Def.Max then Def.Max = OptionValue end
@@ -57,9 +166,14 @@ GMM.ConVars.__BuildEnum = function(Def, Options)
     end
 end
 
-GMM.ConVars.Add = function(Server, Type, Name, Default, Description, Min, Max, Options)
+GMM.ConVars.Add = function(Server, Type, Name, Default, Description, Min, Max, Extra, Options)
     Name        = GMM.ConVars.Prefix .. Name
     Description = Description or ""
+
+    if type(Min) == "table" and Extra == nil then
+        Extra = Min
+        Min   = nil
+    end
 
     if Type ~= "Bool" and Type ~= "Int" and Type ~= "Float" and Type ~= "String" and Type ~= "Enum" then
         error("[GMM] AddConVar: UNKNOWN Type! Name: " .. tostring(Name) .. ", Type: " .. tostring(Type))
@@ -84,8 +198,13 @@ GMM.ConVars.Add = function(Server, Type, Name, Default, Description, Min, Max, O
         Description = Description,
         Min         = Min,
         Max         = Max,
-        ConVar      = nil
+        ConVar      = nil,
+        Extra       = nil,
+        Secret      = false,
+        CanUse      = nil
     }
+
+    GMM.ConVars.__ApplyExtra(Def, Extra)
 
     if Type == "Enum" then
         Def.Min = nil
@@ -116,11 +235,11 @@ GMM.ConVars.Add = function(Server, Type, Name, Default, Description, Min, Max, O
     return Def
 end
 
-GMM.ConVars.AddEnum = function(Server, Name, Default, Description, Options)
-    return GMM.ConVars.Add(Server, "Enum", Name, Default, Description, nil, nil, Options)
+GMM.ConVars.AddEnum = function(Server, Name, Default, Description, Options, Extra)
+    return GMM.ConVars.Add(Server, "Enum", Name, Default, Description, nil, nil, Extra, Options)
 end
 
-GMM.ConVars.AddFlags = function(Server, Name, Description, Options)
+GMM.ConVars.AddFlags = function(Server, Name, Description, Options, Extra)
     local Flags   = {}
     local Full    = 0
     local Default = 0
@@ -134,7 +253,7 @@ GMM.ConVars.AddFlags = function(Server, Name, Description, Options)
         table.insert(Flags, {Key = Option[1], Name = Option[2], Value = Value})
     end
 
-    GMM.ConVars.Add(Server, "Int", Name, Default, Description, 0, Full)
+    GMM.ConVars.Add(Server, "Int", Name, Default, Description, 0, Full, Extra)
 
     local Def = GMM.ConVars.GetDefOrError(Name)
     Def.Flags = Flags
@@ -187,12 +306,38 @@ GMM.ConVars.NormalizeValue = function(Def, Text)
 end
 
 GMM.ConVars.GetDisplayText = function(Def, Text)
+    if not GMM.ConVars.CanUse(Def) then
+        return GMM.ConVars.GetGlitchText(Def.Name .. "_value", 8)
+    end
+
     if Def.Type ~= "Enum" then return Text end
 
-    local Name = Def.NameByValue[tonumber(Text)]
+    local EnumValue = tonumber(Text)
+    local Option    = Def.OptionByValue and Def.OptionByValue[EnumValue]
+    if Option ~= nil and not GMM.ConVars.CanUseOption(Def, Option) then
+        return GMM.ConVars.GetGlitchText(Def.Name .. "_" .. tostring(Text), 8)
+    end
+
+    local Name = Def.NameByValue[EnumValue]
     if Name == nil then return "? " .. Text end
 
     return Name
+end
+
+GMM.ConVars.GetDisplayName = function(Def)
+    if not GMM.ConVars.CanUse(Def) then
+        return GMM.ConVars.GetGlitchText(Def.Name)
+    end
+
+    return Def.Name
+end
+
+GMM.ConVars.GetDisplayDescription = function(Def)
+    if not GMM.ConVars.CanUse(Def) then
+        return GMM.ConVars.GetGlitchText(Def.Description ~= "" and Def.Description or Def.Name)
+    end
+
+    return Def.Description
 end
 
 GMM.ConVars.GetDefOrError = function(ShortName)
@@ -260,10 +405,10 @@ GMM.ConVars.AddEnum(true, "anomalies", 1, "Отвечает за работу а
     {"Никогда"      , 0},
     {"Только на GMM", 1},
     {"Всегда"       , 2}
-})
-GMM.ConVars.Add(true, "Float", "anomalies_timer", 10, "Скорость вызова аномалий", 0.1, 240)
-GMM.ConVars.Add(true, "Bool" , "anomalies_rare" , 1, "Редкие аномалии, даже если отключены аномалии")
-GMM.ConVars.Add(true, "Bool" , "entities_unlock", 0, "GMM энтити можно спавнить на любой карте (нужен перезапуск что-бы появилась вкладка GMM)")
+}, {Secret = true})
+GMM.ConVars.Add(true, "Float", "anomalies_timer", 10, "Скорость вызова аномалий", 0.1, 240, {Secret = true})
+GMM.ConVars.Add(true, "Bool" , "anomalies_rare" , 1, "Редкие аномалии, даже если отключены аномалии", {Secret = true})
+GMM.ConVars.Add(true, "Bool" , "entities_unlock", 0, "GMM энтити можно спавнить на любой карте (нужен перезапуск что-бы появилась вкладка GMM)", {Secret = true})
 
 -- ----------------------------------------------------------------------
 
@@ -271,7 +416,7 @@ GMM.ConVars.AddEnum(false, "void", 1, "Отображать эффект Void", 
     {"Никогда"      , 0},
     {"Только на GMM", 1},
     {"Всегда"       , 2},
-    {"ABSOLUTE"     , 3}
+    {"ABSOLUTE"     , 3, {Secret = true}}
 })
 GMM.ConVars.Add(false, "Float", "void_power", 1, "Сила эффекта Void", 0.01, 30)
 GMM.ConVars.Add(false, "Bool", "debug_showposition", 0, "Отображать позицию и поворот камеры игрока")

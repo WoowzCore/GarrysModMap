@@ -39,7 +39,7 @@ local Start = function()
     -- ----------------------------------------------------------------------
 
     if GMM.Maps.SToilet then
-        include("gmm/server/toiletmap.lua")
+        include("gmm/server/map_toiletmap.lua")
     end
 
     -- ----------------------------------------------------------------------

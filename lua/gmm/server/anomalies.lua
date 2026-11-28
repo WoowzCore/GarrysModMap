@@ -1,11 +1,12 @@
 GMM_S.Anomaly = {}
 
 GMM_S.Anomaly.List = {
-    {10, "Shake"      , "ТРЯСКА"},
-    {10, "PlaySound"  , "ЗВУКИ"},
-    {10, "Interact"   , "ВЗАИМОДЕЙСТВИЕ"},
-    {5, "SpawnEntity", "СПАВН"},
-    {1, "Vanish"     , "ИСЧЕЗНОВЕНИЕ"}
+    {20, "Shake"       , "Shakigravitosion"},
+    {20, "PlaySound"   , "Weirdambientsion"},
+    {20, "Interact"    , "Interaction"},
+    {10, "SpawnEntity" , "Spawnion"},
+    {2 , "Vanish"      , "Deletions"},
+    {1 , "RenderGlitch", "Glitchesion"},
 }
 
 GMM_S.Anomaly.Spawned = {}
@@ -945,4 +946,84 @@ GMM_S.Anomaly.Vanish = function()
             Prop:Remove()
         end)
     end
+end
+
+-- ----------------------------------------------------------------------
+-- Глитч
+-- ----------------------------------------------------------------------
+
+-- ----------------------------------------------------------------------
+-- Глитч
+-- ----------------------------------------------------------------------
+
+local NetRenderGlitch = "gmm_Anomaly_RenderGlitch"
+
+if SERVER then
+    util.AddNetworkString(NetRenderGlitch)
+end
+
+local GlitchMinStrength = 0.5
+local GlitchMaxStrength = 1.5
+
+local GlitchDurationWeights = {
+    { Weight = 70, Min = 0.8,  Max = 1.3  },
+    { Weight = 18, Min = 4.5,  Max = 5.5  },
+    { Weight = 9,  Min = 9.0,  Max = 11.0 },
+    { Weight = 3,  Min = 28.0, Max = 32.0 } 
+}
+
+local function PickGlitchDuration()
+    local Total = 0
+    for i = 1, #GlitchDurationWeights do
+        Total = Total + GlitchDurationWeights[i].Weight
+    end
+
+    local Roll = math.Rand(0, Total)
+    for i = 1, #GlitchDurationWeights do
+        local Entry = GlitchDurationWeights[i]
+        Roll = Roll - Entry.Weight
+        if Roll <= 0 then
+            return math.Rand(Entry.Min, Entry.Max)
+        end
+    end
+
+    return 1.0
+end
+
+local function PickGlitchOrigin()
+    local AllPlayers   = player.GetAll()
+    local AlivePlayers = {}
+
+    for i = 1, #AllPlayers do
+        local Ply = AllPlayers[i]
+        if IsValid(Ply) and Ply:Alive() then
+            AlivePlayers[#AlivePlayers + 1] = Ply
+        end
+    end
+
+    if #AlivePlayers > 0 then
+        local Picked = AlivePlayers[math.random(1, #AlivePlayers)]
+        return Picked:EyePos()
+    elseif #AllPlayers > 0 and IsValid(AllPlayers[1]) then
+        return AllPlayers[1]:EyePos()
+    end
+
+    return Vector(0, 0, 0)
+end
+
+GMM_S.Anomaly.RenderGlitch = function()
+    local StartTime = CurTime()
+    local Duration  = PickGlitchDuration()
+    local Strength  = math.Rand(GlitchMinStrength, GlitchMaxStrength)
+    local Seed      = math.random(1, 2147483647)
+    local Origin    = PickGlitchOrigin()
+
+    net.Start(NetRenderGlitch)
+    net.WriteBool(true)
+    net.WriteFloat(StartTime)
+    net.WriteFloat(Duration)
+    net.WriteFloat(Strength)
+    net.WriteUInt(Seed, 31)
+    net.WriteVector(Origin)
+    net.Broadcast()
 end

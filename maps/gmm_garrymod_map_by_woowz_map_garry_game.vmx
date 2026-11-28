@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "8873"
-	"mapversion" "1357"
+	"mapversion" "1358"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -89,7 +89,7 @@ bgimages_plus
 world
 {
 	"id" "1"
-	"mapversion" "1357"
+	"mapversion" "1358"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -265368,9 +265368,9 @@ world
 				"v" "144 456 -792"
 			}
 			"material" "CONCRETE/PRODWLLB"
-			"uaxis" "[-0 1 0 32] 0.5"
-			"vaxis" "[1 0 0 -61] 0.5"
-			"rotation" "90"
+			"uaxis" "[0 1 0 32] 0.5"
+			"vaxis" "[-0.810679 0 -0.58549 256.316] 0.5"
+			"rotation" "0"
 			"lightmapscale" "8"
 			"smoothing_groups" "16777216"
 		}
@@ -662467,7 +662467,7 @@ entity
 {
 	"id" "164224"
 	"classname" "prop_static"
-	"angles" "0 0 0"
+	"angles" "0 -180 0"
 	"disableselfshadowing" "0"
 	"disableshadows" "0"
 	"disablevertexlighting" "0"
@@ -662485,7 +662485,7 @@ entity
 	"screenspacefade" "0"
 	"skin" "1"
 	"solid" "2"
-	"origin" "787.585 862 -746"
+	"origin" "787.585 861.775 -746"
 	editor
 	{
 		"color" "255 255 0"
@@ -662498,7 +662498,7 @@ entity
 {
 	"id" "164232"
 	"classname" "prop_static"
-	"angles" "0 0 0"
+	"angles" "0 -180 0"
 	"disableselfshadowing" "0"
 	"disableshadows" "0"
 	"disablevertexlighting" "0"
@@ -662516,7 +662516,7 @@ entity
 	"screenspacefade" "0"
 	"skin" "1"
 	"solid" "2"
-	"origin" "787.585 862 -698"
+	"origin" "787.585 861.775 -698"
 	editor
 	{
 		"color" "255 255 0"
